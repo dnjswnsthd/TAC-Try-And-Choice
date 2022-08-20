@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.service.tac.model.mapper.MemberMapper">
+	<!-- member login -->
+	<select id="showAll" resultType="Member">
+		select member_id memberId, password, name, age, phone, consume_id consumeId, card_id cardId, grade
+		from member
+	</select>
+
+</mapper>
