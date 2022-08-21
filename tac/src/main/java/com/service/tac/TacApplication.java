@@ -12,12 +12,11 @@ public class TacApplication {
 		SpringApplication.run(TacApplication.class, args);
 	}
 	
-	@Bean
-    public InternalResourceViewResolver setupViewResolver() {
-           InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-           resolver.setPrefix("/WEB-INF/views/");
-           resolver.setSuffix(".jsp");
-           return resolver;
-    }
+	/*
+	 * @Bean public InternalResourceViewResolver setupViewResolver() {
+	 * InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+	 * resolver.setPrefix("/WEB-INF/views/"); resolver.setSuffix(".jsp"); return
+	 * resolver; }
+	 */
 
 }
