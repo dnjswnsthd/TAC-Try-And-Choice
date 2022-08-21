@@ -19,7 +19,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
 	rel="stylesheet" />
 
-<link href="/resources/css/index.css" rel="stylesheet" />
+<link href="/resources/css/intro.css" rel="stylesheet" />
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -41,9 +41,9 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Service3</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/resources/login.html">LOGIN</a>
+					<li class="nav-item"><a class="nav-link" href="#">LOGIN</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/signup.html">SINGUP</a>
+					<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a>
 					</li>
 				</ul>
 			</div>

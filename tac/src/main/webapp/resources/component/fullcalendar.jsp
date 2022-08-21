@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,11 +8,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="../css/fullcalendar.css" rel="stylesheet" />
-    <link href="../css/fullcalendar.print.css" rel="stylesheet" media="print" />
-    <script src="../js/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="../js/jquery-ui.custom.min.js" type="text/javascript"></script>
-    <script src="../js/fullcalendar.js" type="text/javascript"></script>
+    <link href="/resources/css/fullcalendar.css" rel="stylesheet" />
+    <link href="/resources/css/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <script src="/resources/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="/resources/js/jquery-ui.custom.min.js" type="text/javascript"></script>
+    <script src="/resources/js/fullcalendar.js" type="text/javascript"></script>
     <script>
       $(function () {
         var date = new Date();
@@ -247,7 +249,7 @@
     </div>
     <div class="modal">
       <div class="modal_content" title="클릭하면 창이 닫힙니다.">
-        <form action="fullcalendar.html" id='Frm'>
+        <form action="#" id='Frm'>
           <h1>소비 등록<h1>
           <h3 id='span'>대분류</h3>
           <select name="large" id="large">

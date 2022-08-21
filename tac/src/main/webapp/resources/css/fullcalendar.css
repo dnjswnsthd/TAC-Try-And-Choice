@@ -12,6 +12,7 @@ font-style: normal;
 }
 body{
 	width: 50vmax;
+	height: 83vh;
 }
 .fc {
 	direction: ltr;
