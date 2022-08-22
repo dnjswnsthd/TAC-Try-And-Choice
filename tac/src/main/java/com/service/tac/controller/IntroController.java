@@ -10,6 +10,7 @@ public class IntroController {
 	public String intro() {
 		return "intro";
 	}
+	// Controller
 	@RequestMapping(value= "/signup", method = RequestMethod.GET)
 	public String signup() {
 		return "signup";
