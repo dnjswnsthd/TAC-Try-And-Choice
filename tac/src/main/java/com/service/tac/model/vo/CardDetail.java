@@ -7,18 +7,25 @@ public class CardDetail {
 	private int cardId; // card_id
 	private int largeCategoryId; // LARGE_CATEGORY_ID
 	private int smallCategoryId; // SMALL_CATEGORY_ID
+	private int minPayment; // MIN_PAYMENT
+	private int maxDiscount; // MAX_DISCOUNT
+	private int mixCount; // MAX_COUNT
 
 	public CardDetail() {
 		super();
 	}
 
-	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId) {
+	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			int minPayment, int maxDiscount, int mixCount) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
 		this.cardId = cardId;
 		this.largeCategoryId = largeCategoryId;
 		this.smallCategoryId = smallCategoryId;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.mixCount = mixCount;
 	}
 
 	public int getCardDetailId() {
@@ -61,10 +68,35 @@ public class CardDetail {
 		this.smallCategoryId = smallCategoryId;
 	}
 
+	public int getMinPayment() {
+		return minPayment;
+	}
+
+	public void setMinPayment(int minPayment) {
+		this.minPayment = minPayment;
+	}
+
+	public int getMaxDiscount() {
+		return maxDiscount;
+	}
+
+	public void setMaxDiscount(int maxDiscount) {
+		this.maxDiscount = maxDiscount;
+	}
+
+	public int getMixCount() {
+		return mixCount;
+	}
+
+	public void setMixCount(int mixCount) {
+		this.mixCount = mixCount;
+	}
+
 	@Override
 	public String toString() {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
-				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId + "]";
+				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
+				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount + "]";
 	}
 
 }
