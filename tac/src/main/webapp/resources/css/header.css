@@ -7,13 +7,20 @@ body{
 	height: 16vh;
 }
 .navbar{
-    background-color: darkslategrey;
+    opacity: 0.8;
 }
 #logo{
+	max-width: 22vmax;
+    max-height: 12vmax;
+	margin-left: -20%;
+    margin-top: -5%;
+    margin-bottom: -5%;
+}
+#logo2{
 	max-width: 20vmax;
     max-height: 10vmax;
 	margin-left: -20%;
-    margin-top: -5%;
+    margin-top: -7%;
     margin-bottom: -5%;
 }
 .navbar-light .navbar-nav .nav-link {
@@ -27,4 +34,8 @@ ul a{
 }
 ul li{
     margin-right: 3%;
+}
+
+#navbarSupportedContent{
+	margin-top: -2%;
 }

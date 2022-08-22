@@ -19,10 +19,10 @@
 <link href="/resources/css/header.css" rel="stylesheet" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-light">
 		<div class="container">
 			<a class="navbar-brand" href="#"><img id="logo"
-				src="/resources/image/logo2.png" /><img id="logo"
+				src="/resources/image/logo1.png" /><img id="logo2"
 				src="/resources/image/logo3.gif" /></a>
 			<button aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation" class="navbar-toggler"
