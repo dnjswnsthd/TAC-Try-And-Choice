@@ -50,7 +50,7 @@
 						<div class="back-facing">
 							<h4>카드 이름 : YO카드</h4>
 							<h5>
-								카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
+								카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드입니다.
 							</h5>
 							<p>
 								<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
