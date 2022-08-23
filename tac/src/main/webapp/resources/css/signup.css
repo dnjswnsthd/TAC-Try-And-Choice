@@ -37,8 +37,8 @@ body {
 	margin:  0;
 	background-image: url(../image/signupBackground03.jpg);
 	background-repeat: no-repeat;
-	background-position: 0% 0%;
-	background-size: 100%;
+	background-position: 0% 15%;
+	background-size: auto;
 }
 
 ::-webkit-scrollbar {
@@ -535,6 +535,7 @@ body {
 	color: #fff;
 	text-decoration: none; 
     padding: 13px 19px;
+    margin-top: 30%;
 }
 
 /* Responsive */

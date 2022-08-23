@@ -5,7 +5,6 @@
 <head>
 <meta charset="utf-8" />
 <title>회원 가입</title>
-<link rel="icon" href="/resources/image/logo2.png" type="image/x-icon" width="100%" />
 <!-- Mobile Specific Metas -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
