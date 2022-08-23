@@ -21,7 +21,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light">
 		<div class="container">
-			<a class="navbar-brand" href="#"><img id="logo"
+			<a class="navbar-brand" href="/main"><img id="logo"
 				src="/resources/image/logo1.png" /><img id="logo2"
 				src="/resources/image/logo3.gif" /></a>
 			<button aria-controls="navbarSupportedContent" aria-expanded="false"
