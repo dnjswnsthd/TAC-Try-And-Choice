@@ -14,9 +14,7 @@ body{
 	width: 100%;
 	height: 16vh;
 }
-.navbar{
-    opacity: 0.8;
-}
+
 #logo{
 	max-width: 22vmax;
     max-height: 12vmax;
@@ -28,7 +26,7 @@ body{
 	max-width: 20vmax;
     max-height: 10vmax;
 	margin-left: -20%;
-    margin-top: -7%;
+    margin-top: -10%;
     margin-bottom: -5%;
 }
 .navbar-light .navbar-nav .nav-link {
