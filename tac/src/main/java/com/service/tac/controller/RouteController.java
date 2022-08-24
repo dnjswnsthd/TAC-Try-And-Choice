@@ -20,5 +20,10 @@ public class RouteController {
 	public String signup() {
 		return "/member/signup";
 	}
+	
+	@RequestMapping(value = "/compare", method = RequestMethod.GET)
+	public String compare() {
+		return "cardCompare1";
+	}
 
 }
