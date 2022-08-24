@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.service.tac.model.mapper.CardMapper">
+
+	<resultMap type="Card" id="card">
+		<id column="card_id" property="cardId" />
+		<result column="card_name" property="cardName" />
+		<result column="card_desc" property="cardDesc" />
+		<result column="card_img" property="cardImg" />
+	</resultMap>
+
+	<!-- Card 전체 정보 Select -->
+	<select id="getAllCardInfo" resultMap ="card">
+		select card_id, card_name, card_desc, card_img
+		from card
+	</select>
+
+</mapper>
