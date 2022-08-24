@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +34,7 @@
 				<div>
 					직접 경험하고 <a> " TAC " </a>
 				</div>
-				<div>
-					맞는 카드를 선택하세요!
-				</div>
+				<div>맞는 카드를 선택하세요!</div>
 
 			</h1>
 			<!-- <h2></h2>
@@ -62,138 +61,46 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="container">
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card1.png" />
+						<c:forEach var="card" items="${list}" begin="0" end="3">
+							<div class="element-card">
+								<div class="front-facing">
+									<img id="cardImg" src="/resources/image/card/${card.cardImg}" />
+								</div>
+								<div class="back-facing">
+									<h4>Name : ${card.cardName}</h4>
+									<h5>카드 설명 : ${card.cardDesc}</h5>
+									<p>
+										<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
+											target="_blank">내 카드 선택</a>
+									</p>
+								</div>
 							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드입니다.
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card2.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card3.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card4.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
-				<div class="carousel-item">
-					<div class="container">
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card1.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card2.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card3.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="element-card">
-							<div class="front-facing">
-								<img id="cardImg" src="/resources/image/card/card4.png" />
-							</div>
-							<div class="back-facing">
-								<h4>카드 이름 : YO카드</h4>
-								<h5>
-									카드 설명 : Young 한 감각의 소유자들을 위한<br> 혜택을 가득 담은 카드
-								</h5>
-								<p>
-									<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-										target="_blank">내 카드 선택</a>
-								</p>
-							</div>
+				<c:forEach var="i" begin="4" step="4" end="${list.size() - 1}">
+					<div class="carousel-item">
+						<div class="container">
+							<c:forEach var="card" items="${list}" begin="${i}" end="${i+3}">
+								<div class="element-card">
+									<div class="front-facing">
+										<img id="cardImg" src="/resources/image/card/${card.cardImg}" />
+									</div>
+									<div class="back-facing">
+										<h4>Name : ${card.cardName}</h4>
+										<h5>
+											카드 설명 : ${card.cardDesc}
+										</h5>
+										<p>
+											<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
+												target="_blank">내 카드 선택</a>
+										</p>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
 			<div class="d-flex" id="moveBtn2">
 				<a href="#carouselExampleIndicators" data-slide="next">
