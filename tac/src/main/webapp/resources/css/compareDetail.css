@@ -20,6 +20,11 @@ img {
     -webkit-backface-visibility: hidden;
 }
 
+div #cardName {
+	text-align: center;
+	font-size: 18px;
+}
+
 p {
     font-family: "Cafe24Ssurround", sans-serif !important;
     font-weight: 300;

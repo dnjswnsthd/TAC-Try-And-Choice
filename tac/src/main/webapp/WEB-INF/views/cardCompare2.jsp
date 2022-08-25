@@ -69,7 +69,8 @@
  	<div class="row justify-content-around">
  		<div class="col-md-4">
  			<div class="cardDetail">
- 				<img src="resources/image/card/card_horizon01.jpg"><br><br>
+ 				<div id="cardName">2030 언택트 체크카드</div>
+ 				<img src="resources/image/card/card_horizon01.jpg">
  			</div>
  			
  			<div class="cardDetail">
@@ -98,7 +99,8 @@
  		
  		<div class="col-md-4">
  			<div class="cardDetail">
- 				<img src="resources/image/card/card_horizon02.jpg"><br><br>
+	 			<div id="cardName">BNK 프렌즈 체크카드</div>
+ 				<img src="resources/image/card/card_horizon02.jpg">
  			</div>
  			
  			<div class="cardDetail">

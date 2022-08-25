@@ -5,17 +5,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
 <link rel="stylesheet" href="./resources/css/compare.css" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<title>카드 상세보기</title>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/main"><img
+				id="logo" class="tac" src="/resources/image/logo1.png" /><img id="logo"
+				src="/resources/image/logo3.gif" /></a>
+			<button aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation" class="navbar-toggler"
+				data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
+				type="button">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">Service1</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Service2</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Service3</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">LOGIN</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a>
+					</li>
+				</ul>
+			</div>
+	</div>
+
+</nav>
+
 <div class="container">
     <div class="row justify-content-around">
         <div class="col-md-5">
