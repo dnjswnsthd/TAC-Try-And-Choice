@@ -44,5 +44,10 @@ public class RouteController {
 	public String compare() {
 		return "cardCompare1";
 	}
+	
+	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
+	public String cardCompare() {
+		return "cardCompare2";
+	}
 
 }

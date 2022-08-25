@@ -17,61 +17,70 @@
 
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-        	<h5>카테고리별 혜택</h5>
-            <canvas id="myChart" width="400" height="350"></canvas>
-			<script>
-			const ctx = document.getElementById('myChart');
-			const myChart = new Chart(ctx, {
-			    type: 'line',
-			    data: {
-			        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-			        datasets: [{
-			            label: '# of Votes',
-			            data: [12, 19, 3, 5, 2, 3],
-			            backgroundColor: [
-			                'rgba(255, 99, 132, 0.2)',
-			                'rgba(54, 162, 235, 0.2)',
-			                'rgba(255, 206, 86, 0.2)',
-			                'rgba(75, 192, 192, 0.2)',
-			                'rgba(153, 102, 255, 0.2)',
-			                'rgba(255, 159, 64, 0.2)'
-			            ],
-			            borderColor: [
-			                'rgba(255, 99, 132, 1)',
-			                'rgba(54, 162, 235, 1)',
-			                'rgba(255, 206, 86, 1)',
-			                'rgba(75, 192, 192, 1)',
-			                'rgba(153, 102, 255, 1)',
-			                'rgba(255, 159, 64, 1)'
-			            ],
-			            borderWidth: 1
-			        }]
-			    },
-			    options: {
-			        scales: {
-			            y: {
-			                beginAtZero: true
-			            }
-			        }
-			    }
-			});
-			</script>
-
+    <div class="row justify-content-around">
+        <div class="col-md-5">
+        	<div class="project-info-box">
+        		<p><b>카카오페이 체크카드</b></p>
+        		<img src="resources/image/card/card5.jpg" alt="project-image" class="rounded"><br><br>
+        		<button class="othercard"><span>다른 카드 보기</span></button>
+			</div>
             <div class="project-info-box">
                 <p><b>🛍</b> 쇼핑 할인</p>
                 <p><b>💊</b> 의료비 할인</p>
                 <p><b>⛽</b> 주유비 할인</p>
                 <p><b>🎞</b> 영화 할인</p>
-                <button class="othercard"><span>다른 카드 보기</span></button>
+                
             </div><!-- / project-info-box -->
 
            
         </div><!-- / column -->
-
-        <div class="col-md-5">
-            <img src="resources/image/card/card5.jpg" alt="project-image" class="rounded">
+        
+        <div class="col-md-6">
+            <div class="project-info-box">
+	            <h5>카테고리별 혜택</h5>
+	            <button class="myCard"><span>내 카드와 비교</span></button><br><br>
+	            <canvas id="myChart" width="350px" height="350px"></canvas>
+				<script>
+				const ctx = document.getElementById('myChart');
+				const myChart = new Chart(ctx, {
+				    type: 'doughnut',
+				    data: {
+				        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+				        datasets: [{
+				            label: '# of Votes',
+				            data: [12, 19, 3, 5, 2, 3],
+				            backgroundColor: [
+				                'rgba(255, 99, 132, 0.2)',
+				                'rgba(54, 162, 235, 0.2)',
+				                'rgba(255, 206, 86, 0.2)',
+				                'rgba(75, 192, 192, 0.2)',
+				                'rgba(153, 102, 255, 0.2)',
+				                'rgba(255, 159, 64, 0.2)'
+				            ],
+				            borderColor: [
+				                'rgba(255, 99, 132, 1)',
+				                'rgba(54, 162, 235, 1)',
+				                'rgba(255, 206, 86, 1)',
+				                'rgba(75, 192, 192, 1)',
+				                'rgba(153, 102, 255, 1)',
+				                'rgba(255, 159, 64, 1)'
+				            ],
+				            borderWidth: 1
+				        }]
+				    },
+				    options: {
+				    	responsive: false,
+				        scales: {
+				            y: {
+				                beginAtZero: true
+				            }
+				        }
+				    }
+				});
+				</script>
+				
+			</div>
+			
             <div class="project-info-box">
                 <p>소비 내역</p>
                 <table>
@@ -93,6 +102,6 @@
                 </table>
             </div><!-- / project-info-box -->
         </div><!-- / column -->
-    </div>
+    </div><!-- /row  -->
 </div>
 </body>
