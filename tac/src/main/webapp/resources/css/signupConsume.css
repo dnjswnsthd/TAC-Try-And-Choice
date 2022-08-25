@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'establishRoomNo703OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.nav-tabs>li {
+	float: none;
+	display: inline-block;
+	zoom: 1;
+}
+
+.nav-tabs {
+	text-align: center;
+}
+
+label img {
+	width: 60%;
+}
+
+body {
+	margin: 0;
+	background-image: url(../image/signupBackground03.jpg);
+	background-repeat: no-repeat;
+	background-position: 0% 15%;
+	background-size: auto;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	-webkit-border-radius: 6px;
+	border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background: #FF3B30;
+	opacity: 0.9;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: white;
+}
+
+
+#external-events {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	text-align: left;
+}
+
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+.external-event {
+	/* try to mimick the look of a real event */
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #3366cc;
+	color: #fff;
+	font-size: 0.85em;
+	cursor: auto;
+}
+
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}
+
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+.container{
+	text-align: center;
+}
+
+#calendar {
+	margin-left: 8%;
+	width: 70vmax;
+	background-color: white;
+	opacity: 0.9;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px #c3c3c3;
+	height: 49vmax;
+	overflow: hidden;
+}
+
+.modal{
+	z-index: 1050;
+	position:absolute; 
+	width:100%; 
+	height:100%; 
+	background: rgba(0,0,0,0.8); 
+	top:0; 
+	left:0; 
+	display:none;
+  }
+
+  .modal_content{
+	width:500px; height:350px;
+	background:#fff; border-radius:20px;
+	position:relative; top:30%; left:40%;
+	margin-top:-100px; margin-left:-130px;
+	text-align:center;
+	box-sizing:border-box; padding:20px 0;
+	line-height:23px; cursor:pointer;
+	font-family:Cafe24Ssurround !important;
+  }
+
+#span {
+	display: inline-block;
+	margin-right: 5%;
+	margin-top: 2%;
+	font-size: 1.3rem;
+}
+
+.selec {
+	width: 15vmax;
+	height: 3vmax;
+	font-size: 1rem;
+}
+
+.btn {
+	background-color: #ff3b30 !important;
+	color: white !important;
+	width: 15vmax;
+	padding: 2%;
+	margin: 5% 4% auto;
+	border-radius: 10px;
+}
+
+select, select option, input {
+	
+}
+
+.button{
+	margin:5% auto;
+	margin-left: 70%;
+}
+#hea{
+	font-family:establishRoomNo703OTF !important;
+}
