@@ -538,6 +538,9 @@ body {
     margin-top: 30%;
 }
 
+.actions ul li:last-child{
+	display: none !important;
+}
 /* Responsive */
 @media screen and (max-width: 1199px) {
 	.form-v1-content {

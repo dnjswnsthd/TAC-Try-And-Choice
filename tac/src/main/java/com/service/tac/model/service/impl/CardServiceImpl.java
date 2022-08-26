@@ -1,12 +1,27 @@
 package com.service.tac.model.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.service.tac.model.mapper.CardMapper;
 import com.service.tac.model.service.CardService;
 import com.service.tac.model.vo.Card;
 
+@Service
 public class CardServiceImpl implements CardService {
+
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public ArrayList<Card> getAllCardInfo() throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).getAllCardInfo();
+	}
 
 	@Override
 	public HashMap<String, Integer> discountByCategory(int userId, int cardId) throws SQLException {

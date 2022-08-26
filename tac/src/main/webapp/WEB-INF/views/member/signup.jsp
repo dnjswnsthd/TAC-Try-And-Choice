@@ -155,33 +155,7 @@
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<input type="radio" class="radio" name="radio1" id="plan-1"
-											value="plan-1" /> <label
-											class="plan-icon plan-1-label" for="plan-1"> <img
-											src="/resources/image/job/employees.png" alt="pay-1" />
-										</label>
-										<div class="plan-total">
-											<span class="plan-title">직장인</span>
-											<p class="plan-text">직장인이거나 주기적인 소득이 있으시면 선택해주세요.</p>
-										</div>
-										<input type="radio" class="radio" name="radio1" id="plan-2"
-											value="plan-2" checked /> <label
-											class="plan-icon plan-2-label" for="plan-2"> <img
-											src="/resources/image/job/students.png" alt="pay-1" />
-										</label>
-										<div class="plan-total">
-											<span class="plan-title">학생</span>
-											<p class="plan-text">초중고등학생, 대학생, 공시생분들 선택해주세요.</p>
-										</div>
-										<input type="radio" class="radio" name="radio1" id="plan-3"
-											value="plan-3" /> <label
-											class="plan-icon plan-3-label" for="plan-3"> <img
-											src="/resources/image/job/unemployment.png" alt="pay-2" />
-										</label>
-										<div class="plan-total">
-											<span class="plan-title">무직</span>
-											<p class="plan-text">현재 행복한 백수 상태이시면 선택해주세요.</p>
-										</div>
+										<a href="/inputConsume">소비 정보 입력</a>
 									</div>
 								</div>
 							</div>
@@ -195,5 +169,4 @@
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>
 </body>
-<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
