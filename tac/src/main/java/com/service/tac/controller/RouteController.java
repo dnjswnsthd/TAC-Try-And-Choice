@@ -20,5 +20,22 @@ public class RouteController {
 	public String signup() {
 		return "/member/signup";
 	}
-
+	
+	@RequestMapping(value = "/manage", method = RequestMethod.GET)
+	public String manage() {
+		return "/manage/insert_card";
+	}
+	@RequestMapping(value = "/manage_test", method = RequestMethod.GET)
+	public String manage_test() {
+		return "/manage/insert_card_test";
+	}
+	@RequestMapping(value = "/manage_test2", method = RequestMethod.GET)
+	public String manage_test2() {
+		return "/manage/insert_card_test2";
+	}
+	@RequestMapping(value = "/manage_test3", method = RequestMethod.GET)
+	public String manage_test3() {
+		return "/manage/insert_card_test3";
+	}
+	
 }
