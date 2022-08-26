@@ -31,11 +31,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/analysis")
-	public ModelAndView ryu() {
+	public ModelAndView analysis() {
 		System.out.println("[Member Controller] Analysis");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("ConsumptionAnalysis");
+		mav.setViewName("consumptionAnalysis");
 		return mav;
 	}
 	
+	@RequestMapping("/analysisDetail1")
+	public ModelAndView analysisDetail1() {
+		System.out.println("[Member Controller] analysisDetail1");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("analysisDetail1");
+		return mav;
+	}
 }
