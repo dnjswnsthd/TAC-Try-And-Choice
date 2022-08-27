@@ -7,4 +7,6 @@ import com.service.tac.model.vo.Member;
 
 public interface MemberMapper {
 	public ArrayList <Member> showAll() throws SQLException;
+	
+	public int register(Member member) throws SQLException;
 }	

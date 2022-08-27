@@ -26,11 +26,6 @@
 <script>
 	$(function() {
 		var cardId = '';
-		 $('#selectCard').on('click', function(e){
-			 e.stopPropagation();
-			 alert($(this).attr(name));
-			 cardId = $(this).attr(name);
-		 });
 	});
 </script>
 </head>
@@ -40,7 +35,7 @@
 	<div class="page-content">
 		<div class="form-v1-content">
 			<div class="wizard-form">
-				<form class="form-register" action="#" method="post">
+				<form class="form-register" action="/register" method="post">
 					<div id="form-total">
 						<!-- SECTION 1 -->
 						<h2>
@@ -83,7 +78,7 @@
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Your Email</legend>
-											<input type="text" name="your_email" id="your_email"
+											<input type="text" name="memberId" id="memberId"
 												class="form-control" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
 												placeholder="example@email.com" required />
 										</fieldset>
@@ -162,7 +157,7 @@
 											<div class="carousel-item active">
 												<div class="container">
 													<c:forEach var="card" items="${list}" begin="0" end="3">
-														<div class="element-card" id="${card.cardId}">
+														<div class="element-card">
 															<div class="front-facing">
 																<img id="cardImg"
 																	src="/resources/image/card/${card.cardImg}" />
@@ -193,9 +188,7 @@
 																	<h4>Name : ${card.cardName}</h4>
 																	<h5>카드 설명 : ${card.cardDesc}</h5>
 																	<p>
-																		<a class="btn"
-																			href="https://en.wikipedia.org/wiki/Copper"
-																			target="_blank">내 카드 선택</a>
+																		<input type="button" class="btn" id="selectCard" value="내 카드 선택" name="${card.cardId}"/>
 																	</p>
 																</div>
 															</div>
@@ -238,7 +231,8 @@
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<a href="/inputConsume">소비 정보 입력</a> <a href="#">로그인 </a>
+										<input type="hidden" id="cardId" name="cardId" />
+										<input type="submit" class="btn" value="소비 정보 입력"> <a href="#">로그인 </a>
 									</div>
 								</div>
 							</div>
