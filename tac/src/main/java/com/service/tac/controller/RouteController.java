@@ -43,7 +43,15 @@ public class RouteController {
 
 	@GetMapping(value = "/signup")
 	public String signup(Model model) {
-		return "/member/signup";
+		try {
+			ArrayList <Card> list = cardService.getAllCardInfo();
+			model.addAttribute("list", list);
+			return "/member/signup";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+		
 	}
 	@RequestMapping(value = "/manage", method = RequestMethod.GET)
 	public String manage() {
@@ -60,19 +68,6 @@ public class RouteController {
 	@RequestMapping(value = "/manage_test3", method = RequestMethod.GET)
 	public String manage_test3() {
 		return "/manage/insert_card_test3";
-	}
-	@GetMapping(value= "/inputConsume")
-	public String inputConsume(Model model) {
-		ArrayList<LargeCategory> list;
-		try {
-			list = categoryService.getAllLargeCategory();
-			model.addAttribute("list", list);
-			return "/member/signupConsume";
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			return "/error";
-		}
-		
 	}
 	
 	@GetMapping(value= "/error")

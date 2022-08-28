@@ -32,7 +32,6 @@
 				},
 
 				success : function(result) {
-					alert(JSON.stringify(result));
 					$('#small').empty();
 					for (key in result) {
 					    $('#small').append('<option value="' + key + '">' + result[key] + '</option>');
@@ -40,9 +39,11 @@
 				}
 			})
 		});
+		
+		
 		$('#external-events div.external-event').each(function() {
-			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-			// it doesn't need to have a start or end
+			// Event Object 생성
+			// 따로 실행할 필요없음
 			var eventObject = {
 				title : $.trim($(this).text()), // use the element's text as the event title
 			};
@@ -55,6 +56,30 @@
 				revertDuration : 0, //  original position after the drag
 			});
 		});
+		
+		$('#addConsume').click(function(){
+			title = $('#large').html;
+			largeCategory = $('#large').val();
+			smallCategory = $('#small').val();
+			price = $('#price').val();
+			start = $.fullCalendar.moment(start).format("YYYY-MM-DD");
+			end = $.fullCalendar.moment(end).format("YYYY-MM-DD");
+			console.log('1. ' + title);
+			console.log('2. ' + largeCategory);
+			console.log('3. ' + smallCategory);
+			console.log('4. ' + price);
+			if (title) {
+				calendar.fullCalendar('renderEvent', {
+					title : title,
+					start : start,
+					end : end,
+					allDay : allDay,
+				}, true // make the event "stick"
+				);
+			}
+			$('.modal').fadeOut();
+			calendar.fullCalendar('unselect');
+		}); 
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
 		var calendar = $('#calendar').fullCalendar(
@@ -87,8 +112,6 @@
 						$('#close').click(function() {
 							$('.modal').fadeOut();
 						});
-						var title = prompt('Event Title:');
-						console.log(title);
 						if (title) {
 							calendar.fullCalendar('renderEvent', {
 								title : title,
@@ -100,6 +123,7 @@
 						}
 						calendar.fullCalendar('unselect');
 					},
+
 					droppable : true, // this allows things to be dropped onto the calendar !!!
 					drop : function(date, allDay) {
 						// this function is called when something is dropped
@@ -133,7 +157,7 @@
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<div class="container">
 		<div id="hea">
-			<h3>회원가입 마지막 단계</h3>
+			<h3>회원가입 마지막 단계 ${memberId}</h3>
 			<p>전달 소비 정보를 입력해주세요!</p>
 		</div>
 		<div id="wrap">
@@ -160,8 +184,8 @@
 					<option value="0">소분류</option>
 				</select> <br>
 				<h3 id='span'>금액</h3>
-				<input type="number" name="price" value="0" /> <br> <input
-					class="btn" type="submit" value="modalSend" /> <input class="btn"
+				<input type="number" id="price" name="price" value="0" /> <br> <input
+					id="addConsume" class="btn" type="button" value="Append" /> <input class="btn"
 					id="close" type="button" value="close" />
 			</form>
 		</div>

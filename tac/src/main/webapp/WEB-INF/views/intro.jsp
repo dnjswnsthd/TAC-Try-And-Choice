@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TAC(Try&Choice)</title>
-<link rel="icon" href="image/logo2.png" type="image/x-icon" width="100%"
+<link rel="icon" href="/resources/image/logo2.png" type="image/x-icon" width="100%"
 	sizes="96x96" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap"
