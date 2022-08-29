@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.service.tac.model.mapper.AnalyseMapper">
+
+	
+	<resultMap type="ConsumeAnalysis_LargeSum" id="AnalysisLargeSum">
+		<result column="LCNAME" property="LCname" />
+		<result column="COUNT" property="count" />
+		<result column="SUM" property="sum" />
+	</resultMap>
+
+	<!-- member login -->
+	<select id="AnalyseLC_SUM" parameterType="string" resultMap="AnalysisLargeSum">
+		SELECT lc.LARGE_CATEGORY_NAME "LCNAME", COUNT(*) "COUNT", NVL(SUM(c.CONSUME_PRICE),0) "SUM"
+		FROM CONSUME c RIGHT JOIN LARGE_CATEGORY lc ON (lc.LARGE_CATEGORY_ID = c.LARGE_CATEGORY_ID)
+		AND MEMBER_ID = #{VALUE}
+		GROUP BY lc.LARGE_CATEGORY_NAME
+	</select>
+
+</mapper>

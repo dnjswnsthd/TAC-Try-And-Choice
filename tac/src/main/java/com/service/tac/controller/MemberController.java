@@ -37,13 +37,6 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/analysis")
-	public ModelAndView ryu() {
-		System.out.println("[Member Controller] Analysis");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("ConsumptionAnalysis");
-		return mav;
-	}
 	
 	@PostMapping("/register")
 	public String register(Member member, Model model) {
