@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(Member member) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(MemberMapper.class).register(member);
 	}
 
 	@Override
