@@ -33,7 +33,8 @@
 		<div class="container py-3">
 			<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-					<h1 id="analysisTitle" class="display-4 fw-normal">이화정님의 소비 패턴 분석 결과</h1>
+					<h1 id="analysisTitle" class="display-4 fw-normal">이화정님의 소비 패턴
+						분석 결과</h1>
 					<p class="fs-5 text-muted">배우에는 최화정 고양시에는 화정역 BNK-DIT에는 이화정이
 						있다.</p>
 				</div>
@@ -54,7 +55,8 @@
 				</div>
 				<div class="col">
 					<div class="card mb-4 rounded-3 shadow-sm">
-						<div id="myChartHead2" class="card-header py-3" data-bs-toggle="modal" data-bs-target="#myModal2">
+						<div id="myChartHead2" class="card-header py-3"
+							data-bs-toggle="modal" data-bs-target="#myModal2">
 							<h4 class="my-0 fw-normal myChartHeadFont">일별 분석</h4>
 						</div>
 						<div class="card-body">
@@ -137,7 +139,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- The LINE CHART Modal -->
 	<div class="modal fade" id="myModal2">
 		<div class="modal-dialog modal-dialog-centered modal-xl">
@@ -201,9 +203,20 @@
 			</div>
 		</div>
 	</div>
+	<div></div>
 
 	<script>
-
+		var testdata = '${TEST_NAME}';
+		console.log("잘가라잉");
+		console.log(testdata);
+		
+		var testdata2 = '${TEST_HM}';
+		console.log("map받아오기 ");
+		console.log(testdata2);
+		console.log(typeof(testdata2));
+		
+		console.error('${AnalLargeSum}');
+		
         // PIE
         const ChartbyType_data = {
             labels: [

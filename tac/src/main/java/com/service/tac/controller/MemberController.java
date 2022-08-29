@@ -5,10 +5,13 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.service.tac.model.service.MemberService;
+import com.service.tac.model.vo.LargeCategory;
 import com.service.tac.model.vo.Member;
 
 @Controller
@@ -30,19 +33,4 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/analysis")
-	public ModelAndView analysis() {
-		System.out.println("[Member Controller] Analysis");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("consumptionAnalysis");
-		return mav;
-	}
-	
-	@RequestMapping("/analysisDetail1")
-	public ModelAndView analysisDetail1() {
-		System.out.println("[Member Controller] analysisDetail1");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("analysisDetail1");
-		return mav;
-	}
 }
