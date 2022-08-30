@@ -22,7 +22,7 @@ public interface ConsumeService {
 	// 요일별 소비 정보 가져오기
 	public HashMap<String, ArrayList<Consume>> consumeInfoByDay() throws SQLException;
 
-	// 카테고리별 소비 정보 가져오기
+	// 카테고리별 소비 정보 가져오기 
 	public HashMap<String, ArrayList<Consume>> consumeInfoByCategory() throws SQLException;
 
 }
