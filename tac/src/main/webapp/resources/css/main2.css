@@ -160,7 +160,7 @@ body {
 	margin: 0;
 }
 
-.element-card .back-facing a.btn {
+.element-card .back-facing .btn {
 	display: inline-block;
 	background-color: white;
 	padding: 5px 15px;
