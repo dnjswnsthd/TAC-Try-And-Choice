@@ -19,10 +19,10 @@ import com.service.tac.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@RequestMapping("/test")
 	public ModelAndView test() {
 		ModelAndView mav = new ModelAndView();
@@ -36,21 +36,30 @@ public class MemberController {
 		mav.setViewName("test");
 		return mav;
 	}
-	
-	
+
+	@RequestMapping("/analysis")
+	public ModelAndView ryu() {
+		System.out.println("[Member Controller] Analysis");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("ConsumptionAnalysis");
+		return mav;
+	}
+
 	@PostMapping("/register")
 	public String register(Member member, Model model) {
 		ArrayList<LargeCategory> list;
 		try {
 			list = categoryService.getAllLargeCategory();
-			memberService.register(member);
 			model.addAttribute("list", list);
-			model.addAttribute("memberId", member.getMemberId());
-			return "/member/signupConsume";
+			memberService.register(member); model.addAttribute("memberId",
+			member.getMemberId());
+			return "/member/insertConsume";
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return "/error";
 		}
+
 	}
-	
+
 }

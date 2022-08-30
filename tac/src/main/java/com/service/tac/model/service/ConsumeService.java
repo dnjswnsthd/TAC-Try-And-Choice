@@ -7,8 +7,11 @@ import java.util.HashMap;
 import com.service.tac.model.vo.Consume;
 
 public interface ConsumeService {
+	// 소비 등록
+	public int addConsumeInfo(Consume consume) throws SQLException;
+	
 	// 멤버별 소비 정보 가져오기
-	public ArrayList<Consume> getConsume(int memberId) throws SQLException;
+	public ArrayList<HashMap<String, Object>> getConsume(String memberId) throws SQLException;
 
 	// 소비 정보 수정
 	public int updateConsumeInfo(Consume consume) throws SQLException;
