@@ -3,18 +3,18 @@ package com.service.tac.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.tac.model.service.AnalyseService;
-import com.service.tac.model.service.ConsumeService;
-import com.service.tac.model.service.MemberService;
-import com.service.tac.model.vo.Consume;
+import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
-import com.service.tac.model.vo.Member;
 
 @Controller
 public class AnalyseController {
@@ -26,27 +26,51 @@ public class AnalyseController {
 	public ModelAndView analysis() {
 		System.out.println("[AnalyseController] Analysis");
 		ModelAndView mav = new ModelAndView();
+		// json 용
+		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
+		// ID
+		String id = "RYU";
 		
-		HashMap<String, Integer> hm = new HashMap<String, Integer>();
-		hm.put("1", 100);
-		hm.put("2", 200);
-		hm.put("3", 300);
-		hm.put("4", 400);
-		mav.addObject("TEST_HM",hm);
-		
-		mav.addObject("TEST_NAME", "TEST_VALUE");
-		
+		// 1. 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum;
-		
 		try {
-			AnalLargeSum = analyseService.AnalyseLC_SUM("RYU");
-			mav.addObject("AnalLargeSum", AnalLargeSum);
+			HashMap<String, Object> hmap = new HashMap<>();
+			AnalLargeSum = analyseService.AnalyseLC_SUM(id);
+			for(ConsumeAnalysis_LargeSum temp : AnalLargeSum ) {
+				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum() );
+			}
+			bList.add(hmap);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		
+		// 2. 날짜 통계
+		try {
+			HashMap<String, Object> hmap = new HashMap<>();
+			HashMap<String, Object> hmap_bydate = new HashMap<>();
+			ArrayList<ConsumeAnalysis_Desc> list = analyseService.AnalyseLC_DESC(id);
+			for (int i = 0; i < list.size(); i++) {
+				ConsumeAnalysis_Desc temp = list.get(i);
+				hmap.put( Integer.toString(i+1) , temp.getLCName() + ", " + temp.getSCName() + ", " + temp.getPrice() + ", " + temp.getDate() );
+				hmap_bydate.put(temp.getDate(), (Integer) hmap_bydate.getOrDefault(temp.getDate(), 0) + temp.getPrice() );
+			}
+			bList.add(hmap);
+			bList.add(hmap_bydate);
+			
+			// 날자별 바로 넣어버리자
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		//json		
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(bList);
+		mav.addObject("Object", json);
 		// set view
-		mav.setViewName("consumptionAnalysis");
+		String view = "consumptionAnalysis";
+		mav.setViewName(view);
 		return mav;
 	}
 	

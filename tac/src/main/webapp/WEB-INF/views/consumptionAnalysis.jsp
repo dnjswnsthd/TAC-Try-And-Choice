@@ -206,31 +206,31 @@
 	<div></div>
 
 	<script>
-		var testdata = '${TEST_NAME}';
-		console.log("잘가라잉");
-		console.log(testdata);
+		var AnalyseJSON = JSON.parse('${Object}');
+		console.log(AnalyseJSON);
 		
-		var testdata2 = '${TEST_HM}';
-		console.log("map받아오기 ");
-		console.log(testdata2);
-		console.log(typeof(testdata2));
-		
-		console.error('${AnalLargeSum}');
-		
+		// pie data
+//		console.log(AnalyseJSON[0]);
+		var mypieLabel = [];
+		var mypieData = []; 
+		for( element in AnalyseJSON[0] ){
+			var temp = AnalyseJSON[0][element].split(",");
+//			console.log(element + "   " + temp[0] + " " + temp[1]);
+			mypieLabel.push(element);
+			mypieData.push(temp[1]); 
+		}
         // PIE
         const ChartbyType_data = {
-            labels: [
-                'Red',
-                'Blue',
-                'Yellow'
-            ],
+            labels: mypieLabel,
             datasets: [{
                 label: 'My First Dataset',
-                data: [300, 50, 100],
+                data: mypieData,
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
+                    '#ea9999', '#741b47', '#6aa84f', '#f9cb9c','#45818e',
+                    '#8e7cc3', '#c90076', '#5b5b5b', '#0b5394','#f9cb9c',
+                    '#210E9E', '#E30000', '#FF00F2', '#00098A','#00F2FF',
+                    '#00FF88', '#CCFF00', '#752778', '#FFAE00','#292929',
+                    '#FFD6EF', '#592424'
                 ],
                 hoverOffset: 4
             }]
@@ -240,27 +240,54 @@
             type: 'pie',
             data: ChartbyType_data,
             options: {
-                responsive: false
+                responsive: false,
+				plugins: {
+					legend: {
+						display: true,
+						position : 'bottom',
+					}
+				}
             }
         };
         const myChart = new Chart(document.getElementById('myChart'), ChartbyType_config);
         // end PIE 
 
-        // line chart
+		// mylineChart start
+		var mylineMap = new Map();
+		for( element in AnalyseJSON[2] ) {
+			var key = element.substring(2,4);
+			if ( mylineMap.has(key) ) {
+				mylineMap.set(key, mylineMap.get(key) + AnalyseJSON[2][element]);
+			} else {
+				mylineMap.set(key, AnalyseJSON[2][element]);
+			}
+		}
+
+		var mylineLabel = [];
+		var mylineData = [];
+		for(var i = 1; i <= 31; i++){
+			var key = "";
+			if ( i < 10 ){
+				key = "0" + i;
+			}  else {
+				key = i + "";
+			}
+			mylineLabel.push(key);
+			if ( mylineMap.has(key) ) {
+				mylineData.push(mylineMap.get(key));
+			} else {
+				mylineData.push(0);
+			}
+		}
+
+        // my line chart
         const LineChart_data = {
-            labels: [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-            ],
+            labels: mylineLabel,
             datasets: [{
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
+                data: mylineData,
             }]
         };
 
@@ -268,9 +295,18 @@
             type: 'line',
             data: LineChart_data,
             options: {
-                responsive: false
+                responsive: false,
+				plugins: {
+					legend: {
+						display: false,
+						labels: {
+							color: 'rgb(255, 99, 132)'
+						}
+					}
+				}
             }
         };
+
         const myChart2 = new Chart(document.getElementById('myChart2'), LineChart_config);
         // line chart
 
