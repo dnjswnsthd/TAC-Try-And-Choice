@@ -34,7 +34,6 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 	    var calendarEl = document.getElementById('calendar');
-		// new FullCalendar.Calendar(대상 DOM객체, {속성:속성값, 속성2:속성값2..})
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
 	      headerToolbar: {
 	        left: 'prev,next today',
@@ -47,34 +46,37 @@
 	      allDaySlot: false,
 	      /* selectMirror: true, */
 	      timeZone: 'Asia/Seoul',
-	      select : function(start) {
+	      select : function(arg) {
 				$('.modal').fadeIn();
 				$('#close').click(function() {
 					$('.modal').fadeOut();
 				});
 				$('#addConsume').click(function() {
-					var title = $("select[name=large] option:selected").text();
-					$.ajax({
-						type : 'post',
-						/* async: false, */
-						url : '/consume/register',
-						data : {
-							largeCategoryId : $('#large').val(),
-							smallCategoryId : $('#small').val(),
-							price : $('#price').val(),
-							memberId : $('#member').val(),
-							consumeDate : start.start.toISOString().slice(0,10)
-						},
-						success : function(result) {
-							$('.modal').fadeOut();
-							calendar.refetchEvents(calendar.unselect());
-						},
-						complete:function(){
-							$('#large').val('');
-							$('#small').val('');
-							$('#price').val('');
-						}
-					});
+					if(arg.start != '0'){
+						var title = $("select[name=large] option:selected").text();
+						$.ajax({
+							type : 'post',
+							url : '/consume/register',
+							data : {
+								largeCategoryId : $('#large').val(),
+								smallCategoryId : $('#small').val(),
+								price : $('#price').val(),
+								memberId : $('#member').val(),
+								consumeDate : arg.start.toISOString().slice(0,10)
+							},
+							success : function(result) {
+								$('.modal').fadeOut();
+								calendar.refetchEvents(calendar.unselect());
+								alert(JSON.stringify(arg));
+								arg.start = '0';
+							},
+							complete:function(){
+								$('#large').val('');
+								$('#small').val('');
+								$('#price').val('');
+							}						
+						});
+					}
 				});
 				calendar.unselect()
 			},

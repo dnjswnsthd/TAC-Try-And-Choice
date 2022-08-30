@@ -74,5 +74,10 @@ public class RouteController {
 	public String error() {
 		return "/error";
 	}
+	
+	@GetMapping(value= "/calendarTest")
+	public String calendarTest() {
+		return "/member/insertConsume";
+	}
 
 }

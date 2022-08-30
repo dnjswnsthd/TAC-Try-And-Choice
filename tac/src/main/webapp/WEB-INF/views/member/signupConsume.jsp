@@ -60,31 +60,6 @@
 			});
 		});
 
-		/* 
-		$('#addConsume').click(function() {
-			title = $('#large').html;
-			largeCategory = $('#large').val();
-			smallCategory = $('#small').val();
-			price = $('#price').val();
-			start = $.fullCalendar.moment(start).format("YYYY-MM-DD");
-			end = $.fullCalendar.moment(end).format("YYYY-MM-DD");
-			console.log('1. ' + title); 
-			console.log('2. ' + largeCategory);
-			console.log('3. ' + smallCategory);
-			console.log('4. ' + price);
-			if (title) {
-				calendar.fullCalendar('renderEvent', {
-					title : title,
-					start : start,
-					end : end,
-					allDay : allDay,
-				}, true // make the event "stick"
-				);
-			}
-			$('.modal').fadeOut();
-			calendar.fullCalendar('unselect');
-		});
-		*/
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
 		var calendar = $('#calendar').fullCalendar(
@@ -175,33 +150,36 @@
 			            allDay: false,
 			            className: 'important',
 					}, ], */
-					events: function(start, end, timezone, callback) {
-				        jQuery.ajax({
-				            url: '/consume/getConsume',
-				            type: 'POST',
-				            dataType: 'json',
-				            data: {
-				            	memberId : $('#member').val(),
-				                start: start.format(),
-				                end: end.format()
-				            },
-				            success: function(doc) {
-				            	alert('###' + doc);
-				                /* var events = [];
-				                if(!!doc.result){
-				                    $.map( doc.result, function( r ) {
-				                        events.push({
-				                            id: r.id,
-				                            title: r.title,
-				                            start: r.date_start,
-				                            end: r.date_end
-				                        });
-				                    });
-				                }
-				                callback(events); */
-				            }
-				        });
-				    }
+					events:function(info, successCallback, failureCallback){
+					    $.ajax({
+					        type: 'POST'
+					        ,cache: false
+					        ,url: '/consume/getConsume'
+					        ,dataType: 'json'
+				        	,data : {
+								/* memberId : $('#member').val(), */
+								memberId : 'Test2@naver.com',
+							}
+					        ,contentType : "application/x-www-form-urlencoded; charset=UTF-8"
+					        ,success: function(param){
+					            var events = [];
+					            $.each(param, function (index, data){
+					                    events.push({
+					                        title : data.LARGECATEGORYNAME
+					                        ,start : '2022-08-19'
+					                        ,allDay: true
+					                        ,className: 'important'
+					                        /* ,laregeCategoryId: data.LARGECATEGORYID
+					                        ,smallCategoryId: data.SMALLCATEGORYID
+					                        ,smallCategoryName: data.SMALLCATEGORYNAME
+					                        ,consumePrice: data.CONSUMEPRICE */
+					                    }); // push // end
+					            });// each end
+					            alert(JSON.stringify(events));
+					            //successCallback(events);
+					        }
+					    });// ajax end
+					}//events end
 				});
 	});
 </script>
@@ -234,7 +212,8 @@
 				<select class="selec" name="large" id="large">
 					<option value="0">대분류</option>
 					<c:forEach var="item" items="${list}">
-						<option value="${item.largeCategoryId}" title="${item.largeCategoryName}">${item.largeCategoryName}</option>
+						<option value="${item.largeCategoryId}"
+							title="${item.largeCategoryName}">${item.largeCategoryName}</option>
 					</c:forEach>
 				</select> <br>
 				<h3 id='span'>소분류</h3>
