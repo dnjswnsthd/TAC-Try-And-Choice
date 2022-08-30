@@ -20,7 +20,7 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/main2.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/resources/js/card.js" rel="text/javascript"></script>
@@ -29,17 +29,12 @@
 	<div class="topSection">
 		<jsp:include page="/resources/component/header.jsp"></jsp:include>
 		<div class="maintext">
-			<h1>
-				<div>지금까지 이런 서비스는 없었다.</div>
-				<div>
-					직접 경험하고 <a> " TAC " </a>
-				</div>
-				<div>맞는 카드를 선택하세요!</div>
-
-			</h1>
-			<!-- <h2></h2>
-			<h2></h2>
-			<h2>나에게 TAC 맞는 카드를 선택하라.</h2> -->
+			<h2><b>퍼즐처럼 나에게 "딱"맞는 카드</b></h2>
+			<h2><b>TAC에서 만나세요</b></h2>
+			<div class="mainButton">
+				<button type="button" class="btn btn-dark">회원가입</button>
+				<button type="button" class="btn btn-dark">로그인</button>
+			</div>
 		</div>
 
 
@@ -70,8 +65,8 @@
 									<h4>Name : ${card.cardName}</h4>
 									<h5>카드 설명 : ${card.cardDesc}</h5>
 									<p>
-										<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-											target="_blank">내 카드 선택</a>
+										<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
+										 value="내 카드 선택"	>
 									</p>
 								</div>
 							</div>
