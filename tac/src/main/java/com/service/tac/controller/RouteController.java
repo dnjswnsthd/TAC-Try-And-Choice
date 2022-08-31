@@ -2,6 +2,7 @@ package com.service.tac.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,8 +67,16 @@ public class RouteController {
 		return "/manage/insert_card_test2";
 	}
 	@RequestMapping(value = "/manage_test3", method = RequestMethod.GET)
-	public String manage_test3() {
-		return "/manage/insert_card_test3";
+	public String manage_test3(Model model) {
+		try {
+			List<LargeCategory> list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", list);
+			return "/manage/insert_card_test3";
+			
+		} catch(Exception e) {
+			// 에러페이지
+			return "/error";
+		}
 	}
 	
 	@GetMapping(value= "/error")

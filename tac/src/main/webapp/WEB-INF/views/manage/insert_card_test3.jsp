@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,23 +8,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login &amp; Register Templates</title>
-
+        <link rel="shortcut icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3093/3093042.png">
+        <title>관리자 모드 - 카드 등록</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <!-- <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">-->
-        <link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="resources/css/manage_test_form-elements3.css">
         <link rel="stylesheet" href="resources/css/manage_test_style3.css"> 
-		
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-		
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
     	
@@ -40,16 +31,48 @@
     		
     		$('#register_category').html(data);
     		
-    	/* 	$('#test_table').html(data); */
     	});// on click
     	
-    	/* $('#delete_img').on('click', function() {
-    		var data = $('#register_category').html();
-    		data = data + table_header - add_tablelist;
+    	$('#register_card_info').on('click', function() {
+    		alert("동록 진행중~!");
+    	});
+    	
+    	$('#large_category_search').on('click', function() {
+    		alert("헐");
+    	});
+    	
     		
-    		$('#register_category').html(data);
-    	})  */
+    	$('#large_category_selection').change(function() {
+    		$.ajax({
+				type : 'post',
+				url : '/category/getSmallCategory',
+				data : {
+					id : $(this).val()
+				},
+
+				success : function(result) {
+					var small = "";
+					for (key in result) {
+						small = small + '<option value=' + key + '>'+ result[key] +'</option>'
+					}
+					$('#small_category_selection').html(small);
+				}
+			});
+    	});
+    	
+    	
     });	
+/*     function f_changeFunc(obj) {
+		var id = $(obj).val();
+		var small = '<td><select name="small_category" class="small_category_selection">'
+		+ '<option value="cgv">일</option>'
+		+ '<option value="lottecinema">이</option>'
+		+ '<option value="megabox">삼</option>'
+		+ '</select></td>'
+	
+		$('#small_category').html(small);
+		
+	} */
     </script>
     </head>
     <body>
@@ -67,32 +90,50 @@
                         	<form action="#" id="card_image_selection">
                         	<div class="form-box">
 	                        	<div class="form-top">
-	                        		<img id="card_sample" src="/resources/image/card/card_sample1.png">
-	                        		<img id="card_sample" src="/resources/image/card/card_sample1.png">
+	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
+	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
 	                            </div>
 	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_left" class="btn btn-default">이미지 선택</button>
+	                        <button type="submit" id="image_selection_left" class="btn btn-default">이미지 선택(앞)</button>
 	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_right" class="btn btn-default">이미지 선택</button>
+	                        <button type="submit" id="image_selection_right" class="btn btn-default">이미지 선택(뒤)</button>
 	                        </form> 
+	                        
+	                        <script type="text/javascript">
+							    function getImageFiles(e) {
+							      const files = e.currentTarget.files;
+							      console.log(typeof files, files);
+							    }
+							
+							    const realUpload = document.querySelector('.real-upload');
+							    const upload_front_image = document.querySelector('#image_selection_left');
+							    const upload_back_image = document.querySelector('#image_selection_right');
+							
+							    upload_front_image.addEventListener('click', () => realUpload.click());
+							    realUpload.addEventListener('change', getImageFiles);
+							    
+							    upload_back_image.addEventListener('click', () => realUpload.click());
+							    realUpload.addEventListener('change', getImageFiles);
+							</script>
 	                       
-	                       <div class="card_information">
+	                       	<div class="card_information">
 	                      		 <b>카드 정보</b>
-	                       </div>    	
+	                       	</div>    	
 	                             <div class="form-bottom" id="form-box-left">
-				                    <form role="form" action="" method="post" class="login-form">
+				                    <form role="form" action="cardReg.do" method="post" class="reg_card">
 				                    	<div class="form-group">
 				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 이름</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="card-name" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-name">
+				                        	<b class="inline_text">카드 이름</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardName" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-name">
 				                        </div>
 				                    	<div class="form-group">
 				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 설명</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="card-desc" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-desc">
+				                        	<b class="inline_text">카드 설명</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardDesc" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-desc">
 				                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-password"></label>
-				                        	<b class="inline_text">최대 할인 금액</b>&nbsp;&nbsp;&nbsp;<input type="text" name="max-sale" placeholder="내용을 입력해주세요..." class="form-password form-control" id="max-sale">
+				                        	<b class="inline_text">최대 할인 금액</b>&nbsp;&nbsp;&nbsp;<input type="text" name="maxDiscount" placeholder="내용을 입력해주세요..." class="form-password form-control" id="max-sale">
 				                        </div>
+				                        <button type="submit" class="btn" id="cardReg" value="등록">등록</button>
 				                    </form>
 			                    </div>
 		                    </div>     
@@ -106,13 +147,16 @@
 	                        		<div class="form-top-left">
 	                        			<h3><b>할인 상세</b></h3>
 	                        		</div>
+										
 	                        		<div class="form-top-right">
 	                        			<button class="btn" id="add_categoty">추가</button>
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="#" method="post" class="registration-form">
+				                    <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail">
+				                    	
 				                        <table id="register_category">
+				                        
 				                        <tr>
 					                        <th>대분류</th>
 					                        <th>소분류</th>
@@ -123,16 +167,16 @@
 					                        <th></th>
 				                        </tr>
 				                        <tr>
-				                        	<td><select name="large_category">
-				                        		<option value="movie">영화</option>
-				                        		<option value="oil">주유</option>
-				                        		<option value="cafe">카페</option>
-				                        		</select>
+				                        	<td>
+												<select name="large_category" id="large_category_selection" >
+													<c:forEach items="${largeCategory}" var="large">
+														<option value="${large.largeCategoryId}">${large.largeCategoryName}</option>
+													</c:forEach>
+												</select>
 				                        	</td>
-				                        	<td><select name="small_category" class="small_category_selection">
-				                        		<option value="cgv">CGV</option>
-				                        		<option value="lottecinema">롯데시네마</option>
-				                        		<option value="megabox">메가박스</option>
+				                        	<td>
+				                        		<select name="small_category" id="small_category_selection">
+					                        		<option value="small">소분류</option>
 				                        		</select>
 				                        	</td>
 				                        	<td>
@@ -150,7 +194,7 @@
 				                        	<td>
 				                        		<img id="delete_img" src="/resources/image/delete.png">
 				                        	</td>
-				                        </tr>		                        	
+				                        </tr>                     	
 				                        </table><br><br><br><br><br><br><br>
 				                        <button type="submit" class="btn" id="register_card_info">등록</button>
 				                        <table id="test_table">
@@ -158,13 +202,11 @@
 				                    </form>
 			                    </div>
                         	</div>
-                        	
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
  		<footer>
  		</footer>
 

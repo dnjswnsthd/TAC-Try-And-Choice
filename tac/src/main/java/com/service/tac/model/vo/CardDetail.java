@@ -9,14 +9,14 @@ public class CardDetail {
 	private int smallCategoryId; // SMALL_CATEGORY_ID
 	private int minPayment; // MIN_PAYMENT
 	private int maxDiscount; // MAX_DISCOUNT
-	private int mixCount; // MAX_COUNT
+	private int maxCount; // MAX_COUNT
 
 	public CardDetail() {
 		super();
 	}
 
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int mixCount) {
+			int minPayment, int maxDiscount, int maxCount) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
@@ -25,7 +25,7 @@ public class CardDetail {
 		this.smallCategoryId = smallCategoryId;
 		this.minPayment = minPayment;
 		this.maxDiscount = maxDiscount;
-		this.mixCount = mixCount;
+		this.maxCount = maxCount;
 	}
 
 	public int getCardDetailId() {
@@ -85,18 +85,18 @@ public class CardDetail {
 	}
 
 	public int getMixCount() {
-		return mixCount;
+		return maxCount;
 	}
 
 	public void setMixCount(int mixCount) {
-		this.mixCount = mixCount;
+		this.maxCount = mixCount;
 	}
 
 	@Override
 	public String toString() {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
-				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount + "]";
+				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + maxCount + "]";
 	}
 
 }

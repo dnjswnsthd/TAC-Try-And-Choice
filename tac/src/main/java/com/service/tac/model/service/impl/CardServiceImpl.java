@@ -2,6 +2,7 @@ package com.service.tac.model.service.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,7 +36,7 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public int registerCard(Card card) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(CardMapper.class).insertC(card);
 	}
 
 	@Override

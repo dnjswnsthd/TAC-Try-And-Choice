@@ -152,6 +152,13 @@ td{
 	width:22px;
 	height:22px;
 }
+
+#large_category_search{
+	width:22px;
+	height:22px;
+	margin-left:10px;
+}
+
 /* form-box */
 #form-box-right{
 	border-left:2px solid #6e6e6e;
@@ -311,4 +318,8 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 	h1, h2 { font-size: 32px; }
 
 }
+
+/* modal */
+
+
 
