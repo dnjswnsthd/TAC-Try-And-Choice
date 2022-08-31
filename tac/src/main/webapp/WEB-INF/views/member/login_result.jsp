@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.service.tac.model.vo.Member"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script src="/resources/js/card.js" rel="text/javascript"></script>
 <link rel="stylesheet" href="/resources/css/header.css" />
 <link rel="stylesheet" href="/resources/css/login_result.css" />
@@ -36,5 +38,10 @@
 			<button type="button" class="btn btn-block text-center my-3" > 카드비교하기</button>
 		</div>
 	</div>
+	<%
+		//세션 받아오기
+		Object id=session.getAttribute("id");
+	%>
+
 </body>
 </html>
