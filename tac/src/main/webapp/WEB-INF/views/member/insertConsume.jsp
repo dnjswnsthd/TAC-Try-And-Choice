@@ -6,6 +6,7 @@
 <head>
 <meta charset='utf-8' />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='resources/js/calendar/main.css' rel='stylesheet' />
 <script src='resources/js/calendar/main.js'></script>
 <link href="/resources/css/signupConsume.css" rel="stylesheet" />
@@ -81,19 +82,30 @@
 			},
 	      eventClick: function(arg) {
 	    	  // 있는 일정 클릭시,
-	         if (confirm('소비 정보를 삭제하시겠습니까?')) {
-	        	$.ajax({
-					type : 'delete',
-					url : '/consume/deleteConsume',
-					data : {
-						consumeId: arg.el.fcSeg.eventRange.def.groupId 
-					},
-					success : function(result) {
-						calendar.refetchEvents();
-					},
-				});
-	        	arg.event.remove()
-	        }
+	    	 swal({
+			      title: "Warning",
+			      text: "소비정보를 삭제하시겠습니까?",
+			      icon: "warning",
+			      buttons: [
+			        '취소',
+			        '삭제'
+			      ],
+			      dangerMode: true,
+			 }).then(function(isConfirm){
+				 if (isConfirm) {
+		        	$.ajax({
+						type : 'delete',
+						url : '/consume/deleteConsume',
+						data : {
+							consumeId: arg.el.fcSeg.eventRange.def.groupId 
+						},
+						success : function(result) {
+							calendar.refetchEvents();
+						},
+					});
+		        	arg.event.remove()
+		        }
+			 })
 	      },
 	      editable: true,
 	      dayMaxEvents: true, // allow "more" link when too many events
@@ -173,6 +185,7 @@ body {
 			<div id="calendar"></div>
 			<div style="clear: both"></div>
 		</div>
+		<br><br>
 	</div>
 	<div class="modal">
 		<div class="modal_content" title="">
