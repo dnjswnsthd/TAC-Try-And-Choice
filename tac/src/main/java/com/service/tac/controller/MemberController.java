@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.service.tac.model.service.CategoryService;
@@ -51,7 +52,20 @@ public class MemberController {
 			System.out.println(e.getMessage());
 			return "/error";
 		}
-
 	}
-
+	
+	@PostMapping("/chkDup")
+	@ResponseBody
+	public String chkDup(Model model, String id) {
+		String chkDup;
+		String check = "false";
+		try {
+			chkDup = memberService.chkDup(id);
+			if(chkDup!=null) check = "true";
+			return check;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
 }
