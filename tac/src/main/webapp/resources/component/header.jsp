@@ -46,10 +46,10 @@
 						}
 						if( member != null ){
 					%>
+						<li class="nav-item"><a class="nav-link" href="/mypage">MYPAGE</a>
 						<li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
 					<%
 						}
-						
 					%>
 					
 					

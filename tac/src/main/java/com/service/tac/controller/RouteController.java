@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.ParseConversionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,6 +122,18 @@ public class RouteController {
 	@GetMapping(value= "/calendarTest")
 	public String calendarTest() {
 		return "/member/insertConsume";
+	}
+	
+	@GetMapping(value="/mypage")
+	public String moveMypage(Model model) {
+		try {
+			ArrayList <Card> list = cardService.getAllCardInfo();
+			model.addAttribute("list", list);
+			return "/member/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
 	}
 
 }

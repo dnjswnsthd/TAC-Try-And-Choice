@@ -17,6 +17,15 @@ public class Member {
 		this.memberId = memberId;
 		this.password = password;
 	}
+	
+	public Member(String memberId, String password, String name, int age, String phone) {
+		super();
+		this.memberId = memberId;
+		this.password = password;
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+	}
 
 	public Member(String memberId, String password, String name, int age, String phone, int grade, int cardId) {
 		super();

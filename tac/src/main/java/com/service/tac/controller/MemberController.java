@@ -101,4 +101,18 @@ public class MemberController {
 	        return "/error";
 	    }
 	}
+	
+	@PostMapping("/member/update")
+	public String update(Member member, HttpServletRequest request) {
+		try {
+			memberService.updateMemberInfo(member);
+			HttpSession session = request.getSession();
+			member.setPassword(null);
+			session.setAttribute("member", member);
+			return "redirect:/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
 }

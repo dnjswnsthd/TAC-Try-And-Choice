@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMemberInfo(Member member) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(MemberMapper.class).updateMemberInfo(member);
 	}
 
 	@Override

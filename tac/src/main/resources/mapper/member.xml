@@ -24,8 +24,14 @@
     
 	<!-- Login -->
 	<select id="login" parameterType="Member" resultType="Member">
-		SELECT member_id, name, phone, grade, card_id
+		SELECT member_id, name, age, phone, grade, card_id
 		FROM member
 		WHERE member_id=#{memberId} and password=#{password}
 	</select>
+	
+	<!-- updateMemberInfo -->
+	<update id="updateMemberInfo" parameterType="Member">
+		UPDATE MEMBER 
+		SET password = #{password}, name= #{name}, age=#{age}, phone = #{phone} WHERE member_id = #{memberId}
+	</update>
 </mapper>
