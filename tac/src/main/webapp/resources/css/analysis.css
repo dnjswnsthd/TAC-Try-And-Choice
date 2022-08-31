@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 li {
     list-style: none;
     padding-left: 0px;
@@ -7,6 +28,7 @@ body {
 }
 
 #analysisTitle{
+    font-family: 'Happiness-Sans-Title', sans-serif;
 	color: #001a85;	
 }
 
@@ -17,6 +39,7 @@ body {
     -moz-user-select: none;
     user-select: none;
 }
+
 
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
@@ -82,6 +105,7 @@ body {
 }
 
 .myChartHeadFont{
+    font-family: 'ONE-Mobile-POP', sans-serif;
 	font-size:40px;
 }
 
@@ -99,13 +123,38 @@ body {
     background-color:#004f95;
 }
 
+/* 모달 창 */
+.modal-title{
+    font-family: 'Happiness-Sans-Title', sans-serif;
+    color:rgb(208, 248, 255);
+    font-size: 35px;
+}
+.modal-header {
+    background-color:#004f95;
+}
+.modal-body{
+    margin-top: 0px;
+    background-color:rgb(250, 254, 255);
+}
+/* 소비 패턴  */
 #TypeAnalysisModalTitle {
+    font-family: 'Happiness-Sans-Title', sans-serif;
 	padding-left: 30px;
     margin-top: 30px;
-    font-size: 32px;
+    font-size: 30px;
+}
+#TypeAnalysisModalTitle2 {
+    font-family: 'Happiness-Sans-Title', sans-serif;
+	padding-left: 30px;
+    margin-top: 0px;
+    font-size: 30px;
+}
+#typetitleline2{
+    margin-bottom: 20px;
 }
 
 #MyTypeTitle{
+    font-size: 35px;
     color: #ff221e;
 }
 
@@ -116,11 +165,12 @@ body {
     background-color:#004f95;
 }
 
+#AnalyseModal1_UL{
+    font-family: 'S-CoreDream-3Light', sans-serif;
+}
 #modal_myChart1{
     margin:auto;
-
 }
-
 #modal_myChart2{
     margin:auto;
 }
@@ -132,12 +182,41 @@ body {
 #modal_myChart4{
     margin:auto;
 }
-
-.emphasize{
-    color: #48006c;
+#modal_myChart6{
+    margin:auto;
 }
 
+/* 소비 패턴 분석 강조 문구  */
+#maxday{
+    font-size: 30px;
+    color: #ff9812;
+}
+.emphasize{
+    font-size: 18px;
+    color: #48006c;
+}
+.modalWon{
+    font-size: 18px;
+    color: #fc25e6;
+}
+.modalHiger{
+    font-size: 18px;
+    color: #ff0000;
+}
+.modalLower{
+    font-size: 18px;
+    color: rgb(0, 30, 202);
+}
+.modalSimilar{
+    font-size: 18px;
+    color: rgb(44, 106, 0);
+}
+.emphasize2{
+    font-size: 24px;
+    color: rgb(5, 2, 68);
+}
 .modalchartTitle{
+    font-family: 'ONE-Mobile-POP', sans-serif;
     margin-top: 10px;
     padding-top: 10px;
     text-align: center;
@@ -146,4 +225,7 @@ body {
 
 .modal-body{
     margin-top: 12px;
+}
+.ModalDescText{
+    
 }
