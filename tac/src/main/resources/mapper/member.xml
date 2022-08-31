@@ -17,6 +17,10 @@
 		VALUES(#{memberId}, #{password}, #{name}, #{age}, #{phone}, #{cardId})
 	</insert>
 	
+	<!-- chkDup -->
+	<select id="chkDup" parameterType="string" resultType="string">
+		SELECT member_id FROM member WHERE member_id = #{memberId}
+    
 	<!-- Login -->
 	<select id="login" parameterType="Member" resultType="Member">
 		SELECT member_id, password 

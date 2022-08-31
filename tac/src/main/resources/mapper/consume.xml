@@ -19,7 +19,7 @@
 	<!-- getConsume -->
 	<select id="getConsume" parameterType="String" resultType="HashMap">
 		SELECT c.consume_id consumeId, c.consume_price consumePrice, to_char(c.consume_date, 'yyyy-mm-dd') consumeDate,
-		c.large_category_id laregeCategoryId, lc.large_category_name largeCategoryName, c.small_category_id smallCategoryId,
+		c.large_category_id largeCategoryId, lc.large_category_name largeCategoryName, c.small_category_id smallCategoryId,
 		sc.small_category_name smallCategoryName
 		FROM CONSUME c , LARGE_CATEGORY lc , SMALL_CATEGORY sc
 		WHERE c.LARGE_CATEGORY_ID = lc.LARGE_CATEGORY_ID 

@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public String chkDup(String memberId) throws SQLException {
+		return sqlSession.getMapper(MemberMapper.class).chkDup(memberId);
+	}
+
 }

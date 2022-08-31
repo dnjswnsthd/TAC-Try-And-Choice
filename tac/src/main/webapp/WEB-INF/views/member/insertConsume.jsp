@@ -36,9 +36,9 @@
 	    var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
 	      headerToolbar: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	        left: 'title',
+	        center: '',
+	        right: 'prev,next'
 	      },
 	      /* initialDate: '2021-04-12', // 초기 로딩 날짜. */
 	      navLinks: true, 
@@ -67,13 +67,12 @@
 							success : function(result) {
 								$('.modal').fadeOut();
 								calendar.refetchEvents(calendar.unselect());
-								alert(JSON.stringify(arg));
 								arg.start = '0';
 							},
 							complete:function(){
-								$('#large').val('');
-								$('#small').val('');
-								$('#price').val('');
+								$('#large').val('대분류');
+								$('#small').val('소분류');
+								$('#price').val('0');
 							}						
 						});
 					}
@@ -82,8 +81,7 @@
 			},
 	      eventClick: function(arg) {
 	    	  // 있는 일정 클릭시,
-	    	  alert(arg.el.fcSeg.eventRange.def.groupId);
-	         if (confirm('Are you sure you want to delete this event?')) {
+	         if (confirm('소비 정보를 삭제하시겠습니까?')) {
 	        	$.ajax({
 					type : 'delete',
 					url : '/consume/deleteConsume',
@@ -111,18 +109,34 @@
 			        ,contentType : "application/x-www-form-urlencoded; charset=UTF-8"
 			        ,success: function(param){
 			            var events = [];
+			            
 			            $.each(param, function (index, data){
-			                    events.push({
-			                        title : data.LARGECATEGORYNAME
-			                        ,start : data.CONSUMEDATE
-			                        ,allDay: true
-			                        ,className: 'important'
-			                        ,groupId: data.CONSUMEID
-			                        ,laregeCategoryId: data.LARGECATEGORYID
-			                        ,smallCategoryId: data.SMALLCATEGORYID
-			                        ,smallCategoryName: data.SMALLCATEGORYNAME
-			                        ,consumePrice: data.CONSUMEPRICE
-			                    }); // push // end
+			            	var color = 'white';
+			            	var bgcolor = '';
+			            	if(data.LARGECATEGORYID == '1' || data.LARGECATEGORYID == '5' || data.LARGECATEGORYID == '9' || data.LARGECATEGORYID == '13' || data.LARGECATEGORYID == '17' ){
+			            		bgcolor = '#FBC22C'
+			            	}else if(data.LARGECATEGORYID == '2' || data.LARGECATEGORYID == '6' || data.LARGECATEGORYID == '10' || data.LARGECATEGORYID == '14' || data.LARGECATEGORYID == '18' ){
+			            		bgcolor = '#F01486'
+			            	}else if(data.LARGECATEGORYID == '3' || data.LARGECATEGORYID == '7' || data.LARGECATEGORYID == '11' || data.LARGECATEGORYID == '15' || data.LARGECATEGORYID == '19' ){
+			            		bgcolor = '#A067AD'
+			            	}else if(data.LARGECATEGORYID == '4' || data.LARGECATEGORYID == '8' || data.LARGECATEGORYID == '12' || data.LARGECATEGORYID == '16' || data.LARGECATEGORYID == '20' ){
+			            		bgcolor = '#46A3D2'
+			            	}else if(data.LARGECATEGORYID == '21' || data.LARGECATEGORYID == '22'){
+			            		bgcolor = '#8CE33D'
+			            	}
+		                    events.push({
+		                        title : data.LARGECATEGORYNAME
+		                        ,start : data.CONSUMEDATE
+		                        ,allDay: true
+		                        ,className: 'important'
+		                        ,groupId: data.CONSUMEID
+		                        ,laregeCategoryId: data.LARGECATEGORYID
+		                        ,smallCategoryId: data.SMALLCATEGORYID
+		                        ,smallCategoryName: data.SMALLCATEGORYNAME
+		                        ,consumePrice: data.CONSUMEPRICE
+		                        ,backgroundColor: bgcolor
+		                        ,color : color
+		                    }); // push // end
 			            });// each end
 			            successCallback(events);
 			        }
@@ -152,15 +166,12 @@ body {
 	<div class="container">
 		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea">
-			<h3>회원가입 마지막 단계 ${memberId}</h3>
-			<p>전달 소비 정보를 입력해주세요!</p>
+			<h3> ${memberId} 님 소비 정보를 입력해주세요!</h3>
+			<input type="button" id="moveLogin" value="등록 완료" />
 		</div>
 		<div id="wrap">
 			<div id="calendar"></div>
 			<div style="clear: both"></div>
-		</div>
-		<div class="button">
-			<button>응애</button>
 		</div>
 	</div>
 	<div class="modal">
