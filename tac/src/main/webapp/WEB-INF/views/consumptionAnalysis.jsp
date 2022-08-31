@@ -1,3 +1,4 @@
+<%@page import="com.service.tac.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,11 +30,21 @@
 </head>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
+	
+	<%
+		Member member = (Member) session.getAttribute("member");
+		if ( member == null ) {
+	%>
+	<script> alert("로그인 먼저하세요"); location.href = '/login';</script>
+	<%
+		}
+	%>
+	
 	<div class="page-content">
 		<div class="container py-3">
 			<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-					<h1 id="analysisTitle" class="display-4 fw-normal">이화정님의 소비 패턴
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name} 님의 소비 패턴
 						분석 결과</h1>
 					<p class="fs-5 text-muted"> TAC에서 당신의 카드 소비 내역을 분석하여 알려드립니다 </p>
 				</div>
@@ -98,12 +109,12 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6 modalchartTitle">이화정님의 소비</div>
+							<div class="col-6 modalchartTitle">${member.name}님의 소비</div>
 							<div class="col-6 modalchartTitle">내 동년배들 다 돈 이렇게 쓴다</div>
 						</div>
 						<div class="row">
 							<div id="TypeAnalysisModalTitle" class="col-12">
-								이화정님의 소비 패턴은 <b id="MyTypeTitle"> " ${ConsumeType} "</b> 입니다
+								${member.name}님의 소비 패턴은 <b id="MyTypeTitle"> " ${ConsumeType} "</b> 입니다
 							</div>
 							<div class="typetitleline"></div>
 						</div>
@@ -142,7 +153,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div id="TypeAnalysisModalTitle2" class="col-12">
-								이화정님은 <b id="MyTypeTitle"> " ${Daytype} " </b> 타입 입니다
+								${member.name}님은 <b id="MyTypeTitle"> " ${Daytype} " </b> 타입 입니다
 							</div>
 							<div id="typetitleline2" class="typetitleline"></div>
 						</div>
@@ -155,7 +166,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6 modalchartTitle">이화정님과 동년배들의 한달 간 소비 추이</div>
+							<div class="col-6 modalchartTitle">${member.name}님과 동년배들의 한달 간 소비 추이</div>
 							<div class="col-6 modalchartTitle">한달 간 누적 소비 추이 </div>
 						</div>
 						<div style="height:30px" ></div>
@@ -196,20 +207,20 @@
 	
 	<script>
 		$(function() {
-			$('#AnalyseModal1_UL').append('<li class="ModalDescText"> 이화정님은 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
-			$('#AnalyseModal1_UL').append('<li> 이화정님의 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하는 군요.</li>');
+			$('#AnalyseModal1_UL').append('<li class="ModalDescText"> ${member.name}님은 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
+			$('#AnalyseModal1_UL').append('<li> ${member.name}님의 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하는 군요.</li>');
 			
 			var arr = '${bigger}'.substring(1,'${bigger}'.length -1	).split(', ');
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>이화정님은 다른 사람들 보다 <b class="emphasize">' + element + '</b>에 돈을 <b class="modalHiger">더 많이 </b>사용합니다~~</li>');
+				$('#AnalyseModal1_UL').append('<li>${member.name}님은 다른 사람들 보다 <b class="emphasize">' + element + '</b>에 돈을 <b class="modalHiger">더 많이 </b>사용합니다~~</li>');
 			});
 			var arr = '${smaller}'.substring(1,'${smaller}'.length -1	).split(', ');
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>이화정님은 <b class="emphasize">' + element + '</b>에는 남들보다  <b class="modalLower">적게</b> 사용합니다.</li>');
+				$('#AnalyseModal1_UL').append('<li>${member.name}님은 <b class="emphasize">' + element + '</b>에는 남들보다  <b class="modalLower">적게</b> 사용합니다.</li>');
 			});
 			var arr = '${same}'.substring(1,'${same}'.length -1	).split(', ');
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>이화정님은 동년배와 비교했을 때 <b class="emphasize">' + element + '</b>에 <b class="modalSimilar">비슷하게 </b> 돈을 쓰는군요,,, </li>');
+				$('#AnalyseModal1_UL').append('<li>${member.name}님은 동년배와 비교했을 때 <b class="emphasize">' + element + '</b>에 <b class="modalSimilar">비슷하게 </b> 돈을 쓰는군요,,, </li>');
 			});
 
 			var mybiggestM = "";
@@ -233,29 +244,29 @@
 				}
 				count += 1;
 			}
-			$('#AnalyseModal1_UL').append('<li> 이화정님이 가장 많이 사용하신 곳은 <b class="emphasize">' + '${mybiggest}' + '</b>으로, <b class="modalWon">' +  '${mybiggestM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 사용하셨습니다.</li>');
-			$('#AnalyseModal1_UL').append('<li> 이화정님의 동년배가 가장 많이 사용하신 곳은 <b class="emphasize">' + '${avgbiggest}' + '</b>으로, <b class="modalWon">' +  '${avgbiggestM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 사용하셨습니다.</li>');
+			$('#AnalyseModal1_UL').append('<li> ${member.name}님이 가장 많이 사용하신 곳은 <b class="emphasize">' + '${mybiggest}' + '</b>으로, <b class="modalWon">' +  '${mybiggestM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 사용하셨습니다.</li>');
+			$('#AnalyseModal1_UL').append('<li> ${member.name}님의 동년배가 가장 많이 사용하신 곳은 <b class="emphasize">' + '${avgbiggest}' + '</b>으로, <b class="modalWon">' +  '${avgbiggestM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 사용하셨습니다.</li>');
 			
 			if ( '${mybiggest}' == '${avgbiggest}' ){
 				var biggest = Math.abs('${avgbiggestM}' - '${mybiggestM}');
-				$('#AnalyseModal1_UL').append('<li> 이화정님은 다른 동년배처럼 <b class="emphasize">' + '${avgbiggest}' + '</b>에 가장 많이 사용하셨군요! 둘의 차이는 <b class="modalWon">' + biggest.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 입니다.</li>');
+				$('#AnalyseModal1_UL').append('<li> ${member.name}님은 다른 동년배처럼 <b class="emphasize">' + '${avgbiggest}' + '</b>에 가장 많이 사용하셨군요! 둘의 차이는 <b class="modalWon">' + biggest.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원 입니다.</li>');
 			}
-			$('#AnalyseModal1_UL').append('<li> 이화정님과 동년배가 가장 많은 차이가 나는 곳은 <b class="emphasize">' + '${gap}' + '</b>으로, <b class="modalWon">' +  '${gapM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원의 차이가 나는 군요! </li>');
+			$('#AnalyseModal1_UL').append('<li> ${member.name}님과 동년배가 가장 많은 차이가 나는 곳은 <b class="emphasize">' + '${gap}' + '</b>으로, <b class="modalWon">' +  '${gapM}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원의 차이가 나는 군요! </li>');
 			
 			if ( '${gapM}' < 100_000 ) {
-				$('#AnalyseModal1_UL').append('<li> 이화정님과 동년배의 소비패턴은 전체적으로 <b class="emphasize2">유사합니다.</b> </li>');	
+				$('#AnalyseModal1_UL').append('<li> ${member.name}님과 동년배의 소비패턴은 전체적으로 <b class="emphasize2">유사합니다.</b> </li>');	
 			} else {
-				$('#AnalyseModal1_UL').append('<li> 이화정님과 동년배의 소비패턴은 전체적으로 <b class="emphasize2">차이가 납니다.</b> </li>');	
+				$('#AnalyseModal1_UL').append('<li> ${member.name}님과 동년배의 소비패턴은 전체적으로 <b class="emphasize2">차이가 납니다.</b> </li>');	
 			}
 
 			//// modal2
 			// DaytypeDesc
 			if ( ('${myTotalConsume}' - '${avgTotalConsume}') > 100000 ) {
-				$('#AnalyseModal2_UL').append('<li> 이화정님은 다른 사람들 보다 돈을 많이 쓰십니다 </li>');
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 많이 쓰십니다 </li>');
 			} else if ( ('${avgTotalConsume}' - '${myTotalConsume}') < -100000 )  {
-				$('#AnalyseModal2_UL').append('<li> 이화정님은 다른 사람들 보다 돈을 적게 쓰십니다 </li>');
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 적게 쓰십니다 </li>');
 			} else if ( Math.abs('${myTotalConsume}' - '${avgTotalConsume}') < 100000 )  {
-				$('#AnalyseModal2_UL').append('<li> 이화정님은 다른 사람들과 비슷하게 돈을 쓰시네요.  </li>');
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들과 비슷하게 돈을 쓰시네요.  </li>');
 			}
 
 			$('#AnalyseModal2_UL').append('<li> 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');

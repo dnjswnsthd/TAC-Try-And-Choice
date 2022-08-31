@@ -89,10 +89,11 @@ public class MemberController {
 		try {
 			Member member = memberService.login(new Member(id, password));
 	        if(member != null) {
+	        	System.out.println(member.toString());
 	        	model.addAttribute("member", member);
 	        	HttpSession session = request.getSession();
-	        	session.setAttribute("id",id);
-	            return "/member/login_result";
+	        	session.setAttribute("member",member);
+	            return "redirect:/main";
 	        }else {
 	            return "/error";
 	        }
