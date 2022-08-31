@@ -1,0 +1,214 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#container {
+	font-family: 'BMJUA', sans-serif !important;
+}
+
+.row{
+    width: 100%;
+	height: 100%;
+	background-color: rgba(255, 120, 139, 0.6);
+
+}
+/*------- portfolio -------*/
+/*
+.project {
+  margin: 50px;
+  padding: 30px;
+}
+*/
+
+#myChart {
+	text-align: center;
+	margin: 0 auto;
+}
+
+
+
+
+.project-title {
+  font-size: 1.25rem;
+}
+
+.project-skill {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.06rem;
+}
+
+.project-info-box {
+  margin: 3% 0;
+  background-color: #fff;
+  background-color: rgba(255,255,255, 0.8);
+  padding: 4% 5%;
+  border-radius: 10px;
+  
+  
+}
+
+.project-info-box p {
+  margin-bottom: 2%;
+  padding-bottom: 1%;
+  border-bottom: 1px solid #d5dadb;
+}
+
+.project-info-box p:last-child {
+  margin-bottom: 5%;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.cardName {
+	font-size: 2rem;
+	padding-left: 3%;
+	text-align: center;
+	color: black;
+}
+
+.rounded{  
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px !important;
+}
+
+
+.project-info-box p {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d5dadb;
+}
+p {
+    font-family: "BMJUA", sans-serif !important;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: black;
+    letter-spacing: 0.03rem;
+    
+}
+b, strong {
+    font-weight: 700 !important;
+}
+
+.othercard {
+  border: none;
+  display: block;
+  float: right;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #222;
+  padding: 1.2% 3%;
+  
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+
+
+.othercard span {
+  position: relative; 
+  z-index: 1;
+}
+
+.othercard:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.othercard:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.myCard {
+  border: none;
+  display: inline-block;
+  float:right;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #222;
+  padding: 1.2% 3%;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.myCard span {
+  position: relative; 
+  z-index: 1;
+}
+
+.myCard:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.myCard:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+
+
+table {
+	width: 100%;
+	text-align: center;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+th, td{
+	border: 1px solid gray;
+}
+
+
+

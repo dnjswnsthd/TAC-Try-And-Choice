@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.service.tac.model.mapper.ConsumeMapper">
+
+	<!-- addConsumeInfo -->
+	<insert id="addConsumeInfo" parameterType="Member">
+		<selectKey keyProperty="consumeId" resultType="int" order="BEFORE">
+			SELECT consume_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO consume (consume_id, consume_price, consume_date,
+		LARGE_CATEGORY_ID, SMALL_CATEGORY_ID, member_id)
+		VALUES (#{consumeId},
+		#{consumePrice}, #{consumeDate}, #{largeCategoryId},
+		#{smallCategoryId}, #{memberId})
+	</insert>
+
+	<!-- getConsume -->
+	<select id="getConsume" parameterType="String" resultType="HashMap">
+		SELECT c.consume_id consumeId, c.consume_price consumePrice, to_char(c.consume_date, 'yyyy-mm-dd') consumeDate,
+		c.large_category_id largeCategoryId, lc.large_category_name largeCategoryName, c.small_category_id smallCategoryId,
+		sc.small_category_name smallCategoryName
+		FROM CONSUME c , LARGE_CATEGORY lc , SMALL_CATEGORY sc
+		WHERE c.LARGE_CATEGORY_ID = lc.LARGE_CATEGORY_ID 
+		AND c.SMALL_CATEGORY_ID = sc.SMALL_CATEGORY_ID 
+		AND c.MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- deleteConsume -->
+	<delete id="deleteConsumeInfo" parameterType="int">
+		DELETE FROM CONSUME 
+		WHERE consume_id = #{consumeId}
+	</delete>
+</mapper>

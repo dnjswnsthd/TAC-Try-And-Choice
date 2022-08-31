@@ -11,8 +11,7 @@ public interface MemberService {
 	public ArrayList<Member> showAll() throws SQLException;
 
 	// 로그인
-	public Member login(int memberId, String password) throws SQLException;
-
+	public Member login(Member member) throws SQLException;
 	// 회원등록 card, consume map이나 vo생성해서 넘길 예정
 	public int register(Member member) throws SQLException;
 
@@ -27,4 +26,7 @@ public interface MemberService {
 
 	// 회원 탈퇴
 	public void remove(int memberId) throws SQLException;
+	
+	// 아이디 중복 체크
+	public String chkDup(String memberId) throws SQLException;
 }

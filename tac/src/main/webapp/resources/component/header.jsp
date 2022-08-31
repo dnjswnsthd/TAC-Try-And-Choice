@@ -13,7 +13,7 @@
 <link href="/resources/css/header.css" rel="stylesheet" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light">
+	<nav class="navbar navbar-expand-lg navbar-light" id="header">
 		<div class="container">
 			<a class="navbar-brand" href="/main"><img id="logo"
 				src="/resources/image/logo1.png" /><img id="logo2"
@@ -32,7 +32,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Service3</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">LOGIN</a></li>
+					<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
 					<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a>
 					</li>
 				</ul>

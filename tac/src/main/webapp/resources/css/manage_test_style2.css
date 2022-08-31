@@ -18,10 +18,9 @@ a, a:hover, a:focus {
 
 /* hwajung edit */
 #card_sample{
-	border-radius: 5%;
-	width : 260px;
-	margin-left : 20px;
-	margin-bottom : 20px;
+	border-radius: 10%;
+	width : 300px;
+	margin-left : 5px;
 }
 
 
@@ -88,8 +87,8 @@ img { max-width: 100%; }
 .btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
 #add_categoty{
-	height:40px;
-	text-align:center; 
+	text-align:center;
+	width:70px;
 }
 /* header */
 
@@ -105,15 +104,19 @@ img { max-width: 100%; }
 	padding : 20px 0px 10px 0px;
 	border-bottom: 2px solid #6e6e6e;
 }
-/* table */
-
-.col-sm-8{
-	border-left:2px solid #6e6e6e;
-	
+#card-name, #card-desc, #max-sale{
+	width:240px;
+	display : inline-block;
 }
 
+#sale_detail{
+	border-bottom: 2px solid #6e6e6e;
+	margin-bottom: 15px;
+}
+
+/* table */
 .add_manage_option{
-	width:100px;
+	width:70px;
 	height:30px;
 }
 
@@ -121,9 +124,14 @@ img { max-width: 100%; }
 	overflow:hidden;
 }
 
+tr{
+	border-bottom: 1px solid #6e6e6e;
+}
 th{
 	border-bottom: 1px solid #6e6e6e;
 	text-align: center;
+	font-size: 13px;
+	padding-left: 10px;
 }
 td{
 	padding:10px 5px 5px 5px;
@@ -147,7 +155,7 @@ td{
 /* form-box */
 #form-box-right{
 	border-left:2px solid #6e6e6e;
-	padding-left: 30px;
+	padding-left: 23px;
 }
 
 #form-box-left{
@@ -155,8 +163,10 @@ td{
 }
 
 .form-group{
-	
+	padding-bottom: 15px;
 }
+
+
 
 /* tac-header */
 .tac_header{
@@ -198,8 +208,6 @@ td{
 	background: #fff;
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
-	border-bottom : 2px solid #6e6e6e;
-	margin-bottom: 15px;
 }
 
 .form-top-left {
@@ -207,12 +215,16 @@ td{
 	width: 75%;
 	font-size:23px;
 }
+.form-top-left>h3 {
+	padding-top: 16px;
+	color:#6e6e6e;
+}
 
 .form-top-left h3 { margin-top: 0; }
 
 .form-top-right {
-	float: left;
-	width: 25%;
+	float: right;
+	width: 60px;
 	font-size: 66px;
 	color: #ddd;
 	line-height: 0px;

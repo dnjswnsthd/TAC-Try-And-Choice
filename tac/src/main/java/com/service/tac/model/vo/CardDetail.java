@@ -4,19 +4,34 @@ package com.service.tac.model.vo;
 public class CardDetail {
 	private int cardDetailId; // card_detail_id
 	private int discountPercent; // discount_percent
-	private int cardId; // card_id
+	private int cardId; // card_idsel
 	private int largeCategoryId; // LARGE_CATEGORY_ID
 	private int smallCategoryId; // SMALL_CATEGORY_ID
 	private int minPayment; // MIN_PAYMENT
 	private int maxDiscount; // MAX_DISCOUNT
+	private int maxCount; // MAX_COUNT
 	private int mixCount; // MAX_COUNT
+	private SmallCategory smallCategory; 
 
 	public CardDetail() {
 		super();
 	}
 
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int mixCount) {
+			int minPayment, int maxDiscount, int maxCount) {
+		super();
+		this.cardDetailId = cardDetailId;
+		this.discountPercent = discountPercent;
+		this.cardId = cardId;
+		this.largeCategoryId = largeCategoryId;
+		this.smallCategoryId = smallCategoryId;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.maxCount = maxCount;
+	}
+	
+	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			int minPayment, int maxDiscount, int mixCount, SmallCategory smallCategory) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
@@ -26,6 +41,7 @@ public class CardDetail {
 		this.minPayment = minPayment;
 		this.maxDiscount = maxDiscount;
 		this.mixCount = mixCount;
+		this.smallCategory = smallCategory;
 	}
 
 	public int getCardDetailId() {
@@ -85,18 +101,28 @@ public class CardDetail {
 	}
 
 	public int getMixCount() {
-		return mixCount;
+		return maxCount;
 	}
 
 	public void setMixCount(int mixCount) {
-		this.mixCount = mixCount;
+		this.maxCount = mixCount;
+	}
+
+	public SmallCategory getSmallCategory() {
+		return smallCategory;
+	}
+
+	public void setSmallCategory(SmallCategory smallCategory) {
+		this.smallCategory = smallCategory;
 	}
 
 	@Override
 	public String toString() {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
-				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount + "]";
+				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + maxCount + "]";
 	}
+
+	
 
 }

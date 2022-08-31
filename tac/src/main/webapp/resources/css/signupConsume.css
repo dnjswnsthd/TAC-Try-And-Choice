@@ -1,4 +1,10 @@
 @font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'Cafe24Ssurround';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
     font-weight: normal;
@@ -96,10 +102,10 @@ body {
 	margin-left: 8%;
 	width: 70vmax;
 	background-color: white;
-	opacity: 0.9;
+	opacity: 0.8;
 	border-radius: 6px;
 	box-shadow: 0 1px 2px #c3c3c3;
-	height: 49vmax;
+	height: 53vmax;
 	overflow: hidden;
 }
 
@@ -115,14 +121,14 @@ body {
   }
 
   .modal_content{
-	width:500px; height:350px;
+	width:30vmax; height: 22vmax;
 	background:#fff; border-radius:20px;
-	position:relative; top:30%; left:40%;
+	position:relative; top:50%; left:70%;
 	margin-top:-100px; margin-left:-130px;
 	text-align:center;
 	box-sizing:border-box; padding:20px 0;
 	line-height:23px; cursor:pointer;
-	font-family:Cafe24Ssurround !important;
+	font-family: GangwonEdu_OTFBoldA !important;
   }
 
 #span {
@@ -139,12 +145,17 @@ body {
 }
 
 .btn {
-	background-color: #ff3b30 !important;
+	background-color: #373234 !important;
 	color: white !important;
 	width: 15vmax;
 	padding: 2%;
 	margin: 5% 4% auto;
 	border-radius: 10px;
+	width: 10rem;
+}
+
+.btn:hover {
+	background-color: #FF788B !important;
 }
 
 select, select option, input {
@@ -156,5 +167,34 @@ select, select option, input {
 	margin-left: 70%;
 }
 #hea{
-	font-family:establishRoomNo703OTF !important;
+	font-family:GangwonEdu_OTFBoldA !important;
+	margin-top: -3%;
+	display: inline-flex;
+	width: 110vh;
+	margin-left: 5%;
+}
+
+option{
+	line-heigth: noremal;
+}
+#price{
+	margin-left: 1%;
+}
+
+#moveLogin{
+	background-color: #373234 !important;
+	color: white !important;
+	margin: 5% 4% auto;
+	border-radius: 10px;
+	width: 6rem;
+	margin-left: 5%;
+	margin-top: -0.5%;
+}
+
+#moveLogin:hover{
+	background-color: #FF788B !important;
+}
+
+select{
+	font-family: none !important;
 }

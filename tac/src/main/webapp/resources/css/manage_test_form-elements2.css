@@ -1,17 +1,17 @@
 
-input[type="text"], 
-input[type="password"], 
+input[type="text"],  
 textarea, 
 textarea.form-control {
-	height: 30px;
+	height: 40px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 5px;
     vertical-align: middle;
     background: #f8f8f8;
     border: 3px solid #ddd;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
+    text-align:center;
     line-height: 50px;
     color: #888;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
@@ -50,13 +50,14 @@ textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeh
 button.btn {
 	height: 50px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 5px;
     vertical-align: middle;
     background:#555555d9;
     border: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
+    text-align:center;
     line-height: 50px;
     color: #fff;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
@@ -68,12 +69,13 @@ button.btn {
 #image_selection_left{
 	height:45px;
 	font-size: 12px;
+	margin-left:145px;
 }
 
 #image_selection_right{
 	height:45px;
 	float: right;
-	margin-right: 100px;
+	margin-right: 30px;
 	font-size: 12px;
 }
 

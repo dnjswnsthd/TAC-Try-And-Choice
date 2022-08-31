@@ -34,6 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public ArrayList<SmallCategory> getSmallCategory(int largeCategoryId) throws SQLException {
+		System.out.println("smallcategory success");
 		return sqlSession.getMapper(CategoryMapper.class).getSmallCategory(largeCategoryId);
 	}
 
