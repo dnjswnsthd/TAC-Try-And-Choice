@@ -77,7 +77,6 @@ public class AnalyseController {
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
 			MyAge = analyseService.MyAge(id);
-			System.out.println(MyAge);
 			AnalLargeSumAvg = analyseService.AnalyseLC_SUM_AVG(MyAge);
 //			System.out.println("평균-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_LargeSum temp : AnalLargeSumAvg) {
@@ -208,7 +207,6 @@ public class AnalyseController {
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
 			AnalDate = analyseService.AnalyseLC_DESC_AVG(MyAge);
-			System.out.println("평균-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_ByDate temp : AnalDate) {
 				int day = Integer.parseInt(temp.getDate().substring(2,4));
 				if ( 1 <= day && day <= 10 ) {
@@ -218,10 +216,8 @@ public class AnalyseController {
 				} else {
 					endM += temp.getMoney();
 				}
-				System.out.println(temp.toString());
 				hmap.put(temp.getDate(), (Integer) temp.getMoney());
 			}
-			System.out.println("-----------------------------------------------------------------------");
 			bList.add(hmap);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -229,11 +225,7 @@ public class AnalyseController {
 		
 		// 6. 타입
 		String daytype = "내 맴대로 쓰는 ";
-		String dattypeDesc = "돈을 일정한 규칙없이 사용하시는 군요.";
-		
-		System.out.print(startM + " ");	
-		System.out.print(middleM + " ");	
-		System.out.println(endM);	
+		String dattypeDesc = "돈을 일정한 규칙없이 사용하시는 군요.";	
 		
 		double startMD = (double) ( (double) startM / (double) myTotalConsume );
 		double middleMD = (double) ( (double) middleM / (double) myTotalConsume );
@@ -266,11 +258,6 @@ public class AnalyseController {
 			daytype = "큰거 한방 쓰시는";
 			dattypeDesc = "이번 달에는 지름신인 강림하셨네요.";
 		}
-		
-		System.out.print(startMD + " ");	
-		System.out.print(middleMD + " ");	
-		System.out.print(mybiggestMD + " ");	
-		System.out.println(endMD);
 
 		mav.addObject("Daytype", daytype);
 		mav.addObject("DaytypeDesc", dattypeDesc);
