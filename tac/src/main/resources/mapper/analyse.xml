@@ -19,6 +19,27 @@
 		<result column="DATE" property="date" />
 	</resultMap>
 	
+	<!-- 아이디별 전체 소비 분석 결과 가지고 오기 -->
+	<resultMap type="ConsumeAnalysis_ByDate" id="AnalysisDate">
+		<result column="DATE" property="date" />
+		<result column="MONEY" property="money" />
+	</resultMap>
+	
+	<!-- 아이디별 전체 소비 분석 결과 가지고 오기 -->
+	<resultMap type="ConsumeAnalysis_ByDay" id="AnalysisDay">
+		<result column="DAY" property="day" />
+		<result column="SUM" property="money" />
+	</resultMap>
+	
+	<!-- SQL -->
+	
+	<!-- 아이디의 나이 가지고 오기 -->
+	<select id="MyAge" parameterType="string" resultType="int">
+		SELECT m.AGE 
+		FROM MEMBER m
+		WHERE m.MEMBER_ID = #{VALUE}
+	</select>
+	
 	<!-- 대분류 별 통계 합계 -->
 	<select id="AnalyseLC_SUM" parameterType="string" resultMap="AnalysisLargeSum">
 		SELECT lc.LARGE_CATEGORY_NAME "LCNAME", COUNT(*) "COUNT", NVL(SUM(c.CONSUME_PRICE),0) "SUM"
@@ -28,13 +49,13 @@
 	</select>
 	
 	<!-- 대분류 별 통계 합계 // 나이대 평균 -->
-	<select id="AnalyseLC_SUM" parameterType="string" resultMap="AnalysisLargeSum">
-		SELECT lc.LARGE_CATEGORY_NAME "LNAME", 
-				COUNT(*)/(SELECT COUNT(m.MEMBER_ID) FROM MEMBER m WHERE 10 <= m.AGE AND m.AGE <= 19) "COUNT", 
-				NVL(SUM(c.CONSUME_PRICE),0)/(SELECT COUNT(m.MEMBER_ID) FROM MEMBER m WHERE 10 <= m.AGE AND m.AGE <= 19) "SUM"
+	<select id="AnalyseLC_SUM_AVG" parameterType="int" resultMap="AnalysisLargeSum">
+		SELECT lc.LARGE_CATEGORY_NAME "LCNAME", 
+				CEIL(COUNT(*)/(SELECT COUNT(m.MEMBER_ID) FROM MEMBER m WHERE #{VALUE} <![CDATA[<=]]> m.AGE AND m.AGE <![CDATA[<=]]> #{VALUE}+9 )) "COUNT", 
+				CEIL(NVL(SUM(c.CONSUME_PRICE),0)/(SELECT COUNT(m.MEMBER_ID) FROM MEMBER m WHERE #{VALUE} <![CDATA[<=]]> m.AGE AND m.AGE <![CDATA[<=]]> #{VALUE}+9 )) "SUM"
 		FROM CONSUME c RIGHT JOIN LARGE_CATEGORY lc ON (lc.LARGE_CATEGORY_ID = c.LARGE_CATEGORY_ID)
-		AND c.MEMBER_ID IN ( SELECT m.MEMBER_ID FROM MEMBER m WHERE 10 <= m.AGE AND m.AGE <= 19 )
-		GROUP BY lc.LARGE_CATEGORY_NAME;
+		AND c.MEMBER_ID IN ( SELECT m.MEMBER_ID FROM MEMBER m WHERE #{VALUE} <![CDATA[<=]]> m.AGE AND m.AGE <![CDATA[<=]]> #{VALUE}+9 )
+		GROUP BY lc.LARGE_CATEGORY_NAME
 	</select>
 	
 	<!-- 아이디별 전체 소비 분석 결과 가지고 오기 -->
@@ -46,5 +67,20 @@
 		ORDER BY "DATE"
 	</select>
 	
-
+	<!-- 해당 연령별 가지고 오기  -->
+	<select id="AnalyseLC_DESC_AVG" parameterType="int" resultMap="AnalysisDate">
+		SELECT to_char(c.CONSUME_DATE,'mmdd') "DATE" , CEIL(SUM(c.CONSUME_PRICE)/ (SELECT COUNT(m.MEMBER_ID) FROM MEMBER m WHERE #{VALUE} <![CDATA[<=]]> m.AGE AND m.AGE <![CDATA[<=]]> #{VALUE}+9)) "MONEY"
+		FROM CONSUME c 
+		WHERE c.MEMBER_ID IN ( SELECT m.MEMBER_ID FROM MEMBER m WHERE #{VALUE} <![CDATA[<=]]> m.AGE AND m.AGE <![CDATA[<=]]> #{VALUE}+9 )
+		GROUP BY c.CONSUME_DATE
+		ORDER BY c.CONSUME_DATE
+	</select>
+	
+	<!-- 해당 ID 요일별 정보 -->
+	<select id="Analyse_DAY" parameterType="string" resultMap="AnalysisDay" >
+		SELECT to_char(c.CONSUME_DATE,'day') "DAY", SUM(c.CONSUME_PRICE) "SUM"
+		FROM CONSUME c 
+		WHERE MEMBER_ID = #{VALUE}
+		GROUP BY to_char(c.CONSUME_DATE,'day')
+	</select>
 </mapper>
