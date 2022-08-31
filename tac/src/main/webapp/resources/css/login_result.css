@@ -6,7 +6,10 @@
 }
 
 body {
-    background-color: #eee;
+    background-image: url(../image/signupBackground03.jpg);
+	background-repeat: no-repeat;
+	background-position: 0% 15%;
+	background-size: auto;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
 
