@@ -35,6 +35,7 @@ public class AnalyseController {
 		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
 		// ID
 		String id = "RYU";
+		System.out.println("[ID] " +id);
 
 		// 1. 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();

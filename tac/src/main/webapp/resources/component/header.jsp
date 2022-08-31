@@ -1,3 +1,4 @@
+<%@page import="com.service.tac.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,27 +27,31 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#">Service1</a>
+					<li class="nav-item"><a class="nav-link" href="/compare">CONSUME</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Service2</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">Service3</a>
+					<li class="nav-item"><a class="nav-link" href="/analysis">ANALYSE</a>
 					</li>
 					<%
-						Object id=session.getAttribute("id");
-						if ( id == null ){
-							
+						Member member = (Member) session.getAttribute("member");
+						if ( member == null ) {	
 					%>
 						<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
-						<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a></li>
+						<li class="nav-item"><a class="nav-link" href="/signup">SIGNUP</a></li>
 					<%
-						} else {
+						} 
+						if( member != null && member.getGrade() == 1 ){
+					%>
+						<li class="nav-item"><a class="nav-link" href="/manage_card">ADDCARD</a></li>
+					<%
+						}
+						if( member != null ){
 					%>
 						<li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
 					<%
-							
 						}
+						
 					%>
+					
 					
 					
 				</ul>

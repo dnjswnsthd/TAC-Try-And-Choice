@@ -1,3 +1,4 @@
+<%@page import="com.service.tac.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -38,17 +39,16 @@
 </head>
 <body>
 	<%
-	Object id=session.getAttribute("id");
-	if ( id == null ){
-	} else {// 여기서 세셔션을 죽입니다.
-		session.invalidate();
-	}
+		Member member = (Member) session.getAttribute("member");
+		if ( member != null ) {
+			session.invalidate();
+		}
 	%>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<div class="wrapper bg-white">
 	    <div class="h2 text-center">TAC</div>
 	    <div class="h4 text-muted text-center pt-2">로그아웃되었습니다.</div>
-	    <button class="btn btn-block text-center my-3" href="#">HOME</button>   
+	    <button class="btn btn-block text-center my-3" onclick="location.href='/main'" >HOME</button>   
 </div>
 </body>
 </html>
