@@ -121,8 +121,6 @@ public class CardDetail {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
 				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + maxCount + "]";
-				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount
-				+ ", smallCategory=" + smallCategory + "]";
 	}
 
 	

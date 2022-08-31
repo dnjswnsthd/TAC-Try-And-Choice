@@ -29,14 +29,11 @@ public class CategoryController {
 	@PostMapping("/getSmallCategory")
 	@ResponseBody
 	public HashMap<String, String> getSmallCategory(@RequestParam Map<String, Object> map) {
-		System.out.println("111111");
 		HashMap<String, String> hm = new HashMap<>();
 		int largeCategoryId = Integer.parseInt((String) map.get("id"));
 		ArrayList<SmallCategory> list = null;
-		System.out.println("22222");
 		try {
 			list = categoryService.getSmallCategory(largeCategoryId);
-			System.out.println("33333");
 			for (SmallCategory s : list) {
 				hm.put(Integer.toString(s.getSmallCategoryId()), s.getSmallCategoryName());
 			}
@@ -46,6 +43,57 @@ public class CategoryController {
 		return hm;
 	}
 	
+	@PostMapping("/LargeRegAndgetCategory")
+	@ResponseBody
+	public HashMap<String, String> LargeRegAndgetCategory(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		String largeCategoryName = (String) map.get("name");
+		ArrayList<LargeCategory> list = null;
+		try {
+			categoryService.registerLargeCategory(largeCategoryName);
+			list = categoryService.getAllLargeCategory();
+			for (LargeCategory s : list) {
+				
+				hm.put(Integer.toString(s.getLargeCategoryId()), s.getLargeCategoryName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
 	
+	@PostMapping("/deleteLargeCategory")
+	@ResponseBody
+	public HashMap<String, String> deleteLargeCategory(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		String largeCategoryName = (String) map.get("name");
+		ArrayList<LargeCategory> list = null;
+		try {
+			categoryService.deleteLargeCategory(largeCategoryName);
+			list = categoryService.getAllLargeCategory();
+			for (LargeCategory s : list) {
+				
+				hm.put(Integer.toString(s.getLargeCategoryId()), s.getLargeCategoryName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
+	
+	
+	
+	@PostMapping("LargeReg.do")
+	public String doRegLargeCategory(String largeCategoryName, Model model) {
+		try {
+			// 성공페이지
+			categoryService.registerLargeCategory(largeCategoryName);
+			return "/manage/insertCard";
+		} catch(Exception e) {
+			// 에러페이지
+			model.addAttribute("title", "에러");
+			return "error";
+		}
+	}
 	
 }

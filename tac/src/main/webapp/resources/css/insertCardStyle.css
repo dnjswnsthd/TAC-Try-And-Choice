@@ -86,10 +86,7 @@ img { max-width: 100%; }
 .btn-link-2:hover, .btn-link-2:focus, 
 .btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
 
-#add_categoty{
-	text-align:center;
-	width:70px;
-}
+
 /* header */
 
 .card_register{
@@ -209,12 +206,58 @@ td{
 	margin-top: 70px;
 }
 
+#form-box-right-bottom{
+	margin-top: 20px;
+	border-left:2px solid #6e6e6e;
+	padding-left: 23px;
+}
+
 .form-top {
 	overflow: hidden;
 	padding: 0 25px 15px 25px;
 	background: #fff;
 	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
 	text-align: left;
+}
+
+#sale_detail li{
+	display:inline-block;
+	padding-right:0px;
+}
+
+.add_categoty, .add_categoty_large, .add_categoty_small{
+	text-align:center;
+	width:100px;
+	height:40px;
+	font-size: 13px;
+	background-color:#555555d9;
+	border-radius:10px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	text-decoration:none;
+
+}
+
+button.add_categoty_big:hover{
+	opcacity:0.4;
+}
+
+li>button>a{
+	text-decoration: none;
+	color:white;
+}
+
+li>button>a:hover{
+	text-decoration: none;
+	color:white;
+}
+
+.add_button{
+	text-align: center;
+	padding-left:40px;
+
 }
 
 .form-top-left {
@@ -229,9 +272,10 @@ td{
 
 .form-top-left h3 { margin-top: 0; }
 
+.form-top-left-center {
+}
+
 .form-top-right {
-	float: right;
-	width: 60px;
 	font-size: 66px;
 	color: #ddd;
 	line-height: 0px;
@@ -321,5 +365,61 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 
 /* modal */
 
+/* insert_card_large_Category */
+.large_category_list{
+	text-align: left;
+    font-size: 30px;
+    padding: 20px 0px 10px 0px;
+    margin-top: 54px;
+    border-bottom: 2px solid #6e6e6e;
+}
 
+#add_large_category_name{
+	width:300px;
+}
+
+
+.tbl-header table{
+  width:100%;
+  table-layout: fixed;
+}
+
+.tbl-content table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.tbl-header tr{
+	background-color: #c0c4c9;
+}
+
+.tbl-header th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 15px;
+  color: #6e6e6e;
+  text-transform: uppercase;
+}
+.tbl-content td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 14px;
+  color: #6e6e6e;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+#goManage{
+	float:right;
+}
 

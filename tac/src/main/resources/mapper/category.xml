@@ -26,18 +26,15 @@
 		<result column="max_count" property="maxCount" />
 	</resultMap>
 	
-	<insert id="insertL" parameterType="largeCategory">
-		<selectKey keyProperty="large_category_id" resultType="int" order="BEFORE">
-			SELECT large_category_seq.nextVal FROM dual
-		</selectKey>
+	<insert id="registerLargeCategory" parameterType="String">
 			INSERT INTO large_category(large_category_id, large_category_name)
-			VALUES (#{large_category_id}, #{large_category_name})
+			VALUES (large_category_seq.nextVal, #{largeCategoryName})
 	</insert>
 	
 	<!-- Get Large Category -->
 	<select id="getAllLargeCategory" resultMap="largeCategory">
 		select large_category_id, large_category_name
-		from large_category
+		from large_category ORDER BY large_category_id
 	</select>
 	
 	<!-- Get Small Category By Large Category Id -->
@@ -47,5 +44,10 @@
 		where large_category_id = ${id}
 	</select>
 	
+	<!-- delete large category By Large Category Id -->
+	<delete id="deleteLargeCategory" parameterType="string">
+		DELETE FROM large_category WHERE large_category_name = #{largeCategoryName}
+	</delete>
+
 	
 </mapper>

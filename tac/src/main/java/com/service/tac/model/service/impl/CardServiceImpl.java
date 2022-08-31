@@ -37,7 +37,7 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public int registerCard(Card card) throws SQLException {
-		return sqlSession.getMapper(CardMapper.class).insertC(card);
+		return sqlSession.getMapper(CardMapper.class).registerCard(card);
 	}
 
 	@Override
