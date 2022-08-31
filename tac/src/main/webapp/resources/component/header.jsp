@@ -32,9 +32,23 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Service3</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
-					<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a>
-					</li>
+					<%
+						Object id=session.getAttribute("id");
+						if ( id == null ){
+							
+					%>
+						<li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
+						<li class="nav-item"><a class="nav-link" href="/signup">SINGUP</a></li>
+					<%
+						} else {
+					%>
+						<li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
+					<%
+							
+						}
+					%>
+					
+					
 				</ul>
 			</div>
 		</div>
