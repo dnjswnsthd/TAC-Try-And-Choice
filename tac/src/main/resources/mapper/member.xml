@@ -20,6 +20,7 @@
 	<!-- chkDup -->
 	<select id="chkDup" parameterType="string" resultType="string">
 		SELECT member_id FROM member WHERE member_id = #{memberId}
+    </select>
     
 	<!-- Login -->
 	<select id="login" parameterType="Member" resultType="Member">
