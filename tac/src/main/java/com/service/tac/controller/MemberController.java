@@ -78,6 +78,11 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+	@GetMapping("/logout")
+	public String getLogoutForm(Member member, Model model) {
+		return "/member/logout";
+	}
+	
 	@PostMapping("/login_result")
 	public String login(String id, String password, Model model, HttpServletRequest request) {
 		
