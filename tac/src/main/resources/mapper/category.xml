@@ -15,6 +15,25 @@
 		<result column="large_category_id" property="largeCategoryId" />
 	</resultMap>
 	
+	<resultMap type="CardDetail" id="cardDetail">
+		<id column="card_detail_id" property="cardDetailId" />
+		<result column="discount_percent" property="discountPercent" />
+		<result column="card_id" property="cardId" />
+		<result column="large_category_id" property="largeCategoryId" />
+		<result column="small_category_id" property="smallCategoryId" />
+		<result column="min_payment" property="minPayment" />
+		<result column="max_discount" property="maxDiscount" />
+		<result column="max_count" property="maxCount" />
+	</resultMap>
+	
+	<insert id="insertL" parameterType="largeCategory">
+		<selectKey keyProperty="large_category_id" resultType="int" order="BEFORE">
+			SELECT large_category_seq.nextVal FROM dual
+		</selectKey>
+			INSERT INTO large_category(large_category_id, large_category_name)
+			VALUES (#{large_category_id}, #{large_category_name})
+	</insert>
+	
 	<!-- Get Large Category -->
 	<select id="getAllLargeCategory" resultMap="largeCategory">
 		select large_category_id, large_category_name
@@ -27,5 +46,6 @@
 		from small_category
 		where large_category_id = ${id}
 	</select>
+	
 	
 </mapper>
