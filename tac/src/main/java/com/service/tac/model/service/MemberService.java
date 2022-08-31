@@ -26,4 +26,7 @@ public interface MemberService {
 
 	// 회원 탈퇴
 	public void remove(int memberId) throws SQLException;
+	
+	// 아이디 중복 체크
+	public String chkDup(String memberId) throws SQLException;
 }
