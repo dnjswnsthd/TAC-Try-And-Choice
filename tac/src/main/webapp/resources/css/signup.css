@@ -862,6 +862,10 @@ body {
 	display: inline-block;
 }
 
+#submitBtn:hover{
+	background-color: #FF788B !important;
+}
+
 #moveLogin{
 	width: 10vmax;
 	height: 3vmax;

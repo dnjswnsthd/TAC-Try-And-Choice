@@ -1463,3 +1463,7 @@ table a:hover{
 table tbody tr td table tbody tr td:hover{
 	background-color: #373234 !important;
 }
+
+table tbody tr td table tbody tr td:hover a{
+	color: #FF788B !important;
+}
