@@ -13,6 +13,12 @@ public class Member {
 		super();
 	}
 
+	public Member(String memberId, String password) {
+		super();
+		this.memberId = memberId;
+		this.password = password;
+	}
+
 	public Member(String memberId, String password, String name, int age, String phone, String grade, int cardId) {
 		super();
 		this.memberId = memberId;

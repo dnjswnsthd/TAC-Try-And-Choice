@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -67,5 +68,26 @@ public class MemberController {
 			System.out.println(e.getMessage());
 			return "/error";
 		}
+	}
+  
+	@GetMapping("/login")
+	public String getLoginForm(Member member, Model model) {
+		return "/member/login";
+	}
+	
+	@PostMapping("/login_result")
+	public String login(String id, String password, Model model) {
+		
+		try {
+			Member member = memberService.login(new Member(id, password));
+	        if(member != null) {
+	        	model.addAttribute("member", member);
+	            return "/member/login_result";
+	        }else {
+	            return "/error";
+	        }
+	    } catch (Exception e) {
+	        return "/error";
+	    }
 	}
 }

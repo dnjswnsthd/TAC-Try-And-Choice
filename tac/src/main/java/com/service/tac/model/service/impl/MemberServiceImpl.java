@@ -25,8 +25,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member login(int memberId, String password) throws SQLException {
-		return null;
+	public Member login(Member member) throws SQLException {
+		Member m=sqlSession.getMapper(MemberMapper.class).login(member);
+		return m;
 	}
 
 	@Override
