@@ -16,4 +16,9 @@
 		INSERT INTO MEMBER (member_id, password, name, age, phone, card_id)
 		VALUES(#{memberId}, #{password}, #{name}, #{age}, #{phone}, #{cardId})
 	</insert>
+	
+	<!-- chkDup -->
+	<select id="chkDup" parameterType="string" resultType="string">
+		SELECT member_id FROM member WHERE member_id = #{memberId}
+	</select>
 </mapper>
