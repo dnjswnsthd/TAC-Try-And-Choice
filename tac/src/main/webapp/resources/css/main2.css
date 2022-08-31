@@ -1,3 +1,22 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'establishRoomNo703OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
 	position: relative;
 	height: 100%;
@@ -13,19 +32,35 @@ body {
 	/* background: linear-gradient(135deg, #2980b9 0%, #9b59b6 100%); */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1e5799",
 		endColorstr="#7db9e8", GradientType=1);
-	background-image: url(/resources/image/mainpage/puzzle4.gif);
+	background-image: url(/resources/image/mainpage/mainpage5.gif);
+	background-position: 0% 20%;
 	background-size: 100%;
-	background-repeat: no-repeat;
-	height: 90vmax;
+	background-repeat: repeat-y	;
+	height: 150vmax;
 }
 
-.maintext{
-	height:300%;
-	width:100%;
-	text-align:center;
-}
+
 .mainButton{
 	margin:3%;
+	font-family: GangwonEdu_OTFBoldA !important;
+}
+
+.mainButton:hover{
+	margin:3%;
+	font-family: GangwonEdu_OTFBoldA !important;
+}
+
+#cardText{
+	font-family: Cafe24Ssurround !important;
+}
+
+#moveBtn{
+	margin-left: 3%;
+}
+
+#moveBtn:hover{
+	margin-left: 3%;
+	background-color: #FF788B !important;
 }
 
 .btn{
@@ -134,9 +169,10 @@ body {
 }
 
 .element-card .back-facing {
-	width: 96%;
-	margin-top: 2%;
-	margin-left: 2%;
+	width: 14vmax;
+	height: 20vmax;
+	margin-top: 5%;
+	margin-left: 4%;
 	transform: rotateY(180deg) translateZ(0px);
 	display: flex;
 	flex-direction: column;
@@ -152,12 +188,18 @@ body {
 	border-radius: 15px;
 	padding: 20px;
 	text-align: center;
+	border: 1px solid black;
 	overflow: hidden;
 }
 
 .element-card .back-facing p {
 	font-size: 14px;
 	margin: 0;
+}
+
+.element-card .back-facing h4, h5{
+	font-family: 'GangwonEdu_OTFBoldA';
+	font-weight: 900;
 }
 
 .element-card .back-facing .btn {
@@ -169,6 +211,7 @@ body {
 	background-color: #373234;
 	text-decoration: none;
 	border-radius: 3px;
+	width: 10vmax;
 }
 
 .element-card .back-facing a.btn:hover, .element-card .back-facing a.btn:focus
@@ -189,7 +232,7 @@ body {
 }
 
 #carouselExampleIndicators {
-	margin-top: 5%;
+	margin-top: 8%;
 	margin-left: 2%;
 	width: 96%;
 	display: flex;
@@ -202,7 +245,7 @@ body {
 	opacity: 0.9; */
 	border-radius: 50px;
 	margin-left: 2%;
-	background-color: rgba(255,255,255, 0.8);
+	background-color: rgba(255,255,255, 0.5);
 	margin-bottom: 1%;
 }
 .carousel-inner{
@@ -225,12 +268,12 @@ body {
 	position: absolute;
 	color: #373234;
 	margin-top: 0.5%;
-	margin-left: 14%;
+	margin-left: 5%;
 }
 
 #dot {
-	margin-left: 23% !important;
-	margin-top: -1% !important;
+	margin-left: 16% !important;
+	margin-top: -2.2% !important;
 	font-size: 4rem;
 	color: #FF788B !important;
 }
@@ -277,24 +320,20 @@ body {
 	margin-top: -4% !important;
 }
 
-.maintext h1 {
-	transform: rotateY(-11deg);
-	transform-style: preserve-3d;
-	color: #373234;
-	transition: transform 1s;
-	font-size: 5rem;
+.maintext{
+	height:300%;
+	width:80%;
+	margin-left: 12%;
 }
 
-.maintext h1 a {
-	display: inline-block;
-	transform: translateZ(60px);
-	transition: transform 1s;
-	color: #FF788B !important;
+.maintext h2 {
+	font-size: 3.7rem;
+	font-family: GangwonEdu_OTFBoldA !important;
+	margin-left: 4.5%;
+	margin-top: 1%;
+	color: white;
 }
 
-.maintext a:hover{
-	transform: translateZ(0);
-}
 
 h1 div{
 	margin-bottom: 1%;
