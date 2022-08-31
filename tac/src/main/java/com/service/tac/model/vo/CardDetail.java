@@ -12,6 +12,8 @@ public class CardDetail {
 	private int mixCount; // MAX_COUNT
 	
 	private SmallCategory smallCategory; 
+	private LargeCategory largeCategory;
+	private Consume consume;
 	
 	public CardDetail() {
 		super();
@@ -116,12 +118,29 @@ public class CardDetail {
 		this.smallCategory = smallCategory;
 	}
 
+	public LargeCategory getLargeCategory() {
+		return largeCategory;
+	}
+
+	public void setLargeCategory(LargeCategory largeCategory) {
+		this.largeCategory = largeCategory;
+	}
+
+	public Consume getConsume() {
+		return consume;
+	}
+
+	public void setConsume(Consume consume) {
+		this.consume = consume;
+	}
+
 	@Override
 	public String toString() {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
 				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount
-				+ ", smallCategory=" + smallCategory + "]";
+				+ ", smallCategory=" + smallCategory + ", largeCategory=" + largeCategory + ", consume=" + consume
+				+ "]";
 	}
 
 	

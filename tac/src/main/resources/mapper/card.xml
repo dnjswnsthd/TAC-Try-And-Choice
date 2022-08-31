@@ -27,6 +27,29 @@
 		</association>
 		
 	</resultMap>
+	
+	<resultMap type="cardDetail" id="cardBenefitByConsume">
+		<id column="card_detail_id" property="cardDetailId" />
+		<result column="discount_percent" property="discountPercent" />
+		<result column="card_id" property="cardId" />
+		<result column="large_category_id" property="largeCategoryId" />
+		<result column="small_category_id" property="smallCategoryId" />
+		<result column="min_payment" property="minPayment" />
+		<result column="max_discount" property="maxDiscount" />
+		<result column="max_count" property="mixCount" />
+		<association property="largeCategory" javaType="largeCategory">
+			<id column="large_category_id" property="largeCategoryId" />
+			<result column="large_category_name" property="largeCategoryName" />
+		</association>
+		<association property="consume" javaType="consume">
+			<id column="consume_id" property="consumeId" />
+			<result column="consume_price" property="consumePrice" />
+			<result column="consume_date" property="consumeDate" />
+			<result column="large_category_id" property="largeCategoryId" />
+			<result column="small_category_id" property="smallCategoryId" />
+		</association>
+	</resultMap>
+	
 
 	<!-- Card 전체 정보 Select -->
 	<select id="getAllCardInfo" resultMap ="card">
@@ -35,7 +58,7 @@
 	</select>
 	
 	<select id="getDiscountInfoByCard" parameterType="int" resultMap="cardDetailWithCategory">
-		SELECT s.small_category_name, c.discount_percent, c.discount_amount
+		SELECT s.small_category_name, c.discount_percent, c.max_discount
 		FROM  card_detail  c
 		JOIN small_category  s
 		ON (s.small_category_id = c.small_category_id)
@@ -48,5 +71,40 @@
 		WHERE card_id=#{VALUE}
 	</select>
 	
+	<select id="getBenefitsByCateg1" parameterType="int" resultMap="cardBenefitByConsume">
+		SELECT c.consume_id, c.small_category_id, c.large_category_id, c.consume_price, c.consume_date, l.large_category_name, 
+			   cd.card_id, cd.discount_percent, cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment
+		FROM card_detail cd
+		JOIN large_category l
+		ON (cd.large_category_id  = l.large_category_id )
+		JOIN consume c
+		ON (cd.small_category_id = c.small_category_id)
+		WHERE cd.card_id=#{param1} AND cd.large_category_id=1
+		ORDER BY c.consume_date asc
+	</select>
+	
+	<select id="getBenefitsByCateg2" parameterType="int" resultMap="cardBenefitByConsume">
+		SELECT c.consume_id, c.small_category_id, c.large_category_id, c.consume_price, c.consume_date, l.large_category_name, 
+			   cd.card_id, cd.discount_percent, cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment
+		FROM card_detail cd
+		JOIN large_category l
+		ON (cd.large_category_id  = l.large_category_id )
+		JOIN consume c
+		ON (cd.small_category_id = c.small_category_id)
+		WHERE cd.card_id=#{param1} AND cd.large_category_id=2
+		ORDER BY c.consume_date asc
+	</select>
+
+	<select id="getBenefitsByCateg3" parameterType="int" resultMap="cardBenefitByConsume">
+		SELECT c.consume_id, c.small_category_id, c.large_category_id, c.consume_price, c.consume_date, l.large_category_name, 
+			   cd.card_id, cd.discount_percent, cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment
+		FROM card_detail cd
+		JOIN large_category l
+		ON (cd.large_category_id  = l.large_category_id )
+		JOIN consume c
+		ON (cd.small_category_id = c.small_category_id)
+		WHERE cd.card_id=#{param1} AND cd.large_category_id=3
+		ORDER BY c.consume_date asc
+	</select>
 
 </mapper>

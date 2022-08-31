@@ -92,8 +92,8 @@
 											카드 설명 : ${card.cardDesc}
 										</h5>
 										<p>
-											<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-												target="_blank">내 카드 선택</a>
+											<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
+											 value="내 카드 선택"	>
 										</p>
 									</div>
 								</div>

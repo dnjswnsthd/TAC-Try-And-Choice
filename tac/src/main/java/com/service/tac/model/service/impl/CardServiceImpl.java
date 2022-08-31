@@ -54,6 +54,12 @@ public class CardServiceImpl implements CardService {
 		
 		return sqlSession.getMapper(CardMapper.class).getDiscountInfoByCard(cardId);
 	}
+
+	@Override
+	public ArrayList<CardDetail> getBenefitsByCateg(int cardId, int categoryId) throws SQLException {
+		
+		return sqlSession.getMapper(CardMapper.class).getBenefitsByCateg(cardId, categoryId);
+	}
 	
 
 }

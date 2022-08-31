@@ -50,17 +50,30 @@ public class RouteController {
 		
 		try {
 			Card info = cardService.getCardInfo(cardId);
-			System.out.println(info);
-			String cardName = info.getCardName();
-			String cardImg = info.getCardImg();
 			ArrayList<CardDetail> list = cardService.getDiscountInfoByCard(cardId);
-			System.out.println(cardImg);
-			System.out.println(cardName);
-			System.out.println(list.size());
+			
 			model.addAttribute("list", list);
-			model.addAttribute("cardImg", cardImg);
-			model.addAttribute("cardName", cardName);
 			model.addAttribute("info", info);
+			
+			for(int i=1;i<=22;i++) {
+				ArrayList<CardDetail> records = cardService.getBenefitsByCateg(cardId, i);
+				
+				if(records.size()!=0) {
+					System.out.println(records.size());
+					System.out.println(records);
+					for(int j=0;j<records.size();j++) {
+						
+						CardDetail cardDetail = records.get(j);
+						System.out.println(cardDetail);
+						String largeCategoryName = cardDetail.getLargeCategory().getLargeCategoryName();
+						int consumePrice = cardDetail.getConsume().getConsumePrice();
+						System.out.println("소비 금액은:: " + consumePrice);
+						System.out.println("소비 분야는 :: "+ largeCategoryName);
+					}//if
+				}//for
+			}//try
+			
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -73,5 +86,7 @@ public class RouteController {
 		
 		return "cardCompare2";
 	}
+	
+	
 
 }

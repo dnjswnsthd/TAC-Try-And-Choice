@@ -12,4 +12,6 @@ public interface CardMapper {
 	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException;
 	
 	public Card getCardInfo(int cardId) throws SQLException;
+	
+	public ArrayList<CardDetail> getBenefitsByCateg(int cardId, int categoryId) throws SQLException;
 }

@@ -23,11 +23,17 @@
 	font-family: 'BMJUA', sans-serif !important;
 }
 
-.row{
+.navbar {
+	background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body{
     width: 100%;
 	height: 100%;
-	background-color: rgba(255, 120, 139, 0.6);
-
+	background-image: url('/resources/image/water_splash.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 }
 /*------- portfolio -------*/
 /*
@@ -43,25 +49,13 @@
 }
 
 
-
-
-.project-title {
-  font-size: 1.25rem;
-}
-
-.project-skill {
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.06rem;
-}
-
 .project-info-box {
+  padding: 4% 5%;
   margin: 3% 0;
   background-color: #fff;
-  background-color: rgba(255,255,255, 0.8);
-  padding: 4% 5%;
+  background-color: rgba(255,255,255, 0.85);
   border-radius: 10px;
-  
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
   
 }
 
@@ -78,18 +72,10 @@
 }
 
 .cardName {
-	font-size: 2rem;
+	font-size: 1.8rem;
 	padding-left: 3%;
-	text-align: center;
+	text-align: left;
 	color: black;
-}
-
-.rounded{  
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    display: block;
-    margin: 0 auto;
-    border-radius: 5px !important;
 }
 
 
@@ -122,7 +108,7 @@ b, strong {
   position: relative;
   color: #fff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.9rem;
   background-color: #222;
   padding: 1.2% 3%;
   
@@ -166,7 +152,7 @@ b, strong {
   position: relative;
   color: #fff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.9rem;
   background-color: #222;
   padding: 1.2% 3%;
   margin: 0 auto;
@@ -210,5 +196,47 @@ th, td{
 	border: 1px solid gray;
 }
 
+#hover .figure {
+	height: 20rem;
+	display: inline-block;
+ 	position: relative;
+ 	overflow: hidden;
+ 	margin: 0 auto;
+ 	margin-left: 35%;
+}
 
+#hover img {
+	height: 20rem;
+	display: block;
+}
+
+#hover .figure::before {
+  position: absolute;
+  top: 0;
+  left: -80%;
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+  
+}
+#hover .figure:hover::before {
+  -webkit-animation: shine .9s;
+  animation: shine .9s;
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
 

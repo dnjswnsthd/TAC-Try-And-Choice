@@ -4,6 +4,14 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'establishRoomNo703OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
 	position: relative;
 	height: 100%;
@@ -13,7 +21,7 @@ html, body {
 
 body {
 	/* background-color: #eeeeee; */
-	font-family: "helvetica", sans-serif;
+	font-family: "establishRoomNo703OTF", sans-serif !important;
 	font-size: 16px;
 	transform: translate3d(0, 0, 0);
 	/* background: linear-gradient(135deg, #2980b9 0%, #9b59b6 100%); */
