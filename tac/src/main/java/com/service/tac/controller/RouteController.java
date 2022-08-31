@@ -92,26 +92,33 @@ public class RouteController {
 	public String manage() {
 		return "/manage/insert_card";
 	}
-	@RequestMapping(value = "/manage_test", method = RequestMethod.GET)
-	public String manage_test() {
-		return "/manage/insert_card_test";
-	}
-	@RequestMapping(value = "/manage_test2", method = RequestMethod.GET)
-	public String manage_test2() {
-		return "/manage/insert_card_test2";
-	}
-	@RequestMapping(value = "/manage_test3", method = RequestMethod.GET)
-	public String manage_test3(Model model) {
+	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
+	public String manage_card(Model model) {
 		try {
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);
-			return "/manage/insert_card_test3";
+			return "/manage/insertCard";
 			
 		} catch(Exception e) {
 			// 에러페이지
 			return "/error";
 		}
 	}
+	
+	@GetMapping(value = "/addLargeCategory")
+	public String addLargeCategory(Model model) {
+		try {
+
+			List<LargeCategory> list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", list);
+			return "/manage/insert_card_largeCategory";
+			
+		} catch(Exception e) {
+			// 에러페이지
+			return "/error";
+		}
+	}
+	
 	
 	@GetMapping(value= "/error")
 	public String error() {

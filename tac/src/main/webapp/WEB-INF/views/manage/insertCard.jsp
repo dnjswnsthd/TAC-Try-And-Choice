@@ -12,8 +12,8 @@
         <title>관리자 모드 - 카드 등록</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-		<link rel="stylesheet" href="resources/css/manage_test_form-elements3.css">
-        <link rel="stylesheet" href="resources/css/manage_test_style3.css"> 
+		<link rel="stylesheet" href="../resources/css/insertCardElement.css">
+        <link rel="stylesheet" href="../resources/css/insertCardStyle.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
@@ -25,7 +25,7 @@
     	+ '<td><input type=text name=sale_max_count class=add_manage_option>번</td><td><input type=text name=discount_rate class=add_manage_option>%</td>'
     	+ '<td><img id="delete_img" src=/resources/image/delete.png></td>';
     	
-    	$('#add_categoty').on('click', function() {
+    	$('.add_categoty').on('click', function() {
     		var data = $('#register_category').html();
     		data += add_tablelist;
     		
@@ -102,7 +102,6 @@
 	                        <script type="text/javascript">
 							    function getImageFiles(e) {
 							      const files = e.currentTarget.files;
-							      console.log(typeof files, files);
 							    }
 							
 							    const realUpload = document.querySelector('.real-upload');
@@ -144,13 +143,18 @@
                         	
                         	<div class="form-box" id="form-box-right">
                         		<div class="form-top" id="sale_detail">
-	                        		<div class="form-top-left">
+	                        		<li>
 	                        			<h3><b>할인 상세</b></h3>
-	                        		</div>
-										
-	                        		<div class="form-top-right">
-	                        			<button class="btn" id="add_categoty">추가</button>
-	                        		</div>
+	                        		</li>
+									<li class="add_button">
+	                        			<button class="add_categoty_large"><a href="addLargeCategory">대분류 추가</a></button>
+	                        		</li>
+	                        		<li class="add_button">
+	                        			<button class="add_categoty_small"><a href="#">소분류 추가</a></button>
+	                        		</li>	
+	                        		<li class="add_button">
+	                        			<button class="add_categoty">카테고리 추가</button>
+	                        		</li>
 	                            </div>
 	                            <div class="form-bottom">
 				                    <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail">
@@ -197,8 +201,6 @@
 				                        </tr>                     	
 				                        </table><br><br><br><br><br><br><br>
 				                        <button type="submit" class="btn" id="register_card_info">등록</button>
-				                        <table id="test_table">
-				                        </table>
 				                    </form>
 			                    </div>
                         	</div>
@@ -209,16 +211,6 @@
         </div>
  		<footer>
  		</footer>
-
-        <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
-        
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
 
     </body>
 
