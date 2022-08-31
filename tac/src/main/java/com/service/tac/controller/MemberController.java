@@ -3,6 +3,9 @@ package com.service.tac.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,12 +64,14 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login_result")
-	public String login(String id, String password, Model model) {
+	public String login(String id, String password, Model model, HttpServletRequest request) {
 		
 		try {
 			Member member = memberService.login(new Member(id, password));
 	        if(member != null) {
 	        	model.addAttribute("member", member);
+	        	HttpSession session = request.getSession();
+	        	session.setAttribute("id",id);
 	            return "/member/login_result";
 	        }else {
 	            return "/error";
