@@ -23,24 +23,27 @@
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
-		$('#large').change(function() {
-			$.ajax({
-				type : 'post',
-				url : '/category/getSmallCategory',
-				data : {
-					id : $(this).val()
-				},
 
-				success : function(result) {
-					$('#small').empty();
-					for (key in result) {
-					    $('#small').append('<option value="' + key + '">' + result[key] + '</option>');
-					}
-				}
-			})
-		});
-		
-		
+		$('#large').change(
+				function() {
+					$.ajax({
+						type : 'post',
+						url : '/category/getSmallCategory',
+						data : {
+							id : $(this).val()
+						},
+
+						success : function(result) {
+							$('#small').empty();
+							for (key in result) {
+								$('#small').append(
+										'<option value="' + key + '">'
+												+ result[key] + '</option>');
+							}
+						}
+					})
+				});
+
 		$('#external-events div.external-event').each(function() {
 			// Event Object 생성
 			// 따로 실행할 필요없음
@@ -56,30 +59,7 @@
 				revertDuration : 0, //  original position after the drag
 			});
 		});
-		
-		$('#addConsume').click(function(){
-			title = $('#large').html;
-			largeCategory = $('#large').val();
-			smallCategory = $('#small').val();
-			price = $('#price').val();
-			start = $.fullCalendar.moment(start).format("YYYY-MM-DD");
-			end = $.fullCalendar.moment(end).format("YYYY-MM-DD");
-			console.log('1. ' + title);
-			console.log('2. ' + largeCategory);
-			console.log('3. ' + smallCategory);
-			console.log('4. ' + price);
-			if (title) {
-				calendar.fullCalendar('renderEvent', {
-					title : title,
-					start : start,
-					end : end,
-					allDay : allDay,
-				}, true // make the event "stick"
-				);
-			}
-			$('.modal').fadeOut();
-			calendar.fullCalendar('unselect');
-		}); 
+
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
 		var calendar = $('#calendar').fullCalendar(
@@ -112,15 +92,34 @@
 						$('#close').click(function() {
 							$('.modal').fadeOut();
 						});
-						if (title) {
-							calendar.fullCalendar('renderEvent', {
-								title : title,
-								start : start,
-								end : end,
-								allDay : allDay,
-							}, true // make the event "stick"
-							);
-						}
+						
+						$('#addConsume').click(function() {
+							var title = $("select[name=location] option:selected").text();
+							$.ajax({
+								type : 'post',
+								url : '/consume/register',
+								data : {
+									largeCategoryId : $('#large').val(),
+									smallCategoryId : $('#small').val(),
+									price : $('#price').val(),
+									memberId : $('#member').val(),
+									consumeDate : start.toISOString().slice(0,10)
+								},
+								success : function(result) {
+									$('.modal').fadeOut();
+								}
+							})
+							if (title) {
+								calendar.fullCalendar('renderEvent', {
+									title : title,
+									start : start,
+									end : end,
+									allDay : allDay,
+								}, true // make the event "stick"
+								);
+							}		
+						});
+						
 						calendar.fullCalendar('unselect');
 					},
 
@@ -145,10 +144,42 @@
 							$(this).remove();
 						}
 					},
-					events : [ {
+					/* events : [ {
 						title : 'All Day Event',
 						start : new Date(y, m, 1),
-					}, ],
+			            allDay: false,
+			            className: 'important',
+					}, ], */
+					events:function(info, successCallback, failureCallback){
+					    $.ajax({
+					        type: 'POST'
+					        ,cache: false
+					        ,url: '/consume/getConsume'
+					        ,dataType: 'json'
+				        	,data : {
+								/* memberId : $('#member').val(), */
+								memberId : 'Test2@naver.com',
+							}
+					        ,contentType : "application/x-www-form-urlencoded; charset=UTF-8"
+					        ,success: function(param){
+					            var events = [];
+					            $.each(param, function (index, data){
+					                    events.push({
+					                        title : data.LARGECATEGORYNAME
+					                        ,start : '2022-08-19'
+					                        ,allDay: true
+					                        ,className: 'important'
+					                        /* ,laregeCategoryId: data.LARGECATEGORYID
+					                        ,smallCategoryId: data.SMALLCATEGORYID
+					                        ,smallCategoryName: data.SMALLCATEGORYNAME
+					                        ,consumePrice: data.CONSUMEPRICE */
+					                    }); // push // end
+					            });// each end
+					            alert(JSON.stringify(events));
+					            //successCallback(events);
+					        }
+					    });// ajax end
+					}//events end
 				});
 	});
 </script>
@@ -156,6 +187,7 @@
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<div class="container">
+		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea">
 			<h3>회원가입 마지막 단계 ${memberId}</h3>
 			<p>전달 소비 정보를 입력해주세요!</p>
@@ -171,12 +203,17 @@
 	<div class="modal">
 		<div class="modal_content" title="">
 			<form action="#" id='Frm'>
+				<input type="hidden" name="actType" value="C" />
+				<!-- C:등록 U:수정 D:삭제 -->
+				<input type="hidden" name="id" value="" /> <input type="hidden"
+					name="start" value="" /> <input type="hidden" name="end" value="" />
 				<h1>소비 등록</h1>
 				<h3 id='span'>대분류</h3>
 				<select class="selec" name="large" id="large">
 					<option value="0">대분류</option>
 					<c:forEach var="item" items="${list}">
-						<option value="${item.largeCategoryId}">${item.largeCategoryName}</option>
+						<option value="${item.largeCategoryId}"
+							title="${item.largeCategoryName}">${item.largeCategoryName}</option>
 					</c:forEach>
 				</select> <br>
 				<h3 id='span'>소분류</h3>
@@ -184,9 +221,9 @@
 					<option value="0">소분류</option>
 				</select> <br>
 				<h3 id='span'>금액</h3>
-				<input type="number" id="price" name="price" value="0" /> <br> <input
-					id="addConsume" class="btn" type="button" value="Append" /> <input class="btn"
-					id="close" type="button" value="close" />
+				<input type="number" id="price" name="price" value="0" /> <br>
+				<input id="addConsume" class="btn" type="button" value="Append" />
+				<input class="btn" id="close" type="button" value="close" />
 			</form>
 		</div>
 	</div>

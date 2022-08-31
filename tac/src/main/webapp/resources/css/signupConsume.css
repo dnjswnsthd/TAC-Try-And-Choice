@@ -115,7 +115,7 @@ body {
   }
 
   .modal_content{
-	width:500px; height:350px;
+	width:30vmax; height:350px;
 	background:#fff; border-radius:20px;
 	position:relative; top:30%; left:40%;
 	margin-top:-100px; margin-left:-130px;
@@ -145,6 +145,7 @@ body {
 	padding: 2%;
 	margin: 5% 4% auto;
 	border-radius: 10px;
+	width: 10rem;
 }
 
 select, select option, input {

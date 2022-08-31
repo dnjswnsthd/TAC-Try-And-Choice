@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.service.tac.model.mapper.CardMapper;
 import com.service.tac.model.service.CardService;
 import com.service.tac.model.vo.Card;
+import com.service.tac.model.vo.CardDetail;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -31,7 +32,7 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public Card getCardInfo(int cardId) throws SQLException {
-		return null;
+		return sqlSession.getMapper(CardMapper.class).getCardInfo(cardId);
 	}
 
 	@Override
@@ -48,5 +49,12 @@ public class CardServiceImpl implements CardService {
 	public int deleteCard(int cardId) throws SQLException {
 		return 0;
 	}
+
+	@Override
+	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException {
+		
+		return sqlSession.getMapper(CardMapper.class).getDiscountInfoByCard(cardId);
+	}
+	
 
 }
