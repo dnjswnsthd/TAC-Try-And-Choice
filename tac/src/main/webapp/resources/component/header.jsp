@@ -11,6 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <link href="/resources/css/header.css" rel="stylesheet" />
 </head>
 <body>
@@ -56,6 +58,7 @@
 					      </div>
 					    </div>
 						<li class="nav-item"><a class="nav-link" id="logout" href="/logout">LOGOUT</a></li>
+						<li class="nav-item"><a class="nav-link" onclick="logout();">LOGOUT</a></li>
 					<%
 						}
 					%>
@@ -67,4 +70,21 @@
 		</div>
 	</nav>
 </body>
+<script>
+	function logout(){
+		swal({
+			  title: "로그아웃 하시겠습니까?",
+			  icon: "warning",
+			  buttons:['취소','로그아웃']
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			    location.href="/logout"
+			  } else {
+			    
+			  }
+			});
+	}
+
+</script>
 </html>

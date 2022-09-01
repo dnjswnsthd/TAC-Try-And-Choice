@@ -12,4 +12,10 @@ public interface CategoryMapper {
 
 	// 소분류 검색
 	public ArrayList<SmallCategory> getSmallCategory(int largeCategoryId) throws SQLException;
+	
+	// 대분류 추가
+	public int registerLargeCategory(String largeCategoryName) throws SQLException;
+	
+	// 대분류 삭제
+	public int deleteLargeCategory(String largeCategoryName) throws SQLException;
 }
