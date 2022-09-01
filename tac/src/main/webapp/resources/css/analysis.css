@@ -92,11 +92,13 @@ body {
 #myChartHead {
 	padding-bottom: 0px;
 	padding-top: 10px;
-	background-color: #eef3ff;
+    color: white;
+	background-color: #373234;
 }
 
 #myChartHead2 {
-	background-color: #eef3ff;
+    color: white;
+	background-color: #373234;
 }
 
 .myChartHeadFont{
@@ -106,16 +108,16 @@ body {
 
 
 #myChartHead:hover {
-    color:white;
+    color:rgb(39, 0, 54);
     cursor:pointer;
-    background-color:#373234;
+    background-color:#FF788B;
 }
 
 
 #myChartHead2:hover {
-    color:white;
+    color:rgb(39, 0, 54);
     cursor:pointer;
-    background-color:#373234;
+    background-color:#FF788B;
 }
 
 /* 모달 창 */
