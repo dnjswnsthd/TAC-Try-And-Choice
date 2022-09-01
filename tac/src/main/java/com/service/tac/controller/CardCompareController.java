@@ -26,7 +26,7 @@ public class CardCompareController {
 	MemberService memberService;
 	
 	
-	@RequestMapping(value= {"/compare", "/cardCompare"}, method= RequestMethod.GET)
+	@RequestMapping(value= {"/compare"}, method= RequestMethod.GET)
 	public String compare(HttpServletRequest request, Model model) {
 		int cardId = Integer.parseInt(request.getParameter("cardId"));
 		
