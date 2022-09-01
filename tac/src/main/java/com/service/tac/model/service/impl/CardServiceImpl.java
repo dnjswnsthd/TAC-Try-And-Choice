@@ -33,7 +33,7 @@ public class CardServiceImpl implements CardService {
 	
 	@Override
 	public int registerCard(Card card) throws SQLException {
-		return sqlSession.getMapper(CardMapper.class).registerCard(card);
+		return 0;
 	}
 
 	@Override
