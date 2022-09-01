@@ -63,7 +63,7 @@
 
 			<main>
 			<div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
-				<div class="col">
+				<div class="col" id="analcontent">
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div id="myChartHead" class="card-header py-3"
 							data-bs-toggle="modal" data-bs-target="#myModal">
