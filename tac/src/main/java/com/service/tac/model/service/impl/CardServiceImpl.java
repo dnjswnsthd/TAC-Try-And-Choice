@@ -30,14 +30,10 @@ public class CardServiceImpl implements CardService {
 		return null;
 	}
 
-	@Override
-	public Card getCardInfo(int cardId) throws SQLException {
-		return sqlSession.getMapper(CardMapper.class).getCardInfo(cardId);
-	}
-
+	
 	@Override
 	public int registerCard(Card card) throws SQLException {
-		return sqlSession.getMapper(CardMapper.class).registerCard(card);
+		return 0;
 	}
 
 	@Override
@@ -50,11 +46,5 @@ public class CardServiceImpl implements CardService {
 		return 0;
 	}
 
-	@Override
-	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException {
-		
-		return sqlSession.getMapper(CardMapper.class).getDiscountInfoByCard(cardId);
-	}
-	
 
 }
