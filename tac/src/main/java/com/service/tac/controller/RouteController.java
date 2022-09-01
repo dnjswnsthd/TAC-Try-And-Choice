@@ -23,13 +23,13 @@ import com.service.tac.model.vo.Member;
 
 @Controller
 public class RouteController {
-	
+
 	@Autowired
 	CardService cardService;
-	
+
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
 		return "intro";
@@ -38,7 +38,7 @@ public class RouteController {
 	@GetMapping(value = "/main")
 	public String main(Model model) {
 		try {
-			ArrayList <Card> list = cardService.getAllCardInfo();
+			ArrayList<Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/main/main";
 		} catch (SQLException e) {
@@ -50,91 +50,43 @@ public class RouteController {
 	@GetMapping(value = "/signup")
 	public String signup(Model model) {
 		try {
-			ArrayList <Card> list = cardService.getAllCardInfo();
+			ArrayList<Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/member/signup";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return "/error";
 		}
-		
+
 	}
-	
-	@RequestMapping(value="/compare", method= RequestMethod.GET)
-	public String compare(HttpServletRequest request, Model model) {
-		int cardId = Integer.parseInt(request.getParameter("cardId"));
-		
-		try {
-			Card info = cardService.getCardInfo(cardId);
-			System.out.println(info);
-			String cardName = info.getCardName();
-			String cardImg = info.getCardImg();
-			ArrayList<CardDetail> list = cardService.getDiscountInfoByCard(cardId);
-			System.out.println(cardImg);
-			System.out.println(cardName);
-			System.out.println(list.size());
-			model.addAttribute("list", list);
-			model.addAttribute("cardImg", cardImg);
-			model.addAttribute("cardName", cardName);
-			model.addAttribute("info", info);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "cardCompare1";
-	}
-	
-	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
-	public String cardCompare() {
-		
-		return "cardCompare2";
-	}
-	@RequestMapping(value = "/manage", method = RequestMethod.GET)
-	public String manage() {
-		return "/manage/insert_card";
-	}
-	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
-	public String manage_card(Model model) {
-		try {
-			List<LargeCategory> list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", list);
-			return "/manage/insertCard";
-			
-		} catch(Exception e) {
-			// 에러페이지
-			return "/error";
-		}
-	}
-	
-	@GetMapping(value = "/addLargeCategory")
+
+	@GetMapping(value = "/addLargeCartegory")
 	public String addLargeCategory(Model model) {
 		try {
-
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);
 			return "/manage/insert_card_largeCategory";
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			// 에러페이지
 			return "/error";
 		}
 	}
-	
-	
-	@GetMapping(value= "/error")
+
+	@GetMapping(value = "/error")
 	public String error() {
 		return "/error";
 	}
-	
-	@GetMapping(value= "/calendarTest")
+
+	@GetMapping(value = "/calendarTest")
 	public String calendarTest() {
 		return "/member/insertConsume";
 	}
-	
-	@GetMapping(value="/mypage")
+
+	@GetMapping(value = "/mypage")
 	public String moveMypage(Model model) {
 		try {
-			ArrayList <Card> list = cardService.getAllCardInfo();
+			ArrayList<Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/member/mypage";
 		} catch (SQLException e) {
@@ -142,8 +94,8 @@ public class RouteController {
 			return "/error";
 		}
 	}
-	
-	@GetMapping(value="/updateConsume")
+
+	@GetMapping(value = "/updateConsume")
 	public String moveUpdateConsume(Model model, HttpServletRequest request) {
 		ArrayList<LargeCategory> list;
 		try {
