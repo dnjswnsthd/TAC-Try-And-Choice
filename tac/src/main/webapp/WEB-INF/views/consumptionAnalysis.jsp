@@ -49,7 +49,7 @@
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
 					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name} 님의 소비 패턴
 						분석 결과</h1>
-					<p class="fs-5 text-muted"> TAC에서 당신의 카드 소비 내역을 분석하여 알려드립니다 </p>
+					<p class="fs-5 text-muted" id="subtitle"> TAC에서 당신의 카드 소비 내역을 분석하여 알려드립니다 </p>
 				</div>
 			</header>
 
