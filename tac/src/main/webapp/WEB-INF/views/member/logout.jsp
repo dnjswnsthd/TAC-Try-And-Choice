@@ -25,16 +25,7 @@
 <script src="/resources/js/card.js" rel="text/javascript"></script>
 <link rel="stylesheet" href="/resources/css/login.css" />
 <link rel="stylesheet" href="/resources/css/header.css" />
-<script>
-	var result=confirm('정말 로그아웃 하시겠습니까?');
-	console.log(result);
-	if(result){
 
-	}
-	else{
-		history.back();
-	}
-</script>
 </head>
 <body>
 	<%
