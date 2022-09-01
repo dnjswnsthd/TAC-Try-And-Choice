@@ -80,6 +80,18 @@
 				});
 				calendar.unselect()
 			},
+			eventDrop: function(info){
+				  $.ajax({
+						type : 'put',
+						url : '/consume/update',
+						data : {
+							consumeId: info.oldEvent.groupId,
+							consumeDate: info.event.start.toISOString().slice(0,10)
+						},
+						success : function(result) {
+						},						
+					});
+			  },
 	      eventClick: function(arg) {
 	    	  // 있는 일정 클릭시,
 	    	 swal({

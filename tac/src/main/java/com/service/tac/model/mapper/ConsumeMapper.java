@@ -12,4 +12,6 @@ public interface ConsumeMapper {
 	public ArrayList<HashMap<String, Object>> getConsume(String memberId) throws SQLException;
 	
 	public int deleteConsumeInfo(int consumeId) throws SQLException;
+	
+	public int updateConsumeInfo(Consume consume) throws SQLException;
 }

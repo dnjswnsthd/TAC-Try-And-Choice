@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,6 +65,18 @@ public class ConsumeController {
 			return "";
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return "/error";
+		}
+	}
+	
+	@PutMapping("/update")
+	public String updateConsumeInfo(@RequestParam Map<String, Object> map) {
+		Consume consume = new Consume(Integer.parseInt((String) map.get("consumeId")), (String) map.get("consumeDate"));
+		try {
+			consumeService.updateConsumeInfo(consume);
+			return "";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return "/error";
 		}
 	}
