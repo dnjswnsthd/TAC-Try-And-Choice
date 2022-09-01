@@ -20,6 +20,7 @@ import com.service.tac.model.vo.ConsumeAnalysis_ByDate;
 import com.service.tac.model.vo.ConsumeAnalysis_ByDay;
 import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
+import com.service.tac.model.vo.LargeCategory;
 
 @Controller
 public class AnalyseController {
@@ -45,7 +46,7 @@ public class AnalyseController {
 //			System.out.println("나의 대분류-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_LargeSum temp : AnalLargeSum) {
 //				System.out.println(temp.toString());
-				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum());
+				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum() + ", " + temp.getImage());
 			}
 //			System.out.println("--------------------------------------------------------------------------");
 			bList.add(hmap);
@@ -291,8 +292,19 @@ public class AnalyseController {
 		mav.addObject("maxday",maxday);
 		mav.addObject("maxdaymoney",maxdaymoney);
 		
-		//
-//		session = request.getSession();
+		// 8. 대분류 이미지 들고오기
+		ArrayList<LargeCategory> LargeCategoryList = new ArrayList<>();
+		try {
+			HashMap<String, Object> hmap = new HashMap<>();
+			LargeCategoryList = analyseService.LargeCategroyList();
+			for (LargeCategory temp : LargeCategoryList) {
+				hmap.put(temp.getLargeCategoryName(), temp.getLargeCategoryImage());
+			}
+			bList.add(hmap);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
 		
 		
 	// json

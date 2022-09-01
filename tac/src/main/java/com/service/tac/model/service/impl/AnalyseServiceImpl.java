@@ -14,6 +14,7 @@ import com.service.tac.model.vo.ConsumeAnalysis_ByDate;
 import com.service.tac.model.vo.ConsumeAnalysis_ByDay;
 import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
+import com.service.tac.model.vo.LargeCategory;
 
 @Service
 public class AnalyseServiceImpl implements AnalyseService {
@@ -62,6 +63,11 @@ public class AnalyseServiceImpl implements AnalyseService {
 	public ArrayList<ConsumeAnalysis_ByDay> Analyse_DAY(String id) throws SQLException {
 		ArrayList<ConsumeAnalysis_ByDay> result = sqlSession.getMapper(AnalyseMapper.class).Analyse_DAY(id);
 		return result;
+	}
+
+	@Override
+	public ArrayList<LargeCategory> LargeCategroyList() throws SQLException {
+		return sqlSession.getMapper(AnalyseMapper.class).LargeCategroyList();
 	}
 	
 	

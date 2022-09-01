@@ -28,6 +28,9 @@
 	integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+<!-- word cloud -->
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	
@@ -118,11 +121,43 @@
 							</div>
 							<div class="typetitleline"></div>
 						</div>
+						
 						<div class="row">
 							<div class="col-12">
 								<uL id="AnalyseModal1_UL">
 								</uL>
 							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 modalchart">
+								<div class="col-12 TypeAnalysisModalTitle3">
+									남들 보다 많이 사용해요
+								</div>
+								<div id="typetitleline3" class="typetitleline"></div>
+								<!-- <ul id="biggerUL" class="container ModalCompareText" ></ul> <-->
+								<div id="biggerUL" class="d-flex flex-wrap align-content-start" >
+									<!-- <div class="p-2 border CompareFlex">
+										<img id="cardImg" src="/resources/image/compare/00_Default.png" width="50px" />
+										<div>테스트용</div>
+									</div> -->
+
+								</div>
+							</div>
+							<div class="col-4 modalchart">
+								<div class="col-12 TypeAnalysisModalTitle3">
+									남들보다 적게 사용해요
+								</div>
+								<div id="typetitleline3" class="typetitleline"></div>
+								<div id="smallerUL" class="d-flex flex-wrap align-content-start" ></div>
+							</div>
+							<div class="col-4 modalchart">
+								<div class="col-12 TypeAnalysisModalTitle3">
+									남들과 비슷해요
+								</div>
+								<div id="typetitleline3" class="typetitleline"></div>
+								<div id="middleUL" class="d-flex flex-wrap align-content-start" ></div>
+							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -209,18 +244,30 @@
 		$(function() {
 			$('#AnalyseModal1_UL').append('<li class="ModalDescText"> ${member.name}님은 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
 			$('#AnalyseModal1_UL').append('<li> ${member.name}님의 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하는 군요.</li>');
-			
+			// 큰거
 			var arr = '${bigger}'.substring(1,'${bigger}'.length -1	).split(', ');
+			var count = 0;
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>${member.name}님은 다른 사람들 보다 <b class="emphasize">' + element + '</b>에 돈을 <b class="modalHiger">더 많이 </b>사용합니다~~</li>');
+				var imgsrc = LCImage.get(element);
+				$('#biggerUL').append('<div class="p-2 border CompareFlex">' 
+										+ '<img id="cardImg" src="/resources/image/compare/'+imgsrc.substring(1,imgsrc.length)+'" width="50px" /> '
+										+ '<div class="ULdesc">' + element + '</div></div>');
 			});
+			// 작은거
 			var arr = '${smaller}'.substring(1,'${smaller}'.length -1	).split(', ');
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>${member.name}님은 <b class="emphasize">' + element + '</b>에는 남들보다  <b class="modalLower">적게</b> 사용합니다.</li>');
+				var imgsrc = LCImage.get(element);
+				$('#smallerUL').append('<div class="p-2 border CompareFlex">' 
+										+ '<img id="cardImg" src="/resources/image/compare/'+imgsrc.substring(1,imgsrc.length)+'" width="50px" /> '
+										+ '<div class="ULdesc">' + element + '</div></div>');
 			});
+			// 비슷한거
 			var arr = '${same}'.substring(1,'${same}'.length -1	).split(', ');
 			$.each( arr, function(index, element){
-				$('#AnalyseModal1_UL').append('<li>${member.name}님은 동년배와 비교했을 때 <b class="emphasize">' + element + '</b>에 <b class="modalSimilar">비슷하게 </b> 돈을 쓰는군요,,, </li>');
+				var imgsrc = LCImage.get(element);
+				$('#middleUL').append('<div class="p-2 border CompareFlex">' 
+										+ '<img id="cardImg" src="/resources/image/compare/'+imgsrc.substring(1,imgsrc.length)+'" width="50px" /> '
+										+ '<div class="ULdesc">' + element + '</div></div>');
 			});
 
 			var mybiggestM = "";
@@ -282,6 +329,8 @@
 		
 		// pie data
 //		console.log(AnalyseJSON[0]);
+//
+		var LCImage = new Map();
 		var mypieLabel = [];
 		var mypieData = []; 
 		for( element in AnalyseJSON[0] ){
@@ -289,6 +338,7 @@
 //			console.log(element + "   " + temp[0] + " " + temp[1]);
 			mypieLabel.push(element);
 			mypieData.push(temp[1]); 
+			LCImage.set(element, temp[2]);
 		}
         // PIE
         const ChartbyType_data = {
@@ -297,11 +347,11 @@
                 label: 'My First Dataset',
                 data: mypieData,
                 backgroundColor: [
-                    '#ea9999', '#741b47', '#6aa84f', '#f9cb9c','#45818e',
-                    '#8e7cc3', '#c90076', '#5b5b5b', '#0b5394','#f9cb9c',
-                    '#210E9E', '#E30000', '#FF00F2', '#00098A','#00F2FF',
-                    '#00FF88', '#CCFF00', '#752778', '#FFAE00','#292929',
-                    '#FFD6EF', '#592424'
+                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
+                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
+                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
+                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#ff0054', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -447,11 +497,11 @@
                 label: 'My First Dataset',
                 data: avgpieData,
                 backgroundColor: [
-                    '#ea9999', '#741b47', '#6aa84f', '#f9cb9c','#45818e',
-                    '#8e7cc3', '#c90076', '#5b5b5b', '#0b5394','#f9cb9c',
-                    '#210E9E', '#E30000', '#FF00F2', '#00098A','#00F2FF',
-                    '#00FF88', '#CCFF00', '#752778', '#FFAE00','#292929',
-                    '#FFD6EF', '#592424'
+                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
+                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
+                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
+                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#ff0054', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -593,12 +643,9 @@
 					label: '요일 별 소비 데이터',
 					data: myDoughnuteData,
 					backgroundColor: [
-						'#ea9999', '#741b47', '#6aa84f', '#f9cb9c','#45818e',
-						'#8e7cc3', '#c90076', '#5b5b5b', '#0b5394','#f9cb9c',
-						'#210E9E', '#E30000', '#FF00F2', '#00098A','#00F2FF',
-						'#00FF88', '#CCFF00', '#752778', '#FFAE00','#292929',
-						'#FFD6EF', '#592424'
-					],
+						'#9b5de5', '#f15bb5', '#fee440', '#00bbf9','#00f5d4',
+						'#ff595e', '#ffca3a', '#8ac926', '#1982c4','#6a4c93',
+					]
 				}
 			],
 			
@@ -631,6 +678,7 @@
 		}
 
     </script>
+	<script type="text/javascript" src="/resources/js/analysis_wordcloud.js"></script> 
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>

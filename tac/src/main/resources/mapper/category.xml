@@ -36,7 +36,7 @@
 	
 	<!-- Get Large Category -->
 	<select id="getAllLargeCategory" resultMap="largeCategory">
-		select large_category_id, large_category_name
+		select large_category_id, large_category_name, large_category_image
 		from large_category
 	</select>
 	

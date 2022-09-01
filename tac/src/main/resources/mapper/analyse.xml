@@ -9,6 +9,7 @@
 		<result column="LCNAME" property="LCname" />
 		<result column="COUNT" property="count" />
 		<result column="SUM" property="sum" />
+		<result column="IMAGE" property="Image" />
 	</resultMap>
 
 	<!-- 아이디별 전체 소비 분석 결과 가지고 오기 -->
@@ -42,7 +43,8 @@
 	
 	<!-- 대분류 별 통계 합계 -->
 	<select id="AnalyseLC_SUM" parameterType="string" resultMap="AnalysisLargeSum">
-		SELECT lc.LARGE_CATEGORY_NAME "LCNAME", COUNT(*) "COUNT", NVL(SUM(c.CONSUME_PRICE),0) "SUM"
+		SELECT lc.LARGE_CATEGORY_NAME "LCNAME", COUNT(*) "COUNT", NVL(SUM(c.CONSUME_PRICE),0) "SUM",
+			 (SELECT lc2.LARGE_CATEGORY_IMAGE FROM LARGE_CATEGORY lc2 WHERE lc2.LARGE_CATEGORY_NAME = lc.LARGE_CATEGORY_NAME) "IMAGE"
 		FROM CONSUME c RIGHT JOIN LARGE_CATEGORY lc ON (lc.LARGE_CATEGORY_ID = c.LARGE_CATEGORY_ID)
 		AND MEMBER_ID = #{VALUE}
 		GROUP BY lc.LARGE_CATEGORY_NAME
@@ -83,4 +85,11 @@
 		WHERE MEMBER_ID = #{VALUE}
 		GROUP BY to_char(c.CONSUME_DATE,'day')
 	</select>
+	
+	<!-- 대분륲 이미지 파일 들고오기  -->
+	<select id="LargeCategroyList" resultType="LargeCategory" >
+		SELECT LARGE_CATEGORY_ID "LargeCategoryId", LARGE_CATEGORY_NAME "LargeCategoryName", LARGE_CATEGORY_IMAGE "LargeCategoryImage"
+		FROM LARGE_CATEGORY
+	</select>
+	
 </mapper>
