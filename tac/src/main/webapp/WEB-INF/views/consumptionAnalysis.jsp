@@ -115,32 +115,17 @@
 							<div class="col-6 modalchartTitle">${member.name}님의 소비</div>
 							<div class="col-6 modalchartTitle">내 동년배들 다 돈 이렇게 쓴다</div>
 						</div>
-						<div class="row">
-							<div id="TypeAnalysisModalTitle" class="col-12">
-								${member.name}님의 소비 패턴은 <b id="MyTypeTitle"> " ${ConsumeType} "</b> 입니다
-							</div>
-							<div class="typetitleline"></div>
+
+						<div class="row" style="height:30px">
 						</div>
-						
-						<div class="row">
-							<div class="col-12">
-								<uL id="AnalyseModal1_UL">
-								</uL>
-							</div>
-						</div>
-						<div class="row">
+
+						<div class="row" >
 							<div class="col-4 modalchart">
 								<div class="col-12 TypeAnalysisModalTitle3">
 									남들 보다 많이 사용해요
 								</div>
 								<div id="typetitleline3" class="typetitleline"></div>
-								<!-- <ul id="biggerUL" class="container ModalCompareText" ></ul> <-->
 								<div id="biggerUL" class="d-flex flex-wrap align-content-start" >
-									<!-- <div class="p-2 border CompareFlex">
-										<img id="cardImg" src="/resources/image/compare/00_Default.png" width="50px" />
-										<div>테스트용</div>
-									</div> -->
-
 								</div>
 							</div>
 							<div class="col-4 modalchart">
@@ -159,6 +144,22 @@
 							</div>
 							
 						</div>
+
+						
+						<div class="row">
+							<div id="TypeAnalysisModalTitle" class="col-12">
+								${member.name}님의 소비 패턴은 <b id="MyTypeTitle"> " ${ConsumeType} "</b> 입니다
+							</div>
+							<div class="typetitleline"></div>
+						</div>
+						
+						<div class="row">
+							<div class="col-12">
+								<uL id="AnalyseModal1_UL">
+								</uL>
+							</div>
+						</div>
+
 					</div>
 				</div>
 
@@ -644,7 +645,7 @@
 					data: myDoughnuteData,
 					backgroundColor: [
 						'#9b5de5', '#f15bb5', '#fee440', '#00bbf9','#00f5d4',
-						'#ff595e', '#ffca3a', '#8ac926', '#1982c4','#6a4c93',
+						'#ff595e', '#8ac926', '#8fffd9',  '#1982c4','#6a4c93',
 					]
 				}
 			],

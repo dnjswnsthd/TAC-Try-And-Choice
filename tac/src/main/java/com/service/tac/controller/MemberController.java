@@ -80,8 +80,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout")
-	public String getLogoutForm(Member member, Model model) {
-		return "/member/logout";
+	public String getLogoutForm(Member member, Model model, HttpSession session) {
+		Member sessionmember = (Member) session.getAttribute("member");
+		if ( sessionmember != null ) {
+			session.invalidate();
+		}
+		return "redirect:/main";
 	}
 	
 	@PostMapping("/login_result")
