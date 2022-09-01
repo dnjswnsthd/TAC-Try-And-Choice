@@ -26,7 +26,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(function() {
-		$("input[name=" + ${member.cardId} + "]").parent().parent().parent().css('border', '3px solid red');
+		$("input[name=" + ${member.cardId} + "]").parent().parent().parent().css('border', '5px solid red');
 	});
 </script>
 </head>

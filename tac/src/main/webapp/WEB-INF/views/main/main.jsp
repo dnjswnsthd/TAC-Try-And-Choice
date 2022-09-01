@@ -66,8 +66,8 @@
 									<h4>${card.cardName}</h4>
 									<h5>${card.cardDesc}</h5>
 									<p>
-										<input type="button" class="btn" id="selectCard"
-											value="내 카드 선택" name="${card.cardId}" />
+										<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
+											 value="카드 선택">
 									</p>
 								</div>
 							</div>
@@ -89,7 +89,7 @@
 										</h5>
 										<p>
 											<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
-											 value="내 카드 선택"	>
+											 value="카드 선택">
 										</p>
 									</div>
 								</div>
@@ -109,8 +109,8 @@
 					</div>
 				</a>
 			</div>
-
 		</div>
 	</div>
+	<br><br>
 </body>
 </html>

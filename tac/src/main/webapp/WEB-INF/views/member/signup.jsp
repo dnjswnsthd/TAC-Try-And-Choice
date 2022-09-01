@@ -48,7 +48,7 @@
 							<div class="inner">
 								<div class="wizard-header">
 									<h3 class="heading">개인 정보 등록</h3>
-									<p>개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
+									<p class="texting">개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-3">
@@ -142,7 +142,7 @@
 							<div class="inner">
 								<div class="wizard-header">
 									<h3 class="heading">카드 정보 등록</h3>
-									<p>현재 사용중인 카드를 선택해주세요.</p>
+									<p class="texting">현재 사용중인 카드를 선택해주세요.</p>
 								</div>
 								<div class="form-row">
 									<div id="carouselExampleIndicators" class="carousel slide"
@@ -231,14 +231,14 @@
 							<p class="step-icon">
 								<span>03</span>
 							</p>
-							<span class="step-text">소비 정보로 이동</span>
+							<span class="step-text">소비 정보 등록</span>
 						</h2>
 						<section>
 							<div class="inner">
 								<div class="wizard-header">
-									<h3 class="heading">회원 가입 완료</h3>
-									<p>마지막으로 소비정보를 입력할 수 있습니다.</p>
-									<p>바쁘셔서 시간이 없으시다면 다음에 마이페이지에서 추가해주세요</p>
+									<h3 class="heading" id="clear">회원 가입 완료</h3>
+									<p class="texting">마지막으로 소비정보를 입력할 수 있습니다.</p>
+									<p class="texting">바쁘셔서 시간이 없으시다면 다음에 마이페이지에서 추가해주세요</p>
 								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2" id="inline">
