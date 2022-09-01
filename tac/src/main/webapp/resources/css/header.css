@@ -58,6 +58,7 @@ a:hover{
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	/* color: #373234; */
+  cursor:pointer;
 	color: #FF788B;
 	font-family: 'Cafe24Ssurround', sans-serif !important;
 }
@@ -96,6 +97,7 @@ ul li{
 }
 
 .option {
+  cursor: default;
   font-family: 'Cafe24Ssurround', sans-serif !important;
   font-size: 1.8rem;
   margin-top: 7.1%;

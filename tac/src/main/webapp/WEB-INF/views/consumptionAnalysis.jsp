@@ -105,7 +105,7 @@
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">소비 유형별 상세 분석</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<button type="button" class="btn-close modalclose" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal body -->
@@ -189,7 +189,7 @@
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">일별 상세 분석</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<button type="button" class="btn-close modalclose" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal body -->

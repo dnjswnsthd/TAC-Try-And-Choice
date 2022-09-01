@@ -125,6 +125,8 @@ public class AnalyseController {
 		for (int i = 0; i < AnalLargeSum.size(); i++) {
 			int meSum = AnalLargeSum.get(i).getSum();
 			int avgSum = AnalLargeSumAvg.get(i).getSum();
+//			System.out.println(AnalLargeSum.get(i).getLCname() + " : " + meSum + "   -----     " + avgSum);
+//			System.out.println(Math.abs(meSum - avgSum));
 			myTotalConsume += meSum;
 			avgTotalConsume += avgSum;
 			if (meSum > avgSum) {
@@ -153,6 +155,7 @@ public class AnalyseController {
 			if ( Math.abs(meSum - avgSum) > gapM ) {
 				gap = AnalLargeSum.get(i).getLCname();
 				gapM =  Math.abs(meSum - avgSum);
+//				System.out.println(gap + " : " + gapM);
 			}
 
 			
