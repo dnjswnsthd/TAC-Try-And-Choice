@@ -66,7 +66,6 @@
                $('.modal').fadeOut();
             });
              var title = prompt('Event Title:');
-             console.log(title);
             if (title) {
               calendar.fullCalendar(
                 'renderEvent',

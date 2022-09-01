@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.ParseConversionEvent;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.LargeCategory;
+import com.service.tac.model.vo.Member;
 
 @Controller
 public class RouteController {
@@ -92,26 +93,33 @@ public class RouteController {
 	public String manage() {
 		return "/manage/insert_card";
 	}
-	@RequestMapping(value = "/manage_test", method = RequestMethod.GET)
-	public String manage_test() {
-		return "/manage/insert_card_test";
-	}
-	@RequestMapping(value = "/manage_test2", method = RequestMethod.GET)
-	public String manage_test2() {
-		return "/manage/insert_card_test2";
-	}
-	@RequestMapping(value = "/manage_test3", method = RequestMethod.GET)
-	public String manage_test3(Model model) {
+	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
+	public String manage_card(Model model) {
 		try {
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);
-			return "/manage/insert_card_test3";
+			return "/manage/insertCard";
 			
 		} catch(Exception e) {
 			// 에러페이지
 			return "/error";
 		}
 	}
+	
+	@GetMapping(value = "/addLargeCategory")
+	public String addLargeCategory(Model model) {
+		try {
+
+			List<LargeCategory> list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", list);
+			return "/manage/insert_card_largeCategory";
+			
+		} catch(Exception e) {
+			// 에러페이지
+			return "/error";
+		}
+	}
+	
 	
 	@GetMapping(value= "/error")
 	public String error() {
@@ -121,6 +129,34 @@ public class RouteController {
 	@GetMapping(value= "/calendarTest")
 	public String calendarTest() {
 		return "/member/insertConsume";
+	}
+	
+	@GetMapping(value="/mypage")
+	public String moveMypage(Model model) {
+		try {
+			ArrayList <Card> list = cardService.getAllCardInfo();
+			model.addAttribute("list", list);
+			return "/member/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
+	
+	@GetMapping(value="/updateConsume")
+	public String moveUpdateConsume(Model model, HttpServletRequest request) {
+		ArrayList<LargeCategory> list;
+		try {
+			list = categoryService.getAllLargeCategory();
+			model.addAttribute("list", list);
+			HttpSession session = request.getSession();
+			Member member = (Member) session.getAttribute("member");
+			model.addAttribute("memberId", member.getMemberId());
+			return "/member/updateConsume";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
 	}
 
 }

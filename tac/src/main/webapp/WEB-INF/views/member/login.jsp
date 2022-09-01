@@ -36,7 +36,7 @@
 	            <div class="input-field"> <span class="far fa-user p-2"></span> <input type="text" name="id" placeholder="Enter your ID" required class=""> </div>
 	        </div>
 	        <div class="form-group py-1 pb-2">
-	            <div class="input-field"> <span class="fas fa-lock p-2"></span> <input type="text" name="password" placeholder="Enter your Password" required class=""> 
+	            <div class="input-field"> <span class="fas fa-lock p-2"></span> <input type="password" name="password" placeholder="Enter your Password" required class=""> 
 	            </div>
 	        </div>
 	       <button class="btn btn-block text-center my-3" type="submit">Log in</button>

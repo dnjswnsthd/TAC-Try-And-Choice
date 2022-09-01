@@ -13,4 +13,8 @@ public interface MemberMapper {
 	public String chkDup(String memberId) throws SQLException;
 
 	public Member login(Member member) throws SQLException;
+	
+	public int updateMemberInfo(Member member) throws SQLException;
+	
+	public int updateCardInfo(Member member) throws SQLException;
 }	

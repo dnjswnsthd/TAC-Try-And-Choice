@@ -11,7 +11,7 @@
 		<result column="max_discount" property="maxDiscount" />
 	</resultMap>
 	
-	<insert id="insertC" parameterType="card">
+	<insert id="registerCard" parameterType="card">
 		<selectKey keyProperty="cardId" resultType="int" order="BEFORE">
 			SELECT card_seq.nextVal FROM dual
 		</selectKey>

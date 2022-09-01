@@ -24,16 +24,13 @@ public class CardController {
 	CardService cardservice;
 	
 	@PostMapping("cardReg.do")
-	public String doRegPhone(Card card, Model model) {
-		System.out.println("1111111111111");
+	public String doRegCard(Card card, Model model) {
 		try {
 			// 성공페이지
 			cardservice.registerCard(card);
-			model.addAttribute("title", "핸드폰 관리 - 핸드폰 저장 성공");
 			return "/manage/insert_card_test3";
 		} catch(Exception e) {
 			// 에러페이지
-			model.addAttribute("title", "에러");
 			return "error";
 		}
 	}

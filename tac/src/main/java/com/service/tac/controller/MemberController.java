@@ -2,6 +2,7 @@ package com.service.tac.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,8 +49,8 @@ public class MemberController {
 		try {
 			list = categoryService.getAllLargeCategory();
 			model.addAttribute("list", list);
-			memberService.register(member); model.addAttribute("memberId",
-			member.getMemberId());
+			memberService.register(member); 
+			model.addAttribute("memberId", member.getMemberId());
 			return "/member/insertConsume";
 
 		} catch (SQLException e) {
@@ -100,5 +101,36 @@ public class MemberController {
 	    } catch (Exception e) {
 	        return "/error";
 	    }
+	}
+	
+	@PostMapping("/member/update")
+	public String update(Member member, HttpServletRequest request) {
+		try {
+			memberService.updateMemberInfo(member);
+			HttpSession session = request.getSession();
+			member.setPassword(null);
+			session.setAttribute("member", member);
+			return "redirect:/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
+	
+	@PostMapping("/member/cardUpdate")
+	public String cardUpdate(int cardId2, String memberId, HttpServletRequest request) {
+		Member member = new Member(memberId, cardId2);
+		try {
+			memberService.updateCardInfo(member);
+			HttpSession session = request.getSession();
+			Member member2 = (Member) session.getAttribute("member");
+			member2.setCardId(cardId2);
+			session.setAttribute("member", member2);
+			return "redirect:/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+		
 	}
 }

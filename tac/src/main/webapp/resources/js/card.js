@@ -17,8 +17,10 @@ $(document).ready(function(){
 		 $(this).parent().parent().parent().css('border', '3px solid red');
 	 });*/
 	
-	$(document).on('click', '#selectCard', function(){
+	
+	$(document).on('click', '#selectCard', function(){		
 		 $('#cardId').val($(this).attr('name'));
+		 $('#cardId2').val($(this).attr('name'));
 		 $('.element-card').css('border', 'none');
 		 $(this).parent().parent().parent().css('border', '3px solid red');
 	 });
