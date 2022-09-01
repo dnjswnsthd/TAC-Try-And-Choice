@@ -33,19 +33,19 @@
 </head>
 
 <body>
-	<div class="topSection">
+	<div class="topSection" id="nav">
 		<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	</div>
 
 	<div class="container-fluid" id="container">
 		<div class="row justify-content-around">
-			<div class="col-md-5">
-				<div class="project-info-box">
+			<div class="col-md-6">
+				<div class="project-info-box" id="hover">
 					<p class="cardName">
 						<b>${info.cardName}</b>
-					<img src="resources/image/card/${info.cardImg}"
-						alt="${info.cardName}" class="rounded">
-					<button class="othercard">
+					<div class="figure"><img src="resources/image/card/${info.cardImg}"
+						alt="${info.cardName}" class="rounded" id="cardImg"></div><br>
+					<button class="othercard" onclick="location.href='/main'">
 						<span>다른 카드 보기</span>
 					</button>
 					</p>
@@ -55,13 +55,14 @@
 						<c:forEach var="card" items="${list}">
 						<ul>
 							<li><b>${card.smallCategory.smallCategoryName}</b>&nbsp;&nbsp;
-							<c:choose>
-								<c:when test="${card.maxDiscount==0}">
+							<c:choose>	
+								<c:when test="${card.maxDiscount == 0}">
 										${card.discountPercent }% 할인
 								</c:when>
-								<c:when test="${empty card.discountPercent}">
-										${card.maxDiscount }원 할인
-								</c:when>
+
+								<c:otherwise>
+									${card.maxDiscount }원 할인
+								</c:otherwise>
 							</c:choose>
 							</li>	
 						</ul>
@@ -75,9 +76,11 @@
 
 			<div class="col-md-6">
 				<div class="project-info-box">
-					<h5>카테고리별 혜택</h5>
+					<h3>카테고리별 혜택</h3>
 					<button class="myCard">
 						<span>내 카드와 비교</span>
+						<span>${name3 }, ${discount3 }</span>
+						<span>${name2 }, ${discount2 }</span>
 					</button>
 					<br>
 					<br>
@@ -122,7 +125,7 @@
 				</div>
 
 				<div class="project-info-box">
-					<p>소비 내역</p>
+					<h3>소비 내역</h3>
 					<table>
 						<thead>
 							<tr>

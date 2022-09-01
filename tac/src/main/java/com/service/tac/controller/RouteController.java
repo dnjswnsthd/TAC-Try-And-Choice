@@ -59,56 +59,9 @@ public class RouteController {
 		}
 		
 	}
+
 	
-	@RequestMapping(value="/compare", method= RequestMethod.GET)
-	public String compare(HttpServletRequest request, Model model) {
-		int cardId = Integer.parseInt(request.getParameter("cardId"));
-		
-		try {
-			Card info = cardService.getCardInfo(cardId);
-			System.out.println(info);
-			String cardName = info.getCardName();
-			String cardImg = info.getCardImg();
-			ArrayList<CardDetail> list = cardService.getDiscountInfoByCard(cardId);
-			System.out.println(cardImg);
-			System.out.println(cardName);
-			System.out.println(list.size());
-			model.addAttribute("list", list);
-			model.addAttribute("cardImg", cardImg);
-			model.addAttribute("cardName", cardName);
-			model.addAttribute("info", info);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "cardCompare1";
-	}
 	
-	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
-	public String cardCompare() {
-		
-		return "cardCompare2";
-	}
-	@RequestMapping(value = "/manage", method = RequestMethod.GET)
-	public String manage() {
-		return "/manage/insert_card";
-	}
-	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
-	public String manage_card(Model model) {
-		try {
-			List<LargeCategory> list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", list);
-			return "/manage/insertCard";
-			
-		} catch(Exception e) {
-			// 에러페이지
-			return "/error";
-		}
-	}
-	
-	@GetMapping(value = "/addLargeCategory")
-	public String addLargeCategory(Model model) {
-		try {
 
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);
