@@ -317,6 +317,10 @@ body {
 	
 }
 
+nav {
+	height: 17vh;
+}
+
 #logo {
 	margin-top: -12% !important;
 }
@@ -330,10 +334,11 @@ body {
 }
 
 .maintext{
-	margin-top: 2%;
+	margin-top: 7%;
 	height:300%;
 	width:80%;
 	margin-left: 8%;
+	margin-bottom: 3%;
 }
 
 .maintext h2 {
