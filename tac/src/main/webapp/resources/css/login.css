@@ -16,10 +16,10 @@
 body {
     background-image: url(../image/signupBackground03.jpg);
 	background-repeat: no-repeat;
-	background-position: 0% 15%;
+	background-position: 0% 35%;
 	background-size: auto;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Pretendard-Regular';
 
 }
 
@@ -28,11 +28,12 @@ body {
     border-radius: 10px;
     margin: 50px auto;
     padding: 30px 40px;
-    box-shadow: 10px 10px 40px rgb(206, 206, 206)
+    box-shadow: 10px 10px 40px rgb(206, 206, 206);
+    opacity:0.9;
 }
 
 .h2 {
-	font-family: 'establishRoomNo703OTF', sans-serif;
+	font-family: 'Cafe24Ohsquare';
     font-size: 20rem;
     font-weight: bold;
     color: #400485;
@@ -40,7 +41,7 @@ body {
 }
 
 .h4 {
-    font-family: 'Poppins', sans-serif
+    font-family: 'Pretendard-Regular';
 }
 
 .input-field {
