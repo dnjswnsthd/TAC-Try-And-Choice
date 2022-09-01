@@ -508,7 +508,6 @@ body {
     list-style: none;
     padding: 0 50px;
     margin: 1% 0% 3% ;
-    display: flex;
     display: -webkit-flex;
     justify-content: space-between;
     -o-justify-content: space-between;
@@ -528,7 +527,7 @@ body {
     -ms-border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    display: inline-flex;
+    display: none !important;
     height: 50px;
     width: 50px;
     justify-content: center;
@@ -857,16 +856,16 @@ body {
 	borader: 1px solid black;
 }
 
-#submitBtn{
+#modifyBtn{
 	width: 10vmax;
 	height: 3vmax;
-	margin-left: 25%;
+	margin-left: 80%;
 	background-color: #373234;
 	color: white;
 	display: inline-block;
 }
 
-#submitBtn:hover{
+#modifyBtn:hover{
 	background-color: #FF788B !important;
 }
 
@@ -875,10 +874,6 @@ body {
 	height: 3vmax;
 	background-color: #373234;
 	color: white;
-}
-
-#moveLogin:hover{
-	background-color: #FF788B !important;
 }
 
 #check{

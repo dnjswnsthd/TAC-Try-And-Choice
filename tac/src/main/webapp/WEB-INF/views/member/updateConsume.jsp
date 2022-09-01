@@ -179,9 +179,8 @@ body {
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<div class="container">
 		<input type="hidden" id="member" value="${memberId}" />
-		<div id="hea">
-			<h3> ${memberId} 님 소비 정보를 입력해주세요!</h3>
-			<input type="button" id="moveLogin" value="등록 완료" />
+		<div id="hea2">
+			<h3> ${memberId} 님 소비 정보를 수정하세요!</h3>
 		</div>
 		<div id="wrap">
 			<div id="calendar"></div>

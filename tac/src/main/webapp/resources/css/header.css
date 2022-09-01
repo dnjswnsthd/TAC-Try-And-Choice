@@ -5,7 +5,6 @@
     font-style: normal;
 }
 
-
 #header {
 	font-family: 'establishRoomNo703OTF', sans-serif;
 }
@@ -51,4 +50,81 @@ ul li{
 #navbarSupportedContent{
 	margin-top: -1%;
 	margin-right: 4%;
+}
+
+
+.select {
+  width: 10rem;
+  font-family: 'establishRoomNo703OTF', sans-serif !important;
+}
+
+.select:hover{
+	color: #FF788B;
+	text-decoration: underline;
+	font-family: 'establishRoomNo703OTF', sans-serif !important;
+}
+
+.select:hover .optionList {
+  opacity: 1;
+  visibility: visible;
+}
+
+.select:hover .option span::after {
+  float: right;
+}
+
+.option {
+  font-family: 'establishRoomNo703OTF', sans-serif !important;
+  font-size: 2rem;
+  margin-top: 7.1%;
+  margin-left: 4%;
+  opacity: 0.9;
+}
+
+#logout {
+	margin-left: 20%;
+}
+
+.option span::after {
+  float: right;
+}
+
+.optionList {
+  width: 10rem;
+  position: absolute;
+  border-radius: 4px;
+  margin-top: 10px;
+  visibility: hidden;
+  transition: opacity 0.3s linear, visibility 1s linear;
+  margin-top: -0.6%;
+}
+
+#optionav{
+	font-size: 0.5rem !important;
+	margin-left: 5%;
+}
+
+.optionListItem {
+  height: 0.5rem;
+  padding: 1rem 0 0 1rem;
+  overflow: hidden;
+  transition: all 0.8s;
+  cursor: pointer;
+}
+
+.optionListItem:hover {
+  background-color: rgba(223, 247, 179, 0.514);
+}
+
+
+
+.nav-link2 {
+	font-family: 'establishRoomNo703OTF', sans-serif !important;
+	color: #373234;
+	font-size: 1rem !important;
+}
+.nav-link2:hover {
+	color: #FF788B;
+	text-decoration: underline;
+	font-family: 'establishRoomNo703OTF', sans-serif !important;
 }

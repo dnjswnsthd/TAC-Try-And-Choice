@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>회원 가입</title>
+<title>마이페이지</title>
 <!-- Mobile Specific Metas -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -14,18 +14,19 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
 <!-- Main Style Css -->
-<link rel="stylesheet" href="/resources/css/signup.css" />
+<link rel="stylesheet" href="/resources/css/mypage.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <!-- jQuery library -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->
 <!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(function() {
-
+		$("input[name=" + ${member.cardId} + "]").parent().parent().parent().css('border', '3px solid red');
 	});
 </script>
 </head>
@@ -35,43 +36,41 @@
 	<div class="page-content">
 		<div class="form-v1-content">
 			<div class="wizard-form">
-				<form class="form-register" action="/register" method="post">
+				<form class="form-register" action="/member/update" method="post">
 					<div id="form-total">
 						<!-- SECTION 1 -->
 						<h2>
 							<p class="step-icon">
 								<span>01</span>
 							</p>
-							<span class="step-text">개인 정보 등록</span>
+							<span class="step-text">개인 정보 수정</span>
 						</h2>
 						<section>
 							<div class="inner">
 								<div class="wizard-header">
-									<h3 class="heading">개인 정보 등록</h3>
-									<p>개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
+									<h3 class="heading">개인 정보 수정</h3>
+									<p>내용을 수정하고 패스워드를 입력 후 수정해주세요.</p>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-4">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Name</legend>
 											<input type="text" class="form-control" id="name" name="name"
-												placeholder="홍길동" required />
+												value="${member.name}"/>
 										</fieldset>
 									</div>
-									<!-- <div class="form-holder form-holder-4">
+									<%-- <div class="form-holder form-holder-4">
 										<fieldset>
 											<legend>성별</legend>
-											<select name="gender" id="gender">
-												<option value="male">남성</option>
-												<option value="female">여성</option>
-											</select>
+											<input type="text" class="form-control" id="gender" name="gender"
+												value="${member.gender}" readonly />
 										</fieldset>
-									</div> -->
-									<div class="form-holder form-holder-4">
+									</div> --%>
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>나이</legend>
 											<input type="number" id="age" name="age" min="1"
-												placeholder="78" required>
+												value="${member.age}">
 										</fieldset>
 									</div>
 								</div>
@@ -81,15 +80,14 @@
 											<legend>Your Email</legend>
 											<input type="text" name="memberId" id="memberId"
 												class="form-control"
-												placeholder="example@email.com" required />
+												value='${member.memberId}' readonly />
 										</fieldset>
-										<p id="check" style="margin-left:10px;"></p>
 									</div>
 									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Phone Number</legend>
 											<input type="text" class="form-control" id="phone"
-												name="phone" placeholder="010-1234-5678" required />
+												name="phone" value='${member.phone}' />
 										</fieldset>
 									</div>
 								</div>
@@ -112,6 +110,12 @@
 										<p id="checkPassCol" style="margin-left:10px;"></p>
 									</div>
 								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2" id="inline">
+										<input type="hidden" id="cardId" name="cardId" value="${member.cardId}"/>
+										<input type="submit" class="col-sm-6" id="modifyBtn" value="기본 정보 수정"> 
+									</div>
+								</div>
 								<!-- <div class="form-row">
 									<div class="form-holder form-holder-2">
 										<fieldset>
@@ -130,18 +134,19 @@
 								</div> -->
 							</div>
 						</section>
-
+				</form>
 						<!-- section2 -->
 						<h2>
 							<p class="step-icon">
 								<span>02</span>
 							</p>
-							<span class="step-text">카드 정보 등록</span>
+							<span class="step-text">카드 정보 수정</span>
 						</h2>
 						<section>
+							<form class="form-register" action="/member/cardUpdate" method="post">
 							<div class="inner">
 								<div class="wizard-header">
-									<h3 class="heading">카드 정보 등록</h3>
+									<h3 class="heading">카드 정보 수정</h3>
 									<p>현재 사용중인 카드를 선택해주세요.</p>
 								</div>
 								<div class="form-row">
@@ -223,37 +228,19 @@
 
 									</div>
 								</div>
-							</div>
-						</section>
-
-						<!-- SECTION 3 -->
-						<h2>
-							<p class="step-icon">
-								<span>03</span>
-							</p>
-							<span class="step-text">소비 정보로 이동</span>
-						</h2>
-						<section>
-							<div class="inner">
-								<div class="wizard-header">
-									<h3 class="heading">회원 가입 완료</h3>
-									<p>마지막으로 소비정보를 입력할 수 있습니다.</p>
-									<p>바쁘셔서 시간이 없으시다면 다음에 마이페이지에서 추가해주세요</p>
-								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2" id="inline">
-										<input type="hidden" id="cardId" name="cardId" />
-										<input type="submit" class="col-sm-6" id="submitBtn" value="소비 정보 입력"> 
-										<input type="button" class="col-sm-6" id="moveLogin" value="다음에 입력">
+										<input type="hidden" id="cardId2" name="cardId2" />
+										<input type="hidden" id="memberId" name="memberId" value ="${member.memberId}"/>
+										<input type="submit" class="col-sm-6" id="modifyBtn" value="기본 정보 수정">
 									</div>
 								</div>
-							</div>
+						</div>
+							</form>
 						</section>
 					</div>
-				</form>
 			</div>
 		</div>
-	</div>
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>
