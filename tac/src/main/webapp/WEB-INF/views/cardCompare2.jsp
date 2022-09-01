@@ -101,7 +101,7 @@
 	 				<div>주유비 <span> 500원 할인</span></div><hr>
 	 				<div>베이커리 <span> 500원 할인</span></div><hr>
 	 				<div>카페 <span> 500원 할인</span></div><hr>
-	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
+	 				<div>이동통신요금 <span> 3500원 할인</span></div><hr>
 	 				<div>놀이공원 <span> 500원 할인</span></div><hr>
 	 				<div>교통 <span> 500원 할인</span></div><hr>
 	 				
@@ -114,6 +114,9 @@
 	 			</div>
 	 			
 	 			<div class="cardDetail">
+	 				<h3>BNK 프렌즈 체크카드를 사용하면 </h3>
+	 				<h3><span id="cardText">+3150원</span>의 이득을 볼 수 있습니다.</h3>
+	 				<hr>
 	 				<div id="consumePattern" class="d-flex flex-wrap align-content-start" >
 	 					<div class="p-2 border CompareFlex">
 		 					<img id="cardImg" src="resources/image/compare/01_FUEL.png" width="50px" /> 
@@ -145,11 +148,11 @@
 		 					<div class="ULdesc">교통</div>
 		 					<div class="discount ULdesc">+500원</div>
 	 					</div>
-	 					<div class="p-2 border CompareFlex">
+	 					<!-- <div class="p-2 border CompareFlex">
 		 					<img id="cardImg" src="resources/image/compare/07_HomeShopping.png" width="50px" /> 
 		 					<div class="ULdesc">홈쇼핑</div>
 		 					<div class="discount ULdesc">-2000원</div>
-	 					</div>
+	 					</div> -->
 	 					
 	 				<!-- <div>✈&nbsp;&nbsp;여행<div class="discount" id="selectCardColor">+400</div></div><hr>
 	 				<div>⛽&nbsp;&nbsp;주유<div class="discount" id="selectCardColor">+1200</div></div><hr>
@@ -170,11 +173,11 @@
 	 			<div class="cardDetail selectCardDetail">
 	 				<p id="selectCardColor"><b>비교할 카드</b></p>
 	 				<div>주유비 <span> 1000원 할인</span></div><hr>
-	 				<div>베이커리 <span> 500원 할인</span></div><hr>
-	 				<div>카페 <span> 500원 할인</span></div><hr>
+	 				<div>베이커리 <span> 850원 할인</span></div><hr>
+	 				<div>카페 <span> 300원 할인</span></div><hr>
 	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
-	 				<div>놀이공원 <span> 500원 할인</span></div><hr>
-	 				<div>교통 <span> 500원 할인</span></div><hr>
+	 				<div>놀이공원 <span> 5500원 할인</span></div><hr>
+	 				<div>교통 <span> 100원 할인</span></div><hr>
 	 			</div>
 	 		
 	 		
@@ -183,9 +186,8 @@
 	 </div>
 	 
 	 <script>
+	 /* 
 		$(function() {
-			
-			var arr = ;
 		
 			$.each( arr, function(index, element){
 				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
@@ -194,7 +196,7 @@
 				
 			}
 			});
-	/* 
+	
 			$.each( arr, function(index, element){
 				var imgsrc = LCImage.get(element);
 				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
