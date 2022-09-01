@@ -884,6 +884,7 @@ body {
 #check{
 	font-size: 0.7rem;
 	margin-left: 5% !important;
+	margin-bottom: 0% !important;
 }
 
 #checkPass{
