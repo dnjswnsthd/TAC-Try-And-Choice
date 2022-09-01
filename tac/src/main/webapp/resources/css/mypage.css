@@ -75,7 +75,7 @@ body {
 	margin:  0;
 	background-image: url(../image/signupBackground03.jpg);
 	background-repeat: no-repeat;
-	background-position: 0% 15%;
+	background-position: 0% 45%;
 	background-size: auto;
 }
 
@@ -100,7 +100,7 @@ body {
   }
 
 .page-content {
-	margin-top: -14%;
+	margin-top: -10%;
 	width: 100%;
 	display: flex;
 	display: -webkit-flex;
