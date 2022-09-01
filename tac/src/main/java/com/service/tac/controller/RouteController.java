@@ -43,49 +43,7 @@ public class RouteController {
 	public String signup() {
 		return "/member/signup";
 	}
-	
-	@RequestMapping(value="/compare", method= RequestMethod.GET)
-	public String compare(HttpServletRequest request, Model model) {
-		int cardId = Integer.parseInt(request.getParameter("cardId"));
-		
-		try {
-			Card info = cardService.getCardInfo(cardId);
-			ArrayList<CardDetail> list = cardService.getDiscountInfoByCard(cardId);
-			
-			model.addAttribute("list", list);
-			model.addAttribute("info", info);
-			
-			for(int i=1;i<=22;i++) {
-				ArrayList<CardDetail> records = cardService.getBenefitsByCateg(cardId, i);
-				
-				if(records.size()!=0) {
-					System.out.println(records.size());
-					System.out.println(records);
-					for(int j=0;j<records.size();j++) {
-						
-						CardDetail cardDetail = records.get(j);
-						System.out.println(cardDetail);
-						String largeCategoryName = cardDetail.getLargeCategory().getLargeCategoryName();
-						int consumePrice = cardDetail.getConsume().getConsumePrice();
-						System.out.println("소비 금액은:: " + consumePrice);
-						System.out.println("소비 분야는 :: "+ largeCategoryName);
-					}//if
-				}//for
-			}//try
-			
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "cardCompare1";
-	}
-	
-	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
-	public String cardCompare() {
-		
-		return "cardCompare2";
-	}
+
 	
 	
 

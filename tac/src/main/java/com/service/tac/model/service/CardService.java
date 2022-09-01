@@ -14,16 +14,7 @@ public interface CardService {
 
 	// 카테고리별 할인 금액 합계와 전체 합계 금액 가져오기
 	public HashMap<String, Integer> discountByCategory(int userId, int cardId) throws SQLException;
-	
-	// 카드 할인정보 가져오기
-	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException;
-	
-	// 카드 정보 가져오기(객체 만들어서 card vo에 cardDetail객체로 생성해서 넣어줄 예정)
-	public Card getCardInfo(int cardId) throws SQLException;
-	
-	// 소비에 따른 카드별 혜택 금액 확인
-	public ArrayList<CardDetail> getBenefitsByCateg(int cardId, int categoryId) throws SQLException;
-	
+			
 	// 신규 카드 등록 (Detail도 같이 받아와야함 인자 수정) 
 	public int registerCard(Card card) throws SQLException;
 
