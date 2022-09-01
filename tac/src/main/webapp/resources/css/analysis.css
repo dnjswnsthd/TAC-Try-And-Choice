@@ -19,6 +19,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: '777Balsamtint';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/777Balsamtint.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 li {
     list-style: none;
     padding-left: 0px;
@@ -125,12 +146,12 @@ body {
 
 /* 모달 창 */
 .modal-title{
-    font-family: 'Happiness-Sans-Title', sans-serif;
-    color:rgb(208, 248, 255);
+    font-family: 'SUIT-Medium', sans-serif;
+    color:rgb(255, 255, 255);
     font-size: 35px;
 }
 .modal-header {
-    background-color:#004f95;
+    background-color:#001f3b;
 }
 .modal-body{
     margin-top: 0px;
@@ -160,13 +181,18 @@ body {
 
 .typetitleline{
     margin-bottom: 15px;
-    color: #004f95;
+    color: #001f3b;
     height: 5px;
-    background-color:#004f95;
+    background-color:#001f3b;
 }
 
 #AnalyseModal1_UL{
-    font-family: 'S-CoreDream-3Light', sans-serif;
+    font-family: '777Balsamtint', sans-serif;
+    font-size:22px;
+}
+#AnalyseModal2_UL{
+    font-family: '777Balsamtint', sans-serif;
+    font-size:22px;
 }
 #modal_myChart1{
     margin:auto;
@@ -192,12 +218,12 @@ body {
     color: #ff9812;
 }
 .emphasize{
-    font-size: 18px;
-    color: #48006c;
+    font-size: 28px;
+    color: #ff5400;
 }
 .modalWon{
-    font-size: 18px;
-    color: #fc25e6;
+    font-size: 28px;
+    color: #ff0054;
 }
 .modalHiger{
     font-size: 18px;
@@ -212,8 +238,8 @@ body {
     color: rgb(44, 106, 0);
 }
 .emphasize2{
-    font-size: 24px;
-    color: rgb(5, 2, 68);
+    font-size: 34px;
+    color: #9e0059;
 }
 .modalchartTitle{
     font-family: 'ONE-Mobile-POP', sans-serif;
@@ -228,4 +254,34 @@ body {
 }
 .ModalDescText{
     
+}
+.TypeAnalysisModalTitle3{
+    font-family: 'IM_Hyemin-Bold';
+    text-align: center;
+    margin:auto;
+    font-size: 25px;
+}
+#typetitleline3{
+    margin-bottom: 15px;
+    color: #ee6c4d;
+    height: 5px;
+    background-color:#ee6c4d;
+}
+.ModalCompareText{
+    font-family: '777Balsamtint';
+    text-align: center;
+    margin:auto;
+    font-size: 25px;
+}
+
+/* 남들과 비교 하는 부분*/
+.CompareFlex {
+    text-align: center;
+    flex-basis: 33.33333%;
+}
+
+.ULdesc{
+    font-family: '777Balsamtint';
+    font-size:20px;
+    margin-top: 5px;
 }

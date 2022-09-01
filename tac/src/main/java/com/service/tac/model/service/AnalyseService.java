@@ -8,6 +8,7 @@ import com.service.tac.model.vo.ConsumeAnalysis_ByDate;
 import com.service.tac.model.vo.ConsumeAnalysis_ByDay;
 import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
+import com.service.tac.model.vo.LargeCategory;
 
 public interface AnalyseService {
 	// 나의 나이 불러오기
@@ -22,5 +23,7 @@ public interface AnalyseService {
 	public ArrayList<ConsumeAnalysis_ByDate> AnalyseLC_DESC_AVG(int age) throws SQLException;
 	// 소비 패턴 분석 : 해당 아이디 요일 분석
 	public ArrayList<ConsumeAnalysis_ByDay> Analyse_DAY(String id) throws SQLException;
+	// 대분류 정보 모두 들고오기
+	public ArrayList<LargeCategory> LargeCategroyList() throws SQLException;
 
 }
