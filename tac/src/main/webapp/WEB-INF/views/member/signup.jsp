@@ -51,7 +51,7 @@
 									<p>개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-4">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Name</legend>
 											<input type="text" class="form-control" id="name" name="name"
@@ -67,7 +67,7 @@
 											</select>
 										</fieldset>
 									</div> -->
-									<div class="form-holder form-holder-4">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>나이</legend>
 											<input type="number" id="age" name="age" min="1"
