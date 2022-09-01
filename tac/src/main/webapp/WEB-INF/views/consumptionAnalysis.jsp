@@ -33,12 +33,20 @@
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	
+	<!-- 세션 체크 -->
 	<%
 		Member member = (Member) session.getAttribute("member");
 		if ( member == null ) {
 	%>
-	<script> alert("로그인 먼저하세요"); location.href = '/login';</script>
+	<script> 
+		swal({
+				title: "로그인이 필요한 서비스 입니다!",
+				icon: "error",
+			}).then(function(result) {
+				console.log(result);
+				location.href = '/login';
+			});
+	</script>
 	<%
 		}
 	%>
@@ -245,6 +253,7 @@
 		$(function() {
 			$('#AnalyseModal1_UL').append('<li class="ModalDescText"> ${member.name}님은 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
 			$('#AnalyseModal1_UL').append('<li> ${member.name}님의 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하는 군요.</li>');
+			
 			// 큰거
 			var arr = '${bigger}'.substring(1,'${bigger}'.length -1	).split(', ');
 			var count = 0;

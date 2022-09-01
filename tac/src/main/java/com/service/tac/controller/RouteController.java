@@ -111,4 +111,31 @@ public class RouteController {
 		}
 	}
 
+	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
+    public String manage_card(Model model) {
+        try {
+            List<LargeCategory> list = categoryService.getAllLargeCategory();
+            model.addAttribute("largeCategory", list);
+            return "/manage/insertCard";
+
+        } catch(Exception e) {
+            // 에러페이지
+            return "/error";
+        }
+    }
+
+	@GetMapping(value = "/addSmallCategory")
+	    public String addSmallCategory(Model model) {
+	        try {
+	
+	        List<LargeCategory> list = categoryService.getAllLargeCategory();
+	        model.addAttribute("largeCategory", list);
+	        return "/manage/insert_card_smallCategory";
+	        
+	    } catch(Exception e) {
+	        // 에러페이지
+	        return "/error";
+	    }
+	}
+	
 }
