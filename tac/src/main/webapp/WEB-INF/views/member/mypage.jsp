@@ -26,6 +26,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(function() {
+		$("input[name=" + ${member.cardId} + "]").parent().parent().parent().css('border', '3px solid red');
 	});
 </script>
 </head>
@@ -142,6 +143,7 @@
 							<span class="step-text">카드 정보 수정</span>
 						</h2>
 						<section>
+							<form class="form-register" action="/member/cardUpdate" method="post">
 							<div class="inner">
 								<div class="wizard-header">
 									<h3 class="heading">카드 정보 수정</h3>
@@ -198,8 +200,8 @@
 																		src="/resources/image/card/${card.cardImg}" />
 																</div>
 																<div class="back-facing">
-																	<h4>Name : ${card.cardName}</h4>
-																	<h5>카드 설명 : ${card.cardDesc}</h5>
+																	<h4>${card.cardName}</h4>
+																	<h5>${card.cardDesc}</h5>
 																	<p>
 																		<input type="button" class="btn" id="selectCard"
 																			value="내 카드 선택" name="${card.cardId}" />
@@ -226,12 +228,19 @@
 
 									</div>
 								</div>
-							</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2" id="inline">
+										<input type="hidden" id="cardId2" name="cardId2" />
+										<input type="hidden" id="memberId" name="memberId" value ="${member.memberId}"/>
+										<input type="submit" class="col-sm-6" id="modifyBtn" value="기본 정보 수정">
+									</div>
+								</div>
+						</div>
+							</form>
 						</section>
 					</div>
 			</div>
 		</div>
-	</div>
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>

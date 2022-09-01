@@ -195,8 +195,8 @@
 																		src="/resources/image/card/${card.cardImg}" />
 																</div>
 																<div class="back-facing">
-																	<h4>Name : ${card.cardName}</h4>
-																	<h5>카드 설명 : ${card.cardDesc}</h5>
+																	<h4>${card.cardName}</h4>
+																	<h5>${card.cardDesc}</h5>
 																	<p>
 																		<input type="button" class="btn" id="selectCard"
 																			value="내 카드 선택" name="${card.cardId}" />

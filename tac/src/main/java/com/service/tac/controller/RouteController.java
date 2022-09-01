@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.ParseConversionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.LargeCategory;
+import com.service.tac.model.vo.Member;
 
 @Controller
 public class RouteController {
@@ -130,6 +130,22 @@ public class RouteController {
 			ArrayList <Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/member/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
+	
+	@GetMapping(value="/updateConsume")
+	public String moveUpdateConsume(Model model, HttpServletRequest request) {
+		ArrayList<LargeCategory> list;
+		try {
+			list = categoryService.getAllLargeCategory();
+			model.addAttribute("list", list);
+			HttpSession session = request.getSession();
+			Member member = (Member) session.getAttribute("member");
+			model.addAttribute("memberId", member.getMemberId());
+			return "/member/updateConsume";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return "/error";

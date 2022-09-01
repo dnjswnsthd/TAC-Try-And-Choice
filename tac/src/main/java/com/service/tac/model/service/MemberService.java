@@ -19,7 +19,7 @@ public interface MemberService {
 	public int updateMemberInfo(Member member) throws SQLException;
 
 	// 카드 정보 수정
-	public int updateCardInfo(Card card) throws SQLException;
+	public int updateCardInfo(Member member) throws SQLException;
 
 	// 로그 아웃
 	public void logout(int memberId) throws SQLException;

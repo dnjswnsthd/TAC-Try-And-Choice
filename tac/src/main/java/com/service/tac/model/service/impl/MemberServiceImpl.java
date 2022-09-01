@@ -41,8 +41,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateCardInfo(Card card) throws SQLException {
-		return 0;
+	public int updateCardInfo(Member member) throws SQLException {
+		return sqlSession.getMapper(MemberMapper.class).updateCardInfo(member);
 	}
 
 	@Override

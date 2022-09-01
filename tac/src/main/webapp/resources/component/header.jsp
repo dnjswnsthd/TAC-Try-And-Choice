@@ -46,8 +46,16 @@
 						}
 						if( member != null ){
 					%>
-						<li class="nav-item"><a class="nav-link" href="/mypage">MYPAGE</a>
-						<li class="nav-item"><a class="nav-link" href="/logout">LOGOUT</a></li>
+						<div class="select">
+					      <div class="option">
+					        MYPAGE
+					      </div>
+					      <div class="optionList">
+					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/mypage">개인, 카드 정보 수정</a>
+					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/updateConsume">소비 정보 수정</a>
+					      </div>
+					    </div>
+						<li class="nav-item"><a class="nav-link" id="logout" href="/logout">LOGOUT</a></li>
 					<%
 						}
 					%>

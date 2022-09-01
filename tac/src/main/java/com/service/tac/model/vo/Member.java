@@ -18,6 +18,12 @@ public class Member {
 		this.password = password;
 	}
 	
+	public Member(String memberId, int cardId) {
+		super();
+		this.memberId = memberId;
+		this.cardId = cardId;
+	}
+	
 	public Member(String memberId, String password, String name, int age, String phone) {
 		super();
 		this.memberId = memberId;

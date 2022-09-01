@@ -34,4 +34,11 @@
 		UPDATE MEMBER 
 		SET password = #{password}, name= #{name}, age=#{age}, phone = #{phone} WHERE member_id = #{memberId}
 	</update>
+	
+	<!-- updateCardInfo -->
+	<update id="updateCardInfo" parameterType="Member">
+		UPDATE MEMBER 
+		SET card_id = #{cardId} WHERE member_id = #{memberId}
+	</update>
+	
 </mapper>
