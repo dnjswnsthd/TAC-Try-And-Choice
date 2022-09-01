@@ -146,12 +146,12 @@ body {
 
 /* 모달 창 */
 .modal-title{
-    font-family: 'SUIT-Medium', sans-serif;
-    color:rgb(255, 255, 255);
-    font-size: 35px;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+    color:rgb(0, 0, 0);
+    font-size: 30px;
 }
 .modal-header {
-    background-color:#001f3b;
+    background-color:#eef3ff;
 }
 .modal-body{
     margin-top: 0px;
