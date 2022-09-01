@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -323,5 +324,30 @@ public class AnalyseController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("analysisDetail1");
 		return mav;
+	}
+	
+	@RequestMapping("/cardCompare")
+	public String LargeCategoryImg(Model model){
+
+		ArrayList<LargeCategory> LargeCategoryList = new ArrayList<>();
+		ArrayList<String> categoryName=new ArrayList<>();
+		ArrayList<String> categoryImg=new ArrayList<>();
+		try {
+			
+			LargeCategoryList = analyseService.LargeCategroyList();
+			for (LargeCategory temp : LargeCategoryList) {
+				categoryName.add(temp.getLargeCategoryName());
+				categoryName.add(temp.getLargeCategoryImage());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		model.addAttribute("categoryName",categoryName);
+		model.addAttribute("categoryImg", categoryImg);
+
+		
+		return "/cardCompare2";
 	}
 }
