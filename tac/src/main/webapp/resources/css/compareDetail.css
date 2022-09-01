@@ -7,17 +7,18 @@
 }
 
 body{
-    background:#f5f5f5;
+    background-image: url(../image/water_splash.jpg);
     margin-top:13%;
     font-family: 'Cafe24Ssurround';
 
 }
 
 .cardImg {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+    width: 70%;
+    max-width: 70%;
+    height: 70%;
     -webkit-backface-visibility: hidden;
+    margin:6% 15%;
 }
 
 div #cardName {
@@ -39,9 +40,9 @@ b, strong {
 
 .cardDetail {
   margin: 20px 0;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 30px 40px;
-  border-radius: 5px;
+  border-radius: 10px;
   
 }
 
