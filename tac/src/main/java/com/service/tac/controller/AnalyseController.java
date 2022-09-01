@@ -21,6 +21,7 @@ import com.service.tac.model.vo.ConsumeAnalysis_ByDay;
 import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
 import com.service.tac.model.vo.LargeCategory;
+import com.service.tac.model.vo.Member;
 
 @Controller
 public class AnalyseController {
@@ -35,8 +36,17 @@ public class AnalyseController {
 		// json 용
 		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
 		// ID
-		String id = "RYU";
-		System.out.println("[ID] " +id);
+		String id = "";
+		Member sessionmember = (Member) session.getAttribute("member");
+		if ( sessionmember == null ) {
+			System.out.println("로그인 안한 오류");
+			String view = "consumptionAnalysis";
+			mav.setViewName(view);
+			return mav;
+		}
+		
+		id = sessionmember.getMemberId();
+//		System.out.println("[ID] " + id);
 
 		// 1. 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();
@@ -115,6 +125,8 @@ public class AnalyseController {
 		for (int i = 0; i < AnalLargeSum.size(); i++) {
 			int meSum = AnalLargeSum.get(i).getSum();
 			int avgSum = AnalLargeSumAvg.get(i).getSum();
+//			System.out.println(AnalLargeSum.get(i).getLCname() + " : " + meSum + "   -----     " + avgSum);
+//			System.out.println(Math.abs(meSum - avgSum));
 			myTotalConsume += meSum;
 			avgTotalConsume += avgSum;
 			if (meSum > avgSum) {
@@ -143,6 +155,7 @@ public class AnalyseController {
 			if ( Math.abs(meSum - avgSum) > gapM ) {
 				gap = AnalLargeSum.get(i).getLCname();
 				gapM =  Math.abs(meSum - avgSum);
+//				System.out.println(gap + " : " + gapM);
 			}
 
 			
