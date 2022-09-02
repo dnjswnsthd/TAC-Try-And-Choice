@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.service.tac.model.vo.Member"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,16 +85,40 @@
 </head>
 
 <body>
+
 	<nav>
 		<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	</nav>
+	<!-- 세션 체크 -->
+	<%
+		Member member = (Member) session.getAttribute("member");
+		if ( member == null ) {
+	%>
+	<script> 
+		swal({
+				title: "로그인이 필요한 서비스 입니다!",
+				icon: "error",
+			}).then(function(result) {
+				console.log(result);
+				location.href = '/login';
+			});
+	</script>
+	<%
+		}
+	%>
 	
 	 <div class="container">
 	 	<div class="row justify-content-around">
+	 		<header>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name}님이 선택한 카드의 체험 결과</h1>
+					<p class="fs-5 text-muted" id="subtitle"> 소지한 카드와 선택한 카드의 혜택을 비교해 드립니다 </p>
+				</div>
+			</header>
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
-	 				<div id="cardName">2030 언택트 체크카드</div>
-	 				<img class="cardImg" src="resources/image/card/card_horizon01.jpg">
+	 				<div id="cardName">${myInfo.cardName}</div>
+	 				<img class="cardImg" src="resources/image/card/${myInfo.cardImg}">
 	 			</div>
 	 			
 	 			<div class="cardDetail">
@@ -166,8 +191,8 @@
 	 		
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
-		 			<div id="cardName">BNK 프렌즈 체크카드</div>
-	 				<img class="cardImg" src="resources/image/card/card_horizon02.jpg">
+		 			<div id="cardName">${info.cardName}</div>
+	 				<img class="cardImg" src="resources/image/card/${info.cardImg}">
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail">

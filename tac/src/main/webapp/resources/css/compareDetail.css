@@ -2,17 +2,26 @@
 
 body{
     background-image: url(../image/water_splash.jpg);
-    margin-top:13%;
 }
 
 .cardImg {
-    width: 100%;
+    width: 50%;
     max-width: 90%;
     height: 70%;
     -webkit-backface-visibility: hidden;
-    margin: 3% 5%;
+    margin: 3% 25%;
     border-radius: 12px;
     box-shadow: 6px 2px 2px gray;
+}
+
+#analysisTitle{
+    font-family: 'Cafe24Ohsquare', sans-serif;
+	color: #000000;	
+    font-size: 2.3rem;
+}
+#subtitle{
+    font-family: 'Pretendard-Regular';
+    margin-bottom:-2%;
 }
 
 div #cardName {
