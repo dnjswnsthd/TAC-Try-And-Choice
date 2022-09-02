@@ -16,7 +16,7 @@
 <link href="/resources/css/header.css" rel="stylesheet" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" id="header">
+	<nav class="navbar navbar-expand-lg navbar-light" id="header" style="z-index:2147483647" >
 		<div class="container">
 			<a class="navbar-brand" href="/main"><img id="logo"
 				src="/resources/image/logo1.png" /><img id="logo2"
