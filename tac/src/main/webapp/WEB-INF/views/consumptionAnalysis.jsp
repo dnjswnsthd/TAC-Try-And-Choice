@@ -33,24 +33,7 @@
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	<!-- 세션 체크 -->
-	<%
-		Member member = (Member) session.getAttribute("member");
-		if ( member == null ) {
-	%>
-	<script> 
-		swal({
-				title: "로그인이 필요한 서비스 입니다!",
-				icon: "error",
-			}).then(function(result) {
-				console.log(result);
-				location.href = '/login';
-			});
-	</script>
-	<%
-		}
-	%>
-	
+
 	<div class="page-content">
 		<div class="container py-3">
 			<header>
