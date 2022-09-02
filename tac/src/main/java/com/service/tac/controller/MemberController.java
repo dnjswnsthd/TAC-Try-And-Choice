@@ -90,17 +90,15 @@ public class MemberController {
 	
 	@PostMapping("/login_result")
 	public String login(String id, String password, Model model, HttpServletRequest request) {
-		
 		try {
 			Member member = memberService.login(new Member(id, password));
 	        if(member != null) {
-	        	System.out.println(member.toString());
 	        	model.addAttribute("member", member);
 	        	HttpSession session = request.getSession();
 	        	session.setAttribute("member",member);
 	            return "redirect:/main";
 	        }else {
-	            return "/error";
+	        	return "/member/login_error";
 	        }
 	    } catch (Exception e) {
 	        return "/error";
@@ -136,5 +134,15 @@ public class MemberController {
 			return "/error";
 		}
 		
+	}
+
+	@RequestMapping("/needlogin")
+	public String needlogin() {
+		return "/member/you_need_login";
+	}
+	
+	@RequestMapping("/notadmin")
+	public String notadmin() {
+		return "/member/you_need_authority";
 	}
 }

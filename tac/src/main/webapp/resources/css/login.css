@@ -13,26 +13,47 @@
     box-sizing: border-box
 }
 
-body {
-    background-image: url(../image/signupBackground03.jpg);
-	background-repeat: no-repeat;
-	background-position: 0% 15%;
-	background-size: auto;
-    height: 100vh;
-    font-family: 'Poppins', sans-serif;
-
+#logintitleimg{
+    width: 70%;
+    height: 70%;
 }
 
-.wrapper {
+#logintitletext{
+    font-family: 'Pretendard-Regular';
+    font-size: 1.2rem;
+}
+
+#loginbox{
+    text-align: center;
     max-width: 600px;
     border-radius: 10px;
     margin: 50px auto;
     padding: 30px 40px;
-    box-shadow: 10px 10px 40px rgb(206, 206, 206)
+    box-shadow: 10px 10px 40px rgb(217, 217, 217);
+    opacity:0.92;
+}
+
+#singupbtn{
+    margin-top: 0;
+    background-color: #373234; 
+}
+#singupbtn:hover {
+    color: rgb(0, 0, 0);
+    background-color: #FF788B;  
+}
+
+body {
+    background-image: url(../image/signupBackground03.jpg);
+	background-repeat: no-repeat;
+	background-position: 0% 35%;
+	background-size: auto;
+    height: 100vh;
+    font-family: 'Pretendard-Regular';
+
 }
 
 .h2 {
-	font-family: 'establishRoomNo703OTF', sans-serif;
+	font-family: 'Cafe24Ohsquare';
     font-size: 20rem;
     font-weight: bold;
     color: #400485;
@@ -40,10 +61,12 @@ body {
 }
 
 .h4 {
-    font-family: 'Poppins', sans-serif
+    font-family: 'Pretendard-Regular';
 }
 
 .input-field {
+    margin:auto;
+    width: 26.5rem;
     border-radius: 5px;
     padding: 5px;
     display: flex;
@@ -140,13 +163,19 @@ a:hover {
 }
 
 .btn.btn-block {
-    border-radius: 20px;
-    background-color: #400485;
+    font-family: 'Cafe24Ohsquare';
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background-color:#373234; 
     color: #fff
 }
 
+.regibtn{
+    width: 12rem;
+}
+
 .btn.btn-block:hover {
-    background-color: #55268be0
+    background-color:  #FF788B;  
 }
 
 @media(max-width: 575px) {

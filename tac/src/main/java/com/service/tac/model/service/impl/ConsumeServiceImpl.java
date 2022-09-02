@@ -30,7 +30,7 @@ public class ConsumeServiceImpl implements ConsumeService {
 
 	@Override
 	public int updateConsumeInfo(Consume consume) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(ConsumeMapper.class).updateConsumeInfo(consume);
 	}
 
 	@Override

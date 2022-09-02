@@ -26,6 +26,16 @@
 <script src="/resources/js/card.js" rel="text/javascript"></script>
 </head>
 <body>
+	<%
+		
+		
+	%>
+	<script>
+	</script>
+	
+	<%
+		
+	%>
 	<div class="topSection">
 		<div class="maintext">
 			<h1>

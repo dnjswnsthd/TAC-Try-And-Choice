@@ -33,23 +33,6 @@
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	<!-- 세션 체크 -->
-	<%
-		Member member = (Member) session.getAttribute("member");
-		if ( member == null ) {
-	%>
-	<script> 
-		swal({
-				title: "로그인이 필요한 서비스 입니다!",
-				icon: "error",
-			}).then(function(result) {
-				console.log(result);
-				location.href = '/login';
-			});
-	</script>
-	<%
-		}
-	%>
 	
 	<div class="page-content">
 		<div class="container py-3">
@@ -63,7 +46,7 @@
 
 			<main>
 			<div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
-				<div class="col">
+				<div class="col" id="analcontent">
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div id="myChartHead" class="card-header py-3"
 							data-bs-toggle="modal" data-bs-target="#myModal">
@@ -318,16 +301,18 @@
 
 			//// modal2
 			// DaytypeDesc
-			if ( ('${myTotalConsume}' - '${avgTotalConsume}') > 100000 ) {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 많이 쓰십니다 </li>');
-			} else if ( ('${avgTotalConsume}' - '${myTotalConsume}') < -100000 )  {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 적게 쓰십니다 </li>');
-			} else if ( Math.abs('${myTotalConsume}' - '${avgTotalConsume}') < 100000 )  {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들과 비슷하게 돈을 쓰시네요.  </li>');
-			}
+			
 
 			$('#AnalyseModal2_UL').append('<li> 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
 			$('#AnalyseModal2_UL').append('<li> 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용합니다.</li>');
+			if ( ('${myTotalConsume}' > '${avgTotalConsume}') ) {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 많이 쓰십니다. </li>');
+			} else if ( ('${avgTotalConsume}' > '${myTotalConsume}') )  {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 적게 쓰십니다. </li>');
+			} 
+			if ( Math.abs('${myTotalConsume}' - '${avgTotalConsume}') < 100000 )  {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님의 총 지출은 다른 사람과 크게 차이가 나지 않습니다. </li>');
+			}
 			$('#AnalyseModal2_UL').append('<li> ${DaytypeDesc} </li>');
 			$('#AnalyseModal2_UL').append('<li> 일주일 중 주로 <b class="emphasize"> ${maxday} </b>에 돈을 쓰시구요. </li>');
 			
@@ -357,11 +342,11 @@
                 label: 'My First Dataset',
                 data: mypieData,
                 backgroundColor: [
-                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
-                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
-                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#FF8BA7', '#FFC6C7', '#FAEEE7', '#C3F0CA','#B2A4FF',
+                    '#7FBCD2', '#F6C6EA', '#E1FFEE', '#FFFFDD','#F47C7C',
+                    '#FF8AAE', '#B1BCE6', '#B7E5DD', '#A5F1E9','#B4FF9F',
+                    '#9ADCFF', '#d6ce93', '#f4acb7', '#FFF89A','#72ddf7',
+                    '#FFB2A6', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -507,11 +492,11 @@
                 label: 'My First Dataset',
                 data: avgpieData,
                 backgroundColor: [
-                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
-                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
-                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#FF8BA7', '#FFC6C7', '#FAEEE7', '#C3F0CA','#B2A4FF',
+                    '#7FBCD2', '#F6C6EA', '#E1FFEE', '#FFFFDD','#F47C7C',
+                    '#FF8AAE', '#B1BCE6', '#B7E5DD', '#A5F1E9','#B4FF9F',
+                    '#9ADCFF', '#d6ce93', '#f4acb7', '#FFF89A','#72ddf7',
+                    '#FFB2A6', '#8093f1'
                 ],
                 hoverOffset: 4
             }]

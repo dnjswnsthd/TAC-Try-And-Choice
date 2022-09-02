@@ -11,6 +11,13 @@ public class Consume {
 	public Consume() {
 		super();
 	}
+	
+	public Consume(int consumeId, String consumeDate) {
+		super();
+		this.consumeId = consumeId;
+		this.consumeDate = consumeDate;
+	}
+
 
 	public Consume(int consumePrice, String consumeDate, int largeCategoryId, int smallCategoryId, String memberId) {
 		super();
