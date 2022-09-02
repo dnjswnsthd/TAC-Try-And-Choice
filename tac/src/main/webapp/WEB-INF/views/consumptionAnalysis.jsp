@@ -33,7 +33,7 @@
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-
+	
 	<div class="page-content">
 		<div class="container py-3">
 			<header>

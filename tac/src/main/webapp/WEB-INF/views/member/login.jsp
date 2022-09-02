@@ -38,7 +38,7 @@
 						</div>
 					</div>
 					<button class="btn btn-block text-center my-3 regibtn" type="submit">로그인</button>
-					<span style="margin-left: 2rem";></span>
+					<span style="margin-left: 2rem"></span>
 					<button id="singupbtn"  class="btn btn-block text-center my-3 regibtn" onclick="goRegister()">회원가입</button>
 				</form>
 			</div>
