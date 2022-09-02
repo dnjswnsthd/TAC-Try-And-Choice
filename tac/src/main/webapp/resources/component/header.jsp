@@ -54,7 +54,8 @@
 					      </div>
 					      <div class="optionList">
 					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/mypage">개인, 카드 정보 수정</a>
-					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/updateConsume">소비 정보 수정</a>
+							<li class="nav-item" id="optionav"><a class="nav-link2" href="/updateConsume">소비 정보 수정</a>
+							<li class="nav-item" id="optionav"><a class="nav-link2" href="/deleteMemberPage">회원 탈퇴</a>
 					      </div>
 					    </div>
 						<li class="nav-item"><a class="nav-link" onclick="logout();">LOGOUT</a></li>
