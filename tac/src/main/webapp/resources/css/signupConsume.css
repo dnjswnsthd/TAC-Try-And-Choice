@@ -197,3 +197,9 @@ option{
 select{
 	font-family: none !important;
 }
+
+#h5{
+	font-size: 1.4rem !important;
+	font-family: 'Pretendard-Regular' !important;
+	margin-top: -1%;
+}

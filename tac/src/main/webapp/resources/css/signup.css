@@ -100,7 +100,7 @@ body {
   }
 
 .page-content {
-	margin-top: -14%;
+	margin-top: -10%;
 	width: 100%;
 	display: flex;
 	display: -webkit-flex;
@@ -896,25 +896,14 @@ body {
 #submitBtn{
 	width: 10vmax;
 	height: 3vmax;
-	margin-left: 25%;
+	margin-left: 40%;
 	background-color: #373234;
 	color: white;
 	display: inline-block;
 }
 
 #submitBtn:hover{
-	background-color: #FF788B !important;
-}
-
-#moveLogin{
-	width: 10vmax;
-	height: 3vmax;
-	background-color: #373234;
-	color: white;
-}
-
-#moveLogin:hover{
-	background-color: #FF788B !important;
+	background-color: #FF788B;
 }
 
 #check{
@@ -936,15 +925,20 @@ body {
 
 .btn{
 	opacity:70%;
-	background-color: #373234 !important;
+	background-color: #373234;
 	font-family: 'Pretendard-Regular' !important;
 }
 
 .btn:hover{
 	opacity:70%;
-	background-color: #FF788B !important;
+	background-color: #FF788B;
 }
 
 #clear{
 	margin-bottom: 5%;
+}
+
+.swal-title{
+	font-size: 1rem;
+	font-family: 'Pretendard-Regular' !important;
 }
