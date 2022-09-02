@@ -35,7 +35,7 @@
 
 #singupbtn{
     margin-top: 0;
-    background-color: #001e4b;
+    background-color: #373234; 
 }
 #singupbtn:hover {
     color: rgb(0, 0, 0);
@@ -166,7 +166,7 @@ a:hover {
     font-family: 'Cafe24Ohsquare';
     font-size: 1.5rem;
     border-radius: 10px;
-    background-color: #400485;
+    background-color:#373234; 
     color: #fff
 }
 

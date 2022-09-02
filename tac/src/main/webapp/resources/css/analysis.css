@@ -96,13 +96,13 @@ body {
 #myChartHead {
 	padding-bottom: 0px;
 	padding-top: 10px;
-    color: white;
-	background-color: #373234;
+    color: rgb(0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 #myChartHead2 {
-    color: white;
-	background-color: #373234;
+    color: rgb(0, 0, 0);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 
 .myChartHeadFont{
@@ -195,7 +195,7 @@ body {
 /* 소비 패턴 분석 강조 문구  */
 #maxday{
     font-size: 30px;
-    color: #ff9812;
+    color: #ff0000;
 }
 .emphasize{
     font-size: 28px;

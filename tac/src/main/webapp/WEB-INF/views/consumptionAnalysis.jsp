@@ -301,16 +301,18 @@
 
 			//// modal2
 			// DaytypeDesc
-			if ( ('${myTotalConsume}' - '${avgTotalConsume}') > 100000 ) {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 많이 쓰십니다 </li>');
-			} else if ( ('${avgTotalConsume}' - '${myTotalConsume}') < -100000 )  {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 적게 쓰십니다 </li>');
-			} else if ( Math.abs('${myTotalConsume}' - '${avgTotalConsume}') < 100000 )  {
-				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들과 비슷하게 돈을 쓰시네요.  </li>');
-			}
+			
 
 			$('#AnalyseModal2_UL').append('<li> 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
 			$('#AnalyseModal2_UL').append('<li> 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용합니다.</li>');
+			if ( ('${myTotalConsume}' > '${avgTotalConsume}') ) {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 많이 쓰십니다. </li>');
+			} else if ( ('${avgTotalConsume}' > '${myTotalConsume}') )  {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님은 다른 사람들 보다 돈을 적게 쓰십니다. </li>');
+			} 
+			if ( Math.abs('${myTotalConsume}' - '${avgTotalConsume}') < 100000 )  {
+				$('#AnalyseModal2_UL').append('<li> ${member.name}님의 총 지출은 다른 사람과 크게 차이가 나지 않습니다. </li>');
+			}
 			$('#AnalyseModal2_UL').append('<li> ${DaytypeDesc} </li>');
 			$('#AnalyseModal2_UL').append('<li> 일주일 중 주로 <b class="emphasize"> ${maxday} </b>에 돈을 쓰시구요. </li>');
 			

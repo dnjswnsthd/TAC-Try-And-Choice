@@ -78,12 +78,24 @@ public class AnalyseController {
 		}
 
 		// 2. 날짜 통계
+		int startM = 0;
+		int middleM = 0;
+		int endM = 0;
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
 			HashMap<String, Object> hmap_bydate = new HashMap<>();
 			ArrayList<ConsumeAnalysis_Desc> list = analyseService.AnalyseLC_DESC(id);
 			for (int i = 0; i < list.size(); i++) {
 				ConsumeAnalysis_Desc temp = list.get(i);
+				System.out.println(temp.toString());
+				int day = Integer.parseInt(temp.getDate().substring(2,4));
+				if ( 1 <= day && day <= 10 ) {
+					startM += temp.getPrice();
+				} else if ( 11 <= day && day <= 20 ) {
+					middleM += temp.getPrice();
+				} else {
+					endM += temp.getPrice();
+				}
 				hmap.put(Integer.toString(i + 1),
 						temp.getLCName() + ", " + temp.getSCName() + ", " + temp.getPrice() + ", " + temp.getDate());
 				hmap_bydate.put(temp.getDate(),
@@ -228,22 +240,12 @@ public class AnalyseController {
 		mav.addObject("ConsumeType", type);
 		
 		// 5. 평균 날짜
-		int startM = 0;
-		int middleM = 0;
-		int endM = 0;
 		ArrayList<ConsumeAnalysis_ByDate> AnalDate = new ArrayList<ConsumeAnalysis_ByDate>();
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
 			AnalDate = analyseService.AnalyseLC_DESC_AVG(MyAge);
 			for (ConsumeAnalysis_ByDate temp : AnalDate) {
-				int day = Integer.parseInt(temp.getDate().substring(2,4));
-				if ( 1 <= day && day <= 10 ) {
-					startM += temp.getMoney();
-				} else if ( 11 <= day && day <= 20 ) {
-					middleM += temp.getMoney();
-				} else {
-					endM += temp.getMoney();
-				}
+				
 				hmap.put(temp.getDate(), (Integer) temp.getMoney());
 			}
 			bList.add(hmap);
@@ -259,7 +261,7 @@ public class AnalyseController {
 		double middleMD = (double) ( (double) middleM / (double) myTotalConsume );
 		double endMD = (double) ( (double) endM / (double) myTotalConsume );
 		double mybiggestMD = (double) ( (double) mybiggestM / (double) myTotalConsume );
-		
+		System.out.println(startM + "  " + middleM + "   " + endM);
 		if ( startM > middleM && startM > endM ) {
 			daytype = "일단 돈을 쓰고 시작하는";
 			dattypeDesc = "달의 출발을 소비와 함께 시작하시는군요. ";
@@ -279,7 +281,7 @@ public class AnalyseController {
 			dattypeDesc = "돈을 잘 사용하시지 않으시네요.";
 		}
 		
-		if ( mybiggestMD >= 0.25 ) {
+		if ( mybiggestMD >= 0.3	 ) {
 			daytype = "간헐적 지름";
 			dattypeDesc = "가끔씩 돈을 크게 사용하실 때가 있네요.";
 		} else if ( mybiggestMD >= 0.5 ) {
