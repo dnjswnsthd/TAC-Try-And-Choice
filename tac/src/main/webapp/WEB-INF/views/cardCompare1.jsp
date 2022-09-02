@@ -77,7 +77,8 @@
 			<div class="col-md-6">
 				<div class="project-info-box">
 					<h3>카테고리별 혜택</h3>
-					<button class="myCard">
+					<button onclick="location.href='/cardCompare?cardId=${info.cardId}'"
+											 value="카드 선택" class="myCard">
 						<span>내 카드와 비교</span>
 						<span>${name3 }, ${discount3 }</span>
 						<span>${name2 }, ${discount2 }</span>
