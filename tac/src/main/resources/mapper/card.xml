@@ -35,6 +35,19 @@
 		</association>
 		
 	</resultMap>
+	
+	<resultMap type="cardDetailManage" id="cardDetailManageMap">
+		<id column="card_detail_id" property="cardDetailId" />
+		<result column="discount_percent" property="discountPercent" />
+		<result column="card_id" property="cardId" />
+		<result column="large_category_id" property="largeCategoryId" />
+		<result column="small_category_id" property="smallCategoryId" />
+		<result column="large_category_name" property="largeCategoryName" />
+		<result column="small_category_name" property="smallCategoryName" />
+		<result column="min_payment" property="minPayment" />
+		<result column="max_discount" property="maxDiscount" />
+		<result column="max_count" property="mixCount" />
+	</resultMap>
 
 	<!-- Card 전체 정보 Select -->
 	<select id="getAllCardInfo" resultMap ="card">
@@ -55,6 +68,27 @@
 		FROM card
 		WHERE card_id=#{VALUE}
 	</select>
+	
+	<select id="getSelectedCard" parameterType="int" resultMap="card">
+		SELECT card_id, card_name, card_desc, card_img_horizon, max_discount  
+		FROM card
+		WHERE card_id=#{VALUE}
+	</select>
+	
+	<select id="getSelectedCardDetail" parameterType="int" resultMap="cardDetailManageMap">
+		SELECT cd.CARD_DETAIL_ID, cd.CARD_ID, lc.LARGE_CATEGORY_NAME, sc.SMALL_CATEGORY_NAME, lc.LARGE_CATEGORY_ID , sc.SMALL_CATEGORY_ID , cd.MIN_PAYMENT , cd.MAX_DISCOUNT , cd.MAX_COUNT , cd.DISCOUNT_PERCENT
+		FROM CARD_DETAIL cd JOIN LARGE_CATEGORY lc ON (cd.LARGE_CATEGORY_ID = lc.LARGE_CATEGORY_ID)
+			JOIN SMALL_CATEGORY sc ON (cd.SMALL_CATEGORY_ID = sc.SMALL_CATEGORY_ID)
+		WHERE card_id = #{cardId}
+	</select>
+	
+	<update id="updateCard" parameterType="card">
+		UPDATE CARD
+		SET	card_name = #{cardName}, card_desc = #{cardDesc}, max_discount = #{maxDiscount}
+		WHERE card_id = #{cardId}
+	</update>
+	
+	
 	
 
 </mapper>

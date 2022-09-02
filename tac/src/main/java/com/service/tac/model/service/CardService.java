@@ -6,11 +6,18 @@ import java.util.HashMap;
 
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
+import com.service.tac.model.vo.CardDetailManage;
 
 public interface CardService {
 	
 	// 전체 카드 정보 가져오기
 	public ArrayList<Card> getAllCardInfo() throws SQLException;
+	
+	// 선택된 카드 정보 가져오기
+	public Card getSelectedCard(int cardId) throws SQLException;
+	
+	// 선택된 카드 상세 정보 가져오기
+	public ArrayList<CardDetailManage> getSelectedCardDetail(int cardId) throws SQLException;
 
 	// 카테고리별 할인 금액 합계와 전체 합계 금액 가져오기
 	public HashMap<String, Integer> discountByCategory(int userId, int cardId) throws SQLException;
@@ -29,4 +36,7 @@ public interface CardService {
 	
 	// 기존 카드 삭제 (관련된 cardDetail 삭제 cascade)
 	public int deleteCard(int cardId) throws SQLException;
+
+	// 카드 정보 수정
+	public int updateCard(Card card) throws SQLException;
 }

@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="/resources/css/insertCardElement.css">
         <link rel="stylesheet" href="/resources/css/insertCardStyle.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     $(function(){
     	$('#addLargeName').on('click', function() {
@@ -26,15 +27,16 @@
     				name : largeName
     			},
     			success:function(result) {
-    				alert(largeName + "이(가) 추가 되었습니다.");
+    				swal('등록 완료', largeName + '이(가) 추가 되었습니다', 'success')
     				var large="";
     				var large_select="";
     				for (key in result) {
-    					large = large + '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
+    					large += '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
     					large_select += '<option value='+ key +'>'+ result[key] +'</option>'
     				}
     				$('#largeTable').html(large);
     				$('#large_category_selection').html(large_select);
+    				document.getElementById('add_large_category_name').value=null;
     			}
     		});
     	});
@@ -48,7 +50,7 @@
     				name : largeNameDel
     			},
     			success:function(result) {
-    				alert(largeNameDel + "이(가) 삭제되었습니다");
+    				swal('삭제 완료', largeNameDel + '이(가) 삭제되었습니다', 'success');
     				var large="";
     				var large_select="";
     				for (key in result) {

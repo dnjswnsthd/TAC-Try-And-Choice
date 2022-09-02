@@ -15,26 +15,82 @@
 		<link rel="stylesheet" href="/resources/css/insertCardElement.css">
         <link rel="stylesheet" href="/resources/css/insertCardStyle.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     $(function(){
-    	$('#addLargeName').on('click', function() {
-    		const largeName = document.getElementById('add_large_category_name').value;
+    	$('#addSmallName').on('click', function() {
+    		var largeId = $('#large_category_selection').val();
+    		var smallName = document.getElementById('add_small_category_name').value;
     		$.ajax({
     			type : 'post',
-    			url : '/category/LargeRegAndgetCategory',
+    			url : '/category/smallRegAndgetCategory',
     			data : {
-    				name : largeName
+    				smallname : smallName,
+    				largeid : largeId
     			},
-    			success:function(result) {
-    				alert(largeName + "가(이) 추가 되었습니다.");
-    				var large="";
-    				for (key in result) {
-    					large = large + '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
-    				}
-    				$('#largeTable').html(large);
-    			}
+    			
+    			success : function(result) {
+    				swal('등록 완료', smallName + '이(가) 추가 되었습니다', 'success');
+    				var small = "";
+					var small_select = "";
+					for (key in result) {
+						small += '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
+						small_select += '<option value='+ key +'>'+ result[key] +'</option>'
+					}
+					$('#smallTable').html(small);
+					$('#small_category_selection').html(small_select);
+					document.getElementById('add_small_category_name').value=null;
+    		 	}
     		});
     	});
+    	
+    	$('#large_category_selection').change(function() {
+    		$.ajax({
+				type : 'post',
+				url : '/category/getSmallCategory',
+				data : {
+					id : $(this).val()
+				},
+
+				success : function(result) {
+					var small = "";
+					var small_select = "";
+					for (key in result) {
+						small += '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
+						small_select += '<option value='+ key +'>'+ result[key] +'</option>'
+					}
+					$('#smallTable').html(small);
+					$('#small_category_selection').html(small_select);
+				}
+			});
+    	});
+    	
+    	$('#deleteSmallName').on('click', function() {
+    		const smallNameDel = $('#small_category_selection option:selected').text();
+    		const largeId = $('#large_category_selection').val();
+    		$.ajax({
+    			type:'post',
+    			url: '/category/deleteSmallCategory',
+    			data : {
+    				name : smallNameDel,
+    				largeid : largeId
+    			},
+    			success:function(result) {
+    				swal('삭제 완료', smallNameDel + '이(가) 삭제되었습니다', 'success');
+    				var small = "";
+					var small_select = "";
+					for (key in result) {
+						small += '<tr><td>'+ key +'</td><td>'+ result[key] +'</td></tr>'
+						small_select += '<option value='+ key +'>'+ result[key] +'</option>'
+					}
+					$('#smallTable').html(small);
+					$('#small_category_selection').html(small_select);
+    			}
+    			
+    		});
+    	});
+    	
+    	
     });	
     </script>
     </head>
@@ -46,14 +102,22 @@
             <!-- <div class="inner-bg"> -->
                 <div class="container">
                     <div class="card_register">
-                    	<b>대분류 추가</b>
+                    	<b>소분류 추가</b>
                     </div>                
                     <div class="row">
                         <div class="col-sm-5">
 	                       	<div class="large_category_list">
-	                      		 <b>대분류</b>
+	                      		 <b>대분류 선택</b>
 	                       	</div>    	
 	                             <div class="form-bottom" id="form-box-left">
+				                    <select name="large_category" id="large_category_selection" >
+				                    	<option value="largeName">==대분류 선택==</option>
+										<c:forEach items="${largeCategory}" var="large">
+											<option value="${large.largeCategoryId}">${large.largeCategoryName}</option>
+										</c:forEach>
+									</select>
+			                    </div>
+			                    <div class="form-bottom" id="form-box-left">
 				                    <div class="tbl-header">
 										<table cellpadding="0" cellspacing="0" border="0">
 									    	<thead>
@@ -65,17 +129,12 @@
 									    </table>
 									</div>
 									<div class="tbl-content">
-									    <table cellpadding="0" cellspacing="0" border="0" id="largeTable">
-								        		<c:forEach items="${largeCategory}" var="large">
-					                    			<tr>
-														<td>${large.largeCategoryId}</td>
-														<td>${large.largeCategoryName}</td>
-													</tr>
-												</c:forEach>
-									    </table>
+									    <table cellpadding="0" cellspacing="0" border="0" id="smallTable">
+									    
+										</table>
 									</div>
 			                    </div>
-		                    </div>     
+		                </div>     
                         	
                         <div class="col-sm-7">
                         	<div class="form-box" id="form-box-right">
@@ -89,9 +148,25 @@
 	                            </div>
 	                            <div class="form-bottom">
 				                    <!-- <form role="form" action="/category/LargeReg.do" method="post" class="reg_card_detail"> -->
-				                    	<b class="inline_text">NAME</b>&nbsp;&nbsp;&nbsp;<input type="text" placeholder="추가할 내용을 입력해주십시오...." name="largeCategoryName", id="add_large_category_name">
+				                    	<b class="inline_text">NAME</b>&nbsp;&nbsp;&nbsp;<input type="text" placeholder="추가할 내용을 입력해주십시오...." name="smallCategoryName", id="add_small_category_name">
 				                        <br><br><br>
-				                        <button type="submit" class="btn" id="addLargeName">이름 등록</button>
+				                        <button type="submit" class="btn" id="addSmallName">이름 등록</button>
+				                    <!-- </form> -->
+			                    </div>
+                        	</div>
+                        	<div class="form-box" id="form-box-right-bottom">
+                        		<div class="form-top" id="sale_detail">
+	                        		<li>
+	                        			<h3><b>삭제</b></h3>
+	                        		</li>
+	                            </div>
+	                            <div class="form-bottom">
+				                    <!-- <form role="form" action="/category/LargeReg.do" method="post" class="reg_card_detail"> -->
+				                    	<select name="small_category" id="small_category_selection" >
+											
+										</select>
+				                        <br><br><br>
+				                        <button type="submit" class="btn" id="deleteSmallName">삭제</button>
 				                    <!-- </form> -->
 			                    </div>
                         	</div>

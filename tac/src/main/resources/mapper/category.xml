@@ -26,9 +26,29 @@
 		<result column="max_count" property="maxCount" />
 	</resultMap>
 	
+	<!-- Insert card Detail -->
+	<insert id="registerCardDetail" parameterType="cardDetail">
+		<selectKey keyProperty="cardDetailId" resultType="int" order="BEFORE">
+			SELECT card_detail_seq.nextVal FROM dual
+		</selectKey>
+		INSERT INTO 
+		card_detail(card_detail_id, discount_percent, card_id, large_category_id, small_category_id, min_payment, max_discount, max_count)
+		VALUES (#{cardDetailId}, #{discountPercent}, #{cardId}, #{largeCategoryId}, #{smallCategoryId}, #{minPayment}, #{maxDiscount}, #{maxCount})
+	</insert>
+	
+	<!-- Insert Large Category -->
 	<insert id="registerLargeCategory" parameterType="String">
-			INSERT INTO large_category(large_category_id, large_category_name)
-			VALUES (large_category_seq.nextVal, #{largeCategoryName})
+		INSERT INTO large_category(large_category_id, large_category_name)
+		VALUES (large_category_seq.nextVal, #{largeCategoryName})
+	</insert>
+	
+	<!-- Insert Small Category -->
+	<insert id="registerSmallCategory" parameterType="smallCategory">
+		<selectKey keyProperty="smallCategoryId" resultType="int" order="BEFORE">
+			SELECT small_category_seq.nextVal FROM dual
+		</selectKey>
+		INSERT INTO small_category(small_category_id, small_category_name, large_category_id)
+		VALUES (#{smallCategoryId}, #{smallCategoryName}, #{largeCategoryId})
 	</insert>
 	
 	<!-- Get Large Category -->
@@ -44,9 +64,14 @@
 		where large_category_id = ${id}
 	</select>
 	
-	<!-- delete large category By Large Category Id -->
+	<!-- delete large category By Large Category Name -->
 	<delete id="deleteLargeCategory" parameterType="string">
 		DELETE FROM large_category WHERE large_category_name = #{largeCategoryName}
+	</delete>
+	
+	<!-- delete small category By Small Category Name -->
+	<delete id="deleteSmallCategory" parameterType="string">
+		DELETE FROM small_category WHERE small_category_name = #{smallCategoryName}
 	</delete>
 
 	

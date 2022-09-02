@@ -28,6 +28,7 @@ public class RouteController {
 	
 	@Autowired
 	CategoryService categoryService;
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
@@ -88,17 +89,15 @@ public class RouteController {
 		
 		return "cardCompare2";
 	}
-	@RequestMapping(value = "/manage", method = RequestMethod.GET)
-	public String manage() {
-		return "/manage/insert_card";
-	}
 	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
 	public String manage_card(Model model) {
 		try {
-			List<LargeCategory> list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", list);
+			List<LargeCategory> large_list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", large_list);
+			List<Card> card_list = cardService.getAllCardInfo();
+			model.addAttribute("showAllCard", card_list);
 			return "/manage/insertCard";
-			
+				
 		} catch(Exception e) {
 			// 에러페이지
 			return "/error";
@@ -108,7 +107,6 @@ public class RouteController {
 	@GetMapping(value = "/addLargeCategory")
 	public String addLargeCategory(Model model) {
 		try {
-
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);
 			return "/manage/insert_card_largeCategory";
@@ -119,6 +117,33 @@ public class RouteController {
 		}
 	}
 	
+	@GetMapping(value = "/addSmallCategory")
+	public String addSmallCategory(Model model) {
+		try {
+			List<LargeCategory> list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", list);
+			return "/manage/insert_card_smallCategory";
+			
+		} catch(Exception e) {
+			// 에러페이지
+			return "/error";
+		}
+	}
+	
+	@RequestMapping(value = "/manage_card_update", method = RequestMethod.GET)
+	public String manage_card_update(Model model) {
+		try {
+			List<LargeCategory> large_list = categoryService.getAllLargeCategory();
+			model.addAttribute("largeCategory", large_list);
+			List<Card> card_list = cardService.getAllCardInfo();
+			model.addAttribute("showAllCard", card_list);
+			return "/manage/updateCard";
+			
+		} catch(Exception e) {
+			// 에러페이지
+			return "/error";
+		}
+	}
 	
 	@GetMapping(value= "/error")
 	public String error() {

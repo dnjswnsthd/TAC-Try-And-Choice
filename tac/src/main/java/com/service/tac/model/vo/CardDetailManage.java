@@ -1,59 +1,37 @@
 package com.service.tac.model.vo;
 
-// Table Name : Card_Detail
-public class CardDetail {
+public class CardDetailManage {
 	private int cardDetailId; // card_detail_id
 	private int discountPercent; // discount_percent
 	private int cardId; // card_idsel
 	private int largeCategoryId; // LARGE_CATEGORY_ID
 	private int smallCategoryId; // SMALL_CATEGORY_ID
+	private String largeCategoryName; // LARGE_CATEGORY_ID
+	private String smallCategoryName; // SMALL_CATEGORY_ID
 	private int minPayment; // MIN_PAYMENT
 	private int maxDiscount; // MAX_DISCOUNT
 	private int maxCount; // MAX_COUNT
 	private int mixCount; // MAX_COUNT
-	private SmallCategory smallCategory; 
 
-	public CardDetail() {
+	public CardDetailManage() {
 		super();
 	}
 
-	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int maxCount) {
+	public CardDetailManage(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			String largeCategoryName, String smallCategoryName, int minPayment, int maxDiscount, int maxCount,
+			int mixCount) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
 		this.cardId = cardId;
 		this.largeCategoryId = largeCategoryId;
 		this.smallCategoryId = smallCategoryId;
+		this.largeCategoryName = largeCategoryName;
+		this.smallCategoryName = smallCategoryName;
 		this.minPayment = minPayment;
 		this.maxDiscount = maxDiscount;
 		this.maxCount = maxCount;
-	}
-	
-	public CardDetail(int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int maxCount) {
-		super();
-		this.discountPercent = discountPercent;
-		this.cardId = cardId;
-		this.largeCategoryId = largeCategoryId;
-		this.smallCategoryId = smallCategoryId;
-		this.minPayment = minPayment;
-		this.maxDiscount = maxDiscount;
-		this.maxCount = maxCount;
-	}
-	
-	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int mixCount, SmallCategory smallCategory) {
-		super();
-		this.cardDetailId = cardDetailId;
-		this.discountPercent = discountPercent;
-		this.cardId = cardId;
-		this.largeCategoryId = largeCategoryId;
-		this.smallCategoryId = smallCategoryId;
-		this.minPayment = minPayment;
-		this.maxDiscount = maxDiscount;
 		this.mixCount = mixCount;
-		this.smallCategory = smallCategory;
 	}
 
 	public int getCardDetailId() {
@@ -96,6 +74,22 @@ public class CardDetail {
 		this.smallCategoryId = smallCategoryId;
 	}
 
+	public String getLargeCategoryName() {
+		return largeCategoryName;
+	}
+
+	public void setLargeCategoryName(String largeCategoryName) {
+		this.largeCategoryName = largeCategoryName;
+	}
+
+	public String getSmallCategoryName() {
+		return smallCategoryName;
+	}
+
+	public void setSmallCategoryName(String smallCategoryName) {
+		this.smallCategoryName = smallCategoryName;
+	}
+
 	public int getMinPayment() {
 		return minPayment;
 	}
@@ -112,29 +106,29 @@ public class CardDetail {
 		this.maxDiscount = maxDiscount;
 	}
 
-	public int getMixCount() {
+	public int getMaxCount() {
 		return maxCount;
 	}
 
+	public void setMaxCount(int maxCount) {
+		this.maxCount = maxCount;
+	}
+
+	public int getMixCount() {
+		return mixCount;
+	}
+
 	public void setMixCount(int mixCount) {
-		this.maxCount = mixCount;
-	}
-
-	public SmallCategory getSmallCategory() {
-		return smallCategory;
-	}
-
-	public void setSmallCategory(SmallCategory smallCategory) {
-		this.smallCategory = smallCategory;
+		this.mixCount = mixCount;
 	}
 
 	@Override
 	public String toString() {
-		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
+		return "CardDetailManage [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
-				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + maxCount + "]";
+				+ ", largeCategoryName=" + largeCategoryName + ", smallCategoryName=" + smallCategoryName
+				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", maxCount=" + maxCount
+				+ ", mixCount=" + mixCount + "]";
 	}
-
-	
 
 }
