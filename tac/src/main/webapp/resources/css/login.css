@@ -13,9 +13,33 @@
     box-sizing: border-box
 }
 
-#logintitle{
-    width: 90%;
-    height: 90%;
+#logintitleimg{
+    width: 70%;
+    height: 70%;
+}
+
+#logintitletext{
+    font-family: 'Pretendard-Regular';
+    font-size: 1.2rem;
+}
+
+#loginbox{
+    text-align: center;
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    box-shadow: 10px 10px 40px rgb(217, 217, 217);
+    opacity:0.92;
+}
+
+#singupbtn{
+    margin-top: 0;
+    background-color: #001e4b;
+}
+#singupbtn:hover {
+    color: rgb(0, 0, 0);
+    background-color: #FF788B;  
 }
 
 body {
@@ -26,15 +50,6 @@ body {
     height: 100vh;
     font-family: 'Pretendard-Regular';
 
-}
-
-.wrapper {
-    max-width: 600px;
-    border-radius: 10px;
-    margin: 50px auto;
-    padding: 30px 40px;
-    box-shadow: 10px 10px 40px rgb(206, 206, 206);
-    opacity:0.9;
 }
 
 .h2 {
@@ -50,6 +65,8 @@ body {
 }
 
 .input-field {
+    margin:auto;
+    width: 26.5rem;
     border-radius: 5px;
     padding: 5px;
     display: flex;
@@ -146,13 +163,19 @@ a:hover {
 }
 
 .btn.btn-block {
-    border-radius: 20px;
+    font-family: 'Cafe24Ohsquare';
+    font-size: 1.5rem;
+    border-radius: 10px;
     background-color: #400485;
     color: #fff
 }
 
+.regibtn{
+    width: 12rem;
+}
+
 .btn.btn-block:hover {
-    background-color: #55268be0
+    background-color:  #FF788B;  
 }
 
 @media(max-width: 575px) {
