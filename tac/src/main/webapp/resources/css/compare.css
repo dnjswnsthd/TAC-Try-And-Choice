@@ -128,6 +128,7 @@ b, strong {
 
 .lists{
 	display:none;
+	list-style-image: url("/resources/image/piggy-bank.png")
 }
 
 .btn-wrap {
@@ -197,7 +198,7 @@ th, td{
  	position: relative;
  	overflow: hidden;
  	margin: 0 auto;
- 	margin-left: 20%;
+ 	margin-left: 25%;
 }
 
 #hover img {

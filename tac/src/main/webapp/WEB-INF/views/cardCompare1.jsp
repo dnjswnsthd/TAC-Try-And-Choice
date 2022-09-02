@@ -217,7 +217,7 @@
 			var temp = consumeJson[0][element].split(",");
 			$("#consumeTable").append('<tr><td>'+(i++)+'</td>'+
 					            '<td>'+element+'</td><td>'+
-					            temp[1]+'</td></tr>');
+					            temp[1]+' 원</td></tr>');
 		}
 		
 			
