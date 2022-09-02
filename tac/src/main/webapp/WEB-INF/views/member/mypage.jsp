@@ -244,6 +244,6 @@
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>
-	<script src="/resources/js/card.js" rel="text/javascript"></script>
+	<script src="/resources/js/mypage.js" rel="text/javascript"></script>
 </body>
 </html>
