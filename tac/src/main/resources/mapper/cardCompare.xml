@@ -9,6 +9,7 @@
 		<result column="card_name" property="cardName" />
 		<result column="card_desc" property="cardDesc" />
 		<result column="card_img" property="cardImg" />
+		<result column="card_img_horizon" property="cardImgHorizon" />
 	</resultMap>
 	
 	<resultMap type="LargeCategory" id="largeCategory">
@@ -70,7 +71,7 @@
 	</select>
 	
 	<select id="getCardInfo" parameterType="int" resultType="card">
-		SELECT card_id, card_name, card_desc, card_img  
+		SELECT card_id, card_name, card_desc, card_img , card_img_horizon
 		FROM card
 		WHERE card_id=#{VALUE}
 	</select>

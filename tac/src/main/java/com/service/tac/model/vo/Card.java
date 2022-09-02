@@ -6,7 +6,8 @@ public class Card {
 	private String cardDesc; // card_desc
 	private String cardImg; // card_img
 	private String maxDiscount; // max_discount
-
+	private String cardImgHorizon; //card_img_horizon
+	
 	public Card() {
 		super();
 	}
@@ -18,6 +19,19 @@ public class Card {
 		this.cardDesc = cardDesc;
 		this.cardImg = cardImg;
 		this.maxDiscount = maxDiscount;
+	}
+	
+	
+
+	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount,
+			String cardImgHorizon) {
+		super();
+		this.cardId = cardId;
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.cardImg = cardImg;
+		this.maxDiscount = maxDiscount;
+		this.setCardImgHorizon(cardImgHorizon);
 	}
 
 	public int getCardId() {
@@ -60,10 +74,20 @@ public class Card {
 		this.maxDiscount = maxDiscount;
 	}
 
+	public String getCardImgHorizon() {
+		return cardImgHorizon;
+	}
+
+	public void setCardImgHorizon(String cardImgHorizon) {
+		this.cardImgHorizon = cardImgHorizon;
+	}
+
 	@Override
 	public String toString() {
 		return "Card [cardId=" + cardId + ", cardName=" + cardName + ", cardDesc=" + cardDesc + ", cardImg=" + cardImg
-				+ ", maxDiscount=" + maxDiscount + "]";
+				+ ", maxDiscount=" + maxDiscount + ", cardImgHorizon=" + cardImgHorizon + "]";
 	}
+
+
 
 }

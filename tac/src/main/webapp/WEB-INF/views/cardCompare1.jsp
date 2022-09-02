@@ -27,9 +27,9 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 <title>카드 상세보기</title>
-
 </head>
 
 <body>
@@ -41,9 +41,9 @@
 		<div class="row justify-content-around">
 			<div class="col-md-6">
 				<div class="project-info-box" id="hover">
-					<p class="cardName">
+					<p class="cardName" id="semititle">
 						<b>${info.cardName}</b>
-					<div class="figure"><img src="resources/image/card/${info.cardImg}"
+					<div class="figure" id="context"><img src="resources/image/card_horizon/${info.cardImgHorizon}"
 						alt="${info.cardName}" class="rounded" id="cardImg"></div><br>
 					<button class="othercard" onclick="location.href='/main'">
 						<span>다른 카드 보기</span>
@@ -52,30 +52,47 @@
 					
 				</div>
 					<div class="project-info-box">
-						<c:forEach var="card" items="${list}">
-						<ul>
-							<li><b>${card.smallCategory.smallCategoryName}</b>&nbsp;&nbsp;
-							<c:choose>	
-								<c:when test="${card.discountPercent != 0 && card.maxDiscount==0}">
-										${card.discountPercent }% 할인
-								</c:when>
-								<c:when test="${card.discountPercent !=0 && card.maxDiscount != 0}">
-									${card.discountPercent } % 할인&nbsp;&nbsp;<b>최대 </b>${card.maxDiscount } 원 할인
-								</c:when>
-								<c:when test="${card.discountAmount !=0 && card.maxDiscount==0 }">
-									${card.discountAmount }원 할인
-								</c:when>
-								<c:when test="${card.maxDiscountMonth != 0 }"> 
-									${card.maxDiscountMonth}원 할인
-								</c:when>
-								<c:otherwise>
-									${card.maxDiscount }원 할인
-								</c:otherwise>
-							</c:choose>
-							</li>	
-						</ul>
-						</c:forEach>
+						<div id="js-load" class="main">
+							<c:forEach var="card" items="${list}">
+							<ul class="lists">
+								<li class="list-item js-load"><b>${card.smallCategory.smallCategoryName}</b>&nbsp;&nbsp;
+								<c:choose>	
+									<c:when test="${card.discountPercent != 0 && card.maxDiscount==0}">
+											${card.discountPercent }% 할인
+									</c:when>
+									<c:when test="${card.discountPercent !=0 && card.maxDiscount != 0}">
+										${card.discountPercent } % 할인&nbsp;&nbsp;<b>최대 </b>${card.maxDiscount } 원 할인
+									</c:when>
+									<c:when test="${card.discountAmount !=0 && card.maxDiscount==0 }">
+										${card.discountAmount }원 할인
+									</c:when>
+									<c:when test="${card.maxDiscountMonth != 0 }"> 
+										${card.maxDiscountMonth}원 할인
+									</c:when>
+									<c:otherwise>
+										${card.maxDiscount }원 할인
+									</c:otherwise>
+								</c:choose>
+								</li>	
+							</ul>
+							</c:forEach>
+							<div id="js-btn-wrap" class="btn-wrap"><a href="javascript:;" class="button">더보기</a></div>
 					</div>
+						<script>
+							$(function(){
+								    $(".lists").slice(0, 5).show(); // select the first ten
+								    $("#js-btn-wrap").click(function(e){ // click event for load more
+								        e.preventDefault();
+										        
+									$(".lists:hidden").slice(0, 10).show(); // select next 10 hidden divs and show them
+								        if($("#.lists:hidden").length == 0){ // check if any hidden divs still exist
+								            $("#js-btn-wrap").hide(); // alert if there are none left
+								        }
+								    });
+								});
+								
+						</script>
+				</div>
 					<!-- / project-info-box -->
 				
 
@@ -84,7 +101,7 @@
 
 			<div class="col-md-6">
 				<div class="project-info-box">
-					<h3>카테고리별 혜택</h3>
+					<h3 id="semititle">카테고리별 혜택</h3>
 					<button onclick="location.href='/cardCompare?cardId=${info.cardId}'"
 											 value="카드 선택" class="myCard">
 						<span>내 카드와 비교</span>
@@ -120,7 +137,7 @@
 											'rgba(85, 73, 148, 0.2)',
 											'rgba(246, 117, 168, 0.2)',
 											'rgba(242, 147, 147, 0.2)',
-											'rgba(177, 255, 255, 0.2)',
+											'rgba(42, 9, 58, 0.2)',
 											'rgba(245, 240, 187, 0.2)',
 											'rgba(115, 169, 173, 0.2)',
 											'rgba(196, 223, 170, 0.2)',
@@ -142,7 +159,7 @@
 										'rgba(85, 73, 148, 1)',
 										'rgba(246, 117, 168, 1)',
 										'rgba(242, 147, 147, 1)',
-										'rgba(177, 255, 255, 1)',
+										'rgba(42, 9, 68, 1)',
 										'rgba(245, 240, 187, 1)',
 										'rgba(115, 169, 173, 1)',
 										'rgba(196, 223, 170, 1)',
@@ -172,7 +189,7 @@
 				</div>
 
 				<div class="project-info-box">
-					<h3>소비 내역</h3>
+					<h3 id="semititle">소비 내역</h3>
 					<table>
 						<thead>
 							<tr>
@@ -197,4 +214,7 @@
 		</div>
 		<!-- /row  -->
 	</div>
+	<script>
+		
+	</script>
 </body>

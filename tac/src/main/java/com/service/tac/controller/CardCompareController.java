@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.tac.model.service.CardCompareService;
 import com.service.tac.model.service.CardService;
 import com.service.tac.model.service.MemberService;
@@ -40,7 +42,7 @@ public class CardCompareController {
 		memberId = member.getMemberId();
 		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
 		
-		// 1. 대분류 통계
+		// 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
@@ -48,7 +50,9 @@ public class CardCompareController {
 //			System.out.println("나의 대분류-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_LargeSum temp : AnalLargeSum) {
 //				System.out.println(temp.toString());
+				if(temp.getSum()!=0) {
 				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum() + ", " + temp.getImage());
+				}
 			}
 //			System.out.println("--------------------------------------------------------------------------");
 			bList.add(hmap);
@@ -56,6 +60,9 @@ public class CardCompareController {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(bList);
+		model.addAttribute("Object", json);
 		
 		try {
 			Card info = cardCompareService.getCardInfo(cardId);
