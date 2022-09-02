@@ -67,14 +67,12 @@ ul a{
     font-weigth: 900;
 }
 ul li{
-    margin-right: 3%;
+    margin-right: 6%;
 }
 
 #navbarSupportedContent{
-	margin-top: -1%;
 	margin-right: 4%;
 }
-
 
 .select {
   width: 10rem;
@@ -101,7 +99,6 @@ ul li{
   font-family: 'Cafe24Ssurround', sans-serif !important;
   font-size: 1.8rem;
   margin-top: 7.1%;
-  margin-left: 4%;
   opacity: 0.9;
 }
 
