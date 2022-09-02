@@ -21,19 +21,6 @@ public class Card {
 		this.maxDiscount = maxDiscount;
 		this.cardImgHorizon=cardImgHorizon;
 	}
-	
-	
-
-	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount,
-			String cardImgHorizon) {
-		super();
-		this.cardId = cardId;
-		this.cardName = cardName;
-		this.cardDesc = cardDesc;
-		this.cardImg = cardImg;
-		this.maxDiscount = maxDiscount;
-		this.setCardImgHorizon(cardImgHorizon);
-	}
 
 	public int getCardId() {
 		return cardId;
