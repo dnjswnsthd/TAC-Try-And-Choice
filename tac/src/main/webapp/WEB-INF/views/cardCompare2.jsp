@@ -39,9 +39,9 @@
         labels: ['여행','주유','외식','영화','쇼핑'],
         datasets: [{
           label: 'My dataset',
-          backgroundColor: color(red).alpha(0.2).rgbString(),
-          borderColor: red,
-          pointBackgroundColor: red,
+          backgroundColor: color(blue).alpha(0.2).rgbString(),
+          borderColor: blue,
+          pointBackgroundColor: blue,
           data: [
             80,
             90,
@@ -52,9 +52,10 @@
         }, 
         {
             label: 'card dataset',
-            backgroundColor: color(blue).alpha(0.2).rgbString(),
-            borderColor: blue,
-            pointBackgroundColor: blue,
+            backgroundColor: color(red).alpha(0.2).rgbString(),
+            borderColor: red,
+            pointBackgroundColor: red,
+            
             data: [
               70,
               50,
@@ -85,10 +86,7 @@
 </head>
 
 <body>
-
-	<nav>
-		<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	</nav>
+	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<!-- 세션 체크 -->
 	<%
 		Member member = (Member) session.getAttribute("member");
@@ -107,21 +105,21 @@
 		}
 	%>
 	
-	 <div class="container">
+	 <div id="container" class="container">
 	 	<div class="row justify-content-around">
 	 		<header>
-				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name}님이 선택한 카드의 체험 결과</h1>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name} 님이 선택한 카드의 체험 결과</h1>
 					<p class="fs-5 text-muted" id="subtitle"> 소지한 카드와 선택한 카드의 혜택을 비교해 드립니다 </p>
 				</div>
 			</header>
 	 		<div class="col-md-4">
-	 			<div class="cardDetail">
+	 			<div class="cardDetail" id="myCard">
 	 				<div id="cardName">${myInfo.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card/${myInfo.cardImg}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${myInfo.cardId}'" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
 	 			</div>
 	 			
-	 			<div class="cardDetail">
+	 			<div class="cardDetail" id="myCardBox">
 	 				<p id="myCardColor"><b>내 카드</b></p>
 	 				<div>주유비 <span> 500원 할인</span></div><hr>
 	 				<div>베이커리 <span> 500원 할인</span></div><hr>
@@ -139,7 +137,7 @@
 	 			</div>
 	 			
 	 			<div class="cardDetail">
-	 				<h3>BNK 프렌즈 체크카드를 사용하면 </h3>
+	 				<h3>${info.cardName}를 사용하면 </h3>
 	 				<h3><span id="cardText">+3150원</span>의 이득을 볼 수 있습니다.</h3>
 	 				<hr>
 	 				<div id="consumePattern" class="d-flex flex-wrap align-content-start" >
@@ -190,19 +188,19 @@
 	 		</div> <!-- column -->
 	 		
 	 		<div class="col-md-4">
-	 			<div class="cardDetail">
+	 			<div class="cardDetail" id="selectCard">
 		 			<div id="cardName">${info.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card/${info.cardImg}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${info.cardId}'" src="resources/image/card_horizon/${info.cardImgHorizon}">
 	 			</div>
 	 			
-	 			<div class="cardDetail selectCardDetail">
+	 			<div class="cardDetail selectCardDetail" id="selectCardBox">
 	 				<p id="selectCardColor"><b>비교할 카드</b></p>
 	 				<div>주유비 <span> 1000원 할인</span></div><hr>
 	 				<div>베이커리 <span> 850원 할인</span></div><hr>
 	 				<div>카페 <span> 300원 할인</span></div><hr>
 	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
 	 				<div>놀이공원 <span> 5500원 할인</span></div><hr>
-	 				<div>교통 <span> 100원 할인</span></div><hr>
+	 				<div>교통 <span> 1000원 할인</span></div><hr>
 	 			</div>
 	 		
 	 		

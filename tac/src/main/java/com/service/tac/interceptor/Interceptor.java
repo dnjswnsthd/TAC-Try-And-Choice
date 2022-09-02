@@ -28,8 +28,9 @@ public class Interceptor implements HandlerInterceptor {
 		// 멤버확인
 		Member member = (Member) session.getAttribute("member");
 		
-		System.out.println(URL);
-		if ( URI.equals("/analysis") || URI.equals("/compare") || URI.equals("/logout") ) {
+//		System.out.println(URL);
+		if ( URI.equals("/analysis") || URI.equals("/compare") 
+				|| URI.equals("/logout") || URI.equals("/mypage") || URI.equals("/updateConsume") ) {
 			if ( member == null ) {
 				response.sendRedirect(request.getContextPath() + "/needlogin");
 				return false;
@@ -40,6 +41,11 @@ public class Interceptor implements HandlerInterceptor {
 				return false;
 			} else if ( member.getGrade() != 1 ) {
 				response.sendRedirect(request.getContextPath() + "/notadmin");
+				return false;
+			}
+		} else if ( URI.equals("/login") ) {
+			if ( member != null ) {
+				response.sendRedirect(request.getContextPath() + "/main");
 				return false;
 			}
 		}

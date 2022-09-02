@@ -52,33 +52,6 @@ $(document).ready(function () {
 		evt.preventDefault();
 	}
   });
-  
-  $("#modifyBtn").click(function(evt){
-		var message = "";
-		if($("#name").val() == ""){
-			message = "이름"
-		}else if($("#age").val() == ""){
-			message = "나이"
-		}else if($("#memberId").val() == ""){
-			message = "이메일"
-		}else if($("#phone").val() == ""){
-			message = "전화"
-		}else if($("#password").val() == ""){
-			message = "패스워드"
-		}else if($("#passwordChk").val() == ""){
-			message = "패스워드 확인"
-		}else if($("#cardId").val() == ""){
-			message = "카드 정보"
-		}
-		if(message != ""){
-			swal({
-				title: message + "은 필수 등록 요소 입니다.",
-				icon: "error",
-			}).then(function(result) {
-			});
-			evt.preventDefault();
-			}
-	  });
 
   $('#memberId').keyup(function () {
     var id = $(this).val();
@@ -104,7 +77,7 @@ $(document).ready(function () {
             $('#check').html('사용 가능 아이디!!').css('color', 'blue');
             $('#submitBtn').attr('disabled', false);
             $('#submitBtn').attr('pointer-events', 'auto');
-            $('#submitBtn').css('background-color', '#FF788B');
+            $('#submitBtn').css('background-color', '#373234');
           }
         }, //success
       }); //ajax
@@ -143,7 +116,7 @@ $(document).ready(function () {
       $('#checkPass').html('조건에 맞는 비밀번호 입니다.').css('color', 'blue');
       $('#submitBtn').attr('disabled', false);
       $('#submitBtn').attr('pointer-events', 'auto');
-      $('#submitBtn').css('background-color', '#FF788B');
+      $('#submitBtn').css('background-color', '#373234');
     }
   });
 
@@ -159,7 +132,7 @@ $(document).ready(function () {
       $('#checkPassCol').html('Password가 일치합니다.').css('color', 'blue');
       $('#submitBtn').attr('disabled', false);
       $('#submitBtn').attr('pointer-events', 'auto');
-      $('#submitBtn').css('background-color', '#FF788B');
+      $('#submitBtn').css('background-color', '#373234');
     }
   });
 });
