@@ -25,11 +25,13 @@ public class CardController {
 	@PostMapping("/cardReg")
 	@ResponseBody
 	public HashMap<String, String> cardReg(@RequestParam Map<String, Object> map) {
+		System.out.println("여긴 오나?");
 		HashMap<String, String> hm = new HashMap<>();
 		String cardName = (String) map.get("cardname");
 		String cardDesc = (String) map.get("carddesc");
 		String maxSale = (String) map.get("maxsale");
 		Card card = new Card(cardName, cardDesc, maxSale);
+		System.out.println(card.toString());
 		ArrayList<Card> list_card = null;
 		try {
 			cardService.registerCard(card);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.ParseConversionEvent;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +19,17 @@ import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.LargeCategory;
+import com.service.tac.model.vo.Member;
 
 @Controller
 public class RouteController {
-	
+
 	@Autowired
 	CardService cardService;
-	
+
 	@Autowired
 	CategoryService categoryService;
 
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
 		return "intro";
@@ -38,7 +38,7 @@ public class RouteController {
 	@GetMapping(value = "/main")
 	public String main(Model model) {
 		try {
-			ArrayList <Card> list = cardService.getAllCardInfo();
+			ArrayList<Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/main/main";
 		} catch (SQLException e) {
@@ -50,60 +50,16 @@ public class RouteController {
 	@GetMapping(value = "/signup")
 	public String signup(Model model) {
 		try {
-			ArrayList <Card> list = cardService.getAllCardInfo();
+			ArrayList<Card> list = cardService.getAllCardInfo();
 			model.addAttribute("list", list);
 			return "/member/signup";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return "/error";
 		}
-		
+
 	}
-	
-	@RequestMapping(value="/compare", method= RequestMethod.GET)
-	public String compare(HttpServletRequest request, Model model) {
-		int cardId = Integer.parseInt(request.getParameter("cardId"));
-		
-		try {
-			Card info = cardService.getCardInfo(cardId);
-			System.out.println(info);
-			String cardName = info.getCardName();
-			String cardImg = info.getCardImg();
-			ArrayList<CardDetail> list = cardService.getDiscountInfoByCard(cardId);
-			System.out.println(cardImg);
-			System.out.println(cardName);
-			System.out.println(list.size());
-			model.addAttribute("list", list);
-			model.addAttribute("cardImg", cardImg);
-			model.addAttribute("cardName", cardName);
-			model.addAttribute("info", info);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		return "cardCompare1";
-	}
-	
-	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
-	public String cardCompare() {
-		
-		return "cardCompare2";
-	}
-	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
-	public String manage_card(Model model) {
-		try {
-			List<LargeCategory> large_list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", large_list);
-			List<Card> card_list = cardService.getAllCardInfo();
-			model.addAttribute("showAllCard", card_list);
-			return "/manage/insertCard";
-				
-		} catch(Exception e) {
-			// 에러페이지
-			return "/error";
-		}
-	}
-	
+
 	@GetMapping(value = "/addLargeCategory")
 	public String addLargeCategory(Model model) {
 		try {
@@ -116,20 +72,72 @@ public class RouteController {
 			return "/error";
 		}
 	}
-	
-	@GetMapping(value = "/addSmallCategory")
-	public String addSmallCategory(Model model) {
+
+	@GetMapping(value = "/error")
+	public String error() {
+		return "/error";
+	}
+
+	@GetMapping(value = "/calendarTest")
+	public String calendarTest() {
+		return "/member/insertConsume";
+	}
+
+	@GetMapping(value = "/mypage")
+	public String moveMypage(Model model) {
 		try {
-			List<LargeCategory> list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", list);
-			return "/manage/insert_card_smallCategory";
-			
-		} catch(Exception e) {
-			// 에러페이지
+			ArrayList<Card> list = cardService.getAllCardInfo();
+			model.addAttribute("list", list);
+			return "/member/mypage";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return "/error";
 		}
 	}
+
+	@GetMapping(value = "/updateConsume")
+	public String moveUpdateConsume(Model model, HttpServletRequest request) {
+		ArrayList<LargeCategory> list;
+		try {
+			list = categoryService.getAllLargeCategory();
+			model.addAttribute("list", list);
+			HttpSession session = request.getSession();
+			Member member = (Member) session.getAttribute("member");
+			model.addAttribute("memberId", member.getMemberId());
+			return "/member/updateConsume";
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return "/error";
+		}
+	}
+
+	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
+    public String manage_card(Model model) {
+        try {
+            List<LargeCategory> list = categoryService.getAllLargeCategory();
+            model.addAttribute("largeCategory", list);
+            return "/manage/insertCard";
+
+        } catch(Exception e) {
+            // 에러페이지
+            return "/error";
+        }
+    }
+
+	@GetMapping(value = "/addSmallCategory")
+	    public String addSmallCategory(Model model) {
+	        try {
 	
+	        List<LargeCategory> list = categoryService.getAllLargeCategory();
+	        model.addAttribute("largeCategory", list);
+	        return "/manage/insert_card_smallCategory";
+	        
+	    } catch(Exception e) {
+	        // 에러페이지
+	        return "/error";
+	    }
+	}
+
 	@RequestMapping(value = "/manage_card_update", method = RequestMethod.GET)
 	public String manage_card_update(Model model) {
 		try {
@@ -145,14 +153,4 @@ public class RouteController {
 		}
 	}
 	
-	@GetMapping(value= "/error")
-	public String error() {
-		return "/error";
-	}
-	
-	@GetMapping(value= "/calendarTest")
-	public String calendarTest() {
-		return "/member/insertConsume";
-	}
-
 }

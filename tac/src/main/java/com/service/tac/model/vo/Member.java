@@ -6,14 +6,34 @@ public class Member {
 	private String name;
 	private int age;
 	private String phone;
-	private String grade; // 관리자 사용자 구분을 위한 컬럼
+	private int grade; // 관리자 사용자 구분을 위한 컬럼
 	private int cardId; // card_id 객체로 변경 예정
 
 	public Member() {
 		super();
 	}
+	public Member(String memberId, String password) {
+		super();
+		this.memberId = memberId;
+		this.password = password;
+	}
+	
+	public Member(String memberId, int cardId) {
+		super();
+		this.memberId = memberId;
+		this.cardId = cardId;
+	}
+	
+	public Member(String memberId, String password, String name, int age, String phone) {
+		super();
+		this.memberId = memberId;
+		this.password = password;
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+	}
 
-	public Member(String memberId, String password, String name, int age, String phone, String grade, int cardId) {
+	public Member(String memberId, String password, String name, int age, String phone, int grade, int cardId) {
 		super();
 		this.memberId = memberId;
 		this.password = password;
@@ -63,15 +83,15 @@ public class Member {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getGrade() {
+	
+	public int getGrade() {
 		return grade;
 	}
-
-	public void setGrade(String grade) {
+	
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-
+	
 	public int getCardId() {
 		return cardId;
 	}

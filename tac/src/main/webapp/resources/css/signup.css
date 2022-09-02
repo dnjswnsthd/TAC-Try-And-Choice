@@ -1,12 +1,21 @@
 @font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
 	font-family: 'GongGothicMedium';
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-	}
+}
+nav {
+	margin-top: -2.5%;
+}
 
-* {
-	font-family: 'GongGothicMedium', sans-serif;
+.form-row{
+	margin-bottom: 2% !important;
 }
 
 .nav-tabs > li {
@@ -33,6 +42,35 @@ label img{
 	width: 60%;
 }
 
+.step.icon:hover{
+	background-color:#FF788B !important;
+}
+
+.step-icon span{
+	font-family: 'Cafe24Ohsquare';
+	margin-top: 2%;
+}
+
+.step-text{
+	font-family: 'Cafe24Ohsquare';
+	font-size: 1.3rem !important;
+}
+
+.heading{
+	font-family: 'Cafe24Ohsquare';
+	font-size: 1.5rem !important;
+}
+
+.texting{
+	font-family: 'Pretendard-Regular';
+	font-size: 1rem !important;
+}
+
+fieldset input{
+	font-family: 'Pretendard-Regular';
+	font-size: 1rem !important;
+}
+
 body {
 	margin:  0;
 	background-image: url(../image/signupBackground03.jpg);
@@ -54,11 +92,11 @@ body {
   ::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	background: #FF3B30;
+	background: #373234;
 	opacity: 0.9;
   }
   ::-webkit-scrollbar-thumb:window-inactive {
-	background: white;
+	background: #FF788B;
   }
 
 .page-content {
@@ -99,7 +137,6 @@ body {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	margin: 145px 0;
-	font-family: 'Open Sans', sans-serif;
 	position: relative;
 	display: flex;
 	display: -webkit-flex;
@@ -177,7 +214,7 @@ body {
     -moz-outline: none;
     -webkit-outline: none;
     color: #333;
-    font-size: 16px;
+    font-size: 1rem;
     margin-top: 7%;
     margin-right: 15px;
 }
@@ -196,7 +233,7 @@ body {
 .form-register .steps li.current a:active .step-icon,
 .form-register .steps li.done a .step-icon,
 .form-register .steps li.done a:active .step-icon {
-    background: #ff3b30;
+    background: #373234;
 	opacity: 0.9;
     color: #fff;
     box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.25);
@@ -241,14 +278,14 @@ body {
     margin-top: 5%;
 }
 .form-register .content .inner h3 {
-	font-size: 22px;
+	font-size: 2rem;
     color: #333;
     font-weight: 700;
     margin: 0;
 }
 .form-register .content .inner p {
 	color: #666;
-	font-size: 14px;
+	font-size: 1rem;
 	font-weight: 600;
 }
 .inner .form-row-total {
@@ -279,7 +316,7 @@ body {
 	position: relative;
 }
 .inner .form-row .form-holder.form-holder-3 {
-	margin-bottom: 0;
+	margin-bottom: 0.5%;
 }
 .inner .form-row .form-holder.form-holder-4 {
     width: 33.3%;
@@ -293,7 +330,7 @@ body {
 }
 .inner .form-row #checkbox {
 	margin: 10px 0 28px 11px;
-    font-size: 15px;
+    font-size: 1.2rem;
     color: #666;
     font-weight: 400;
 }
@@ -304,7 +341,7 @@ body {
     margin-bottom: 15px;
     padding-right: 0px;
     color: #666;
-    font-size: 16px;
+    font-size: 1.4rem;
     font-weight: 400;
 }
 .inner .form-row .form-holder fieldset {
@@ -317,16 +354,20 @@ body {
     padding: 0 20px;
 }
 .inner .form-row .form-holder legend {
-	font-size: 11px;
-	font-weight: 700;
+	font-size: 0.9rem;
+	font-weight: 900 !important;
 	color: #999;
+	margin-bottom: 0rem !important;
+	font-family: 'Pretendard-Regular' !important;
 }
 .inner .form-row .form-holder input,
 .inner .form-row .form-holder select {
-    width: 100%;
-    padding: 5px 0px 13px;
+    width: 90%;
+    height: 2vmax;
+    padding: 0.3% 0px 0.3%;
+    margin-left: 5%;
     border: none;
-    appearance: unset;
+    appearance: none;
     -moz-appearance: unset;
     -webkit-appearance: unset;
     -o-appearance: unset;
@@ -336,9 +377,8 @@ body {
     -webkit-outline: none;
     -o-outline: none;
     -ms-outline: none;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 1.1rem;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -427,12 +467,12 @@ body {
     margin-bottom: 55px;
 }
 .inner .form-row .form-holder .plan-total .plan-title {
-	font-size: 18px;
+	font-size: 1.4rem;
 	color: #333;
 	font-weight: 700;
 }
 .inner .form-row .form-holder .plan-total .plan-text {
-	font-size: 14px;
+	font-size: 1.2rem;
 	color: #666;
 	font-weight: 600;
     margin: 0;
@@ -445,12 +485,12 @@ body {
 	opacity: 0.9;
 }
 .inner .form-row .form-holder select {
-	font-size: 14px;
+	font-size: 1rem;
     color: #666;
-    font-weight: 600;
+    /* font-weight: 600;
     background: #fff url('../image/gender.png') no-repeat scroll;
     background-position: right 0px top;
-	background-size: 20%;
+	background-size: 20%; */
     z-index: 1;
     cursor: pointer;
     position: relative;
@@ -470,20 +510,20 @@ body {
     width: 27.28%;
 }
 .inner .form-row .form-holder input::-webkit-input-placeholder {
-  color: #ff3b30;
-  font-size: 14px;
+  color: #ccc;
+  font-size: 1rem;
 }
 .inner .form-row .form-holder input::-moz-placeholder {
-  color: #ff3b30;
-  font-size: 14px;
+  color: #ccc;
+  font-size: 1rem;
 }
 .inner .form-row .form-holder input:-ms-input-placeholder {
-  color: #ff3b30;
-  font-size: 14px;
+  color: #ccc;
+  font-size: 1rem;
 }
 .inner .form-row .form-holder input:-moz-placeholder {
-  color: #ff3b30;
-  font-size: 14px;
+  color: #ccc;
+  font-size: 1rem;
 }
 .actions {
 	float: right;
@@ -527,18 +567,17 @@ body {
     -ms-align-items: center;
     -moz-align-items: center;
     -webkit-align-items: center;
-    background: #ff3b30;
+    background: #373234;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 1.3rem;
 }
 .actions ul li:hover {
-	background: #ff0d00;
+	background: #FF788B;
 }
 .actions ul li a {
 	color: #fff;
 	text-decoration: none; 
     padding: 13px 19px;
-    margin-top: 30%;
 }
 
 .actions ul li:last-child{
@@ -668,6 +707,8 @@ body {
 	/* box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4); */
 	margin: 2%;
 	cursor: pointer;
+	border-radius: 12px;
+	box-shadow: 6px 2px 2px gray;
 }
 
 .element-card img {
@@ -676,6 +717,7 @@ body {
 
 .element-card h4 {
 	font-size: 1.3rem;
+	border-bottom: 5px solid #373234;
 }
 
 .element-card h5 {
@@ -706,7 +748,7 @@ body {
 	position: absolute;
 	top: 50%;
 	left: 0;
-	font-size: 42px;
+	font-size: 3.5rem;
 	margin: -35px 0 0 0;
 	text-align: center;
 	color: #3498db;
@@ -718,7 +760,7 @@ body {
 	top: 50%;
 	left: 0;
 	text-transform: uppercase;
-	font-size: 12px;
+	font-size: 1rem;
 	margin: 15px 0 0 0;
 	text-align: center;
 	color: #3498db;
@@ -728,7 +770,7 @@ body {
 	position: absolute;
 	top: 10px;
 	left: 10px;
-	font-size: 12px;
+	font-size: 1rem;
 	color: #2980b9;
 }
 
@@ -736,14 +778,15 @@ body {
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	font-size: 12px;
+	font-size: 1rem;
 	color: #2980b9;
 }
 
 .element-card .back-facing {
-	width: 96%;
-	margin-top: 2%;
-	margin-left: 2%;
+	width: 14vmax;
+	height: 20vmax;
+	margin: 0px auto;
+	margin-top: 5%;
 	transform: rotateY(180deg) translateZ(0px);
 	display: flex;
 	flex-direction: column;
@@ -757,13 +800,26 @@ body {
 	right: 0;
 	background-color: white;
 	border-radius: 15px;
+	border: 2px solid #373234 !important;
 	padding: 20px;
 	text-align: center;
 	overflow: hidden;
+	display: flex !important;
+  	justify-content: center !important;
+	opacity: 0.8;
+}
+
+.element-card .back-facing h4 {
+	font-weight: 900;
+	font-family: 'Cafe24Ohsquare' !important;
+}
+
+.element-card .back-facing h5{
+	font-family: 'Pretendard-Regular' !important;
 }
 
 .element-card .back-facing p {
-	font-size: 14px;
+	font-size: 1rem;
 	margin: 0;
 }
 
@@ -829,4 +885,60 @@ body {
 	color: #373234;
 	margin-top: 0.5%;
 	margin-left: 14%;
+}
+
+#cardImg{
+	border: 1px solid #373234;
+	border-radius: 12px;
+	margin-top: 2%;
+}
+
+#submitBtn{
+	width: 10vmax;
+	height: 3vmax;
+	margin-left: 40%;
+	background-color: #373234;
+	color: white;
+	display: inline-block;
+}
+
+#submitBtn:hover{
+	background-color: #FF788B;
+}
+
+#check{
+	font-size: 0.7rem;
+	margin-left: 5% !important;
+	margin-bottom: 0% !important;
+	font-family: 'GongGothicMedium' !important;
+}
+
+#checkPass{
+	font-size: 0.7rem;
+	font-family: 'GongGothicMedium' !important;
+}
+
+#checkPassCol{
+	font-size: 0.7rem;
+	font-family: 'GongGothicMedium' !important;
+}
+
+.btn{
+	opacity:70%;
+	background-color: #373234;
+	font-family: 'Pretendard-Regular' !important;
+}
+
+.btn:hover{
+	opacity:70%;
+	background-color: #FF788B;
+}
+
+#clear{
+	margin-bottom: 5%;
+}
+
+.swal-title{
+	font-size: 1rem;
+	font-family: 'Pretendard-Regular' !important;
 }

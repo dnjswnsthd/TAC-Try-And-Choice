@@ -1,54 +1,150 @@
 @font-face {
-    font-family: 'establishRoomNo703OTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 #header {
-	font-family: 'establishRoomNo703OTF', sans-serif;
+	font-family: 'Cafe24Ssurround', sans-serif;
 }
 
 body{
 	width: 100%;
-	height: 16vh;
+	height: 100%;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+a:hover{
+  text-decoration-line: none;
 }
 
 #logo{
-	max-width: 22vmax;
-    max-height: 12vmax;
+	max-width: 18vmax;
+    max-height: 8vmax;
 	margin-left: -20%;
     margin-top: -5%;
     margin-bottom: -5%;
 }
 #logo2{
-	max-width: 20vmax;
-    max-height: 10vmax;
+	max-width: 16vmax;
+    max-height: 6vmax;
 	margin-left: -20%;
     margin-top: -10%;
     margin-bottom: -5%;
 }
 .navbar-light .navbar-nav .nav-link {
 	/* color: #FF788B; */
-	font-family: 'establishRoomNo703OTF', sans-serif !important;
+  font-size: 1.8rem;
+	font-family: 'Cafe24Ssurround', sans-serif !important;
 	color: #373234;
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	/* color: #373234; */
+  cursor:pointer;
 	color: #FF788B;
-	text-decoration: underline;
-	font-family: 'establishRoomNo703OTF', sans-serif !important;
+	font-family: 'Cafe24Ssurround', sans-serif !important;
 }
 ul a{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weigth: 900;
 }
 ul li{
-    margin-right: 3%;
+    margin-right: 6%;
 }
 
 #navbarSupportedContent{
-	margin-top: -2%;
-	margin-right: 5%;
+	margin-right: 4%;
+}
+
+.select {
+  width: 10rem;
+  font-family: 'Cafe24Ssurround', sans-serif !important;
+  margin-right: 5%;
+}
+
+.select:hover{
+	color: #FF788B;
+	font-family: 'Cafe24Ssurround', sans-serif !important;
+}
+
+.select:hover .optionList {
+  opacity: 1;
+  visibility: visible;
+}
+
+.select:hover .option span::after {
+  float: right;
+}
+
+.option {
+  cursor: default;
+  font-family: 'Cafe24Ssurround', sans-serif !important;
+  font-size: 1.8rem;
+  margin-top: 7.1%;
+  opacity: 0.9;
+}
+
+#logout {
+	margin-left: 20%;
+}
+
+.option span::after {
+  float: right;
+}
+
+.optionList {
+  width: 10rem;
+  position: absolute;
+  border-radius: 4px;
+  margin-top: 10px;
+  visibility: hidden;
+  transition: opacity 0.3s linear, visibility 1s linear;
+  margin-top: -0.6%;
+}
+
+#optionav{
+	font-size: 0.5rem !important;
+	margin-left: 5%;
+}
+
+.optionListItem {
+  height: 0.5rem;
+  padding: 1rem 0 0 1rem;
+  overflow: hidden;
+  transition: all 0.8s;
+  cursor: pointer;
+}
+
+.optionListItem:hover {
+  background-color: rgba(223, 247, 179, 0.514);
+}
+
+
+
+.nav-link2 {
+	font-family: 'Cafe24Ssurround', sans-serif !important;
+	color: #373234;
+	font-size: 1rem !important;
+}
+.nav-link2:hover {
+	color: #FF788B;
+	font-family: 'Cafe24Ssurround', sans-serif !important;
 }

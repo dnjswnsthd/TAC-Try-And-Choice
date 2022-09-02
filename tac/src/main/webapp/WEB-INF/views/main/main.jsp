@@ -29,18 +29,19 @@
 	<div class="topSection">
 		<jsp:include page="/resources/component/header.jsp"></jsp:include>
 		<div class="maintext">
-			<h2><b>퍼즐처럼 나에게 "딱"맞는 카드</b></h2>
-			<h2><b>TAC에서 만나세요</b></h2>
-			<div class="mainButton">
-				<button type="button" class="btn btn-dark">회원가입</button>
-				<button type="button" class="btn btn-dark">로그인</button>
-			</div>
+			<h2><b>Puzzle 맞추듯</b></h2>
+			<h2><b>카드를 나에게</b></h2>
+			<h2><b>'TAC' 맞추다</b></h2>
+			<!-- <div class="mainButton">
+				<button id="moveBtn" type="button" class="btn btn-dark">회원가입</button>
+				<button id="moveBtn" type="button" class="btn btn-dark">로그인</button>
+			</div> -->
 		</div>
 
 
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel" data-interval="false">
-			<span><h2>카드 체험</h2>
+			<span><h2 id="cardText">카드 체험</h2>
 				<h2 id="dot">.</h2></span>
 			<div class="d-flex" id="moveBtn1">
 				<a href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -62,11 +63,11 @@
 									<img id="cardImg" src="/resources/image/card/${card.cardImg}" />
 								</div>
 								<div class="back-facing">
-									<h4>Name : ${card.cardName}</h4>
-									<h5>카드 설명 : ${card.cardDesc}</h5>
+									<h4>${card.cardName}</h4>
+									<h5>${card.cardDesc}</h5>
 									<p>
 										<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
-										 value="내 카드 선택"	>
+											 value="카드 선택">
 									</p>
 								</div>
 							</div>
@@ -82,13 +83,13 @@
 										<img id="cardImg" src="/resources/image/card/${card.cardImg}" />
 									</div>
 									<div class="back-facing">
-										<h4>Name : ${card.cardName}</h4>
+										<h4>${card.cardName}</h4>
 										<h5>
-											카드 설명 : ${card.cardDesc}
+											${card.cardDesc}
 										</h5>
 										<p>
-											<a class="btn" href="https://en.wikipedia.org/wiki/Copper"
-												target="_blank">내 카드 선택</a>
+											<input type="button" class="btn" onclick="location.href='/compare?cardId=${card.cardId}'"
+											 value="카드 선택">
 										</p>
 									</div>
 								</div>
@@ -108,8 +109,8 @@
 					</div>
 				</a>
 			</div>
-
 		</div>
 	</div>
+	<br><br>
 </body>
 </html>

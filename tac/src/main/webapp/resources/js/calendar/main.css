@@ -1,6 +1,17 @@
 
 /* classes attached to <body> */
-
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
   cursor: not-allowed;
@@ -227,9 +238,9 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   .fc .fc-button-primary:not(:disabled).fc-button-active {
     color: #fff;
     color: var(--fc-button-text-color, #fff);
-    background-color: #1a252f;
+    background-color: #FF3B30;
     background-color: var(--fc-button-active-bg-color, #1a252f);
-    border-color: #151e27;
+    border-color: #FF3B30;
     border-color: var(--fc-button-active-border-color, #151e27);
   }
 .fc .fc-button-primary:not(:disabled):active:focus,
@@ -249,13 +260,21 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     position: relative;
     display: inline-flex;
     vertical-align: middle;
+    margin-top: 20%;
+    margin-right: 10%;
   }
 .fc .fc-button-group > .fc-button {
     position: relative;
     flex: 1 1 auto;
+    color: #373234;
+    background-color: white;
+    border: 2px solid #373234;
+    margin-right: 3rem;
   }
 .fc .fc-button-group > .fc-button:hover {
     z-index: 1;
+    color: #FF788B;
+    border: 2px solid #FF788B;
   }
 .fc .fc-button-group > .fc-button:focus,
   .fc .fc-button-group > .fc-button:active,
@@ -292,8 +311,13 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     margin-top: 1.5em;
   }
 .fc .fc-toolbar-title {
-    font-size: 1.75em;
+    font-size: 2em;
     margin: 0;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-weight: 900;
+    margin-top: 12%;
+    margin-left: 11%;
+    width: 20rem;
   }
 .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
     margin-left: .75em; /* space between */
@@ -1427,3 +1451,19 @@ A VERTICAL event
     color: inherit; /* natural color for navlinks */
   }
 
+table a{
+	color: #373234 !important;
+	font-family: GangwonEdu_OTFBoldA !important;
+	font-size: 1.2rem;
+}
+table a:hover{
+	color: #FF788B !important;
+}
+
+table tbody tr td table tbody tr td:hover{
+	background-color: #373234 !important;
+}
+
+table tbody tr td table tbody tr td:hover a{
+	color: #FF788B !important;
+}

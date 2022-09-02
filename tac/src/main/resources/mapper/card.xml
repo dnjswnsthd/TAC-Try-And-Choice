@@ -9,6 +9,7 @@
 		<result column="card_desc" property="cardDesc" />
 		<result column="card_img" property="cardImg" />
 		<result column="max_discount" property="maxDiscount" />
+		<result column="card_img_horizon" property="cardImgHorizon" />
 	</resultMap>
 	
 	<insert id="registerCard" parameterType="card">
@@ -49,9 +50,11 @@
 		<result column="max_count" property="mixCount" />
 	</resultMap>
 
+	
+
 	<!-- Card 전체 정보 Select -->
 	<select id="getAllCardInfo" resultMap ="card">
-		select card_id, card_name, card_desc, card_img, max_discount
+		select card_id, card_name, card_desc, card_img, max_discount, card_img_horizon
 		from card
 	</select>
 	

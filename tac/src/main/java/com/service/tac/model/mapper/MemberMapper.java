@@ -9,4 +9,14 @@ public interface MemberMapper {
 	public ArrayList <Member> showAll() throws SQLException;
 	
 	public int register(Member member) throws SQLException;
+	
+	public String chkDup(String memberId) throws SQLException;
+
+	public Member login(Member member) throws SQLException;
+	
+	public int updateMemberInfo(Member member) throws SQLException;
+	
+	public int updateCardInfo(Member member) throws SQLException;
+	
+	public void deleteMember(String id) throws SQLException;
 }	

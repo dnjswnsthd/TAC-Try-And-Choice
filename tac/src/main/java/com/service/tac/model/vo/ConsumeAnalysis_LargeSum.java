@@ -5,17 +5,15 @@ public class ConsumeAnalysis_LargeSum {
 	String LCname;
 	int count;
 	int sum;
+	String Image;
 	
 	public ConsumeAnalysis_LargeSum() {};
-	public ConsumeAnalysis_LargeSum(String lCname, int count, int sum) {
+	public ConsumeAnalysis_LargeSum(String lCname, int count, int sum, String image) {
 		super();
 		LCname = lCname;
-		if ( count == 1 && sum == 0) {
-			this.sum = sum;
-		} else {
-			this.count = count;
-		}
+		this.count = count;
 		this.sum = sum;
+		Image = image;
 	}
 	
 	public String getLCname() {
@@ -36,11 +34,19 @@ public class ConsumeAnalysis_LargeSum {
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
+	public String getImage() {
+		return Image;
+	}
+	public void setImage(String image) {
+		Image = image;
+	}
 	
 	@Override
 	public String toString() {
-		return "후후[LCname=" + LCname + ", count=" + count + ", sum=" + sum + "]";
+		return "ConsumeAnalysis_LargeSum [LCname=" + LCname + ", count=" + count + ", sum=" + sum + ", Image=" + Image
+				+ "]";
 	}
+	
 	
 	
 

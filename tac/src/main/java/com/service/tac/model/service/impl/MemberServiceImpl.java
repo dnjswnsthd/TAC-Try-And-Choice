@@ -25,8 +25,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member login(int memberId, String password) throws SQLException {
-		return null;
+	public Member login(Member member) throws SQLException {
+		Member m=sqlSession.getMapper(MemberMapper.class).login(member);
+		return m;
 	}
 
 	@Override
@@ -36,12 +37,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMemberInfo(Member member) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(MemberMapper.class).updateMemberInfo(member);
 	}
 
 	@Override
-	public int updateCardInfo(Card card) throws SQLException {
-		return 0;
+	public int updateCardInfo(Member member) throws SQLException {
+		return sqlSession.getMapper(MemberMapper.class).updateCardInfo(member);
 	}
 
 	@Override
@@ -52,6 +53,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void remove(int memberId) throws SQLException {
 
+	}
+
+	@Override
+	public String chkDup(String memberId) throws SQLException {
+		return sqlSession.getMapper(MemberMapper.class).chkDup(memberId);
+	}
+
+	@Override
+	public void deleteMember(String id) throws SQLException {
+		sqlSession.getMapper(MemberMapper.class).deleteMember(id);
 	}
 
 }

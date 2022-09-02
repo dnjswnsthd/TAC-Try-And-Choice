@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+body {
+    background-image: url(../image/signupBackground03.jpg);
+	background-repeat: no-repeat;
+	background-position: 0% 15%;
+	background-size: auto;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.wrapper {
+    max-width: 600px;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    box-shadow: 10px 10px 40px rgb(206, 206, 206)
+}
+
+.h4 {
+    font-family: 'Poppins', sans-serif
+}
+
+.btn.btn-block {
+    border-radius: 20px;
+    background-color: #400485;
+    color: #fff
+}
+
+.btn.btn-block:hover {
+    background-color: #55268be0
+}

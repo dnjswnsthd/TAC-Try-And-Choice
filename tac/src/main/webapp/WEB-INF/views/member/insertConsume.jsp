@@ -6,6 +6,7 @@
 <head>
 <meta charset='utf-8' />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='resources/js/calendar/main.css' rel='stylesheet' />
 <script src='resources/js/calendar/main.js'></script>
 <link href="/resources/css/signupConsume.css" rel="stylesheet" />
@@ -36,9 +37,9 @@
 	    var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
 	      headerToolbar: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	        left: 'title',
+	        center: '',
+	        right: 'prev,next'
 	      },
 	      /* initialDate: '2021-04-12', // 초기 로딩 날짜. */
 	      navLinks: true, 
@@ -67,35 +68,56 @@
 							success : function(result) {
 								$('.modal').fadeOut();
 								calendar.refetchEvents(calendar.unselect());
-								alert(JSON.stringify(arg));
 								arg.start = '0';
 							},
 							complete:function(){
-								$('#large').val('');
-								$('#small').val('');
-								$('#price').val('');
+								$('#large').val('대분류');
+								$('#small').val('소분류');
+								$('#price').val('0');
 							}						
 						});
 					}
 				});
 				calendar.unselect()
 			},
+			eventDrop: function(info){
+				  $.ajax({
+						type : 'put',
+						url : '/consume/update',
+						data : {
+							consumeId: info.oldEvent.groupId,
+							consumeDate: info.event.start.toISOString().slice(0,10)
+						},
+						success : function(result) {
+						},						
+					});
+			  },
 	      eventClick: function(arg) {
 	    	  // 있는 일정 클릭시,
-	    	  alert(arg.el.fcSeg.eventRange.def.groupId);
-	         if (confirm('Are you sure you want to delete this event?')) {
-	        	$.ajax({
-					type : 'delete',
-					url : '/consume/deleteConsume',
-					data : {
-						consumeId: arg.el.fcSeg.eventRange.def.groupId 
-					},
-					success : function(result) {
-						calendar.refetchEvents();
-					},
-				});
-	        	arg.event.remove()
-	        }
+	    	 swal({
+			      title: "Warning",
+			      text: "소비정보를 삭제하시겠습니까?",
+			      icon: "warning",
+			      buttons: [
+			        '취소',
+			        '삭제'
+			      ],
+			      dangerMode: true,
+			 }).then(function(isConfirm){
+				 if (isConfirm) {
+		        	$.ajax({
+						type : 'delete',
+						url : '/consume/deleteConsume',
+						data : {
+							consumeId: arg.el.fcSeg.eventRange.def.groupId 
+						},
+						success : function(result) {
+							calendar.refetchEvents();
+						},
+					});
+		        	arg.event.remove()
+		        }
+			 })
 	      },
 	      editable: true,
 	      dayMaxEvents: true, // allow "more" link when too many events
@@ -111,18 +133,36 @@
 			        ,contentType : "application/x-www-form-urlencoded; charset=UTF-8"
 			        ,success: function(param){
 			            var events = [];
+			            
 			            $.each(param, function (index, data){
-			                    events.push({
-			                        title : data.LARGECATEGORYNAME
-			                        ,start : data.CONSUMEDATE
-			                        ,allDay: true
-			                        ,className: 'important'
-			                        ,groupId: data.CONSUMEID
-			                        ,laregeCategoryId: data.LARGECATEGORYID
-			                        ,smallCategoryId: data.SMALLCATEGORYID
-			                        ,smallCategoryName: data.SMALLCATEGORYNAME
-			                        ,consumePrice: data.CONSUMEPRICE
-			                    }); // push // end
+			            	var color = 'white';
+			            	var bgcolor = '';
+			            	if(data.LARGECATEGORYID == '1' || data.LARGECATEGORYID == '5' || data.LARGECATEGORYID == '9' || data.LARGECATEGORYID == '13' || data.LARGECATEGORYID == '17' ){
+			            		bgcolor = '#FBC22C'
+			            	}else if(data.LARGECATEGORYID == '2' || data.LARGECATEGORYID == '6' || data.LARGECATEGORYID == '10' || data.LARGECATEGORYID == '14' || data.LARGECATEGORYID == '18' ){
+			            		bgcolor = '#F01486'
+			            	}else if(data.LARGECATEGORYID == '3' || data.LARGECATEGORYID == '7' || data.LARGECATEGORYID == '11' || data.LARGECATEGORYID == '15' || data.LARGECATEGORYID == '19' ){
+			            		bgcolor = '#A067AD'
+			            	}else if(data.LARGECATEGORYID == '4' || data.LARGECATEGORYID == '8' || data.LARGECATEGORYID == '12' || data.LARGECATEGORYID == '16' || data.LARGECATEGORYID == '20' ){
+			            		bgcolor = '#46A3D2'
+			            	}else if(data.LARGECATEGORYID == '21' || data.LARGECATEGORYID == '22'){
+			            		bgcolor = '#8CE33D'
+			            	}else{
+			            		bgcolor = "#FF788B"
+			            	}
+		                    events.push({
+		                        title : data.LARGECATEGORYNAME
+		                        ,start : data.CONSUMEDATE
+		                        ,allDay: true
+		                        ,className: 'important'
+		                        ,groupId: data.CONSUMEID
+		                        ,laregeCategoryId: data.LARGECATEGORYID
+		                        ,smallCategoryId: data.SMALLCATEGORYID
+		                        ,smallCategoryName: data.SMALLCATEGORYNAME
+		                        ,consumePrice: data.CONSUMEPRICE
+		                        ,backgroundColor: bgcolor
+		                        ,color : color
+		                    }); // push // end
 			            });// each end
 			            successCallback(events);
 			        }
@@ -152,16 +192,15 @@ body {
 	<div class="container">
 		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea">
-			<h3>회원가입 마지막 단계 ${memberId}</h3>
-			<p>전달 소비 정보를 입력해주세요!</p>
+			<h3> ${memberId} 님 소비 정보를 입력해주세요!</h3>
+			<input type="button" id="moveLogin" value="등록 완료" />
 		</div>
+		<h5 id="h5">시간이 없으시다면 MYPAGE에서 수정가능! 다음에 입력하셔도 됩니다.</h5>
 		<div id="wrap">
 			<div id="calendar"></div>
 			<div style="clear: both"></div>
 		</div>
-		<div class="button">
-			<button>응애</button>
-		</div>
+		<br><br>
 	</div>
 	<div class="modal">
 		<div class="modal_content" title="">

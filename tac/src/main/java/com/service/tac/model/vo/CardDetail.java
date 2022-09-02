@@ -11,8 +11,13 @@ public class CardDetail {
 	private int maxDiscount; // MAX_DISCOUNT
 	private int maxCount; // MAX_COUNT
 	private int mixCount; // MAX_COUNT
+	private int discountAmount; //discount_amount
+	private int maxDiscountMonth; //max_discount_month
+	
 	private SmallCategory smallCategory; 
-
+	private LargeCategory largeCategory;
+	private Consume consume;
+	
 	public CardDetail() {
 		super();
 	}
@@ -43,7 +48,7 @@ public class CardDetail {
 	}
 	
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int mixCount, SmallCategory smallCategory) {
+			int minPayment, int maxDiscount, int mixCount,int discountAmount, int maxDiscountMonth, SmallCategory smallCategory) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
@@ -54,6 +59,27 @@ public class CardDetail {
 		this.maxDiscount = maxDiscount;
 		this.mixCount = mixCount;
 		this.smallCategory = smallCategory;
+		this.discountAmount = discountAmount;
+		this.maxDiscountMonth = maxDiscountMonth;
+	}
+	
+	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			int minPayment, int maxDiscount, int mixCount, int discountAmount, int maxDiscountMonth,
+			SmallCategory smallCategory, LargeCategory largeCategory, Consume consume) {
+		super();
+		this.cardDetailId = cardDetailId;
+		this.discountPercent = discountPercent;
+		this.cardId = cardId;
+		this.largeCategoryId = largeCategoryId;
+		this.smallCategoryId = smallCategoryId;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.mixCount = mixCount;
+		this.discountAmount = discountAmount;
+		this.maxDiscountMonth = maxDiscountMonth;
+		this.smallCategory = smallCategory;
+		this.largeCategory = largeCategory;
+		this.consume = consume;
 	}
 
 	public int getCardDetailId() {
@@ -128,12 +154,48 @@ public class CardDetail {
 		this.smallCategory = smallCategory;
 	}
 
+	public LargeCategory getLargeCategory() {
+		return largeCategory;
+	}
+
+	public void setLargeCategory(LargeCategory largeCategory) {
+		this.largeCategory = largeCategory;
+	}
+
+	public Consume getConsume() {
+		return consume;
+	}
+
+	public void setConsume(Consume consume) {
+		this.consume = consume;
+	}
+
+	public int getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(int discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
+	public int getMaxDiscountMonth() {
+		return maxDiscountMonth;
+	}
+
+	public void setMaxDiscountMonth(int maxDiscountMonth) {
+		this.maxDiscountMonth = maxDiscountMonth;
+	}
+
 	@Override
 	public String toString() {
 		return "CardDetail [cardDetailId=" + cardDetailId + ", discountPercent=" + discountPercent + ", cardId="
 				+ cardId + ", largeCategoryId=" + largeCategoryId + ", smallCategoryId=" + smallCategoryId
-				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + maxCount + "]";
+				+ ", minPayment=" + minPayment + ", maxDiscount=" + maxDiscount + ", mixCount=" + mixCount
+				+ ", discountAmount=" + discountAmount + ", maxDiscountMonth=" + maxDiscountMonth + ", smallCategory="
+				+ smallCategory + ", largeCategory=" + largeCategory + ", consume=" + consume + "]";
 	}
+
+	
 
 	
 

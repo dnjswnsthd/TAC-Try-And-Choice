@@ -17,15 +17,43 @@
 <link rel="stylesheet" href="/resources/css/signup.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <!-- jQuery library -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->
 <!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(function() {
-		var cardId = '';
+		$(".form-register").keydown(function(evt) {
+		    if ((evt.keyCode || evt.which) === 13) {
+		    	var message = "";
+		    	if($("#name").val() == ""){
+		    		message = "이름"
+		    	}else if($("#age").val() == ""){
+		    		message = "나이"
+		    	}else if($("#memberId").val() == ""){
+		    		message = "이메일"
+		    	}else if($("#phone").val() == ""){
+		    		message = "전화"
+		    	}else if($("#password").val() == ""){
+		    		message = "패스워드"
+		    	}else if($("#passwordChk").val() == ""){
+		    		message = "패스워드 확인"
+		    	}else if($("#cardId").val() == ""){
+					message = "카드 정보"
+				}
+				if(message != ""){
+					swal({
+						title: message + "은 필수 등록 요소 입니다.",
+						icon: "error",
+					}).then(function(result) {
+					});
+					evt.preventDefault();
+				}
+		    }
+		});
 	});
 </script>
 </head>
@@ -48,17 +76,17 @@
 							<div class="inner">
 								<div class="wizard-header">
 									<h3 class="heading">개인 정보 등록</h3>
-									<p>개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
+									<p class="texting">개인 정보를 모두 입력한 뒤 다음단계로 넘어가주세요!</p>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-4">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Name</legend>
-											<input type="text" class="form-control" id="name" name="name"
-												placeholder="홍길동" required />
+											<input type="text" class="form-control1" id="name" name="name"
+												placeholder="홍길동" />
 										</fieldset>
 									</div>
-									<div class="form-holder form-holder-4">
+									<!-- <div class="form-holder form-holder-4">
 										<fieldset>
 											<legend>성별</legend>
 											<select name="gender" id="gender">
@@ -66,56 +94,65 @@
 												<option value="female">여성</option>
 											</select>
 										</fieldset>
-									</div>
-									<div class="form-holder form-holder-4">
+									</div> -->
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>나이</legend>
-											<input type="number" id="age" name="age" min="1" placeholder="78">
+											<input type="number" id="age" name="age" min="1"
+												placeholder="78" />
 										</fieldset>
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Your Email</legend>
 											<input type="text" name="memberId" id="memberId"
-												class="form-control" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
-												placeholder="example@email.com" required />
+												class="form-control1"
+												placeholder="example@email.com" />
+										</fieldset>
+										<p id="check" style="margin-left:10px;"></p>
+									</div>
+									<div class="form-holder form-holder-3">
+										<fieldset>
+											<legend>Phone Number</legend>
+											<input type="text" class="form-control1" id="phone"
+												name="phone" placeholder="010-1234-5678" />
 										</fieldset>
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Password</legend>
 											<input type="password" name="password" id="password"
-												class="form-control" placeholder="특수문자 포함 8자리 이상..."
-												required />
+												class="form-control1" placeholder="특수문자 포함 8자리 이상..."
+												/>
 										</fieldset>
+										<p id="checkPass" style="margin-left:10px;"></p>
 									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-3">
 										<fieldset>
 											<legend>Password Check</legend>
 											<input type="password" name="passwordChk" id="passwordChk"
-												class="form-control" placeholder="다시 한번 입력해주세요." required />
+												class="form-control1" placeholder="다시 한번 입력해주세요." />
 										</fieldset>
+										<p id="checkPassCol" style="margin-left:10px;"></p>
 									</div>
 								</div>
-								<div class="form-row">
+								<!-- <div class="form-row">
 									<div class="form-holder form-holder-2">
 										<fieldset>
 											<legend>Phone Number</legend>
-											<input type="text" class="form-control" id="phone"
+											<input type="text" class="form-control1" id="phone"
 												name="phone" placeholder="010-1234-5678" required />
 										</fieldset>
 									</div>
 								</div>
-
+ -->
 								<!-- <div class="form-row">
 									<div class="form-holder form-holder-2">
-										<input type="date" class="form-control input-border"
+										<input type="date" class="form-control1 input-border"
 											id="birth" name="birth" value="1996-04-15" required />
 									</div>
 								</div> -->
@@ -133,7 +170,7 @@
 							<div class="inner">
 								<div class="wizard-header">
 									<h3 class="heading">카드 정보 등록</h3>
-									<p>현재 사용중인 카드를 입력해주세요.(선택 사항)</p>
+									<p class="texting">현재 사용중인 카드를 선택해주세요.</p>
 								</div>
 								<div class="form-row">
 									<div id="carouselExampleIndicators" class="carousel slide"
@@ -163,10 +200,11 @@
 																	src="/resources/image/card/${card.cardImg}" />
 															</div>
 															<div class="back-facing">
-																<h4>Name : ${card.cardName}</h4>
-																<h5>카드 설명 : ${card.cardDesc}</h5>
+																<h4>${card.cardName}</h4>
+																<h5>${card.cardDesc}</h5>
 																<p>
-																	<input type="button" class="btn" id="selectCard" value="내 카드 선택" name="${card.cardId}"/>
+																	<input type="button" class="btn" id="selectCard"
+																		value="내 카드 선택" name="${card.cardId}" />
 																</p>
 															</div>
 														</div>
@@ -185,10 +223,11 @@
 																		src="/resources/image/card/${card.cardImg}" />
 																</div>
 																<div class="back-facing">
-																	<h4>Name : ${card.cardName}</h4>
-																	<h5>카드 설명 : ${card.cardDesc}</h5>
+																	<h4>${card.cardName}</h4>
+																	<h5>${card.cardDesc}</h5>
 																	<p>
-																		<input type="button" class="btn" id="selectCard" value="내 카드 선택" name="${card.cardId}"/>
+																		<input type="button" class="btn" id="selectCard"
+																			value="내 카드 선택" name="${card.cardId}" />
 																	</p>
 																</div>
 															</div>
@@ -220,19 +259,19 @@
 							<p class="step-icon">
 								<span>03</span>
 							</p>
-							<span class="step-text">소비 정보로 이동</span>
+							<span class="step-text">소비 정보 등록</span>
 						</h2>
 						<section>
 							<div class="inner">
 								<div class="wizard-header">
-									<h3 class="heading">회원 가입 완료</h3>
-									<p>마지막으로 소비정보를 입력할 수 있습니다.</p>
-									<p>바쁘셔서 시간이 없으시다면 다음에 마이페이지에서 추가해주세요</p>
+									<h3 class="heading" id="clear">회원 가입 완료</h3>
+									<p class="texting">마지막으로 소비정보를 입력해 주세요.</p>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-2" id="inline">
 										<input type="hidden" id="cardId" name="cardId" />
-										<input type="submit" class="btn" value="소비 정보 입력"> <a href="#">로그인 </a>
+										<input type="submit" class="col-sm-6" id="submitBtn" value="소비 정보 입력"> 
+										<!-- <input type="button" class="col-sm-6" id="moveLogin" value="다음에 입력" onClick="location.href='/login'"> -->
 									</div>
 								</div>
 							</div>
