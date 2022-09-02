@@ -29,7 +29,8 @@ public class Interceptor implements HandlerInterceptor {
 		Member member = (Member) session.getAttribute("member");
 		
 		System.out.println(URL);
-		if ( URI.equals("/analysis") || URI.equals("/compare") || URI.equals("/logout") ) {
+		if ( URI.equals("/analysis") || URI.equals("/compare") 
+				|| URI.equals("/logout") || URI.equals("/mypage") || URI.equals("/updateConsume") ) {
 			if ( member == null ) {
 				response.sendRedirect(request.getContextPath() + "/needlogin");
 				return false;
