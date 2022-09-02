@@ -21,7 +21,7 @@ body {
 #analysisTitle{
     font-family: 'Cafe24Ohsquare', sans-serif;
 	color: #000000;	
-    font-size: 3rem;
+    font-size: 2.3rem;
 }
 #subtitle{
     font-family: 'Pretendard-Regular';
@@ -131,7 +131,7 @@ body {
     font-size: 30px;
 }
 .modal-header {
-    background-color:#373234;
+    background-color:#FF788B;
 }
 .modal-body{
     margin-top: 0px;
