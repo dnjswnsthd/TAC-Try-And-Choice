@@ -17,4 +17,6 @@ public interface MemberMapper {
 	public int updateMemberInfo(Member member) throws SQLException;
 	
 	public int updateCardInfo(Member member) throws SQLException;
+	
+	public void deleteMember(String id) throws SQLException;
 }	

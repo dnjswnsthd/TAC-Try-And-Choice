@@ -29,4 +29,7 @@ public interface MemberService {
 	
 	// 아이디 중복 체크
 	public String chkDup(String memberId) throws SQLException;
+	
+	// 회원 삭제
+	public void deleteMember(String id) throws SQLException;
 }

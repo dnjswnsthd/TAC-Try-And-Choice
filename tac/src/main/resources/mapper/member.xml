@@ -41,4 +41,9 @@
 		SET card_id = #{cardId} WHERE member_id = #{memberId}
 	</update>
 	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM MEMBER
+		WHERE MEMBER_ID = '${VALUE}'
+	</delete>
 </mapper>

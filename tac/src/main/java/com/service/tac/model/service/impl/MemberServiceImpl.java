@@ -60,4 +60,9 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).chkDup(memberId);
 	}
 
+	@Override
+	public void deleteMember(String id) throws SQLException {
+		sqlSession.getMapper(MemberMapper.class).deleteMember(id);
+	}
+
 }
