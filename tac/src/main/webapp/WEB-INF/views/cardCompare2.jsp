@@ -118,7 +118,7 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
 	 				<div id="cardName">${myInfo.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card/${myInfo.cardImg}">
+	 				<img class="cardImg" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail">
@@ -192,7 +192,7 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
 		 			<div id="cardName">${info.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card/${info.cardImg}">
+	 				<img class="cardImg" src="resources/image/card_horizon/${info.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail">

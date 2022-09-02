@@ -5,11 +5,11 @@ body{
 }
 
 .cardImg {
-    width: 50%;
+    width: 100%;
     max-width: 90%;
     height: 70%;
     -webkit-backface-visibility: hidden;
-    margin: 3% 25%;
+    margin: 3% 5%;
     border-radius: 12px;
     box-shadow: 6px 2px 2px gray;
 }
