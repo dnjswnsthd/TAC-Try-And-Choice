@@ -63,7 +63,7 @@
 	</select>
 	
 	<select id="getCardInfo" parameterType="int" resultMap="card">
-		SELECT card_id, card_name, card_desc, card_img  
+		SELECT card_id, card_name, card_desc, card_img , card_img_horizon
 		FROM card
 		WHERE card_id=#{VALUE}
 	</select>
