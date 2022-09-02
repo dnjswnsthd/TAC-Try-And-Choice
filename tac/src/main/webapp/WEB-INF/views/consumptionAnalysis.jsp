@@ -342,11 +342,11 @@
                 label: 'My First Dataset',
                 data: mypieData,
                 backgroundColor: [
-                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
-                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
-                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#dda15e', '#8093f1'
+                    '#FF8BA7', '#FFC6C7', '#FAEEE7', '#C3F0CA','#B2A4FF',
+                    '#7FBCD2', '#F6C6EA', '#E1FFEE', '#FFFFDD','#F47C7C',
+                    '#FF8AAE', '#B1BCE6', '#B7E5DD', '#A5F1E9','#B4FF9F',
+                    '#9ADCFF', '#d6ce93', '#f4acb7', '#FFF89A','#72ddf7',
+                    '#FFB2A6', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -492,11 +492,11 @@
                 label: 'My First Dataset',
                 data: avgpieData,
                 backgroundColor: [
-                    '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
-                    '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
-                    '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#dda15e', '#8093f1'
+                    '#FF8BA7', '#FFC6C7', '#FAEEE7', '#C3F0CA','#B2A4FF',
+                    '#7FBCD2', '#F6C6EA', '#E1FFEE', '#FFFFDD','#F47C7C',
+                    '#FF8AAE', '#B1BCE6', '#B7E5DD', '#A5F1E9','#B4FF9F',
+                    '#9ADCFF', '#d6ce93', '#f4acb7', '#FFF89A','#72ddf7',
+                    '#FFB2A6', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
