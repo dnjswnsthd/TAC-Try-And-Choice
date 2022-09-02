@@ -86,10 +86,7 @@
 </head>
 
 <body>
-
-	<nav>
-		<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	</nav>
+	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<!-- 세션 체크 -->
 	<%
 		Member member = (Member) session.getAttribute("member");
@@ -112,14 +109,14 @@
 	 	<div class="row justify-content-around">
 	 		<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
-					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name}님이 선택한 카드의 체험 결과</h1>
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name} 님이 선택한 카드의 체험 결과</h1>
 					<p class="fs-5 text-muted" id="subtitle"> 소지한 카드와 선택한 카드의 혜택을 비교해 드립니다 </p>
 				</div>
 			</header>
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="myCard">
 	 				<div id="cardName">${myInfo.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${myInfo.cardId}'" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail" id="myCardBox">
@@ -193,7 +190,7 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="selectCard">
 		 			<div id="cardName">${info.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card_horizon/${info.cardImgHorizon}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${info.cardId}'" src="resources/image/card_horizon/${info.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail" id="selectCardBox">

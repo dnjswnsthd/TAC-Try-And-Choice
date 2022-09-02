@@ -107,7 +107,7 @@ body {
 
 .myChartHeadFont{
     font-family: 'Cafe24Ohsquare', sans-serif;
-	font-size:40px;
+	font-size:1.8rem;
 }
 
 
@@ -124,7 +124,7 @@ body {
     background-color:#FF788B;
 }
 
-/* 모달 창 */
+/* 紐⑤떖 李� */
 .modal-title{
     font-family: 'Cafe24Ohsquare', sans-serif;
     color:rgb(255, 255, 255);
@@ -137,7 +137,7 @@ body {
     margin-top: 0px;
     background-color:rgb(250, 254, 255);
 }
-/* 소비 패턴  */
+/* �냼鍮� �뙣�꽩  */
 #TypeAnalysisModalTitle {
     font-family: 'Cafe24Ohsquare', sans-serif;
 	padding-left: 30px;
@@ -192,7 +192,7 @@ body {
     margin:auto;
 }
 
-/* 소비 패턴 분석 강조 문구  */
+/* �냼鍮� �뙣�꽩 遺꾩꽍 媛뺤“ 臾멸뎄  */
 #maxday{
     font-size: 30px;
     color: #ff0000;
@@ -254,7 +254,7 @@ body {
     font-size: 10px;
 }
 
-/* 남들과 비교 하는 아이콘 */
+/* �궓�뱾怨� 鍮꾧탳 �븯�뒗 �븘�씠肄� */
 .CompareFlex {
     text-align: center;
     flex-basis: 33.33333%;
