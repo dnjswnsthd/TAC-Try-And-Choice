@@ -13,6 +13,7 @@ import com.service.tac.model.mapper.CardMapper;
 import com.service.tac.model.service.CardService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
+import com.service.tac.model.vo.CardDetailManage;
 
 @Service
 public class CardServiceImpl implements CardService {
@@ -33,7 +34,7 @@ public class CardServiceImpl implements CardService {
 	
 	@Override
 	public int registerCard(Card card) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(CardMapper.class).registerCard(card);
 	}
 
 	@Override
@@ -46,5 +47,24 @@ public class CardServiceImpl implements CardService {
 		return 0;
 	}
 
+	@Override
+	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException {
+		
+		return sqlSession.getMapper(CardMapper.class).getDiscountInfoByCard(cardId);
+	}
 
+	@Override
+	public Card getSelectedCard(int cardId) throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).getSelectedCard(cardId);
+	}
+
+	@Override
+	public ArrayList<CardDetailManage> getSelectedCardDetail(int cardId) throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).getSelectedCardDetail(cardId);
+	}
+	
+	@Override
+	public int updateCard(Card card) throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).updateCard(card);
+	}
 }
