@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +31,13 @@ public class AnalyseController {
 
 	@Autowired
 	private AnalyseService analyseService;
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@RequestMapping("/analysis")
 	public ModelAndView analysis(HttpServletRequest request, HttpSession session) {
 		System.out.println("[AnalyseController] Analysis");
+		logger.info("analysis");
+		
 		ModelAndView mav = new ModelAndView();
 		// json 용
 		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
