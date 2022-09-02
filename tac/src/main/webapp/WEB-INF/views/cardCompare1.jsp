@@ -78,20 +78,7 @@
 							</c:forEach>
 							<div id="js-btn-wrap" class="btn-wrap"><a href="javascript:;" class="button">더보기</a></div>
 					</div>
-						<script>
-							$(function(){
-								    $(".lists").slice(0, 5).show(); // select the first ten
-								    $("#js-btn-wrap").click(function(e){ // click event for load more
-								        e.preventDefault();
-										        
-									$(".lists:hidden").slice(0, 10).show(); // select next 10 hidden divs and show them
-								        if($("#.lists:hidden").length == 0){ // check if any hidden divs still exist
-								            $("#js-btn-wrap").hide(); // alert if there are none left
-								        }
-								    });
-								});
-								
-						</script>
+						
 				</div>
 					<!-- / project-info-box -->
 				
@@ -198,13 +185,8 @@
 								<th>금 액</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>저쩌고</td>
-								<td>어쩌고</td>
-
-							</tr>
+						<tbody id="consumeTable">
+							
 						</tbody>
 					</table>
 				</div>
@@ -215,6 +197,29 @@
 		<!-- /row  -->
 	</div>
 	<script>
+		$(function(){
+			    $(".lists").slice(0, 5).show(); // select the first ten
+			    $("#js-btn-wrap").click(function(e){ // click event for load more
+			        e.preventDefault();
+					        
+				$(".lists:hidden").slice(0, 10).show(); // select next 10 hidden divs and show them
+			        if($(".lists:hidden").length == 0){ // check if any hidden divs still exist
+			            $("#js-btn-wrap").hide(); // alert if there are none left
+			        }
+			    });
+			});
 		
+		var consumeJson = JSON.parse('${Object}');
+		//console.log(consumeJson);
+		//console.log(consumeJson[0]);
+		var i=1;
+		for(element in consumeJson[0]){
+			var temp = consumeJson[0][element].split(",");
+			$("#consumeTable").append('<tr><td>'+(i++)+'</td>'+
+					            '<td>'+element+'</td><td>'+
+					            temp[1]+'</td></tr>');
+		}
+		
+			
 	</script>
 </body>
