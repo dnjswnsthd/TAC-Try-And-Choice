@@ -8,8 +8,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,22 +24,35 @@ import com.service.tac.model.vo.ConsumeAnalysis_ByDay;
 import com.service.tac.model.vo.ConsumeAnalysis_Desc;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
 import com.service.tac.model.vo.LargeCategory;
+import com.service.tac.model.vo.Member;
 
 @Controller
 public class AnalyseController {
 
 	@Autowired
 	private AnalyseService analyseService;
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@RequestMapping("/analysis")
 	public ModelAndView analysis(HttpServletRequest request, HttpSession session) {
 		System.out.println("[AnalyseController] Analysis");
+		logger.info("analysis");
+		
 		ModelAndView mav = new ModelAndView();
 		// json 용
 		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
 		// ID
-		String id = "RYU";
-		System.out.println("[ID] " +id);
+		String id = "";
+		Member sessionmember = (Member) session.getAttribute("member");
+		if ( sessionmember == null ) {
+			System.out.println("로그인 안한 오류");
+			String view = "consumptionAnalysis";
+			mav.setViewName(view);
+			return mav;
+		}
+		
+		id = sessionmember.getMemberId();
+//		System.out.println("[ID] " + id);
 
 		// 1. 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();
@@ -115,6 +131,8 @@ public class AnalyseController {
 		for (int i = 0; i < AnalLargeSum.size(); i++) {
 			int meSum = AnalLargeSum.get(i).getSum();
 			int avgSum = AnalLargeSumAvg.get(i).getSum();
+//			System.out.println(AnalLargeSum.get(i).getLCname() + " : " + meSum + "   -----     " + avgSum);
+//			System.out.println(Math.abs(meSum - avgSum));
 			myTotalConsume += meSum;
 			avgTotalConsume += avgSum;
 			if (meSum > avgSum) {
@@ -143,6 +161,7 @@ public class AnalyseController {
 			if ( Math.abs(meSum - avgSum) > gapM ) {
 				gap = AnalLargeSum.get(i).getLCname();
 				gapM =  Math.abs(meSum - avgSum);
+//				System.out.println(gap + " : " + gapM);
 			}
 
 			
@@ -323,5 +342,30 @@ public class AnalyseController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("analysisDetail1");
 		return mav;
+	}
+	
+	@RequestMapping("/cardCompare")
+	public String LargeCategoryImg(Model model){
+
+		ArrayList<LargeCategory> LargeCategoryList = new ArrayList<>();
+		ArrayList<String> categoryName=new ArrayList<>();
+		ArrayList<String> categoryImg=new ArrayList<>();
+		try {
+			
+			LargeCategoryList = analyseService.LargeCategroyList();
+			for (LargeCategory temp : LargeCategoryList) {
+				categoryName.add(temp.getLargeCategoryName());
+				categoryName.add(temp.getLargeCategoryImage());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		model.addAttribute("categoryName",categoryName);
+		model.addAttribute("categoryImg", categoryImg);
+
+		
+		return "/cardCompare2";
 	}
 }

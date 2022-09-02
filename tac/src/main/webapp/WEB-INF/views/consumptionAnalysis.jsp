@@ -33,16 +33,7 @@
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	
-	<%
-		Member member = (Member) session.getAttribute("member");
-		if ( member == null ) {
-	%>
-	<script> alert("로그인 먼저하세요"); location.href = '/login';</script>
-	<%
-		}
-	%>
-	
+
 	<div class="page-content">
 		<div class="container py-3">
 			<header>
@@ -55,7 +46,7 @@
 
 			<main>
 			<div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
-				<div class="col">
+				<div class="col" id="analcontent">
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div id="myChartHead" class="card-header py-3"
 							data-bs-toggle="modal" data-bs-target="#myModal">
@@ -97,7 +88,7 @@
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">소비 유형별 상세 분석</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<button type="button" class="btn-close modalclose" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal body -->
@@ -181,7 +172,7 @@
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">일별 상세 분석</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<button type="button" class="btn-close modalclose" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal body -->
@@ -245,6 +236,7 @@
 		$(function() {
 			$('#AnalyseModal1_UL').append('<li class="ModalDescText"> ${member.name}님은 한 달간 <b class="modalWon">' +  '${myTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하셨습니다.</li>');
 			$('#AnalyseModal1_UL').append('<li> ${member.name}님의 동년배들은 평균적으로 <b class="modalWon">' +  '${avgTotalConsume}'.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +'</b>원을 사용하는 군요.</li>');
+			
 			// 큰거
 			var arr = '${bigger}'.substring(1,'${bigger}'.length -1	).split(', ');
 			var count = 0;
@@ -351,8 +343,8 @@
                     '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
                     '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
                     '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#dda15e', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -501,8 +493,8 @@
                     '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
                     '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
                     '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#dda15e', '#8093f1'
                 ],
                 hoverOffset: 4
             }]

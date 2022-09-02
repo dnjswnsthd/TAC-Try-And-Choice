@@ -80,6 +80,18 @@
 				});
 				calendar.unselect()
 			},
+			eventDrop: function(info){
+				  $.ajax({
+						type : 'put',
+						url : '/consume/update',
+						data : {
+							consumeId: info.oldEvent.groupId,
+							consumeDate: info.event.start.toISOString().slice(0,10)
+						},
+						success : function(result) {
+						},						
+					});
+			  },
 	      eventClick: function(arg) {
 	    	  // 있는 일정 클릭시,
 	    	 swal({
@@ -183,6 +195,7 @@ body {
 			<h3> ${memberId} 님 소비 정보를 입력해주세요!</h3>
 			<input type="button" id="moveLogin" value="등록 완료" />
 		</div>
+		<h5 id="h5">시간이 없으시다면 MYPAGE에서 수정가능! 다음에 입력하셔도 됩니다.</h5>
 		<div id="wrap">
 			<div id="calendar"></div>
 			<div style="clear: both"></div>

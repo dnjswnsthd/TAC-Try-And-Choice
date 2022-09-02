@@ -32,4 +32,10 @@
 		DELETE FROM CONSUME 
 		WHERE consume_id = #{consumeId}
 	</delete>
+	
+	<!-- updateConsume -->
+	<update id="updateConsumeInfo" parameterType="Consume">
+		UPDATE CONSUME 
+		SET consume_date = #{consumeDate} where consume_id = #{consumeId}
+	</update>
 </mapper>

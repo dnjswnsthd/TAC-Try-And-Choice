@@ -1570,8 +1570,18 @@ public class CardCompareController {
 	}
 	
 	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
-	public String cardCompare() {
-		
+	public String cardCompare(HttpServletRequest request, Model model) {
+		int cardId = Integer.parseInt(request.getParameter("cardId"));
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		try {
+			Card info = cardCompareService.getCardInfo(cardId);
+			Card myInfo = cardCompareService.getCardInfo(member.getCardId());
+			model.addAttribute("info", info);
+			model.addAttribute("myInfo", myInfo);
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return "cardCompare2";
 	}
 }

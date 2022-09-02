@@ -1,33 +1,39 @@
 @charset "UTF-8";
-@font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 body{
     background-image: url(../image/water_splash.jpg);
-    margin-top:13%;
-    font-family: 'Cafe24Ssurround';
-
 }
 
 .cardImg {
-    width: 70%;
-    max-width: 70%;
+    width: 50%;
+    max-width: 90%;
     height: 70%;
     -webkit-backface-visibility: hidden;
-    margin:6% 15%;
+    margin: 3% 25%;
+    border-radius: 12px;
+    box-shadow: 6px 2px 2px gray;
+}
+
+#analysisTitle{
+    font-family: 'Cafe24Ohsquare', sans-serif;
+	color: #000000;	
+    font-size: 2.3rem;
+}
+#subtitle{
+    font-family: 'Pretendard-Regular';
+    margin-bottom:-2%;
 }
 
 div #cardName {
 	text-align: center;
-	font-size: 18px;
+	font-size: 1.5rem;
+	font-family: 'Pretendard-Regular';
+	color: #373234;
+	border-bottom: 1px solid #373234;
+	font-weight: 900;
 }
 
 p {
-    font-family: "Cafe24Ssurround", sans-serif !important;
     font-weight: 300;
     font-size: 18px;
     color: #686c6d;
@@ -39,11 +45,11 @@ b, strong {
 }
 
 .cardDetail {
-  margin: 20px 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 30px 40px;
-  border-radius: 10px;
-  
+	font-family:'Pretendard-Regular', sans-serif !important;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px 40px;
+    border-radius: 10px;
 }
 
 .cardDetail p {
@@ -58,3 +64,34 @@ b, strong {
   border-bottom: none;
 }
 
+.cardDetail h3{
+	font-family: 'Pretendard-Regular', sans-serif !important;
+	font-size: 1.3rem !important;
+	text-align: center;
+}
+
+#cardText{
+	color:rgba(255, 99, 132, 1);
+}
+ 
+ #myCardColor{
+ 	color:rgba(255, 99, 132, 1);
+ }
+ 
+ #selectCardColor{
+ 	color:rgba(54, 162, 235, 1);
+ }
+ 
+ .cardDetail{
+ 	font-size:1.1rem;
+ }
+ 
+ .CompareFlex {
+    text-align: center;
+    flex-basis: 33.33333%;
+}
+
+.ULdesc{
+    font-size:15px;
+    margin-top: 5px;
+}
