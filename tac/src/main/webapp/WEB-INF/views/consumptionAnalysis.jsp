@@ -343,8 +343,8 @@
                     '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
                     '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
                     '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#dda15e', '#8093f1'
                 ],
                 hoverOffset: 4
             }]
@@ -493,8 +493,8 @@
                     '#ffa69e', '#faf3dd', '#b8f2e6', '#aed9e0','#e7ecef',
                     '#274c77', '#6096ba', '#a3cef1', '#0b5394','#64a6bd',
                     '#ada7c9', '#ffc43d', '#ffb5a7', '#a9def9','#e4c1f9',
-                    '#81c3d7', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
-                    '#ff0054', '#8093f1'
+                    '#edede9', '#d6ce93', '#f4acb7', '#f4f1bb','#72ddf7',
+                    '#dda15e', '#8093f1'
                 ],
                 hoverOffset: 4
             }]

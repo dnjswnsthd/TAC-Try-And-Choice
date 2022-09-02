@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.service.tac.model.vo.Member"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,16 +85,40 @@
 </head>
 
 <body>
+
 	<nav>
 		<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	</nav>
+	<!-- 세션 체크 -->
+	<%
+		Member member = (Member) session.getAttribute("member");
+		if ( member == null ) {
+	%>
+	<script> 
+		swal({
+				title: "로그인이 필요한 서비스 입니다!",
+				icon: "error",
+			}).then(function(result) {
+				console.log(result);
+				location.href = '/login';
+			});
+	</script>
+	<%
+		}
+	%>
 	
 	 <div class="container">
 	 	<div class="row justify-content-around">
+	 		<header>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name}님이 선택한 카드의 체험 결과</h1>
+					<p class="fs-5 text-muted" id="subtitle"> 소지한 카드와 선택한 카드의 혜택을 비교해 드립니다 </p>
+				</div>
+			</header>
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
-	 				<div id="cardName">2030 언택트 체크카드</div>
-	 				<img class="cardImg" src="resources/image/card/card_horizon01.jpg">
+	 				<div id="cardName">${myInfo.cardName}</div>
+	 				<img class="cardImg" src="resources/image/card/${myInfo.cardImg}">
 	 			</div>
 	 			
 	 			<div class="cardDetail">
@@ -101,7 +126,7 @@
 	 				<div>주유비 <span> 500원 할인</span></div><hr>
 	 				<div>베이커리 <span> 500원 할인</span></div><hr>
 	 				<div>카페 <span> 500원 할인</span></div><hr>
-	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
+	 				<div>이동통신요금 <span> 3500원 할인</span></div><hr>
 	 				<div>놀이공원 <span> 500원 할인</span></div><hr>
 	 				<div>교통 <span> 500원 할인</span></div><hr>
 	 				
@@ -114,6 +139,9 @@
 	 			</div>
 	 			
 	 			<div class="cardDetail">
+	 				<h3>BNK 프렌즈 체크카드를 사용하면 </h3>
+	 				<h3><span id="cardText">+3150원</span>의 이득을 볼 수 있습니다.</h3>
+	 				<hr>
 	 				<div id="consumePattern" class="d-flex flex-wrap align-content-start" >
 	 					<div class="p-2 border CompareFlex">
 		 					<img id="cardImg" src="resources/image/compare/01_FUEL.png" width="50px" /> 
@@ -145,11 +173,11 @@
 		 					<div class="ULdesc">교통</div>
 		 					<div class="discount ULdesc">+500원</div>
 	 					</div>
-	 					<div class="p-2 border CompareFlex">
+	 					<!-- <div class="p-2 border CompareFlex">
 		 					<img id="cardImg" src="resources/image/compare/07_HomeShopping.png" width="50px" /> 
 		 					<div class="ULdesc">홈쇼핑</div>
 		 					<div class="discount ULdesc">-2000원</div>
-	 					</div>
+	 					</div> -->
 	 					
 	 				<!-- <div>✈&nbsp;&nbsp;여행<div class="discount" id="selectCardColor">+400</div></div><hr>
 	 				<div>⛽&nbsp;&nbsp;주유<div class="discount" id="selectCardColor">+1200</div></div><hr>
@@ -163,18 +191,18 @@
 	 		
 	 		<div class="col-md-4">
 	 			<div class="cardDetail">
-		 			<div id="cardName">BNK 프렌즈 체크카드</div>
-	 				<img class="cardImg" src="resources/image/card/card_horizon02.jpg">
+		 			<div id="cardName">${info.cardName}</div>
+	 				<img class="cardImg" src="resources/image/card/${info.cardImg}">
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail">
 	 				<p id="selectCardColor"><b>비교할 카드</b></p>
 	 				<div>주유비 <span> 1000원 할인</span></div><hr>
-	 				<div>베이커리 <span> 500원 할인</span></div><hr>
-	 				<div>카페 <span> 500원 할인</span></div><hr>
+	 				<div>베이커리 <span> 850원 할인</span></div><hr>
+	 				<div>카페 <span> 300원 할인</span></div><hr>
 	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
-	 				<div>놀이공원 <span> 500원 할인</span></div><hr>
-	 				<div>교통 <span> 500원 할인</span></div><hr>
+	 				<div>놀이공원 <span> 5500원 할인</span></div><hr>
+	 				<div>교통 <span> 100원 할인</span></div><hr>
 	 			</div>
 	 		
 	 		
@@ -183,9 +211,8 @@
 	 </div>
 	 
 	 <script>
+	 /* 
 		$(function() {
-			
-			var arr = ;
 		
 			$.each( arr, function(index, element){
 				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
@@ -194,7 +221,7 @@
 				
 			}
 			});
-	/* 
+	
 			$.each( arr, function(index, element){
 				var imgsrc = LCImage.get(element);
 				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
