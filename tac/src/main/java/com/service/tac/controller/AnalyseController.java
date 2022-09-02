@@ -26,6 +26,13 @@ import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
 import com.service.tac.model.vo.LargeCategory;
 import com.service.tac.model.vo.Member;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @Controller
 public class AnalyseController {
 
