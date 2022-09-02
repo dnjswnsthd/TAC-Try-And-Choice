@@ -2,64 +2,102 @@ package com.service.tac.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.service.tac.model.service.CardCompareService;
+import com.service.tac.model.service.CardService;
 import com.service.tac.model.service.MemberService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
+import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
 import com.service.tac.model.vo.Member;
 
 @Controller
 public class CardCompareController {
 	@Autowired
 	CardCompareService cardCompareService;
-	
+		
 	@Autowired
 	MemberService memberService;
 	
 	
 	@RequestMapping(value= {"/compare"}, method= RequestMethod.GET)
-	public String compare(HttpServletRequest request, Model model) {
-		int cardId = Integer.parseInt(request.getParameter("cardId"));
+	public String compare(HttpServletRequest request,HttpSession session, Model model, @Param("cardId") int cardId, @Param("memberId") String memberId) {
+		cardId = Integer.parseInt(request.getParameter("cardId"));
+		System.out.println(cardId);
+		Member member = (Member) session.getAttribute("member");
+		memberId = member.getMemberId();
+		List<HashMap<String, Object>> bList = new ArrayList<HashMap<String, Object>>();
+		
+		// 대분류 통계
+		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();
+		try {
+			HashMap<String, Object> hmap = new HashMap<>();
+			AnalLargeSum = cardCompareService.AnalyseLC_SUM(memberId);
+//			System.out.println("나의 대분류-----------------------------------------------------------------------");
+			for (ConsumeAnalysis_LargeSum temp : AnalLargeSum) {
+//				System.out.println(temp.toString());
+				if(temp.getSum()!=0) {
+				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum() + ", " + temp.getImage());
+				}
+			}
+//			System.out.println("--------------------------------------------------------------------------");
+			bList.add(hmap);
+			System.out.println(bList);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		Gson gson = new GsonBuilder().create();
+		String json = gson.toJson(bList);
+		model.addAttribute("Object", json);
 		
 		try {
 			Card info = cardCompareService.getCardInfo(cardId);
 			ArrayList<CardDetail> list = cardCompareService.getDiscountInfoByCard(cardId);
+			System.out.println(list);
 			
+//			System.out.println("여기까지 왔음" + member);
+			
+			System.out.println(memberId);
+
 			model.addAttribute("list", list);
 			model.addAttribute("info", info);
 			
-			ArrayList<CardDetail> records1 = cardCompareService.getBenefitsByCateg1(cardId);
-			ArrayList<CardDetail> records2 = cardCompareService.getBenefitsByCateg2(cardId);
-			ArrayList<CardDetail> records3 = cardCompareService.getBenefitsByCateg3(cardId);
-			ArrayList<CardDetail> records4 = cardCompareService.getBenefitsByCateg4(cardId);
-			ArrayList<CardDetail> records5 = cardCompareService.getBenefitsByCateg5(cardId);
-			ArrayList<CardDetail> records6 = cardCompareService.getBenefitsByCateg6(cardId);
-			ArrayList<CardDetail> records7 = cardCompareService.getBenefitsByCateg7(cardId);
-			ArrayList<CardDetail> records8 = cardCompareService.getBenefitsByCateg8(cardId);
-			ArrayList<CardDetail> records9 = cardCompareService.getBenefitsByCateg9(cardId);
-			ArrayList<CardDetail> records10 = cardCompareService.getBenefitsByCateg10(cardId);
-			ArrayList<CardDetail> records11 = cardCompareService.getBenefitsByCateg11(cardId);
-			ArrayList<CardDetail> records12 = cardCompareService.getBenefitsByCateg12(cardId);
-			ArrayList<CardDetail> records13 = cardCompareService.getBenefitsByCateg13(cardId);
-			ArrayList<CardDetail> records14 = cardCompareService.getBenefitsByCateg14(cardId);
-			ArrayList<CardDetail> records15 = cardCompareService.getBenefitsByCateg15(cardId);
-			ArrayList<CardDetail> records16 = cardCompareService.getBenefitsByCateg16(cardId);
-			ArrayList<CardDetail> records17 = cardCompareService.getBenefitsByCateg17(cardId);
-			ArrayList<CardDetail> records18 = cardCompareService.getBenefitsByCateg18(cardId);
-			ArrayList<CardDetail> records19 = cardCompareService.getBenefitsByCateg19(cardId);
-			ArrayList<CardDetail> records20 = cardCompareService.getBenefitsByCateg20(cardId);
-			ArrayList<CardDetail> records21 = cardCompareService.getBenefitsByCateg21(cardId);
-			ArrayList<CardDetail> records22 = cardCompareService.getBenefitsByCateg22(cardId);
+			ArrayList<CardDetail> records1 = cardCompareService.getBenefitsByCateg1(cardId, memberId);
+			ArrayList<CardDetail> records2 = cardCompareService.getBenefitsByCateg2(cardId, memberId);
+			ArrayList<CardDetail> records3 = cardCompareService.getBenefitsByCateg3(cardId, memberId);
+			ArrayList<CardDetail> records4 = cardCompareService.getBenefitsByCateg4(cardId, memberId);
+			ArrayList<CardDetail> records5 = cardCompareService.getBenefitsByCateg5(cardId, memberId);
+			ArrayList<CardDetail> records6 = cardCompareService.getBenefitsByCateg6(cardId, memberId);
+			ArrayList<CardDetail> records7 = cardCompareService.getBenefitsByCateg7(cardId, memberId);
+			ArrayList<CardDetail> records8 = cardCompareService.getBenefitsByCateg8(cardId, memberId);
+			ArrayList<CardDetail> records9 = cardCompareService.getBenefitsByCateg9(cardId, memberId);
+			ArrayList<CardDetail> records10 = cardCompareService.getBenefitsByCateg10(cardId, memberId);
+			ArrayList<CardDetail> records11 = cardCompareService.getBenefitsByCateg11(cardId, memberId);
+			ArrayList<CardDetail> records12 = cardCompareService.getBenefitsByCateg12(cardId, memberId);
+			ArrayList<CardDetail> records13 = cardCompareService.getBenefitsByCateg13(cardId, memberId);
+			ArrayList<CardDetail> records14 = cardCompareService.getBenefitsByCateg14(cardId, memberId);
+			ArrayList<CardDetail> records15 = cardCompareService.getBenefitsByCateg15(cardId, memberId);
+			ArrayList<CardDetail> records16 = cardCompareService.getBenefitsByCateg16(cardId, memberId);
+			ArrayList<CardDetail> records17 = cardCompareService.getBenefitsByCateg17(cardId, memberId);
+			ArrayList<CardDetail> records18 = cardCompareService.getBenefitsByCateg18(cardId, memberId);
+			ArrayList<CardDetail> records19 = cardCompareService.getBenefitsByCateg19(cardId, memberId);
+			ArrayList<CardDetail> records20 = cardCompareService.getBenefitsByCateg20(cardId, memberId);
+			ArrayList<CardDetail> records21 = cardCompareService.getBenefitsByCateg21(cardId, memberId);
+			ArrayList<CardDetail> records22 = cardCompareService.getBenefitsByCateg22(cardId, memberId);
 			
 			// 1번 카테고리
 			if(records1.size()!=0) {
@@ -70,9 +108,9 @@ public class CardCompareController {
 				int discount1 = 0;
 				int maxDiscountMon1 = records1.get(0).getMaxDiscountMonth();
 				int discountAmount1 = records1.get(0).getDiscountAmount();
-				String name1 = records1.get(0).getLargeCategory().getLargeCategoryName();
+				String name1 = cardCompareService.getLargeCategoryName(records1.get(0).getLargeCategoryId());
 				
-				System.out.println(maxDiscountMon1);
+				System.out.println("1번 카테고리입니다");
 				
 				if(minPayment1 != 0) {
 					if(maxCount1 != 0 && maxCount1 <= records1.size()) {						
@@ -125,7 +163,7 @@ public class CardCompareController {
 							else if(maxDiscountMon1 !=0 && discount1 > maxDiscountMon1) discount1 = maxDiscountMon1; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount1);
 							}// else
-					}model.addAttribute("category1", name1);
+					}model.addAttribute("name1", name1 );
 					model.addAttribute("discount1", discount1);
 			}
 			
@@ -139,9 +177,9 @@ public class CardCompareController {
 				int discount2 = 0;
 				int maxDiscountMon2 = records2.get(0).getMaxDiscountMonth();
 				int discountAmount2 = records2.get(0).getDiscountAmount();
-				String name2 = records2.get(0).getLargeCategory().getLargeCategoryName();
-				System.out.println(maxDiscountMon2);
-				System.out.println(maxDiscount2);
+				String name2 = cardCompareService.getLargeCategoryName(records2.get(0).getLargeCategoryId());
+				System.out.println("2번 카테고리입니다");
+				
 				
 				if(minPayment2 != 0) {
 					if(maxCount2 != 0 && maxCount2 <= records2.size()) {						
@@ -206,8 +244,8 @@ public class CardCompareController {
 				int discount3 = 0;
 				int maxDiscountMon3 = records3.get(0).getMaxDiscountMonth();
 				int discountAmount3 = records3.get(0).getDiscountAmount();
-				String name3 = records3.get(0).getLargeCategory().getLargeCategoryName();
-				System.out.println(maxDiscountMon3);
+				String name3 = cardCompareService.getLargeCategoryName(records3.get(0).getLargeCategoryId());
+				System.out.println("3번 카테고리입니다");
 				
 				if(minPayment3 != 0) {
 					if(maxCount3 != 0  && maxCount3 <= records3.size()) {						
@@ -272,10 +310,8 @@ public class CardCompareController {
 				int discount4 = 0;
 				int maxDiscountMon4 = records4.get(0).getMaxDiscountMonth();
 				int discountAmount4 = records4.get(0).getDiscountAmount();
-				String name4 = records4.get(0).getLargeCategory().getLargeCategoryName();
-				System.out.println("4번 카테고리 월 최대 할인금액"+discountAmount4);
-				System.out.println("4번 카테고리 회당 할인 금액 또는 퍼센트 : "+discountPercent4+" %"+discountAmount4+" 원");
-				System.out.println(records4);
+				String name4 = cardCompareService.getLargeCategoryName(records4.get(0).getLargeCategoryId());
+				System.out.println("4번 카테고리입니다");
 				if(minPayment4 != 0) {
 					if(maxCount4 != 0 && maxCount4 <= records4.size()) {						
 						for(int i=0; i<maxCount4;i++) {
@@ -341,8 +377,8 @@ public class CardCompareController {
 				int discount5 = 0;
 				int maxDiscountMon5 = records5.get(0).getMaxDiscountMonth();
 				int discountAmount5 = records5.get(0).getDiscountAmount();
-				String name5 = records5.get(0).getLargeCategory().getLargeCategoryName();
-				System.out.println(maxDiscountMon5);
+				String name5 = cardCompareService.getLargeCategoryName(records5.get(0).getLargeCategoryId());
+				System.out.println("5번 카테고리입니다");
 				
 				if(minPayment5 != 0) {
 					if(maxCount5 != 0 && maxCount5 <= records5.size()) {						
@@ -398,6 +434,7 @@ public class CardCompareController {
 					}model.addAttribute("name5", name5);
 					model.addAttribute("discount5", discount5);
 			}
+			
 			//6번 카테고리
 			if(records6.size()!=0) {
 				int maxCount6 = records6.get(0).getMixCount();
@@ -407,7 +444,8 @@ public class CardCompareController {
 				int discount6 = 0;
 				int maxDiscountMon6 = records6.get(0).getMaxDiscountMonth();
 				int discountAmount6 = records6.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon6);
+				String name6 = cardCompareService.getLargeCategoryName(records6.get(0).getLargeCategoryId());
+				System.out.println("6번 카테고리입니다");
 				
 				if(minPayment6 != 0) {
 					if(maxCount6 != 0 && maxCount6 <= records6.size()) {						
@@ -460,7 +498,8 @@ public class CardCompareController {
 							else if(maxDiscountMon6 !=0 && discount6 > maxDiscountMon6) discount6 = maxDiscountMon6; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount6);
 							}// else
-					}System.out.println(discount6);
+					}model.addAttribute("name6", name6);
+					model.addAttribute("discount6", discount6);
 			}
 			// 7번 카테고리
 			if(records7.size()!=0) {
@@ -471,7 +510,8 @@ public class CardCompareController {
 				int discount7 = 0;
 				int maxDiscountMon7 = records7.get(0).getMaxDiscountMonth();
 				int discountAmount7 = records7.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon7);
+				String name7 = cardCompareService.getLargeCategoryName(records7.get(0).getLargeCategoryId());
+				System.out.println("7번 카테고리입니다");
 				
 				if(minPayment7 != 0) {
 					if(maxCount7 != 0 && maxCount7 <= records7.size()) {						
@@ -524,8 +564,10 @@ public class CardCompareController {
 							else if(maxDiscountMon7 !=0 && discount7 > maxDiscountMon7) discount7 = maxDiscountMon7; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount7);
 							}// else
-					}System.out.println(discount7);
+					}model.addAttribute("name8", name7);
+					model.addAttribute("discount8", discount7);
 			}
+			
 			// 8번 카테고리
 			if(records8.size()!=0) {
 				int maxCount8 = records8.get(0).getMixCount();
@@ -535,7 +577,8 @@ public class CardCompareController {
 				int discount8 = 0;
 				int maxDiscountMon8 = records8.get(0).getMaxDiscountMonth();
 				int discountAmount8 = records8.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon8);
+				String name8 = cardCompareService.getLargeCategoryName(records8.get(0).getLargeCategoryId());
+				System.out.println("8번 카테고리입니다");
 				
 				if(minPayment8 != 0) {
 					if(maxCount8 != 0 && maxCount8 <= records8.size()) {						
@@ -590,6 +633,7 @@ public class CardCompareController {
 							}// else
 					}System.out.println(discount8);
 			}
+			
 			// 9번 카테고리
 			if(records9.size()!=0) {
 				int maxCount9 = records9.get(0).getMixCount();
@@ -599,7 +643,8 @@ public class CardCompareController {
 				int discount9 = 0;
 				int maxDiscountMon9 = records9.get(0).getMaxDiscountMonth();
 				int discountAmount9 = records9.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon9);
+				String name9 = cardCompareService.getLargeCategoryName(records9.get(0).getLargeCategoryId());
+				System.out.println("9번 카테고리입니다");
 				
 				if(minPayment9 != 0) {
 					if(maxCount9 != 0  && maxCount9 <= records9.size()) {						
@@ -652,10 +697,13 @@ public class CardCompareController {
 							else if(maxDiscountMon9 !=0 && discount9 > maxDiscountMon9) discount9 = maxDiscountMon9; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount9);
 							}// else
-					}System.out.println(discount9);
+					}model.addAttribute("name9", name9);
+					model.addAttribute("discount9", discount9);
 			}
+			
 			// 10번 카테고리
 			if(records10.size()!=0) {
+				System.out.println(records10);
 				int maxCount10 = records10.get(0).getMixCount();
 				int maxDiscount10 = records10.get(0).getMaxDiscount();
 				int minPayment10 = records10.get(0).getMinPayment();
@@ -663,7 +711,9 @@ public class CardCompareController {
 				int discount10 = 0;
 				int maxDiscountMon10 = records10.get(0).getMaxDiscountMonth();
 				int discountAmount10 = records10.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon10);
+				String name10 = cardCompareService.getLargeCategoryName(records10.get(0).getLargeCategoryId());
+				System.out.println("10번 카테고리입니다");
+				System.out.println(name10);
 				
 				if(minPayment10 != 0) {
 					if(maxCount10 != 0  && maxCount10 <= records10.size()) {						
@@ -716,7 +766,8 @@ public class CardCompareController {
 							else if(maxDiscountMon10 !=0 && discount10 > maxDiscountMon10) discount10 = maxDiscountMon10; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount10);
 							}// else
-					}System.out.println(discount10);
+					}model.addAttribute("name10", name10);
+					model.addAttribute("discount10", discount10);
 			}
 			// 11번 카테고리
 			if(records11.size()!=0) {
@@ -727,7 +778,8 @@ public class CardCompareController {
 				int discount11 = 0;
 				int maxDiscountMon11 = records11.get(0).getMaxDiscountMonth();
 				int discountAmount11 = records11.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon11);
+				String name11 = cardCompareService.getLargeCategoryName(records11.get(0).getLargeCategoryId());
+				System.out.println("11번 카테고리 입니다");
 				
 				if(minPayment11 != 0) {
 					if(maxCount11 != 0  && maxCount11 <= records11.size()) {						
@@ -780,8 +832,10 @@ public class CardCompareController {
 							else if(maxDiscountMon11 !=0 && discount11 > maxDiscountMon11) discount11 = maxDiscountMon11; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount11);
 							}// else
-					}System.out.println(discount11);
+					}model.addAttribute("name11", name11);
+					model.addAttribute("discount11", discount11);
 			}
+			
 			// 12번 카테고리
 			if(records12.size()!=0) {
 				int maxCount12 = records12.get(0).getMixCount();
@@ -791,8 +845,8 @@ public class CardCompareController {
 				int discount12 = 0;
 				int maxDiscountMon12 = records12.get(0).getMaxDiscountMonth();
 				int discountAmount12 = records12.get(0).getDiscountAmount();
-				String name12 = records12.get(0).getLargeCategory().getLargeCategoryName();
-				System.out.println(maxDiscountMon12);
+				String name12 = cardCompareService.getLargeCategoryName(records12.get(0).getLargeCategoryId());
+				System.out.println("12번 카테고리입니다");
 				
 				if(minPayment12 != 0) {
 					if(maxCount12 != 0  && maxCount12 <= records12.size()) {						
@@ -857,7 +911,8 @@ public class CardCompareController {
 				int discount13 = 0;
 				int maxDiscountMon13 = records13.get(0).getMaxDiscountMonth();
 				int discountAmount13 = records13.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon13);
+				String name13 = cardCompareService.getLargeCategoryName(records13.get(0).getLargeCategoryId());
+				System.out.println("13번 카테고리입니다");
 				
 				if(minPayment13 != 0) {
 					if(maxCount13 != 0  && maxCount13 <= records13.size()) {						
@@ -910,8 +965,10 @@ public class CardCompareController {
 							else if(maxDiscountMon13 !=0 && discount13 > maxDiscountMon13) discount13 = maxDiscountMon13; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount13);
 							}// else
-					}System.out.println(discount13);
+					}model.addAttribute("name13", name13);
+					model.addAttribute("discount13", discount13);
 			}
+			
 			// 14번 카테고리
 			if(records14.size()!=0) {
 				int maxCount14 = records14.get(0).getMixCount();
@@ -921,7 +978,8 @@ public class CardCompareController {
 				int discount14 = 0;
 				int maxDiscountMon14 = records14.get(0).getMaxDiscountMonth();
 				int discountAmount14 = records14.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon14);
+				String name14 = cardCompareService.getLargeCategoryName(records14.get(0).getLargeCategoryId());
+				System.out.println( "14번 카테고리입니다");
 				
 				if(minPayment14 != 0) {
 					if(maxCount14 != 0 && maxCount14 <= records14.size()) {						
@@ -974,8 +1032,10 @@ public class CardCompareController {
 							else if(maxDiscountMon14 !=0 && discount14 > maxDiscountMon14) discount14 = maxDiscountMon14; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount14);
 							}// else
-					}System.out.println(discount14);
+					}model.addAttribute("name14", name14);
+					model.addAttribute("discount14", discount14);
 			}
+			
 			// 15번 카테고리
 			if(records15.size()!=0) {
 				int maxCount15 = records15.get(0).getMixCount();
@@ -985,7 +1045,8 @@ public class CardCompareController {
 				int discount15 = 0;
 				int maxDiscountMon15 = records15.get(0).getMaxDiscountMonth();
 				int discountAmount15 = records15.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon15);
+				String name15 = cardCompareService.getLargeCategoryName(records15.get(0).getLargeCategoryId());
+				System.out.println("15번 카테고리입니다");
 				
 				if(minPayment15 != 0) {
 					if(maxCount15 != 0 && maxCount15 <= records15.size()) {						
@@ -1038,8 +1099,10 @@ public class CardCompareController {
 							else if(maxDiscountMon15 !=0 && discount15 > maxDiscountMon15) discount15 = maxDiscountMon15; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount15);
 							}// else
-					}System.out.println(discount15);
+					}model.addAttribute("name16", name15);
+					model.addAttribute("discount16", discount15);
 			}
+			
 			// 16번 카테고리
 			if(records16.size()!=0) {
 				int maxCount16 = records16.get(0).getMixCount();
@@ -1049,7 +1112,8 @@ public class CardCompareController {
 				int discount16 = 0;
 				int maxDiscountMon16 = records16.get(0).getMaxDiscountMonth();
 				int discountAmount16 = records16.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon16);
+				String name16 = cardCompareService.getLargeCategoryName(records16.get(0).getLargeCategoryId());
+				System.out.println("16번 카테고리입니다");
 				
 				if(minPayment16 != 0) {
 					if(maxCount16 != 0 && maxCount16 <= records16.size()) {						
@@ -1102,8 +1166,10 @@ public class CardCompareController {
 							else if(maxDiscountMon16 !=0 && discount16 > maxDiscountMon16) discount16 = maxDiscountMon16; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount16);
 							}// else
-					}System.out.println(discount16);
+					}model.addAttribute("name16", name16);
+					model.addAttribute("discount", discount16);
 			}
+			
 			// 17번 카테고리
 			if(records17.size()!=0) {
 				int maxCount17 = records17.get(0).getMixCount();
@@ -1113,7 +1179,8 @@ public class CardCompareController {
 				int discount17 = 0;
 				int maxDiscountMon17 = records17.get(0).getMaxDiscountMonth();
 				int discountAmount17 = records17.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon17);
+				String name17 = cardCompareService.getLargeCategoryName(records17.get(0).getLargeCategoryId());
+				System.out.println("17번 카테고리입니다");
 				
 				if(minPayment17 != 0) {
 					if(maxCount17 != 0 && maxCount17 <= records17.size()) {						
@@ -1166,8 +1233,10 @@ public class CardCompareController {
 							else if(maxDiscountMon17 !=0 && discount17 > maxDiscountMon17) discount17 = maxDiscountMon17; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount17);
 							}// else
-					}System.out.println(discount17);
+					}model.addAttribute("name17", name17);
+					model.addAttribute("discount17", discount17);
 			}
+			
 			// 18번 카테고리
 			if(records18.size()!=0) {
 				int maxCount18 = records18.get(0).getMixCount();
@@ -1177,7 +1246,8 @@ public class CardCompareController {
 				int discount18 = 0;
 				int maxDiscountMon18 = records18.get(0).getMaxDiscountMonth();
 				int discountAmount18 = records18.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon18);
+				String name18 = cardCompareService.getLargeCategoryName(records18.get(0).getLargeCategoryId());
+				System.out.println("18번 카테고리입니다");
 				
 				if(minPayment18 != 0) {
 					if(maxCount18 != 0 && maxCount18 <= records18.size()) {						
@@ -1230,8 +1300,10 @@ public class CardCompareController {
 							else if(maxDiscountMon18 !=0 && discount18 > maxDiscountMon18) discount18 = maxDiscountMon18; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount18);
 							}// else
-					}System.out.println(discount18);
+					}model.addAttribute("name18", name18);
+					model.addAttribute("discount", discount18);
 			}
+			
 			// 19번 카테고리
 			if(records19.size()!=0) {
 				int maxCount19 = records19.get(0).getMixCount();
@@ -1241,7 +1313,8 @@ public class CardCompareController {
 				int discount19 = 0;
 				int maxDiscountMon19 = records19.get(0).getMaxDiscountMonth();
 				int discountAmount19 = records19.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon19);
+				String name19 = cardCompareService.getLargeCategoryName(records19.get(0).getLargeCategoryId());
+				System.out.println("19번 카테고리입니다");
 				
 				if(minPayment19 != 0) {
 					if(maxCount19 != 0 && maxCount19 <= records19.size()) {						
@@ -1294,7 +1367,8 @@ public class CardCompareController {
 							else if(maxDiscountMon19 !=0 && discount19 > maxDiscountMon19) discount19 = maxDiscountMon19; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount19);
 							}// else
-					}System.out.println(discount19);
+					}model.addAttribute("name19", name19);
+					model.addAttribute("discount19", discount19);
 			}
 			// 20번 카테고리
 			if(records20.size()!=0) {
@@ -1305,7 +1379,8 @@ public class CardCompareController {
 				int discount20 = 0;
 				int maxDiscountMon20 = records20.get(0).getMaxDiscountMonth();
 				int discountAmount20 = records20.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon20);
+				String name20 = cardCompareService.getLargeCategoryName(records20.get(0).getLargeCategoryId());
+				System.out.println("20번 카테고리입니다");
 				
 				if(minPayment20 != 0) {
 					if(maxCount20 != 0 && maxCount20 <= records20.size()) {						
@@ -1358,8 +1433,10 @@ public class CardCompareController {
 							else if(maxDiscountMon20 !=0 && discount20 > maxDiscountMon20) discount20 = maxDiscountMon20; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount20);
 							}// else
-					}System.out.println(discount20);
+					}model.addAttribute("name20", name20);
+					model.addAttribute("discount20", discount20);
 			}
+			
 			// 21번 카테고리
 			if(records21.size()!=0) {
 				int maxCount21 = records21.get(0).getMixCount();
@@ -1369,7 +1446,8 @@ public class CardCompareController {
 				int discount21 = 0;
 				int maxDiscountMon21 = records21.get(0).getMaxDiscountMonth();
 				int discountAmount21 = records21.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon21);
+				String name21 = cardCompareService.getLargeCategoryName(records21.get(0).getLargeCategoryId());
+				System.out.println("21번 카테고리입니다");
 				
 				if(minPayment21 != 0) {
 					if(maxCount21 != 0 && maxCount21 <= records21.size()) {						
@@ -1422,8 +1500,10 @@ public class CardCompareController {
 							else if(maxDiscountMon21 !=0 && discount21 > maxDiscountMon21) discount21 = maxDiscountMon21; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount21);
 							}// else
-					}System.out.println(discount21);
+					}model.addAttribute("name21", name21);
+					model.addAttribute("discount21", discount21);
 			}
+			
 			// 22번 카테고리
 			if(records22.size()!=0) {
 				int maxCount22 = records22.get(0).getMixCount();
@@ -1433,7 +1513,8 @@ public class CardCompareController {
 				int discount22 = 0;
 				int maxDiscountMon22 = records22.get(0).getMaxDiscountMonth();
 				int discountAmount22 = records22.get(0).getDiscountAmount();
-				System.out.println(maxDiscountMon22);
+				String name22 = cardCompareService.getLargeCategoryName(records22.get(0).getLargeCategoryId());
+				System.out.println("22번 카테고리입니다");
 				
 				if(minPayment22 != 0) {
 					if(maxCount22 != 0 && maxCount22 <= records22.size()) {						
@@ -1486,7 +1567,8 @@ public class CardCompareController {
 							else if(maxDiscountMon22 !=0 && discount22 > maxDiscountMon22) discount22 = maxDiscountMon22; 
 						System.out.println("!!!!!!!!!!!!!!!!!!!!!!값 확인!!!!!!!!!!!!!!!!!"+discount22);
 							}// else
-					}System.out.println(discount22);
+					}model.addAttribute("name22", name22);
+					model.addAttribute("discount22",discount22);
 				}
 			}catch(SQLException e) {
 			System.out.println(e.getMessage());
