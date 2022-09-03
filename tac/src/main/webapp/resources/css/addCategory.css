@@ -1,0 +1,97 @@
+#LCTitleText{
+    font-family: 'Cafe24Ssurround';
+    font-size: 2.3rem;
+}
+
+#mainbody{
+    font-family: 'Pretendard-Regular';
+    width: 70rem;
+    margin: auto;
+}
+.large_category_list{
+    font-family: 'Cafe24Ohsquare';
+    font-size: 1.5rem;
+    text-align: center;
+}
+#RightBox{
+    margin:auto;
+    display: table;
+} 
+.LCnameBox{
+    text-align: center;
+    flex-basis: 20%;
+    height: 4.5rem;
+}
+
+.SubCategoryTItle{
+    font-family: 'Cafe24Ohsquare';
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+}
+
+#blank{
+    height: 3rem;
+    /* background-color: black; */
+}
+
+#add_large_category_name{
+    width: 50%;
+}
+
+/* 등록 버튼 */
+#add_large_category_name{
+    height: 2.8rem;
+    width: 10rem;
+}
+#addLargeName{
+    margin-left: 2rem;
+    margin-bottom: 0.2rem;
+    width: 4rem;
+    height: 3rem;
+    color: white;
+    background-color: #373234;
+}
+#addLargeName:hover{
+    color: rgb(67, 0, 0);
+    background-color: #FF788B;
+}
+/* 삭제 */
+#large_category_selection{
+    height: 2.8rem;
+    width: 10rem;
+
+}
+
+#deleteLargeName{
+    margin-left: 2rem;
+    margin-bottom: 0.2rem;
+    width: 4rem;
+    height: 3rem;
+    color: white;
+    background-color: #373234;
+
+}
+#deleteLargeName:hover{
+    color: rgb(67, 0, 0);
+    background-color: #FF788B;
+}
+#line{
+    background-color: #373234;
+    height: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+#gomanagebtn{
+    font-family: 'Cafe24Ohsquare';
+    font-size: 1.5rem;
+    margin: auto;
+    width: 20rem;
+    height: 4rem;
+    color: rgb(65, 42, 0);
+    background-color: #fff9dc;
+}
+
+#gomanagebtn:hover{
+    color: rgb(65, 42, 0);
+    background-color: #FF788B;
+}
