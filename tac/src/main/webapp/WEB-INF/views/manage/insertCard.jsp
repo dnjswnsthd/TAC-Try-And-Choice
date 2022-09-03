@@ -12,8 +12,7 @@
         <title>관리자 모드 - 카드 등록</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-		<link rel="stylesheet" href="../resources/css/insertCardElement.css">
-        <link rel="stylesheet" href="../resources/css/insertCardStyle.css"> 
+        <link rel="stylesheet" href="/resources/css/insertCard.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -160,152 +159,154 @@
     });	
 	
     </script>
+    
     </head>
     <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-    	
-        <!-- Top content -->
-        <div class="top-content">
-            <!-- <div class="inner-bg"> -->
-                <div class="container">
-                    <div class="card_register">
-                    	<b>카드등록</b>
-                    </div>                
-                    <div class="row">
-                        <div class="col-sm-5">
-                        	<form action="#" id="card_image_selection">
-                        	<div class="form-box">
+	
+		<div id="container" class="container">
+	 	<div class="row justify-content-around">
+	 		<header>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
+					<h2>카드등록</h2>
+				</div>
+			</header>
+			<div>
+				<!-- 카드등록 -->
+				<div class="card_information row">
+					<div class="card_information">
+               		 	<h3><b>카드 등록</b></h3>
+                    </div>
+                    <hr>
+					<!-- 카드사진 -->
+					<div class="col-md-5" >
+						<form action="#" id="card_image_selection">
+		 					
+	                       	<div class="form-box text-center cardInfo">
 	                        	<div class="form-top">
 	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
-	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
 	                            </div>
-	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_left" class="btn btn-default">이미지 선택(앞)</button>
-	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_right" class="btn btn-default">이미지 선택(뒤)</button>
-	                        </form> 
-	                        
-	                        <script type="text/javascript">
-							    function getImageFiles(e) {
-							      const files = e.currentTarget.files;
-							    }
-							
-							    const realUpload = document.querySelector('.real-upload');
-							    const upload_front_image = document.querySelector('#image_selection_left');
-							    const upload_back_image = document.querySelector('#image_selection_right');
-							
-							    upload_front_image.addEventListener('click', () => realUpload.click());
-							    realUpload.addEventListener('change', getImageFiles);
-							    
-							    upload_back_image.addEventListener('click', () => realUpload.click());
-							    realUpload.addEventListener('change', getImageFiles);
-							</script>
-	                       
-	                       	<div class="card_information">
-	                      		 <b>카드 등록</b>
-	                       	</div>    	
-	                            <div class="form-bottom" id="form-box-left">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 이름</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardName" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-name">
-				                        </div>
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 설명</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardDesc" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-desc">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password"></label>
-				                        	<b class="inline_text">최대 할인 금액</b>&nbsp;&nbsp;&nbsp;<input type="text" name="maxDiscount" placeholder="내용을 입력해주세요..." class="form-password form-control" id="max-sale">
-				                        </div>
-				                        <button class="btn" id="cardReg" value="등록">등록</button>
-			                    </div>
-		                    </div>     
-                        </div>
-                        
-                        	
-                        <div class="col-sm-7">
-                        	
-                        	<div class="form-box" id="form-box-right">
-                        		<div class="form-top" id="saleDetail">
-	                        		<li>
-	                        			<h3><b>할인 목록 등록</b></h3>
-	                        		</li>
-									<li class="add_button">
-	                        			<button class="add_categoty_large"><a href="addLargeCategory">대분류 추가</a></button>
-	                        		</li>
-	                        		<li class="add_button">
-	                        			<button class="add_categoty_small"><a href="addSmallCategory">소분류 추가</a></button>
-	                        		</li>	
-	                            </div>
-	                            <div class="form-top" id="selectCard">
-	                        		<li>
-	                        			<select name="allCard" class="allCard">
-												<option value="largeName">==카드 선택==</option>
-											<c:forEach items="${showAllCard}" var="card">
-												<option value="${card.cardId}">${card.cardName}</option>
-											</c:forEach>
-										</select>
-	                        		</li>
-	                            </div>
-	                            <div class="form-top" id="addSaleDetail">
-									<li class="add_button">
-										<select name="large_category" class="large_category_selection">
-											 	<option value="largeName">대분류</option>
-										</select>
-	                        		</li>
-	                        		<li class="add_button">
-	                        			<select name="small_category" id="small_category_selection">
-			                        		<option value="small">소분류</option>
-		                        		</select>
-	                        		</li>	
-	                        		<li class="add_button">
-	                        			<button class="addSaleList">add</button>
-	                        		</li>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <!-- <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail"> -->
-				                    	
-				                        <table id="register_category">
-				                        
-				                        <tr>
-					                        <th>대분류</th>
-					                        <th>소분류</th>
-					                        <th>최소결제금액</th>
-					                        <th>최대할인금액</th>
-					                        <th>최대할인횟수</th>
-					                        <th>할인율</th>
-					                        <th></th>
-				                        </tr>
-				                        <tr>
-				                        	<td>
-												<input type="text" name="largeCategoryName" id="largeCategoryName" class="add_manage_option">
-				                        	</td>
-				                        	<td>
-				                        		<input type="text" name="smallCategoryName" class="add_manage_option">
-				                        	</td>
-				                        	<td>
-				                        		<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">원
-				                        	</td>
-				                        	<td>
-				                        		<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">원
-				                        	</td>
-				                        	<td>
-				                        		<input type="number" name="max_count" class="add_manage_option" value="0">번
-				                        	</td>
-				                        	<td>
-				                        		<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">%
-				                        	</td>
-				                        </tr>                     	
-				                        </table><br><br><br>
-				                        <button class="btn" id="register_card_detail">등록</button>
-			                    </div>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- 		<footer>
- 		</footer>
+		                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
+		                        <button type="submit" id="image_selection_left" class="btn btn-outline-secondary">이미지 선택</button> 
+	                        </div>            
+	                	</form> 
+	                	<script type="text/javascript">
+						    function getImageFiles(e) {
+						      const files = e.currentTarget.files;
+						    }
+						
+						    const realUpload = document.querySelector('.real-upload');
+						    const upload_front_image = document.querySelector('#image_selection_left');
+						    const upload_back_image = document.querySelector('#image_selection_right');
+						
+						    upload_front_image.addEventListener('click', () => realUpload.click());
+						    realUpload.addEventListener('change', getImageFiles);
+						    
+						    upload_back_image.addEventListener('click', () => realUpload.click());
+						    realUpload.addEventListener('change', getImageFiles);
+						</script>
+
+					</div>
+					<!-- 카드정보 -->
+					<div class="form-bottom col-md-7" id="form-box-left">
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-username form-control" id="card-name" name="cardName" placeholder="내용을 입력해주세요...">
+						  <label for="floatingInput">카드 이름</label>
+						</div>
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-username form-control" id="card-desc" name="cardDesc" placeholder="내용을 입력해주세요...">
+						  <label for="floatingInput">카드 설명</label>
+						</div>
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-password form-control" id="max-sale" name="maxDiscount" placeholder="내용을 입력해주세요..." >
+						  <label for="floatingInput">최대 할인 금액</label>
+						</div>
+
+                        <button type="button" class="btn btn-outline-secondary addBtn" id="cardReg" value="등록">등록</button>
+
+					</div>
+				</div>
+				<br><br>
+				<!-- 카드혜택등록 -->
+				<div id="card">
+					<div class="form-top" id="saleDetail">
+                   		<h3><b>할인 목록 등록</b></h3>
+	                </div>
+	                <hr>
+					<div class="form-top" id="selectCard addSaleDetail">
+						<select name="allCard" class="allCard form-select" aria-label="Default select example">
+						  <option selected>카드선택</option>
+						  <c:forEach items="${showAllCard}" var="card">
+								<option value="${card.cardId}">${card.cardName}</option>
+							</c:forEach>
+						</select>
+						<br>
+						<div class="input-group">
+						  <select name="large_category" class="large_category_selection form-select" id="inputGroupSelect04" aria-label="Default select example">
+						    <option selected>대분류를 선택하세요</option>
+						  </select>
+						  
+						</div>
+						<br>
+						<div class="input-group">
+						  <select name="small_category" id="small_category_selection" class="form-select" id="inputGroupSelect04" aria-label="Default select example">
+						    <option selected>소분류를 선택하세요</option>
+						  </select>
+						  
+						</div>
+						<br>
+						<button class="btn addSaleList btn-outline-secondary addBtn" id="cardReg2">할인혜택 추가하기</button>
+						<br><br><br>
+					
+					</div>
+					<div>
+						<!-- <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail"> -->
+				        <table class="table" id="register_category" style="table-layout:fixed;">
+						  <thead>
+						    <tr>
+						      <th scope="col" class="large_category">대분류</th>
+						      <th scope="col" class="small_category">소분류</th>
+						      <th scope="col" class="min_amount">최소결제금액</th>
+						      <th scope="col" class="max_discount">최대할인금액</th>
+						      <th scope="col" class="max_count">최대할인횟수</th>
+						      <th scope="col" class="discount_rate">할인율</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      	<td scope="col" class="large_category">
+						      		<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+                        		</td>
+	                        	<td scope="col" class="small_category">
+	                        		<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+	                        	</td>
+	                        	<td scope="col" class="min_amount">
+	                        		<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+	                        		<label>원</label>
+	                        	</td>
+	                        	<td scope="col" class="max_discount">
+	                        		<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+	                        		<label>원</label>
+	                        	</td>
+	                        	<td scope="col" class="max_count">
+	                        		<input type="number" name="max_count" class="add_manage_option" value="0">
+	                        		<label>번</label>
+	                        	</td>
+	                        	<td scope="col" class="discount_rate">
+	                        		<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+	                        		<label>%</label>
+	                        	</td>
+						    </tr>
+						  </tbody>
+						</table>
+						      	
+                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
+					</div>
+				</div>
+			</div>
+	 	</div>
+	 </div>
+	 
     </body>
 </html>
