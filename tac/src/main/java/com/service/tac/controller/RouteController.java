@@ -64,7 +64,7 @@ public class RouteController {
 	public String addLargeCategory(Model model) {
 		try {
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", list);
+			model.addAttribute("largeCategory", list);	
 			return "/manage/insert_card_largeCategory";
 			
 		} catch(Exception e) {
@@ -111,6 +111,7 @@ public class RouteController {
 		}
 	}
 
+	
 	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
     public String manage_card(Model model) {
         try {

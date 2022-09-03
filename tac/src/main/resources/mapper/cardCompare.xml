@@ -62,6 +62,15 @@
 		</association>
 	</resultMap>
 	
+	<resultMap type="calculation" id="calculation">
+		<result column="large_category_id" property="largeCategoryId" />
+		<result column="large_category_name" property="largeCategoryName" />
+		<result column="large_category_image" property="largeCategoryImage" />
+		<result column="category_discount_price" property="categoryDiscountPrice" />
+		<result column="max_count" property="maxCount" />
+		<result column="max_discount_month" property="maxDiscountMonth" />
+	</resultMap>
+	
 	<select id="getDiscountInfoByCard" parameterType="int" resultMap="cardDetailWithCategory">
 		SELECT c.card_id, s.small_category_name, c.discount_percent, c.max_discount, c.discount_amount, c.max_discount_month
 		FROM  card_detail  c
@@ -323,5 +332,31 @@
 		SELECT l.large_category_name
 		FROM large_category l
 		WHERE large_category_id=#{param}
+	</select>
+	
+	<select id="getBenefitsByCategory" parameterType="HashMap" resultMap="calculation">
+		SELECT
+			cd.LARGE_CATEGORY_ID,
+			lc.LARGE_CATEGORY_NAME,
+			lc.LARGE_CATEGORY_IMAGE,
+			(CASE
+				WHEN NVL(cd.MAX_DISCOUNT, 1000000) <![CDATA[<]]> (CASE WHEN CD.DISCOUNT_AMOUNT <![CDATA[!=]]> 0 THEN CD.DISCOUNT_AMOUNT ELSE c.consume_price * (CD.DISCOUNT_PERCENT * 0.01) END)
+				THEN NVL(cd.MAX_DISCOUNT, 1000000)
+				ELSE (CASE WHEN CD.DISCOUNT_AMOUNT <![CDATA[!=]]> 0 THEN CD.DISCOUNT_AMOUNT ELSE c.consume_price * (CD.DISCOUNT_PERCENT * 0.01) END)
+			END) AS CATEGORY_DISCOUNT_PRICE,
+			cd.MAX_COUNT,
+			NVL(cd.MAX_DISCOUNT_MONTH, 1000000) MAX_DISCOUNT_MONTH
+		 FROM
+			CARD_DETAIL cd JOIN CONSUME c
+			ON (cd.SMALL_CATEGORY_ID = c.small_CATEGORY_ID)
+			JOIN LARGE_CATEGORY lc 
+			ON (cd.LARGE_CATEGORY_ID = lc.LARGE_CATEGORY_ID)
+		WHERE
+			cd.card_id = #{cardId}
+			AND c.MEMBER_ID = #{memberId}
+			AND c.CONSUME_PRICE <![CDATA[>=]]> NVL(MIN_PAYMENT, 0)
+		ORDER BY
+			cd.LARGE_CATEGORY_id,
+			c.CONSUME_DATE
 	</select>
 </mapper>
