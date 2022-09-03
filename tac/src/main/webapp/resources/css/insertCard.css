@@ -1,38 +1,37 @@
 
 .container {
-	font-family: 'Pretendard-Regular', sans-serif;
+    font-family: 'Pretendard-Regular', sans-serif;
 }
 
 #container{
-	width: 70%;
+    width: 70%;
 }
 
 .cardInfo{
-	margin: 7% auto;
+    margin: 7% auto;
 }
 
 #image_selection_left{
-	margin-top: 5%;
+    margin-top: 5%;
 }
 
 #cardReg{
-	margin-left: 91%;
+    margin-left: 91%;
 }
 
 #cardReg2{
-	width:30%;
-	margin-left: 70%;
+    width:30%;
+    margin-left: 70%;
 }
 
 .cardReg3{
-	margin-left: 90%;
+    margin-left: 90%;
 }
 
 .large_category, .small_category, .min_amount, .max_discount, .max_count, 
 .discount_rate{
-	width:160px;
-}
+    width:160px;
 
 #register_category{
-	width:100%;
+    width:100%;
 }
