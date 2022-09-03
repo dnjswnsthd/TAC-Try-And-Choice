@@ -333,17 +333,17 @@ nav {
 }
 
 .maintext{
-	margin-top: 7%;
+	margin-top: 6%;
 	height:300%;
 	width:80%;
-	margin-left: 8%;
+	margin-left: 10%;
 	margin-bottom: 3%;
 }
 
 .maintext h2 {
-	font-size: 3.7rem;
+	font-size: 4.2rem;
 	font-family: 'Cafe24Ohsquare' !important;
-	margin-left: 4.5%;
+	margin-left: 5.0%;
 	margin-top: 1%;
 	color: rgb(255, 255, 255);
 	text-shadow: 6px 2px 2px gray;
