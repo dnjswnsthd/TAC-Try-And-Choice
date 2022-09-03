@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.service.tac.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,7 +129,7 @@
 	 			<div class="cardDetail" id="myCardBox">
 	 				<p id="myCardColor"><b>내 카드</b></p>
 	 				<c:forEach items="${myCard}" var="item">
-						<div>${item.largeCategoryName}<span> ${item.categoryDiscountPrice}원 할인</span></div><hr>
+						<div>${item.largeCategoryName}<span> <fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /> 원 할인</span></div><hr>
 					</c:forEach>
 	 			</div>
 	 		</div> <!-- columns -->
@@ -143,19 +144,19 @@
 	 				<h3>
 	 					<c:if test="${comparePrice > 0}">
 		 					<span id="cardText" style='color : #FF6384'> 
-		 						+ ${comparePrice} 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
 		 					의 이득을
 	 					</c:if>
 	 					<c:if test="${comparePrice < 0}">
 		 					<span id="cardText" style='color : #36A2EB'> 
-		 						${comparePrice} 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
 		 					의 손해를
 	 					</c:if>
 	 					<c:if test="${comparePrice == 0}">
-		 					<span id="cardText" style='color : #eee'> 
-		 						${comparePrice} 
+		 					<span id="cardText" style='color : grey'> 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
 	 					</c:if>
 	 					 볼 수 있습니다.</h3>
@@ -165,36 +166,31 @@
 	 						<div class="p-2 border CompareFlex">
 			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
 			 					<div class="ULdesc">${item.largeCategoryName}</div>
-			 					<div class="discount ULdesc">${item.categoryDiscountPrice}</div>
+			 					<c:if test="${item.categoryDiscountPrice > 0}">
+			 						<div class="discount ULdesc" style='color : #FF6384'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
+			 					<c:if test="${item.categoryDiscountPrice < 0}">
+			 						<div class="discount ULdesc" style='color : #36A2EB'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
+			 					<c:if test="${item.categoryDiscountPrice == 0}">
+			 						<div class="discount ULdesc" style='color : grey'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
 		 					</div>
 						</c:forEach>
 						<c:forEach items="${onlyMyCard}" var="item">
 							<div class="p-2 border CompareFlex">
 			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
 			 					<div class="ULdesc">${item.largeCategoryName}</div>
-			 					<div class="discount ULdesc">${item.categoryDiscountPrice}</div>
+			 					<div class="discount ULdesc" style='color : #36A2EB'>-<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
 		 					</div>
 						</c:forEach>
 						<c:forEach items="${onlySelectCard}" var="item">
 							<div class="p-2 border CompareFlex">
 			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
 			 					<div class="ULdesc">${item.largeCategoryName}</div>
-			 					<div class="discount ULdesc">${item.categoryDiscountPrice}</div>
+			 					<div class="discount ULdesc" style='color : #FF6384'>+<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
 		 					</div>
 						</c:forEach>
-
-	 					<!-- <div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/07_HomeShopping.png" width="50px" /> 
-		 					<div class="ULdesc">홈쇼핑</div>
-		 					<div class="discount ULdesc">-2000원</div>
-	 					</div> -->
-	 					
-	 				<!-- <div>✈&nbsp;&nbsp;여행<div class="discount" id="selectCardColor">+400</div></div><hr>
-	 				<div>⛽&nbsp;&nbsp;주유<div class="discount" id="selectCardColor">+1200</div></div><hr>
-	 				<div>🍽&nbsp;&nbsp;외식<div class="discount" id="myCardColor">-500</div></div><hr>
-	 				<div><b>🎞</b>&nbsp;&nbsp;영화<div class="discount" id="selectCardColor">+320</div></div><hr>
-	 				<div>🛍&nbsp;&nbsp;쇼핑<div class="discount" id="myCardColor">-300</div></div><hr>
-	 				<div>&nbsp;&nbsp;총<div class="discount" id="selectCardColor">+1120</div></div> -->
 	 				</div>
 	 			</div>
 	 		</div> <!-- column -->
@@ -209,7 +205,7 @@
 	 				<p id="selectCardColor"><b>비교할 카드</b></p>
 	 				<c:forEach items="${selectCard}" var="item">
 						<div>${item.largeCategoryName}<span> 
-						${item.categoryDiscountPrice}원 할인</span></div><hr>
+						<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" />원 할인</span></div><hr>
 					</c:forEach>
 	 			</div>
 	 		
@@ -217,27 +213,6 @@
 	 		</div>
 	 	</div>
 	 </div>
-	 
-	 <script>
-		$(function() {
-		
-			/* $.each( arr, function(index, element){
-				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
-										+ '<img id="cardImg" src="resources/image/compare/'+element+'" width="50px" /> <div class="ULdesc">'+element+ '</div>
-										);
-				
-			}
-			});
-	
-			$.each( arr, function(index, element){
-				var imgsrc = LCImage.get(element);
-				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
-										+ '<img id="cardImg" src="/resources/image/compare/'+imgsrc.substring(1,imgsrc.length)+'" width="50px" /> '
-										+ '<div class="ULdesc">' + element + '</div></div>');
-				*/
-		});
-			 
-	 </script>
 </body>
 
 </html>

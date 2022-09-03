@@ -2028,7 +2028,6 @@ public class CardCompareController {
 					chk2.put(tmp, al2.get(i).getMaxCount());
 				}
 			}
-			
 			for (int i = 0; i < al1.size(); i++) {
 				if (chk1.get(al1.get(i).getLargeCategoryId()) > 0) {
 					chk1.replace(al1.get(i).getLargeCategoryId(), chk1.get(al1.get(i).getLargeCategoryId()) - 1);
@@ -2040,7 +2039,6 @@ public class CardCompareController {
 					i--;
 				}
 			}
-
 			for (int i = 0; i < al2.size(); i++) {
 				if (chk2.get(al2.get(i).getLargeCategoryId()) > 0) {
 					chk2.replace(al2.get(i).getLargeCategoryId(), chk2.get(al2.get(i).getLargeCategoryId()) - 1);
@@ -2052,32 +2050,37 @@ public class CardCompareController {
 					i--;
 				}
 			}
-
 			loop:for (int i = 0; i < al1.size(); ++i) {
 				for (int j = i + 1; j < al1.size(); j++) {
 					if (al1.get(i).getLargeCategoryId() == al1.get(j).getLargeCategoryId()) {
-						al1.get(j).setCategoryDiscountPrice(al1.get(i).getCategoryDiscountPrice() + al1.get(j).getCategoryDiscountPrice());
-						al1.remove(i);
+						al1.get(i).setCategoryDiscountPrice(al1.get(i).getCategoryDiscountPrice() + al1.get(j).getCategoryDiscountPrice());
+						al1.remove(j);
+						continue loop;
+					}
+				}
+			}
+			loop:for (int i = 0; i < al2.size(); ++i) {
+				for (int j = i + 1; j < al2.size(); j++) {
+					if (al2.get(i).getLargeCategoryId() == al2.get(j).getLargeCategoryId()) {
+						al2.get(i).setCategoryDiscountPrice(al2.get(i).getCategoryDiscountPrice() + al2.get(j).getCategoryDiscountPrice());
+						al2.remove(j);
 						continue loop;
 					}
 				}
 			}
 			
-			for(Calculation c : al1) {
-				System.out.println(c);
-			}
-			loop:for (int i = 0; i < al2.size(); ++i) {
-				for (int j = i + 1; j < al2.size(); j++) {
-					if (al2.get(i).getLargeCategoryId() == al2.get(j).getLargeCategoryId()) {
-						al2.get(i).setCategoryDiscountPrice(al2.get(i).getCategoryDiscountPrice() + al1.get(j).getCategoryDiscountPrice());
-						al2.remove(i);
-						continue loop;
-					}
+			for(int i = 0; i < al1.size(); i++){
+				if(al1.get(i).getMaxDiscountMonth() < al1.get(i).getCategoryDiscountPrice()) {
+					al1.get(i).setCategoryDiscountPrice(al1.get(i).getMaxDiscountMonth());
 				}
 			}
-			for(Calculation c : al2) {
-				System.out.println(c);
+			
+			for(int i = 0; i < al2.size(); i++){
+				if(al2.get(i).getMaxDiscountMonth() < al2.get(i).getCategoryDiscountPrice()) {
+					al2.get(i).setCategoryDiscountPrice(al2.get(i).getMaxDiscountMonth());
+				}
 			}
+			
 			model.addAttribute("myCard", al2);
 			model.addAttribute("selectCard", al1);
 			Card info = cardCompareService.getCardInfo(cardId);
@@ -2104,13 +2107,10 @@ public class CardCompareController {
 					}
 				}
 			}
-
 			loop: for (int i = 0; i < al3.size(); i++) {
 				for (int j = 0; j < alTmp.size(); j++) {
 					if (al3.get(i).getLargeCategoryId() == alTmp.get(j)) {
 						al3.remove(i);
-						if (i == (al3.size() - 1))
-							break loop;
 						if (i > 0) {
 							--i;
 							continue loop;
@@ -2118,15 +2118,10 @@ public class CardCompareController {
 					}
 				}
 			}
-			for(Calculation c : al1) {
-				System.out.println(c);
-			}
 			loop: for (int i = 0; i < al4.size(); i++) {
 				for (int j = 0; j < alTmp.size(); j++) {
 					if (al4.get(i).getLargeCategoryId() == alTmp.get(j)) {
 						al4.remove(i);
-						if (i == (al4.size() - 1))
-							break loop;
 						if (i > 0) {
 							--i;
 							continue loop;

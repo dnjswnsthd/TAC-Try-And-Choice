@@ -5,6 +5,7 @@ public class Calculation {
 	private String largeCategoryName; // large_category_name
 	private String largeCategoryImage; // large_category_image
 	private int categoryDiscountPrice; // category_discount_price;
+	private int maxDiscountMonth; // max_discount_month;
 	private int maxCount; // max_count;
 	private int selectCardDiscountPrice;
 	private int myCardDiscountPrice;
@@ -12,15 +13,16 @@ public class Calculation {
 	public Calculation() {
 		super();
 	}
-	
+
 	public Calculation(String largeCategoryName, String largeCategoryImage, int categoryDiscountPrice) {
 		super();
 		this.largeCategoryName = largeCategoryName;
 		this.largeCategoryImage = largeCategoryImage;
 		this.categoryDiscountPrice = categoryDiscountPrice;
 	}
-	
-	public Calculation(String largeCategoryName, String largeCategoryImage, int categoryDiscountPrice, int selectCardDiscountPrice, int myCardDiscountPrice) {
+
+	public Calculation(String largeCategoryName, String largeCategoryImage, int categoryDiscountPrice,
+			int selectCardDiscountPrice, int myCardDiscountPrice) {
 		super();
 		this.largeCategoryName = largeCategoryName;
 		this.largeCategoryImage = largeCategoryImage;
@@ -29,13 +31,28 @@ public class Calculation {
 		this.myCardDiscountPrice = myCardDiscountPrice;
 	}
 
-	public Calculation(int largeCategoryId, String largeCategoryName, String largeCategoryImage, int categoryDiscountPrice, int maxCount) {
+	public Calculation(int largeCategoryId, String largeCategoryName, String largeCategoryImage,
+			int categoryDiscountPrice, int maxCount) {
 		super();
 		this.largeCategoryId = largeCategoryId;
 		this.largeCategoryName = largeCategoryName;
 		this.largeCategoryImage = largeCategoryImage;
 		this.categoryDiscountPrice = categoryDiscountPrice;
 		this.maxCount = maxCount;
+	}
+
+	public Calculation(int largeCategoryId, String largeCategoryName, String largeCategoryImage,
+			int categoryDiscountPrice, int maxDiscountMonth, int maxCount, int selectCardDiscountPrice,
+			int myCardDiscountPrice) {
+		super();
+		this.largeCategoryId = largeCategoryId;
+		this.largeCategoryName = largeCategoryName;
+		this.largeCategoryImage = largeCategoryImage;
+		this.categoryDiscountPrice = categoryDiscountPrice;
+		this.maxDiscountMonth = maxDiscountMonth;
+		this.maxCount = maxCount;
+		this.selectCardDiscountPrice = selectCardDiscountPrice;
+		this.myCardDiscountPrice = myCardDiscountPrice;
 	}
 
 	public int getLargeCategoryId() {
@@ -70,6 +87,14 @@ public class Calculation {
 		this.categoryDiscountPrice = categoryDiscountPrice;
 	}
 
+	public int getMaxDiscountMonth() {
+		return maxDiscountMonth;
+	}
+
+	public void setMaxDiscountMonth(int maxDiscountMonth) {
+		this.maxDiscountMonth = maxDiscountMonth;
+	}
+
 	public int getMaxCount() {
 		return maxCount;
 	}
@@ -98,7 +123,8 @@ public class Calculation {
 	public String toString() {
 		return "Calculation [largeCategoryId=" + largeCategoryId + ", largeCategoryName=" + largeCategoryName
 				+ ", largeCategoryImage=" + largeCategoryImage + ", categoryDiscountPrice=" + categoryDiscountPrice
-				+ ", maxCount=" + maxCount + ", selectCardDiscountPrice=" + selectCardDiscountPrice
-				+ ", myCardDiscountPrice=" + myCardDiscountPrice + "]";
+				+ ", maxDiscountMonth=" + maxDiscountMonth + ", maxCount=" + maxCount + ", selectCardDiscountPrice="
+				+ selectCardDiscountPrice + ", myCardDiscountPrice=" + myCardDiscountPrice + "]";
 	}
+
 }
