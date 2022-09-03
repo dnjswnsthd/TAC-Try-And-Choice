@@ -3,7 +3,21 @@
     font-size: 2.3rem;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+	background-image: url(../image/background_beach2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 #mainbody{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1.5rem;
+    border-radius: 3rem;
+    background-color: white;
+    opacity: 0.9;
     font-family: 'Pretendard-Regular';
     width: 70rem;
     margin: auto;
@@ -40,7 +54,7 @@
     width: 10rem;
 }
 #addSmallBtn{
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-bottom: 0.2rem;
     width: 4rem;
     height: 3rem;
@@ -54,7 +68,7 @@
 /* 삭제 */
 
 #deleteSmallName{
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-bottom: 0.2rem;
     width: 4rem;
     height: 3rem;

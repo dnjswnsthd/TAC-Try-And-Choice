@@ -3,7 +3,21 @@
     font-size: 2.3rem;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+	background-image: url(../image/background_beach2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+body::after{
+    opacity: 0.1;
+}
+
 #mainbody{
+    border-radius: 3rem;
+    background-color: white;
+    opacity: 0.9;
     font-family: 'Pretendard-Regular';
     width: 70rem;
     margin: auto;
@@ -15,6 +29,7 @@
 }
 #RightBox{
     margin:auto;
+    padding-left: 3rem;
     display: table;
 } 
 .LCnameBox{
