@@ -25,13 +25,13 @@
 }
 
 .cardReg3{
-    margin-left: 90%;
+    margin-left: 94.5%;
 }
 
-.large_category, .small_category, .min_amount, .max_discount, .max_count, 
-.discount_rate{
-    width:160px;
-}
 #register_category{
     width:100%;
+}
+
+.add_manage_option{
+	width:70%;
 }
