@@ -11,6 +11,21 @@ public class Card {
 	public Card() {
 		super();
 	}
+	
+	public Card(String cardName, String cardDesc, String maxDiscount) {
+		super();
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.maxDiscount = maxDiscount;
+	}
+	
+	public Card(int cardId, String cardName, String cardDesc, String maxDiscount) {
+		super();
+		this.cardId = cardId;
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.maxDiscount = maxDiscount;
+	}
 
 	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount, String cardImgHorizon) {
 		super();

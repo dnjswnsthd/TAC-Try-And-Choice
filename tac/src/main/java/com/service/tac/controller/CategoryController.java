@@ -15,14 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.service.tac.model.service.CardService;
 import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.vo.Card;
+import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.LargeCategory;
 import com.service.tac.model.vo.SmallCategory;
 
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
+	
+	@Autowired
+	CardService cardService;
+	
 	@Autowired
 	CategoryService categoryService;
 
@@ -43,6 +49,22 @@ public class CategoryController {
 		return hm;
 	}
 	
+	@PostMapping("/getLargeCategory")
+	@ResponseBody
+	public HashMap<String, String> getLargeCategory(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		ArrayList<LargeCategory> list = null;
+		try {
+			list = categoryService.getAllLargeCategory();
+			for (LargeCategory s : list) {
+				hm.put(Integer.toString(s.getLargeCategoryId()), s.getLargeCategoryName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
+	
 	@PostMapping("/LargeRegAndgetCategory")
 	@ResponseBody
 	public HashMap<String, String> LargeRegAndgetCategory(@RequestParam Map<String, Object> map) {
@@ -53,7 +75,6 @@ public class CategoryController {
 			categoryService.registerLargeCategory(largeCategoryName);
 			list = categoryService.getAllLargeCategory();
 			for (LargeCategory s : list) {
-				
 				hm.put(Integer.toString(s.getLargeCategoryId()), s.getLargeCategoryName());
 			}
 		} catch (SQLException e) {
@@ -72,7 +93,6 @@ public class CategoryController {
 			categoryService.deleteLargeCategory(largeCategoryName);
 			list = categoryService.getAllLargeCategory();
 			for (LargeCategory s : list) {
-				
 				hm.put(Integer.toString(s.getLargeCategoryId()), s.getLargeCategoryName());
 			}
 		} catch (SQLException e) {
@@ -81,19 +101,68 @@ public class CategoryController {
 		return hm;
 	}
 	
-	
-	
-	@PostMapping("LargeReg.do")
-	public String doRegLargeCategory(String largeCategoryName, Model model) {
+	@PostMapping("/smallRegAndgetCategory")
+	@ResponseBody
+	public HashMap<String, String> SmallRegAndgetCategory(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		String smallCategoryName = (String) map.get("smallname");
+		int largeCategoryId = Integer.parseInt((String) map.get("largeid"));
+		SmallCategory smallCategory = new SmallCategory(smallCategoryName, largeCategoryId);
+		ArrayList<SmallCategory> list = null;
 		try {
-			// 성공페이지
-			categoryService.registerLargeCategory(largeCategoryName);
-			return "/manage/insertCard";
-		} catch(Exception e) {
-			// 에러페이지
-			model.addAttribute("title", "에러");
-			return "error";
+			categoryService.registerSmallCategory(smallCategory);
+			list = categoryService.getSmallCategory(largeCategoryId);
+			for (SmallCategory s : list) {
+				hm.put(Integer.toString(s.getSmallCategoryId()), s.getSmallCategoryName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
+		return hm;
+	}
+	
+	@PostMapping("/deleteSmallCategory")
+	@ResponseBody
+	public HashMap<String, String> deleteSmallCategory(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		String smallCategoryName = (String) map.get("name");
+		int largeCategoryId = Integer.parseInt((String) map.get("largeid"));
+		ArrayList<SmallCategory> list = null;
+		try {
+			categoryService.deleteSmallCategory(smallCategoryName);
+			list = categoryService.getSmallCategory(largeCategoryId);
+			for (SmallCategory s : list) {
+				hm.put(Integer.toString(s.getSmallCategoryId()), s.getSmallCategoryName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
+	
+	@PostMapping("/registerCardDetail")
+	@ResponseBody
+	public HashMap<String, String> registerCardDetail(@RequestParam Map<String, Object> map) {
+		HashMap<String, String> hm = new HashMap<>();
+		int discountPercent = Integer.parseInt((String) map.get("discountpercent"));
+		int cardId = Integer.parseInt((String) map.get("cardid"));
+		int largeId = Integer.parseInt((String) map.get("largeid"));
+		int smallId = Integer.parseInt((String) map.get("smallid"));
+		int minPrice = Integer.parseInt((String) map.get("minprice"));
+		int maxPrice = Integer.parseInt((String) map.get("maxprice"));
+		int maxCount = Integer.parseInt((String) map.get("maxcount"));
+		CardDetail cardDetail = new CardDetail(discountPercent, cardId, largeId, smallId, minPrice, maxPrice, maxCount);
+		ArrayList<Card> list_card = null;
+		try {
+			categoryService.registerCardDetail(cardDetail);
+			list_card = cardService.getAllCardInfo();
+			for (Card c : list_card) {
+				hm.put(Integer.toString(c.getCardId()), c.getCardName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
 	}
 	
 }

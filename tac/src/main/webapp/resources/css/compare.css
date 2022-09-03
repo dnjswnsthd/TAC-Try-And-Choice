@@ -1,26 +1,11 @@
 @charset "UTF-8";
-@font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GangwonEdu_OTFBoldA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'BMJUA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 #container {
-	font-family: 'BMJUA', sans-serif !important;
+	font-family: 'Pretendard-Regular', sans-serif;
+}
+
+#semititle {
+	font-family: 'Cafe24Ohsquare' !important;
 }
 
 .navbar {
@@ -141,6 +126,14 @@ b, strong {
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
+.lists{
+	display:none;
+}
+
+.btn-wrap {
+	text-align: center;
+}
+
 .myCard {
   border: none;
   display: inline-block;
@@ -189,24 +182,26 @@ table {
 	width: 100%;
 	text-align: center;
 	border: 1px solid gray;
-	border-collapse: collapse;
+	
 }
 
 th, td{
 	border: 1px solid gray;
 }
 
+
+
 #hover .figure {
-	height: 20rem;
+	
 	display: inline-block;
  	position: relative;
  	overflow: hidden;
  	margin: 0 auto;
- 	margin-left: 35%;
+ 	margin-left: 20%;
 }
 
 #hover img {
-	height: 20rem;
+	width: 20rem;
 	display: block;
 }
 
@@ -239,4 +234,24 @@ th, td{
     left: 125%;
   }
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  / Track /
+  ::-webkit-scrollbar-track {
+    -webkit-border-radius: 6px;
+    border-radius: 10px;
+  }
+  / Handle /
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #373234;
+    opacity: 0.9;
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: #FF788B;
+  }
 

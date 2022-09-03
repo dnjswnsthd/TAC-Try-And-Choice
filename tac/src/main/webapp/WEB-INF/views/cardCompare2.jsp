@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.service.tac.model.vo.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,46 +25,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Tempo - v4.8.0
-  * Template URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 <script>
     const red = "rgba(255, 99, 132, 0.4)";
     const blue="rgba(54, 162, 235, 0.4)";
     const color = Chart.helpers.color;
+    const label = [];
+    /* alert('${compareConsume}');
+    alert('${onlyMyCard}');
+    alert('${onlySelectCard}'); */
+    const myLabel = [];
+	const myData = [];
+	const selectData = [];
+	<c:forEach items="${compareConsume}" var="d">
+		myLabel.push('${d.largeCategoryName}');
+		selectData.push('${d.selectCardDiscountPrice}')
+		myData.push('${d.myCardDiscountPrice}')
+	</c:forEach>
+    <c:forEach items="${onlySelectCard}" var="d">
+    	myLabel.push('${d.largeCategoryName}');
+    	selectData.push('${d.categoryDiscountPrice}');
+    	myData.push(0);
+	</c:forEach>
+	<c:forEach items="${onlyMyCard}" var="d">
+		myLabel.push('${d.largeCategoryName}');
+		myData.push('${d.categoryDiscountPrice}');
+    	selectData.push(0);
+	</c:forEach>
+    
     const config = {
       type: 'radar',
       data: {
-        labels: ['여행','주유','외식','영화','쇼핑'],
+        labels: myLabel,
         datasets: [{
-          label: 'My dataset',
+          label: 'MyCard',
           backgroundColor: color(blue).alpha(0.2).rgbString(),
           borderColor: blue,
           pointBackgroundColor: blue,
-          data: [
-            80,
-            90,
-            60,
-            65,
-            78
-          ]
+          data: myData
         }, 
         {
-            label: 'card dataset',
+            label: 'SelectCard',
             backgroundColor: color(red).alpha(0.2).rgbString(),
             borderColor: red,
             pointBackgroundColor: red,
             
-            data: [
-              70,
-              50,
-              100,
-              50,
-              80
-            ]
+            data: selectData
           }]
       },
       options: {
@@ -86,10 +93,7 @@
 </head>
 
 <body>
-
-	<nav>
-		<jsp:include page="/resources/component/header.jsp"></jsp:include>
-	</nav>
+	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	<!-- 세션 체크 -->
 	<%
 		Member member = (Member) session.getAttribute("member");
@@ -112,25 +116,21 @@
 	 	<div class="row justify-content-around">
 	 		<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
-					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name}님이 선택한 카드의 체험 결과</h1>
+					<h1 id="analysisTitle" class="display-4 fw-normal"> ${member.name} 님이 선택한 카드의 체험 결과</h1>
 					<p class="fs-5 text-muted" id="subtitle"> 소지한 카드와 선택한 카드의 혜택을 비교해 드립니다 </p>
 				</div>
 			</header>
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="myCard">
 	 				<div id="cardName">${myInfo.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${myInfo.cardId}'" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail" id="myCardBox">
 	 				<p id="myCardColor"><b>내 카드</b></p>
-	 				<div>주유비 <span> 500원 할인</span></div><hr>
-	 				<div>베이커리 <span> 500원 할인</span></div><hr>
-	 				<div>카페 <span> 500원 할인</span></div><hr>
-	 				<div>이동통신요금 <span> 3500원 할인</span></div><hr>
-	 				<div>놀이공원 <span> 500원 할인</span></div><hr>
-	 				<div>교통 <span> 500원 할인</span></div><hr>
-	 				
+	 				<c:forEach items="${myCard}" var="item">
+						<div>${item.largeCategoryName}<span> <fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /> 원 할인</span></div><hr>
+					</c:forEach>
 	 			</div>
 	 		</div> <!-- columns -->
 	 		
@@ -141,51 +141,56 @@
 	 			
 	 			<div class="cardDetail">
 	 				<h3>${info.cardName}를 사용하면 </h3>
-	 				<h3><span id="cardText">+3150원</span>의 이득을 볼 수 있습니다.</h3>
+	 				<h3>
+	 					<c:if test="${comparePrice > 0}">
+		 					<span id="cardText" style='color : #FF6384'> 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
+		 					</span>
+		 					의 이득을
+	 					</c:if>
+	 					<c:if test="${comparePrice < 0}">
+		 					<span id="cardText" style='color : #36A2EB'> 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
+		 					</span>
+		 					의 손해를
+	 					</c:if>
+	 					<c:if test="${comparePrice == 0}">
+		 					<span id="cardText" style='color : grey'> 
+		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
+		 					</span>
+	 					</c:if>
+	 					 볼 수 있습니다.</h3>
 	 				<hr>
 	 				<div id="consumePattern" class="d-flex flex-wrap align-content-start" >
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/01_FUEL.png" width="50px" /> 
-		 					<div class="ULdesc">주유비</div>
-		 					<div class="discount ULdesc">+500원</div>
-	 					</div>
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/02_Bakery.png" width="50px" /> 
-		 					<div class="ULdesc">베이커리</div>
-		 					<div class="discount ULdesc">+350원</div>
-	 					</div>
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/03_Cafe.png" width="50px" /> 
-		 					<div class="ULdesc">카페</div>
-		 					<div class="discount ULdesc">-200원</div>
-	 					</div>
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/04_Call.png" width="50px" /> 
-		 					<div class="ULdesc">이동통신요금</div>
-		 					<div class="discount ULdesc">-3000원</div>
-	 					</div>
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/05_Play.png" width="50px" /> 
-		 					<div class="ULdesc">놀이공원</div>
-		 					<div class="discount ULdesc">+5000원</div>
-	 					</div>
-	 					<div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/06_Traffic.png" width="50px" /> 
-		 					<div class="ULdesc">교통</div>
-		 					<div class="discount ULdesc">+500원</div>
-	 					</div>
-	 					<!-- <div class="p-2 border CompareFlex">
-		 					<img id="cardImg" src="resources/image/compare/07_HomeShopping.png" width="50px" /> 
-		 					<div class="ULdesc">홈쇼핑</div>
-		 					<div class="discount ULdesc">-2000원</div>
-	 					</div> -->
-	 					
-	 				<!-- <div>✈&nbsp;&nbsp;여행<div class="discount" id="selectCardColor">+400</div></div><hr>
-	 				<div>⛽&nbsp;&nbsp;주유<div class="discount" id="selectCardColor">+1200</div></div><hr>
-	 				<div>🍽&nbsp;&nbsp;외식<div class="discount" id="myCardColor">-500</div></div><hr>
-	 				<div><b>🎞</b>&nbsp;&nbsp;영화<div class="discount" id="selectCardColor">+320</div></div><hr>
-	 				<div>🛍&nbsp;&nbsp;쇼핑<div class="discount" id="myCardColor">-300</div></div><hr>
-	 				<div>&nbsp;&nbsp;총<div class="discount" id="selectCardColor">+1120</div></div> -->
+	 					<c:forEach items="${compareConsume}" var="item">
+	 						<div class="p-2 border CompareFlex">
+			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
+			 					<div class="ULdesc">${item.largeCategoryName}</div>
+			 					<c:if test="${item.categoryDiscountPrice > 0}">
+			 						<div class="discount ULdesc" style='color : #FF6384'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
+			 					<c:if test="${item.categoryDiscountPrice < 0}">
+			 						<div class="discount ULdesc" style='color : #36A2EB'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
+			 					<c:if test="${item.categoryDiscountPrice == 0}">
+			 						<div class="discount ULdesc" style='color : grey'><fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+			 					</c:if>
+		 					</div>
+						</c:forEach>
+						<c:forEach items="${onlyMyCard}" var="item">
+							<div class="p-2 border CompareFlex">
+			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
+			 					<div class="ULdesc">${item.largeCategoryName}</div>
+			 					<div class="discount ULdesc" style='color : #36A2EB'>-<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+		 					</div>
+						</c:forEach>
+						<c:forEach items="${onlySelectCard}" var="item">
+							<div class="p-2 border CompareFlex">
+			 					<img id="cardImg" src="resources/image/compare/${item.largeCategoryImage}" width="50px" /> 
+			 					<div class="ULdesc">${item.largeCategoryName}</div>
+			 					<div class="discount ULdesc" style='color : #FF6384'>+<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" /></div>
+		 					</div>
+						</c:forEach>
 	 				</div>
 	 			</div>
 	 		</div> <!-- column -->
@@ -193,45 +198,21 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="selectCard">
 		 			<div id="cardName">${info.cardName}</div>
-	 				<img class="cardImg" src="resources/image/card_horizon/${info.cardImgHorizon}">
+	 				<img class="cardImg" onclick="location.href='/compare?cardId=${info.cardId}'" src="resources/image/card_horizon/${info.cardImgHorizon}">
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail" id="selectCardBox">
 	 				<p id="selectCardColor"><b>비교할 카드</b></p>
-	 				<div>주유비 <span> 1000원 할인</span></div><hr>
-	 				<div>베이커리 <span> 850원 할인</span></div><hr>
-	 				<div>카페 <span> 300원 할인</span></div><hr>
-	 				<div>이동통신요금 <span> 500원 할인</span></div><hr>
-	 				<div>놀이공원 <span> 5500원 할인</span></div><hr>
-	 				<div>교통 <span> 1000원 할인</span></div><hr>
+	 				<c:forEach items="${selectCard}" var="item">
+						<div>${item.largeCategoryName}<span> 
+						<fmt:formatNumber value="${item.categoryDiscountPrice}" pattern="#,###" />원 할인</span></div><hr>
+					</c:forEach>
 	 			</div>
 	 		
 	 		
 	 		</div>
 	 	</div>
 	 </div>
-	 
-	 <script>
-	 /* 
-		$(function() {
-		
-			$.each( arr, function(index, element){
-				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
-										+ '<img id="cardImg" src="resources/image/compare/'+element+'" width="50px" /> <div class="ULdesc">'+element+ '</div>
-										);
-				
-			}
-			});
-	
-			$.each( arr, function(index, element){
-				var imgsrc = LCImage.get(element);
-				$('#consumePattern').append('<div class="p-2 border CompareFlex">' 
-										+ '<img id="cardImg" src="/resources/image/compare/'+imgsrc.substring(1,imgsrc.length)+'" width="50px" /> '
-										+ '<div class="ULdesc">' + element + '</div></div>');
-			});
-	*/
-			
-	 </script>
 </body>
 
 </html>

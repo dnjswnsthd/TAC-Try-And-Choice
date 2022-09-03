@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.service.tac.model.mapper.CardMapper;
 import com.service.tac.model.mapper.CategoryMapper;
 import com.service.tac.model.service.CategoryService;
+import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.LargeCategory;
 import com.service.tac.model.vo.SmallCategory;
 
@@ -39,13 +40,18 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public int registerSmallCategory(String smallCategoryName) throws SQLException {
-		return 0;
+	public int registerSmallCategory(SmallCategory smallCategory) throws SQLException {
+		return sqlSession.getMapper(CategoryMapper.class).registerSmallCategory(smallCategory);
 	}
 
 	@Override
 	public int deleteSmallCategory(String smallCategoryName) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(CategoryMapper.class).deleteSmallCategory(smallCategoryName);
+	}
+
+	@Override
+	public int registerCardDetail(CardDetail cardDetail) throws SQLException {
+		return sqlSession.getMapper(CategoryMapper.class).registerCardDetail(cardDetail);
 	}
 
 }

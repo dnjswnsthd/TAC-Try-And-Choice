@@ -21,6 +21,16 @@ public class CardDetail {
 	public CardDetail() {
 		super();
 	}
+	
+	public CardDetail(int cardDetailId, int discountPercent,  
+			int minPayment, int maxDiscount, int maxCount) {
+		super();
+		this.cardDetailId = cardDetailId;
+		this.discountPercent = discountPercent;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.maxCount = maxCount;
+	}
 
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
 			int minPayment, int maxDiscount, int maxCount) {
@@ -35,8 +45,20 @@ public class CardDetail {
 		this.maxCount = maxCount;
 	}
 	
+	public CardDetail(int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			int minPayment, int maxDiscount, int maxCount) {
+		super();
+		this.discountPercent = discountPercent;
+		this.cardId = cardId;
+		this.largeCategoryId = largeCategoryId;
+		this.smallCategoryId = smallCategoryId;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.maxCount = maxCount;
+	}
+	
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
-			int minPayment, int maxDiscount, int mixCount, SmallCategory smallCategory) {
+			int minPayment, int maxDiscount, int mixCount,int discountAmount, int maxDiscountMonth, SmallCategory smallCategory) {
 		super();
 		this.cardDetailId = cardDetailId;
 		this.discountPercent = discountPercent;
@@ -47,6 +69,8 @@ public class CardDetail {
 		this.maxDiscount = maxDiscount;
 		this.mixCount = mixCount;
 		this.smallCategory = smallCategory;
+		this.discountAmount = discountAmount;
+		this.maxDiscountMonth = maxDiscountMonth;
 	}
 	
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
