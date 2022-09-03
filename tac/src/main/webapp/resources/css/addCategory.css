@@ -2,7 +2,10 @@
     font-family: 'Cafe24Ssurround';
     font-size: 2.3rem;
 }
-
+.navbar {
+	background-color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 1rem;
+}
 body {
     height: 100vh;
     width: 100vw;
