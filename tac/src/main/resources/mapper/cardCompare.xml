@@ -68,6 +68,7 @@
 		<result column="large_category_image" property="largeCategoryImage" />
 		<result column="category_discount_price" property="categoryDiscountPrice" />
 		<result column="max_count" property="maxCount" />
+		<result column="max_discount_month" property="maxDiscountMonth" />
 	</resultMap>
 	
 	<select id="getDiscountInfoByCard" parameterType="int" resultMap="cardDetailWithCategory">
@@ -343,7 +344,8 @@
 				THEN NVL(cd.MAX_DISCOUNT, 1000000)
 				ELSE (CASE WHEN CD.DISCOUNT_AMOUNT <![CDATA[!=]]> 0 THEN CD.DISCOUNT_AMOUNT ELSE c.consume_price * (CD.DISCOUNT_PERCENT * 0.01) END)
 			END) AS CATEGORY_DISCOUNT_PRICE,
-			cd.MAX_COUNT
+			cd.MAX_COUNT,
+			NVL(cd.MAX_DISCOUNT_MONTH, 1000000) MAX_DISCOUNT_MONTH
 		 FROM
 			CARD_DETAIL cd JOIN CONSUME c
 			ON (cd.SMALL_CATEGORY_ID = c.small_CATEGORY_ID)
