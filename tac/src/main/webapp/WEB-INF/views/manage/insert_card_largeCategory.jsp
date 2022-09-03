@@ -123,10 +123,10 @@
 
 
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<button id="gomanagebtn" class="btn" onclick="goManageBtn()">카드 등록 화면으로 돌아가기</button>
 							<button id="gomanagebtn" class="btn" onclick="addSmallCategory()">소분류 추가 페이지</button>
-						</div>
+						</div> -->
 
 					</main>
 

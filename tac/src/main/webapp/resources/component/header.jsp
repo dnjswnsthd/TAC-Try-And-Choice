@@ -43,7 +43,15 @@
 						} 
 						if( member != null && member.getGrade() == 1 ){
 					%>
-						<li class="nav-item"><a class="nav-link" href="/manage_card">ADDCARD</a></li>
+						<div class="select">
+							<div class="option">MANAGE</div>
+							<div class="optionList">
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/manage_card">카드 추가</a>
+									<li class="nav-item" id="optionav"><a class="nav-link2" href="/manage_card_update">카드 수정</a>
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/addLargeCategory">대분류 추가</a>
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/addSmallCategory">소분류 추가</a>
+							</div>
+						</div>
 					<%
 						}
 						if( member != null ){

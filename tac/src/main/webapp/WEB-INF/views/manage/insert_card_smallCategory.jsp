@@ -153,10 +153,10 @@
 
 					</div>
 
-					<div class="row" style="margin-top: 3rem">
+					<!-- <div class="row" style="margin-top: 3rem">
 						<button id="gomanagebtn" class="btn" onclick="goManageBtn()">관리자 페이지 이동</button>
 						<button id="gomanagebtn" class="btn" onclick="addLargeCategory()">대분류 추가 페이지</button>
-					</div>
+					</div> -->
 
 				</main>
 
