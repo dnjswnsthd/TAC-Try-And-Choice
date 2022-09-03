@@ -31,7 +31,7 @@
 .large_category, .small_category, .min_amount, .max_discount, .max_count, 
 .discount_rate{
     width:160px;
-
+}
 #register_category{
     width:100%;
 }
