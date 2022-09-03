@@ -260,47 +260,52 @@
 					
 					</div>
 					<div>
-						<!-- <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail"> -->
-				        <table class="table" id="register_category" style="table-layout:fixed;">
-						  <thead>
-						    <tr>
-						      <th scope="col" class="large_category">대분류</th>
-						      <th scope="col" class="small_category">소분류</th>
-						      <th scope="col" class="min_amount">최소결제금액</th>
-						      <th scope="col" class="max_discount">최대할인금액</th>
-						      <th scope="col" class="max_count">최대할인횟수</th>
-						      <th scope="col" class="discount_rate">할인율</th>
-						      <th></th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr>
-						      	<td scope="col" class="large_category">
-						      		<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
-                        		</td>
-	                        	<td scope="col" class="small_category">
-	                        		<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
-	                        	</td>
-	                        	<td scope="col" class="min_amount">
-	                        		<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
-	                        		<label>원</label>
-	                        	</td>
-	                        	<td scope="col" class="max_discount">
-	                        		<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
-	                        		<label>원</label>
-	                        	</td>
-	                        	<td scope="col" class="max_count">
-	                        		<input type="number" name="max_count" class="add_manage_option" value="0">
-	                        		<label>번</label>
-	                        	</td>
-	                        	<td scope="col" class="discount_rate">
-	                        		<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
-	                        		<label>%</label>
-	                        	</td>
-						    </tr>
-						  </tbody>
-						</table>
-						      	
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	대분류
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	소분류
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	최소결제금액
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	최대할인금액
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	최대할인횟수
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	할인율
+						    </div>
+						</div>
+						<hr>
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	<input type="number" name="max_count" class="add_manage_option" value="0">
+	                        	<label>번</label>
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+	                        	<label>%</label>
+						    </div>
+						</div>
+						<br>
                         <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
 					</div>
 				</div>
