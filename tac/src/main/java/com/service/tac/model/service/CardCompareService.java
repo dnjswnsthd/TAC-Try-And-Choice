@@ -2,7 +2,9 @@ package com.service.tac.model.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.service.tac.model.vo.Calculation;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
@@ -41,5 +43,7 @@ public interface CardCompareService {
 		public ArrayList<CardDetail> getBenefitsByCateg22(int cardId, String memberId) throws SQLException;
 		
 		// 대분류별 소비 합계
-		public ArrayList<ConsumeAnalysis_LargeSum> AnalyseLC_SUM(String id) throws SQLException; 
+		public ArrayList<ConsumeAnalysis_LargeSum> AnalyseLC_SUM(String id) throws SQLException;
+		
+		public ArrayList<Calculation> getBenefitsByCategory(HashMap<String, Object> map) throws SQLException;
 }

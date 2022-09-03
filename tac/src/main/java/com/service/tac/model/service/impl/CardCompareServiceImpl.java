@@ -2,6 +2,7 @@ package com.service.tac.model.service.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.service.tac.model.mapper.AnalyseMapper;
 import com.service.tac.model.mapper.CardCompareMapper;
 import com.service.tac.model.service.CardCompareService;
+import com.service.tac.model.vo.Calculation;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.ConsumeAnalysis_LargeSum;
@@ -148,6 +150,11 @@ public class CardCompareServiceImpl implements CardCompareService{
 	@Override
 	public ArrayList<ConsumeAnalysis_LargeSum> AnalyseLC_SUM(String id) throws SQLException {
 		return sqlSession.getMapper(AnalyseMapper.class).AnalyseLC_SUM(id);
+	}
+
+	@Override
+	public ArrayList<Calculation> getBenefitsByCategory(HashMap<String, Object> map) throws SQLException {
+		return sqlSession.getMapper(CardCompareMapper.class).getBenefitsByCategory(map);
 	}
 	
 	
