@@ -113,20 +113,19 @@ public class RouteController {
 
 	
 	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
-	public String manage_card(Model model) {
-		try {
-			List<LargeCategory> large_list = categoryService.getAllLargeCategory();
-			model.addAttribute("largeCategory", large_list);
-			List<Card> card_list = cardService.getAllCardInfo();
-			model.addAttribute("showAllCard", card_list);
-			return "/manage/insertCard";
-				
-		} catch(Exception e) {
-			// 에러페이지
-			return "/error";
-		}
-	}
-	
+    public String manage_card(Model model) {
+        try {
+            List<LargeCategory> large_list = categoryService.getAllLargeCategory();
+            model.addAttribute("largeCategory", large_list);
+            List<Card> card_list = cardService.getAllCardInfo();
+            model.addAttribute("showAllCard", card_list);
+            return "/manage/insertCard";
+
+        } catch(Exception e) {
+            // 에러페이지
+            return "/error";
+        }
+    }
 
 	@GetMapping(value = "/addSmallCategory")
 	    public String addSmallCategory(Model model) {

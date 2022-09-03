@@ -20,6 +20,12 @@ public interface CardMapper {
 	
 	public int updateCard(Card card) throws SQLException;
 	
+	public int deleteCard(int cardId) throws SQLException;
+	
+	public int updateCardDetail(CardDetail cardDetail) throws SQLException;
+	
+	public int cardDetailDelete(int cardDetailId) throws SQLException;
+	
 	public int registerCard(Card card) throws SQLException;
 
 }

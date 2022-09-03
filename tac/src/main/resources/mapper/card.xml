@@ -47,6 +47,17 @@
 		<result column="small_category_name" property="smallCategoryName" />
 		<result column="min_payment" property="minPayment" />
 		<result column="max_discount" property="maxDiscount" />
+		<result column="max_count" property="maxCount" />
+	</resultMap>
+	
+	<resultMap type="cardDetail" id="cardDetailMap">
+		<id column="card_detail_id" property="cardDetailId" />
+		<result column="discount_percent" property="discountPercent" />
+		<result column="card_id" property="cardId" />
+		<result column="large_category_id" property="largeCategoryId" />
+		<result column="small_category_id" property="smallCategoryId" />
+		<result column="min_payment" property="minPayment" />
+		<result column="max_discount" property="maxDiscount" />
 		<result column="max_count" property="mixCount" />
 	</resultMap>
 
@@ -91,7 +102,19 @@
 		WHERE card_id = #{cardId}
 	</update>
 	
+	<update id="updateCardDetail" parameterType="cardDetail">
+		UPDATE CARD_DETAIL
+		SET	discount_percent = #{discountPercent}, min_payment = #{minPayment}, max_discount = #{maxDiscount}, max_count = #{maxCount}
+		WHERE card_detail_id = #{cardDetailId}
+	</update>
 	
+	<delete id="cardDetailDelete" parameterType="int">
+		DELETE FROM card_detail WHERE card_detail_id=#{cardDetailId}
+	</delete>
+	
+	<delete id="deleteCard" parameterType="int">
+		DELETE FROM card WHERE card_id = #{cardId}
+	</delete>
 	
 
 </mapper>

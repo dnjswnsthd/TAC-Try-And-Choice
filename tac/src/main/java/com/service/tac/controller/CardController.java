@@ -25,7 +25,6 @@ public class CardController {
 	@PostMapping("/cardReg")
 	@ResponseBody
 	public HashMap<String, String> cardReg(@RequestParam Map<String, Object> map) {
-		System.out.println("여긴 오나?");
 		HashMap<String, String> hm = new HashMap<>();
 		String cardName = (String) map.get("cardname");
 		String cardDesc = (String) map.get("carddesc");
@@ -74,6 +73,37 @@ public class CardController {
 		}
 	}
 	
+	@PostMapping("/cardDetailDelete")
+	@ResponseBody
+	public ArrayList<CardDetailManage> cardDetailDelete(@RequestParam Map<String, Object> map) {
+		ArrayList<CardDetailManage> al = null;
+		int cardId = Integer.parseInt((String) map.get("cardId"));
+		int cardDetailId = Integer.parseInt((String) map.get("cardDetailId"));
+		try {
+			cardService.cardDetailDelete(cardDetailId);
+			al = cardService.getSelectedCardDetail(cardId);
+			return al;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	@PostMapping("/deleteCard")
+	@ResponseBody
+	public ArrayList<Card> deleteCard(@RequestParam Map<String, Object> map) {
+		ArrayList<Card> card = null;
+		int cardId = Integer.parseInt((String) map.get("cardId"));
+		try {
+			cardService.deleteCard(cardId);
+			card = cardService.getAllCardInfo();
+			return card;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	@PutMapping("/updateCard")
 	@ResponseBody
 	public Card updateCard(@RequestParam Map<String, Object> map) {
@@ -86,6 +116,27 @@ public class CardController {
 			cardService.updateCard(new Card(cardId, cardName, cardDesc, maxDiscount));
 			card = cardService.getSelectedCard(cardId);
 			return card;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	@PutMapping("/updateCardDetail")
+	@ResponseBody
+	public ArrayList<CardDetailManage> updateCardDetail(@RequestParam Map<String, Object> map) {
+		int cardId = Integer.parseInt((String) map.get("cardId"));
+		int cardDetailId = Integer.parseInt((String) map.get("cardDetailId"));
+		int discountPercent = Integer.parseInt((String) map.get("discountPercent"));
+		int minPayment = Integer.parseInt((String) map.get("minPayment"));
+		int maxDiscount = Integer.parseInt((String) map.get("maxDiscount"));
+		int maxCount = Integer.parseInt((String) map.get("maxCount"));
+		CardDetail cardDetail = new CardDetail(cardDetailId, discountPercent, minPayment, maxDiscount, maxCount);
+		ArrayList<CardDetailManage> al = null;
+		try {
+			cardService.updateCardDetail(cardDetail);
+			al = cardService.getSelectedCardDetail(cardId);
+			return al;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return null;

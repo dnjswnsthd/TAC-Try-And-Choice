@@ -17,132 +17,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
-    $(function(){
-    	
-    	$('.addSaleList').on('click', function() {
-    		var largeName = $('.large_category_selection option:selected').text();
-    		var smallName = $('#small_category_selection option:selected').text();
-    		var largeId = $('.large_category_selection option:selected').val();
-    		var smallId = $('#small_category_selection option:selected').val();
-			var cardId = $('.allCard option:selected').val();
-			
-    		$('input[name=largeCategoryName]').val(largeName);
-    		$('input[name=smallCategoryName]').val(smallName);
-    		$('input[name=largeCategoryName]').attr("id", largeId);
-    		$('input[name=smallCategoryName]').attr("id", smallId);
-    		
-    	});
-    	
-		$('#register_card_detail').on('click', function() {
-    		var cardId = $('.allCard option:selected').val();
-    		var largeId = $('input[name=largeCategoryName]').attr("id");
-    		var smallId = $('input[name=smallCategoryName]').attr("id");
-    		var minPrice = $('input[name=min_price]').val();
-    		var maxPrice = $('input[name=max_price]').val();
-    		var maxCount = $('input[name=max_count]').val();
-    		var discountPercent = $('input[name=discount_percent]').val();
-    		var message = "";
-    		if($('#discount_percent').val() == 0){
-    			message = "할인율"
-    		}
-    		if(message != ""){
-    			swal(message + "은(는) 필수값입니다.", '', 'error');
-    			evt.preventDefault();	
-    		}else{
-	    		$.ajax({
-	    			type:'post',
-	    			url:'/category/registerCardDetail',
-	    			data : {
-	    				discountpercent : discountPercent,
-	    				cardid : cardId,
-	    				largeid : largeId,
-	    				smallid : smallId,
-	    				minprice : minPrice,
-	    				maxprice : maxPrice,
-	    				maxcount : maxCount,
-	    			},
-	    			success:function(result){
-	    				swal('등록 완료', '새로운 목록이 추가 되었습니다', 'success');
-	    				var card = "";
-						var card_default = '<option value=smallName>==카드 선택==</option>';
-						for (key in result) {
-							card += '<option value=' + key + '>'+ result[key] +'</option>'
-						}
-						$('.allCard').html(card_default+card);
-						$('.large_category_selection').html('<option value=largeName>대분류</option>');
-						$('#small_category_selection').html('<option value=smallName>소분류</option>');
-						$('input[name=largeCategoryName]').val("");
-			    		$('input[name=smallCategoryName]').val("");
-						$('input[name=min_price]').val(0);
-			    		$('input[name=max_price]').val(0);
-			    		$('input[name=max_count]').val(0);
-			    		$('input[name=discount_percent]').val(0);
-	    			}
-	    		});
-    		}
-    	});
-    	
-		$('.large_category_selection').on('change', function() {
-    		$.ajax({
-				type : 'post',
-				url : '/category/getSmallCategory',
-				data : {
-					id : $(this).val()
-				},
-
-				success : function(result) {
-					var small = "";
-					var small_default = '<option value=smallName>==소분류 선택==</option>';
-					for (key in result) {
-						small = small + '<option value=' + key + '>'+ result[key] +'</option>'
-					}
-					$('#small_category_selection').html(small_default + small);
-				}
-			});
-    	});
-    	
-    	$('#cardReg').on('click', function() {
-    		var cardName = $('#card-name').val();
-    		var cardDesc = $('#card-desc').val();
-    		var maxSale = $('#max-sale').val();
-    		var message = "";
-    		
-    		if($('#card-name').val() == ''){
-    			message = "카드 이름"
-    		} else if($('#card-desc').val() == ''){
-    			message = "카드 설명"
-    		}
-    		if(message != ""){
-    			swal(message + "은 필수값입니다.", '', 'error');
-    			evt.preventDefault();
-    		}else {
-	    		$.ajax({
-	    			type:'post',
-	    			url:'/cardReg',
-	    			data : {
-	    				cardname : cardName,
-	    				carddesc : cardDesc,
-	    				maxsale : maxSale
-	    			},
-	    			success:function(result){
-	    				swal("카드 등록 완료", cardName + " 카드가 등록되었습니다!", 'success');
-	    				var card = "";
-						var card_default = '<option value=smallName>==카드 선택==</option>';
-						for (key in result) {
-							card += '<option value=' + key + '>'+ result[key] +'</option>'
-						}
-						$('.allCard').html(card_default+card);
-						$('#card-name').val("");
-			    		$('#card-desc').val("");
-			    		$('#max-sale').val("");
-	    			}
-	    		});
-    		}
-    	});
-    	
+    $(function(){    	    	
     	var table_header = '<tr><th>대분류</th><th>소분류</th><th>최소결제금액</th><th>최대할인금액</th><th>최대할인횟수</th><th>할인율</th><th></th><th></th></tr>'
-    	
-    	
+    		
     	$('#moveModify').on('click', function() {
     		var cardId = $('.allCard1 option:selected').val();
     		$.ajax({
@@ -169,14 +46,14 @@
     				var table_list = "";
   
     				for (key in result) {
-    					table_list = table_list + '<tr><td><input type="text" name="largeCategoryName" id="largeCategoryName" class="add_manage_option" value='+ result[key].largeCategoryName +'></td>'
-                					+ '<td><input type="text" name="smallCategoryName" class="add_manage_option" value='+ result[key].smallCategoryName +'></td>'
-                					+ '<td><input type="text" name="min_price" id = "min_price" class="add_manage_option" value='+ result[key].minPayment +'>원</td>'
-                					+ '<td><input type="text" name="max_price" id = "max_price" class="add_manage_option" value='+ result[key].maxDiscount +'>원</td>'
+    					table_list = table_list + '<tr id='+ result[key].cardDetailId +'><td><input type="text" name="largeCategoryName" id='+ result[key].largeCategoryId +' class="add_manage_option" value='+ result[key].largeCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="smallCategoryName" class="add_manage_option" id='+ result[key].smallCategoryId +' value='+ result[key].smallCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="min_price" class="add_manage_option" value='+ result[key].minPayment +'>원</td>'
+                					+ '<td><input type="text" name="max_price" class="add_manage_option" value='+ result[key].maxDiscount +'>원</td>'
                 					+ '<td><input type="text" name="max_count" class="add_manage_option" value='+ result[key].maxCount +'>번</td>'
                 					+ '<td><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value='+ result[key].discountPercent +'>%</td>'
-                					+ '<td><img id = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
-                					+ '<td><img id = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
+                					+ '<td><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
+                					+ '<td><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
 
     				}
     				$('#register_category').html(table_header + table_list);
@@ -196,7 +73,7 @@
     	
     			},
     			success:function(result) {
-    				alert(result.cardName+','+result.cardDesc+','+result.maxDiscount);
+    				swal('수정완료','', 'success');
     				$("#card_sample").attr("src", "/resources/image/card_horizon/"+ result.cardImgHorizon);
     				$('input[name=cardName]').val(result.cardName);
     				$('input[name=cardDesc]').val(result.cardDesc);
@@ -205,7 +82,86 @@
     		});
     	});
     	
+    	$('#cardDelete').on('click', function() {
+    		var cardName = $('input[name=cardName]').val();
+    		$.ajax({
+    			type:'post',
+    			url:'/deleteCard',
+    			data:{
+    				cardId :  $('.allCard1 option:selected').val(),
+    			},
+    			success:function(result) {
+    				swal("삭제 완료", cardName+" 카드가 삭제되었습니다.", 'success');
+    				var card_list = "";
+    				var card_header = '<option value="largeName">==카드 선택==</option>';
+    				for(key in result) {
+    					card_list += '<option value='+ result[key].cardId +'>'+ result[key].cardName +'</option>'
+    				}
+    				$('.allCard1').html(card_header + card_list);
+    				$('input[name=cardName]').val("");
+    				$('input[name=cardDesc]').val("");
+    				$('input[name=maxDiscount]').val("");
+    			}
+    		});
+    	});
     	
+    	$(document).on('click', '.updateList', function() {
+    		$.ajax({
+    			type:'put',
+    			url:'/updateCardDetail',
+    			data:{
+    				cardId : $('.allCard1 option:selected').val(),
+    				cardDetailId : $(this).parents('tr').attr('id'),
+    				discountPercent : $(this).parent().siblings().eq(5).children('input[name=discount_percent]').val(),
+    				minPayment : $(this).parent().siblings().eq(2).children('input[name=min_price]').val(),
+    				maxDiscount : $(this).parent().siblings().eq(3).children('input[name=max_price]').val(),
+    				maxCount : $(this).parent().siblings().eq(4).children('input[name=max_count]').val()
+    			},
+    			success:function(result) {
+    				swal("할인 상세 목록 수정 완료", '', 'success');
+    				var table_list = "";
+    				for (key in result) {
+    					table_list = table_list + '<tr id='+ result[key].cardDetailId +'><td><input type="text" name="largeCategoryName" id='+ result[key].largeCategoryId +' class="add_manage_option" value='+ result[key].largeCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="smallCategoryName" class="add_manage_option" id='+ result[key].smallCategoryId +' value='+ result[key].smallCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="min_price" class="add_manage_option" value='+ result[key].minPayment +'>원</td>'
+                					+ '<td><input type="text" name="max_price" class="add_manage_option" value='+ result[key].maxDiscount +'>원</td>'
+                					+ '<td><input type="text" name="max_count" class="add_manage_option" value='+ result[key].maxCount +'>번</td>'
+                					+ '<td><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value='+ result[key].discountPercent +'>%</td>'
+                					+ '<td><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
+                					+ '<td><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
+
+    				}
+    				$('#register_category').html(table_header + table_list);
+    			}
+    		});
+    	});
+    	
+    	$(document).on('click', '.deleteList', function() {
+    		$.ajax({
+    			type:'post',
+    			url:'/cardDetailDelete',
+    			data:{
+    				cardId : $('.allCard1 option:selected').val(),
+    				cardDetailId : $(this).parents('tr').attr('id')
+    			},
+    			success:function(result) {
+    				swal("삭제 완료", "", 'success');
+    				var table_list = "";
+    				for (key in result) {
+    					table_list = table_list + '<tr id='+ result[key].cardDetailId +'><td><input type="text" name="largeCategoryName" id='+ result[key].largeCategoryId +' class="add_manage_option" value='+ result[key].largeCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="smallCategoryName" class="add_manage_option" id='+ result[key].smallCategoryId +' value='+ result[key].smallCategoryName +' readonly></td>'
+                					+ '<td><input type="text" name="min_price" class="add_manage_option" value='+ result[key].minPayment +'>원</td>'
+                					+ '<td><input type="text" name="max_price" class="add_manage_option" value='+ result[key].maxDiscount +'>원</td>'
+                					+ '<td><input type="text" name="max_count" class="add_manage_option" value='+ result[key].maxCount +'>번</td>'
+                					+ '<td><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value='+ result[key].discountPercent +'>%</td>'
+                					+ '<td><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
+                					+ '<td><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
+
+    				}
+    				$('#register_category').html(table_header + table_list);
+    			}
+    		});
+    	});
     });	
 	
     </script>
@@ -245,12 +201,8 @@
 							
 							    const realUpload = document.querySelector('.real-upload');
 							    const upload_front_image = document.querySelector('#image_selection_left');
-							    const upload_back_image = document.querySelector('#image_selection_right');
 							
 							    upload_front_image.addEventListener('click', () => realUpload.click());
-							    realUpload.addEventListener('change', getImageFiles);
-							    
-							    upload_back_image.addEventListener('click', () => realUpload.click());
 							    realUpload.addEventListener('change', getImageFiles);
 							</script>
 	                       
@@ -271,6 +223,7 @@
 				                        	<b class="inline_text">최대 할인 금액</b>&nbsp;&nbsp;&nbsp;<input type="text" name="maxDiscount" placeholder="내용을 입력해주세요..." class="form-password form-control" id="max-sale">
 				                        </div>
 				                        <button class="btn" id="cardUpdate" value="등록">수정</button>
+				                        <button class="btn" id="cardDelete" value="삭제">삭제</button>
 			                    </div>
 		                    </div>     
                         </div>
@@ -313,7 +266,6 @@
 				                        	</td>
 				                        </tr>                     	
 				                        </table><br><br><br>
-				                        <button class="btn" id="register_card_detail">수정</button>
 			                    </div>
                         	</div>
                         </div>
