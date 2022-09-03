@@ -31,7 +31,11 @@ public class CardServiceImpl implements CardService {
 		return null;
 	}
 
-	
+	@Override
+	public int cardDetailDelete(int cardDetailId) throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).cardDetailDelete(cardDetailId);
+	}
+
 	@Override
 	public int registerCard(Card card) throws SQLException {
 		return sqlSession.getMapper(CardMapper.class).registerCard(card);
@@ -44,12 +48,12 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public int deleteCard(int cardId) throws SQLException {
-		return 0;
+		return sqlSession.getMapper(CardMapper.class).deleteCard(cardId);
 	}
 
 	@Override
 	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException {
-		
+
 		return sqlSession.getMapper(CardMapper.class).getDiscountInfoByCard(cardId);
 	}
 
@@ -62,9 +66,14 @@ public class CardServiceImpl implements CardService {
 	public ArrayList<CardDetailManage> getSelectedCardDetail(int cardId) throws SQLException {
 		return sqlSession.getMapper(CardMapper.class).getSelectedCardDetail(cardId);
 	}
-	
+
 	@Override
 	public int updateCard(Card card) throws SQLException {
 		return sqlSession.getMapper(CardMapper.class).updateCard(card);
+	}
+
+	@Override
+	public int updateCardDetail(CardDetail cardDetail) throws SQLException {
+		return sqlSession.getMapper(CardMapper.class).updateCardDetail(cardDetail);
 	}
 }

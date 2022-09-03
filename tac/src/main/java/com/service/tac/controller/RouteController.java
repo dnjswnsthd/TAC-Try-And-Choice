@@ -114,8 +114,10 @@ public class RouteController {
 	@RequestMapping(value = "/manage_card", method = RequestMethod.GET)
     public String manage_card(Model model) {
         try {
-            List<LargeCategory> list = categoryService.getAllLargeCategory();
-            model.addAttribute("largeCategory", list);
+            List<LargeCategory> large_list = categoryService.getAllLargeCategory();
+            model.addAttribute("largeCategory", large_list);
+            List<Card> card_list = cardService.getAllCardInfo();
+            model.addAttribute("showAllCard", card_list);
             return "/manage/insertCard";
 
         } catch(Exception e) {

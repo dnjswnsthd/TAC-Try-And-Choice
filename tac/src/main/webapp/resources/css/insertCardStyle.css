@@ -140,7 +140,7 @@ td{
 	width:70px;
 }
 
-#deleteList, #updateList{
+.deleteList, .updateList{
 	width:26px;
 	height:26px;
 }
