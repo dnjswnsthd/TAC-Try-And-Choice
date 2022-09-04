@@ -16,6 +16,12 @@ public class SmallCategory {
 		this.smallCategoryName = smallCategoryName;
 		this.largeCategoryId = largeCategoryId;
 	}
+	
+	public SmallCategory(String smallCategoryName, int largeCategoryId) {
+		super();
+		this.smallCategoryName = smallCategoryName;
+		this.largeCategoryId = largeCategoryId;
+	}
 
 	public int getSmallCategoryId() {
 		return smallCategoryId;

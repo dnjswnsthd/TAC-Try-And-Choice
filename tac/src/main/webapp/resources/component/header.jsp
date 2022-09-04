@@ -16,7 +16,7 @@
 <link href="/resources/css/header.css" rel="stylesheet" />
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" id="header">
+	<nav class="navbar navbar-expand-lg navbar-light" id="header" style="z-index:1" >
 		<div class="container">
 			<a class="navbar-brand" href="/main"><img id="logo"
 				src="/resources/image/logo1.png" /><img id="logo2"
@@ -29,7 +29,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="/compare">CONSUME</a>
+					<li class="nav-item"><a class="nav-link" href="/main#carouselExampleIndicators">CONSUME</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/analysis">ANALYSE</a>
 					</li>
@@ -43,7 +43,15 @@
 						} 
 						if( member != null && member.getGrade() == 1 ){
 					%>
-						<li class="nav-item"><a class="nav-link" href="/manage_card">ADDCARD</a></li>
+						<div class="select">
+							<div class="option">MANAGE</div>
+							<div class="optionList">
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/manage_card">카드 추가</a>
+									<li class="nav-item" id="optionav"><a class="nav-link2" href="/manage_card_update">카드 수정</a>
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/addLargeCategory">대분류 추가</a>
+								<li class="nav-item" id="optionav"><a class="nav-link2" href="/addSmallCategory">소분류 추가</a>
+							</div>
+						</div>
 					<%
 						}
 						if( member != null ){
@@ -54,7 +62,8 @@
 					      </div>
 					      <div class="optionList">
 					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/mypage">개인, 카드 정보 수정</a>
-					        <li class="nav-item" id="optionav"><a class="nav-link2" href="/updateConsume">소비 정보 수정</a>
+							<li class="nav-item" id="optionav"><a class="nav-link2" href="/updateConsume">소비 정보 수정</a>
+							<li class="nav-item" id="optionav"><a class="nav-link2" href="/deleteMemberPage">회원 탈퇴</a>
 					      </div>
 					    </div>
 						<li class="nav-item"><a class="nav-link" onclick="logout();">LOGOUT</a></li>

@@ -2,7 +2,9 @@ package com.service.tac.model.mapper;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.service.tac.model.vo.Calculation;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 
@@ -35,4 +37,6 @@ public interface CardCompareMapper {
 	public ArrayList<CardDetail> getBenefitsByCateg20(int cardId, String memberId) throws SQLException;
 	public ArrayList<CardDetail> getBenefitsByCateg21(int cardId, String memberId) throws SQLException;
 	public ArrayList<CardDetail> getBenefitsByCateg22(int cardId, String memberId) throws SQLException;
+	
+	public ArrayList<Calculation> getBenefitsByCategory(HashMap <String, Object> map) throws SQLException;
 }

@@ -21,11 +21,33 @@ public class CardDetail {
 	public CardDetail() {
 		super();
 	}
+	
+	public CardDetail(int cardDetailId, int discountPercent,  
+			int minPayment, int maxDiscount, int maxCount) {
+		super();
+		this.cardDetailId = cardDetailId;
+		this.discountPercent = discountPercent;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.maxCount = maxCount;
+	}
 
 	public CardDetail(int cardDetailId, int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
 			int minPayment, int maxDiscount, int maxCount) {
 		super();
 		this.cardDetailId = cardDetailId;
+		this.discountPercent = discountPercent;
+		this.cardId = cardId;
+		this.largeCategoryId = largeCategoryId;
+		this.smallCategoryId = smallCategoryId;
+		this.minPayment = minPayment;
+		this.maxDiscount = maxDiscount;
+		this.maxCount = maxCount;
+	}
+	
+	public CardDetail(int discountPercent, int cardId, int largeCategoryId, int smallCategoryId,
+			int minPayment, int maxDiscount, int maxCount) {
+		super();
 		this.discountPercent = discountPercent;
 		this.cardId = cardId;
 		this.largeCategoryId = largeCategoryId;

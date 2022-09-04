@@ -239,21 +239,32 @@ th, td{
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
+	width: 10px;
+	height: 10px;
   }
   / Track /
+  /* Track */
   ::-webkit-scrollbar-track {
     -webkit-border-radius: 6px;
     border-radius: 10px;
+	-webkit-border-radius: 6px;
+	border-radius: 10px;
   }
   / Handle /
+  /* Handle */
   ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 6px;
     border-radius: 6px;
     background: #373234;
     opacity: 0.9;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background: #373234;
+	opacity: 0.9;
   }
   ::-webkit-scrollbar-thumb:window-inactive {
     background: #FF788B;
+	background: #FF788B;
   }
 #top, #table{ /* Targets all id with 'col-' */
   border-bottom: 1px solid #EEE;
@@ -305,4 +316,5 @@ td{
   padding:2rem;
   margin: 0 auto;
   width: 100%;
+  background: rgba(255,255,255,0.85);
   background: rgba(255,255,255,0.85);

@@ -145,4 +145,25 @@ public class MemberController {
 	public String notadmin() {
 		return "/member/you_need_authority";
 	}
+
+	@RequestMapping("/deleteMemberPage")
+	public String deleteMemberPage() {
+		return "/member/deleteMember";
+	}
+	
+	@RequestMapping("/deleteMember")
+	public String deleteMember( HttpServletRequest request ) {
+
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String id = member.getMemberId();
+		try {
+			memberService.deleteMember(id);
+			session.invalidate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/main";
+	}
 }

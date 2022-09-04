@@ -11,6 +11,21 @@ public class Card {
 	public Card() {
 		super();
 	}
+	
+	public Card(String cardName, String cardDesc, String maxDiscount) {
+		super();
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.maxDiscount = maxDiscount;
+	}
+	
+	public Card(int cardId, String cardName, String cardDesc, String maxDiscount) {
+		super();
+		this.cardId = cardId;
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.maxDiscount = maxDiscount;
+	}
 
 
 	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount,
@@ -21,7 +36,7 @@ public class Card {
 		this.cardDesc = cardDesc;
 		this.cardImg = cardImg;
 		this.maxDiscount = maxDiscount;
-		this.setCardImgHorizon(cardImgHorizon);
+		this.cardImgHorizon=cardImgHorizon;
 	}
 
 	public int getCardId() {

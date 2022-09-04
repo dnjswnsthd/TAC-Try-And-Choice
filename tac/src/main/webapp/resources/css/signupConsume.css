@@ -4,9 +4,6 @@
 	zoom: 1;
 }
 
-.nav-tabs {
-	text-align: center;
-}
 
 label img {
 	width: 60%;
@@ -73,9 +70,6 @@ body {
 #external-events p input {
 	margin: 0;
 	vertical-align: middle;
-}
-.container{
-	text-align: center;
 }
 
 #calendar {

@@ -12,37 +12,76 @@
         <title>관리자 모드 - 카드 등록</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-		<link rel="stylesheet" href="../resources/css/insertCardElement.css">
-        <link rel="stylesheet" href="../resources/css/insertCardStyle.css"> 
+        <link rel="stylesheet" href="/resources/css/insertCard.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     $(function(){
     	
-    	var table_header = '<tr><th>대분류</th><th>소분류</th><th>최소결제금액</th><th>최대할인금액</th><th>최대할인횟수</th><th>할인율</th><th></th></tr>';
-    	var add_tablelist = '<td><select name=large_category><option value=movie>영화</option><option value=oil>주유</option><option value=cafe>카페</option></select></td>'
-    	+ '<td><select name=small_category class=small_category_selection><option value=cgv>CGV</option><option value=lottecinema>롯데시네마</option><option value=megabox>메가박스</option></select></td>'
-    	+ '<td><input type=text name=min_price class=add_manage_option>원</td><td><input type=text name=max_price class=add_manage_option>원</td>'
-    	+ '<td><input type=text name=sale_max_count class=add_manage_option>번</td><td><input type=text name=discount_rate class=add_manage_option>%</td>'
-    	+ '<td><img id="delete_img" src=/resources/image/delete.png></td>';
-    	
-    	$('.add_categoty').on('click', function() {
-    		var data = $('#register_category').html();
-    		data += add_tablelist;
+    	$('.addSaleList').on('click', function() {
+    		var largeName = $('.large_category_selection option:selected').text();
+    		var smallName = $('#small_category_selection option:selected').text();
+    		var largeId = $('.large_category_selection option:selected').val();
+    		var smallId = $('#small_category_selection option:selected').val();
+			var cardId = $('.allCard option:selected').val();
+			
+    		$('input[name=largeCategoryName]').val(largeName);
+    		$('input[name=smallCategoryName]').val(smallName);
+    		$('input[name=largeCategoryName]').attr("id", largeId);
+    		$('input[name=smallCategoryName]').attr("id", smallId);
     		
-    		$('#register_category').html(data);
-    		
-    	});// on click
-    	
-    	$('#register_card_info').on('click', function() {
-    		alert("동록 진행중~!");
     	});
     	
-    	$('#large_category_search').on('click', function() {
-    		alert("헐");
+		$('#register_card_detail').on('click', function() {
+    		var cardId = $('.allCard option:selected').val();
+    		var largeId = $('input[name=largeCategoryName]').attr("id");
+    		var smallId = $('input[name=smallCategoryName]').attr("id");
+    		var minPrice = $('input[name=min_price]').val();
+    		var maxPrice = $('input[name=max_price]').val();
+    		var maxCount = $('input[name=max_count]').val();
+    		var discountPercent = $('input[name=discount_percent]').val();
+    		var message = "";
+    		if($('#discount_percent').val() == 0){
+    			message = "할인율"
+    		}
+    		if(message != ""){
+    			swal(message + "은(는) 필수값입니다.", '', 'error');
+    			evt.preventDefault();	
+    		}else{
+	    		$.ajax({
+	    			type:'post',
+	    			url:'/category/registerCardDetail',
+	    			data : {
+	    				discountpercent : discountPercent,
+	    				cardid : cardId,
+	    				largeid : largeId,
+	    				smallid : smallId,
+	    				minprice : minPrice,
+	    				maxprice : maxPrice,
+	    				maxcount : maxCount,
+	    			},
+	    			success:function(result){
+	    				swal('등록 완료', '새로운 목록이 추가 되었습니다', 'success');
+	    				var card = "";
+						var card_default = '<option value=smallName>==카드 선택==</option>';
+						for (key in result) {
+							card += '<option value=' + key + '>'+ result[key] +'</option>'
+						}
+						$('.allCard').html(card_default+card);
+						$('.large_category_selection').html('<option value=largeName>대분류</option>');
+						$('#small_category_selection').html('<option value=smallName>소분류</option>');
+						$('input[name=largeCategoryName]').val("");
+			    		$('input[name=smallCategoryName]').val("");
+						$('input[name=min_price]').val(0);
+			    		$('input[name=max_price]').val(0);
+			    		$('input[name=max_count]').val(0);
+			    		$('input[name=discount_percent]').val(0);
+	    			}
+	    		});
+    		}
     	});
     	
-    		
-    	$('#large_category_selection').change(function() {
+		$('.large_category_selection').on('change', function() {
     		$.ajax({
 				type : 'post',
 				url : '/category/getSmallCategory',
@@ -52,166 +91,227 @@
 
 				success : function(result) {
 					var small = "";
+					var small_default = '<option value=smallName>==소분류 선택==</option>';
 					for (key in result) {
 						small = small + '<option value=' + key + '>'+ result[key] +'</option>'
 					}
-					$('#small_category_selection').html(small);
+					$('#small_category_selection').html(small_default + small);
 				}
 			});
     	});
     	
+    	$('.allCard').on('change', function() {
+    		$.ajax({
+    			type:'post',
+    			url:'/category/getLargeCategory',
+    			
+    			success:function(result) {
+    				var large_list = "";
+    				var large = "<option value=largeName>==대분류 선택==</option>";
+    				for (key in result) {
+    					large_list += '<option value=' + key + '>'+ result[key] +'</option>'
+    				}
+    				$('.large_category_selection').html(large+large_list);
+    			}
+    		});
+    	});
+    	
+    	$('#cardReg').on('click', function() {
+    		var cardName = $('#card-name').val();
+    		var cardDesc = $('#card-desc').val();
+    		var maxSale = $('#max-sale').val();
+    		var message = "";
+    		
+    		if($('#card-name').val() == ''){
+    			message = "카드 이름"
+    		} else if($('#card-desc').val() == ''){
+    			message = "카드 설명"
+    		}
+    		if(message != ""){
+    			swal(message + "은 필수값입니다.", '', 'error');
+    			evt.preventDefault();
+    		}else {
+	    		$.ajax({
+	    			type:'post',
+	    			url:'/cardReg',
+	    			data : {
+	    				cardname : cardName,
+	    				carddesc : cardDesc,
+	    				maxsale : maxSale
+	    			},
+	    			success:function(result){
+	    				swal("카드 등록 완료", cardName + " 카드가 등록되었습니다!", 'success');
+	    				var card = "";
+						var card_default = '<option value=smallName>==카드 선택==</option>';
+						for (key in result) {
+							card += '<option value=' + key + '>'+ result[key] +'</option>'
+						}
+						$('.allCard').html(card_default+card);
+						$('#card-name').val("");
+			    		$('#card-desc').val("");
+			    		$('#max-sale').val("");
+	    			}
+	    		});
+    		}
+    	});
+    	
     	
     });	
-/*     function f_changeFunc(obj) {
-		var id = $(obj).val();
-		var small = '<td><select name="small_category" class="small_category_selection">'
-		+ '<option value="cgv">일</option>'
-		+ '<option value="lottecinema">이</option>'
-		+ '<option value="megabox">삼</option>'
-		+ '</select></td>'
 	
-		$('#small_category').html(small);
-		
-	} */
     </script>
+    
     </head>
     <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
-    	
-        <!-- Top content -->
-        <div class="top-content">
-            <!-- <div class="inner-bg"> -->
-                <div class="container">
-                    <div class="card_register">
-                    	<b>카드등록</b>
-                    </div>                
-                    <div class="row">
-                        <div class="col-sm-5">
-                        	<form action="#" id="card_image_selection">
-                        	<div class="form-box">
+	
+		<div id="container" class="container">
+	 	<div class="row justify-content-around" id="contentDiv">
+	 		<header>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
+					<h2>카드등록</h2>
+				</div>
+			</header>
+			<div>
+				<!-- 카드등록 -->
+				<div class="card_information row">
+					<div class="card_information">
+               		 	<h3><b>카드 등록</b></h3>
+                    </div>
+                    <hr>
+					<!-- 카드사진 -->
+					<div class="col-md-5" >
+						<form action="#" id="card_image_selection">
+		 					
+	                       	<div class="form-box text-center cardInfo">
 	                        	<div class="form-top">
 	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
-	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
 	                            </div>
-	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_left" class="btn btn-default">이미지 선택(앞)</button>
-	                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-	                        <button type="submit" id="image_selection_right" class="btn btn-default">이미지 선택(뒤)</button>
-	                        </form> 
-	                        
-	                        <script type="text/javascript">
-							    function getImageFiles(e) {
-							      const files = e.currentTarget.files;
-							    }
-							
-							    const realUpload = document.querySelector('.real-upload');
-							    const upload_front_image = document.querySelector('#image_selection_left');
-							    const upload_back_image = document.querySelector('#image_selection_right');
-							
-							    upload_front_image.addEventListener('click', () => realUpload.click());
-							    realUpload.addEventListener('change', getImageFiles);
-							    
-							    upload_back_image.addEventListener('click', () => realUpload.click());
-							    realUpload.addEventListener('change', getImageFiles);
-							</script>
-	                       
-	                       	<div class="card_information">
-	                      		 <b>카드 정보</b>
-	                       	</div>    	
-	                             <div class="form-bottom" id="form-box-left">
-				                    <form role="form" action="cardReg.do" method="post" class="reg_card">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 이름</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardName" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-name">
-				                        </div>
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username"></label>
-				                        	<b class="inline_text">카드 설명</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="cardDesc" placeholder="내용을 입력해주세요..." class="form-username form-control" id="card-desc">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password"></label>
-				                        	<b class="inline_text">최대 할인 금액</b>&nbsp;&nbsp;&nbsp;<input type="text" name="maxDiscount" placeholder="내용을 입력해주세요..." class="form-password form-control" id="max-sale">
-				                        </div>
-				                        <button type="submit" class="btn" id="cardReg" value="등록">등록</button>
-				                    </form>
-			                    </div>
-		                    </div>     
-                        </div>
-                        
-                        	
-                        <div class="col-sm-7">
-                        	
-                        	<div class="form-box" id="form-box-right">
-                        		<div class="form-top" id="sale_detail">
-	                        		<li>
-	                        			<h3><b>할인 상세</b></h3>
-	                        		</li>
-									<li class="add_button">
-	                        			<button class="add_categoty_large"><a href="addLargeCategory">대분류 추가</a></button>
-	                        		</li>
-	                        		<li class="add_button">
-	                        			<button class="add_categoty_small"><a href="#">소분류 추가</a></button>
-	                        		</li>	
-	                        		<li class="add_button">
-	                        			<button class="add_categoty">카테고리 추가</button>
-	                        		</li>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail">
-				                    	
-				                        <table id="register_category">
-				                        
-				                        <tr>
-					                        <th>대분류</th>
-					                        <th>소분류</th>
-					                        <th>최소결제금액</th>
-					                        <th>최대할인금액</th>
-					                        <th>최대할인횟수</th>
-					                        <th>할인율</th>
-					                        <th></th>
-				                        </tr>
-				                        <tr>
-				                        	<td>
-												<select name="large_category" id="large_category_selection" >
-													<c:forEach items="${largeCategory}" var="large">
-														<option value="${large.largeCategoryId}">${large.largeCategoryName}</option>
-													</c:forEach>
-												</select>
-				                        	</td>
-				                        	<td>
-				                        		<select name="small_category" id="small_category_selection">
-					                        		<option value="small">소분류</option>
-				                        		</select>
-				                        	</td>
-				                        	<td>
-				                        		<input type="text" name="min_price" class="add_manage_option">원
-				                        	</td>
-				                        	<td>
-				                        		<input type="text" name="max_price" class="add_manage_option">원
-				                        	</td>
-				                        	<td>
-				                        		<input type="text" name="sale_max_count" class="add_manage_option">번
-				                        	</td>
-				                        	<td>
-				                        		<input type="text" name="discount_rate" class="add_manage_option">%
-				                        	</td>
-				                        	<td>
-				                        		<img id="delete_img" src="/resources/image/delete.png">
-				                        	</td>
-				                        </tr>                     	
-				                        </table><br><br><br><br><br><br><br>
-				                        <button type="submit" class="btn" id="register_card_info">등록</button>
-				                    </form>
-			                    </div>
-                        	</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- 		<footer>
- 		</footer>
+		                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
+		                        <button type="submit" id="image_selection_left" class="btn btn-outline-secondary">이미지 선택</button> 
+	                        </div>            
+	                	</form> 
+	                	<script type="text/javascript">
+						    function getImageFiles(e) {
+						      const files = e.currentTarget.files;
+						    }
+						
+						    const realUpload = document.querySelector('.real-upload');
+						    const upload_front_image = document.querySelector('#image_selection_left');
+						    const upload_back_image = document.querySelector('#image_selection_right');
+						
+						    upload_front_image.addEventListener('click', () => realUpload.click());
+						    realUpload.addEventListener('change', getImageFiles);
 
+						</script>
+
+					</div>
+					<!-- 카드정보 -->
+					<div class="form-bottom col-md-7" id="form-box-left">
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-username form-control" id="card-name" name="cardName" placeholder="내용을 입력해주세요...">
+						  <label for="floatingInput">카드 이름</label>
+						</div>
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-username form-control" id="card-desc" name="cardDesc" placeholder="내용을 입력해주세요...">
+						  <label for="floatingInput">카드 설명</label>
+						</div>
+						<div class="form-floating mb-3">
+						  <input type="text" class="form-password form-control" id="max-sale" name="maxDiscount" placeholder="내용을 입력해주세요..." >
+						  <label for="floatingInput">최대 할인 금액</label>
+						</div>
+
+                        <button type="button" class="btn btn-outline-secondary addBtn" id="cardReg" value="등록">등록</button>
+
+					</div>
+				</div>
+				<br><br>
+				<!-- 카드혜택등록 -->
+				<div id="card">
+					<div class="form-top" id="saleDetail">
+                   		<h3><b>할인 목록 등록</b></h3>
+	                </div>
+	                <hr>
+					<div class="form-top" id="selectCard addSaleDetail">
+						<select name="allCard" class="allCard form-select" aria-label="Default select example">
+						  <option selected>카드선택</option>
+						  <c:forEach items="${showAllCard}" var="card">
+								<option value="${card.cardId}">${card.cardName}</option>
+							</c:forEach>
+						</select>
+						<br>
+						<div class="input-group">
+						  <select name="large_category" class="large_category_selection form-select" id="inputGroupSelect04" aria-label="Default select example">
+						    <option selected>대분류를 선택하세요</option>
+						  </select>
+						  
+						</div>
+						<br>
+						<div class="input-group">
+						  <select name="small_category" id="small_category_selection" class="form-select" id="inputGroupSelect04" aria-label="Default select example">
+						    <option selected>소분류를 선택하세요</option>
+						  </select>
+						  
+						</div>
+						<br>
+						<button class="btn addSaleList btn-outline-secondary addBtn" id="cardReg2">할인혜택 추가하기</button>
+						<br><br><br>
+					
+					</div>
+					<hr>
+					<div>
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	대분류
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	소분류
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	최소결제금액
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	최대할인금액
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	최대할인횟수
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	할인율
+						    </div>
+						</div>
+						<hr>
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	<input type="number" name="max_count" class="add_manage_option" value="0">
+	                        	<label>번</label>
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+	                        	<label>%</label>
+						    </div>
+						</div>
+						<br>
+                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
+                        <br><br><br><br>
+					</div>
+				</div>
+			</div>
+	 	</div>
+	 </div>
+	 
     </body>
-
 </html>
