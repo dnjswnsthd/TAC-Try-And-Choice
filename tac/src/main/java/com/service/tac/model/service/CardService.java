@@ -4,6 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.CardDetailManage;
@@ -43,4 +47,6 @@ public interface CardService {
 	// 카드 할인정보 가져오기
 	public ArrayList<CardDetail> getDiscountInfoByCard(int cardId) throws SQLException;
 		
+	// 카드 등록 (이미지 포함)
+	public int registerCard_Image(Card card, MultipartFile imgfile, HttpServletRequest request) throws SQLException;
 }

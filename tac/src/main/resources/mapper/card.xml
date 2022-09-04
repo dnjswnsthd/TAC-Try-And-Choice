@@ -117,4 +117,11 @@
 	</delete>
 	
 
+	<insert id="registerCardImportImage" parameterType="card">
+		<selectKey keyProperty="cardId" resultType="int" order="BEFORE">
+			SELECT card_seq.nextVal FROM dual
+		</selectKey>
+			INSERT INTO card(card_id, card_name, card_desc, card_img, max_discount )
+			VALUES (#{cardId}, #{cardName}, #{cardDesc}, #{cardImg}, #{maxDiscount} )
+	</insert>
 </mapper>

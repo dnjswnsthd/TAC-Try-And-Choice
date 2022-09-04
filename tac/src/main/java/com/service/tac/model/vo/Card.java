@@ -11,12 +11,20 @@ public class Card {
 	public Card() {
 		super();
 	}
-	
+
 	public Card(String cardName, String cardDesc, String maxDiscount) {
 		super();
 		this.cardName = cardName;
 		this.cardDesc = cardDesc;
 		this.maxDiscount = maxDiscount;
+	}
+
+	public Card(String cardName, String cardDesc, String maxDiscount, String cardImg) {
+		super();
+		this.cardName = cardName;
+		this.cardDesc = cardDesc;
+		this.maxDiscount = maxDiscount;
+		this.cardImg = cardImg;
 	}
 	
 	public Card(int cardId, String cardName, String cardDesc, String maxDiscount) {
