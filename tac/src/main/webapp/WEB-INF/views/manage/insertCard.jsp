@@ -260,47 +260,47 @@
 					<hr>
 					<div>
 						<div class="row">
-						    <div class="col-sm-2 large_category">
+						    <div class="col-sm-2 large_category text-center">
 						      	대분류
 						    </div>
-						    <div class="col-sm-2 small_category">
+						    <div class="col-sm-2 small_category text-center">
 						      	소분류
 						    </div>
-						    <div class="col-sm-2 min_amount">
+						    <div class="col-sm-2 min_amount text-center">
 						       	최소결제금액
 						    </div>
-						    <div class="col-sm-2 max_discount">
+						    <div class="col-sm-2 max_discount text-center">
 						      	최대할인금액
 						    </div>
-						    <div class="col-sm-2 max_count">
+						    <div class="col-sm-2 max_count text-center">
 						      	최대할인횟수
 						    </div>
-						    <div class="col-sm-2 discount_rate">
+						    <div class="col-sm-2 discount_rate text-center">
 						      	할인율
 						    </div>
 						</div>
 						<hr>
 						<div class="row">
 						    <div class="col-sm-2 large_category">
-						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+						      	<input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id="largeCategoryName">
 						    </div>
 						    <div class="col-sm-2 small_category">
-						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+						      	<input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id="smallCategoryName">
 						    </div>
 						    <div class="col-sm-2 min_amount">
-						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value="0">
 	                        	<label>원</label>
 						    </div>
 						    <div class="col-sm-2 max_discount">
-						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value="0">
 	                        	<label>원</label>
 						    </div>
 						    <div class="col-sm-2 max_count">
-						      	<input type="number" name="max_count" class="add_manage_option" value="0">
+						      	<input type="number" name="max_count" id= "max_c" class="add_manage_option form-control" value="0">
 	                        	<label>번</label>
 						    </div>
 						    <div class="col-sm-2 discount_rate">
-						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value="0">
 	                        	<label>%</label>
 						    </div>
 						</div>
