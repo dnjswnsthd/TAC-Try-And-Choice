@@ -46,7 +46,6 @@
     		}
     		if(message != ""){
     			swal(message + "은(는) 필수값입니다.", '', 'error');
-    			evt.preventDefault();	
     		}else{
 	    		$.ajax({
 	    			type:'post',
@@ -116,12 +115,27 @@
     		});
     	});
     	
-    	$('#cardReg').on('click', function() {
+    	$('#cardReg').on('click', function( evt ) {
+			
+
     		var cardName = $('#card-name').val();
     		var cardDesc = $('#card-desc').val();
     		var maxSale = $('#max-sale').val();
     		var message = "";
     		
+			// console.log(document.querySelector("#cardimg"));
+			console.log(document.querySelector("#cardimg").files[0]);
+			var card_img = document.querySelector("#cardimg").files[0];
+
+			// formData()
+			var formData = new FormData();
+			formData.append("cardname", cardName);
+			formData.append("carddesc", cardDesc);
+			formData.append("maxsale", maxSale);
+			formData.append("cardImg", card_img);
+
+			console.log(formData);
+
     		if($('#card-name').val() == ''){
     			message = "카드 이름"
     		} else if($('#card-desc').val() == ''){
@@ -133,12 +147,13 @@
     		}else {
 	    		$.ajax({
 	    			type:'post',
-	    			url:'/cardReg',
-	    			data : {
-	    				cardname : cardName,
-	    				carddesc : cardDesc,
-	    				maxsale : maxSale
-	    			},
+	    			url:'/cardReg2',
+					enctype:'multipart/form-data',
+					contentType: false,
+					processData: false,
+       				cache: false,
+	    			data : formData,
+					// dataType : 'json',
 	    			success:function(result){
 	    				swal("카드 등록 완료", cardName + " 카드가 등록되었습니다!", 'success');
 	    				var card = "";
@@ -180,31 +195,20 @@
                     <hr>
 					<!-- 카드사진 -->
 					<div class="col-md-5" >
-						<form action="#" id="card_image_selection">
+						<form action="#" id="card_image_selection" enctype="multipart/form-data" >
 		 					
 	                       	<div class="form-box text-center cardInfo">
 	                        	<div class="form-top">
-	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
+									<img id="preview" src="/resources/image/card_horizon/card_none_horizon.png"/>
 	                            </div>
-		                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-		                        <button type="submit" id="image_selection_left" class="btn btn-outline-secondary">이미지 선택</button> 
+								<label for="cardimg">
+									<div class="btn btn-upload btn-outline-secondary"> 카드 이미지 선택 </div>
+								</label>
+								<input type="file" class="real-upload" name="cardImg" id="cardimg" onchange="readURL(this)" accept="image/*" >
 	                        </div>            
 	                	</form> 
-	                	<script type="text/javascript">
-						    function getImageFiles(e) {
-						      const files = e.currentTarget.files;
-						    }
-						
-						    const realUpload = document.querySelector('.real-upload');
-						    const upload_front_image = document.querySelector('#image_selection_left');
-						    const upload_back_image = document.querySelector('#image_selection_right');
-						
-						    upload_front_image.addEventListener('click', () => realUpload.click());
-						    realUpload.addEventListener('change', getImageFiles);
-
-						</script>
-
 					</div>
+					
 					<!-- 카드정보 -->
 					<div class="form-bottom col-md-7" id="form-box-left">
 						<div class="form-floating mb-3">
@@ -260,47 +264,47 @@
 					<hr>
 					<div>
 						<div class="row">
-						    <div class="col-sm-2 large_category">
+						    <div class="col-sm-2 large_category text-center">
 						      	대분류
 						    </div>
-						    <div class="col-sm-2 small_category">
+						    <div class="col-sm-2 small_category text-center">
 						      	소분류
 						    </div>
-						    <div class="col-sm-2 min_amount">
+						    <div class="col-sm-2 min_amount text-center">
 						       	최소결제금액
 						    </div>
-						    <div class="col-sm-2 max_discount">
+						    <div class="col-sm-2 max_discount text-center">
 						      	최대할인금액
 						    </div>
-						    <div class="col-sm-2 max_count">
+						    <div class="col-sm-2 max_count text-center">
 						      	최대할인횟수
 						    </div>
-						    <div class="col-sm-2 discount_rate">
+						    <div class="col-sm-2 discount_rate text-center">
 						      	할인율
 						    </div>
 						</div>
 						<hr>
 						<div class="row">
 						    <div class="col-sm-2 large_category">
-						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+						      	<input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id="largeCategoryName">
 						    </div>
 						    <div class="col-sm-2 small_category">
-						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+						      	<input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id="smallCategoryName">
 						    </div>
 						    <div class="col-sm-2 min_amount">
-						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value="0">
 	                        	<label>원</label>
 						    </div>
 						    <div class="col-sm-2 max_discount">
-						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value="0">
 	                        	<label>원</label>
 						    </div>
 						    <div class="col-sm-2 max_count">
-						      	<input type="number" name="max_count" class="add_manage_option" value="0">
+						      	<input type="number" name="max_count" id= "max_c" class="add_manage_option form-control" value="0">
 	                        	<label>번</label>
 						    </div>
 						    <div class="col-sm-2 discount_rate">
-						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value="0">
 	                        	<label>%</label>
 						    </div>
 						</div>
@@ -312,6 +316,20 @@
 			</div>
 	 	</div>
 	 </div>
+
+	 <script>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+				};
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				document.getElementById('preview').src = "";
+			}
+		}
+	 </script>
 	 
     </body>
 </html>

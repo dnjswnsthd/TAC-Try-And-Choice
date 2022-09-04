@@ -1,13 +1,19 @@
 package com.service.tac.model.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.service.tac.model.mapper.CardMapper;
 import com.service.tac.model.service.CardService;
@@ -76,4 +82,28 @@ public class CardServiceImpl implements CardService {
 	public int updateCardDetail(CardDetail cardDetail) throws SQLException {
 		return sqlSession.getMapper(CardMapper.class).updateCardDetail(cardDetail);
 	}
+
+	@Override
+	public int registerCard_Image(Card card, MultipartFile imgfile, HttpServletRequest request) throws SQLException {
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root + "resources\\image\\card\\";
+
+		UUID uuid = UUID.randomUUID();
+        String extension = FilenameUtils.getExtension(imgfile.getOriginalFilename());
+        String savingFileName = uuid + "." + extension; 
+		File copyFile = new File(path + savingFileName);
+        
+		try {
+			imgfile.transferTo(copyFile);
+			card.setCardImg(savingFileName);
+			return sqlSession.getMapper(CardMapper.class).registerCardImportImage(card);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        return 0;
+	}
+
 }

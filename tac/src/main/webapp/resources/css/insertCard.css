@@ -65,3 +65,19 @@ body {
 #card_sample{
 	width: 70%;
 }
+
+#min_price, #max_price, #max_c, #discount_percent{
+	width: 85%;
+	display: inline-block;
+}
+
+/* 이미지 관련 */
+#preview{
+    height: 134px;
+    width: 219px;
+    margin-bottom: 1rem;
+}
+
+#cardimg{
+    display: none;
+}
