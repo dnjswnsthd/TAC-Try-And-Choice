@@ -165,7 +165,7 @@
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>
 	
 		<div id="container" class="container">
-	 	<div class="row justify-content-around">
+	 	<div class="row justify-content-around" id="contentDiv">
 	 		<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
 					<h2>카드등록</h2>
@@ -259,6 +259,7 @@
 						<br><br><br>
 					
 					</div>
+					<hr>
 					<div>
 						<div class="row">
 						    <div class="col-sm-2 large_category">
@@ -307,6 +308,7 @@
 						</div>
 						<br>
                         <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
+                        <br><br><br><br>
 					</div>
 				</div>
 			</div>

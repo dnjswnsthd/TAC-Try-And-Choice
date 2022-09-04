@@ -1,9 +1,27 @@
+.navbar {
+	background-color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 1rem;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+	background-image: url(../image/background_beach2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 .container {
   font-family: "Pretendard-Regular", sans-serif;
 }
 
 #container {
   width: 70%;
+  border-radius: 3rem;
+  background-color: white;
+  opacity: 0.9;
+  width: 70rem;
+  margin: auto;
 }
 
 .cardInfo {
@@ -43,4 +61,24 @@
 .deleteList, .updateList{
 	width:26px;
 	height:26px;
+}
+
+#contentDiv{
+	margin: 2%;
+}
+
+.add_manage_option{
+	width: 70%;
+}
+
+#moveModify{
+	margin-left: 92%;
+}
+
+#register_card_detail{
+	margin-left: 94%;
+}
+
+#title{
+	font-family: 'Cafe24Ssurround', sans-serif;
 }
