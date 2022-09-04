@@ -176,7 +176,18 @@
 				</div>
 
 				<div class="project-info-box">
-					<h3 id="semititle">소비 내역</h3>
+					<center id="top">
+						<div class="logo"></div>
+						<div class="info">
+							<h3>${memberName }님의 소비영수증</h3>
+						</div>
+					</center> <!-- 영수증 top -->
+					
+					<div id="mid">
+						<div class="info">
+							<h4></h4>
+						</div>
+					</div> <!-- 영수증 mid side -->
 					<table>
 						<thead>
 							<tr>
@@ -213,11 +224,13 @@
 		//console.log(consumeJson);
 		//console.log(consumeJson[0]);
 		var i=1;
+		
 		for(element in consumeJson[0]){
 			var temp = consumeJson[0][element].split(",");
 			$("#consumeTable").append('<tr><td>'+(i++)+'</td>'+
 					            '<td>'+element+'</td><td>'+
 					            temp[1]+' 원</td></tr>');
+			
 		}
 		
 			

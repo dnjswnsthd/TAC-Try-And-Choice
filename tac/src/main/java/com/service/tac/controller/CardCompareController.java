@@ -63,7 +63,9 @@ public class CardCompareController {
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(bList);
 		model.addAttribute("Object", json);
+		model.addAttribute("memberName", member.getName());
 		
+		// 선택 카드의 혜택 보기
 		try {
 			Card info = cardCompareService.getCardInfo(cardId);
 			ArrayList<CardDetail> list = cardCompareService.getDiscountInfoByCard(cardId);
