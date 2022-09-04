@@ -65,3 +65,8 @@ body {
 #card_sample{
 	width: 70%;
 }
+
+#min_price, #max_price, #max_c, #discount_percent{
+	width: 85%;
+	display: inline-block;
+}
