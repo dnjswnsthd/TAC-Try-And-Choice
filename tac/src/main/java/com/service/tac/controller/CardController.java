@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.service.tac.model.service.CardService;
+import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.CardDetailManage;
@@ -21,6 +22,9 @@ import com.service.tac.model.vo.CardDetailManage;
 public class CardController {
 	@Autowired
 	CardService cardService;
+	
+	@Autowired
+	CategoryService categoryService;
 
 	@PostMapping("/cardReg")
 	@ResponseBody
@@ -145,5 +149,28 @@ public class CardController {
 		}
 	}
 	
+	@PostMapping("/registerCardDetailByUpdate")
+	@ResponseBody
+	public ArrayList<CardDetailManage> registerCardDetailByUpdate(@RequestParam Map<String, Object> map) {
+		ArrayList<CardDetailManage> al = null;
+		int discountPercent = Integer.parseInt((String) map.get("discountpercent"));
+		int cardId = Integer.parseInt((String) map.get("cardid"));
+		int largeId = Integer.parseInt((String) map.get("largeid"));
+		int smallId = Integer.parseInt((String) map.get("smallid"));
+		int minPrice = Integer.parseInt((String) map.get("minprice"));
+		int maxPrice = Integer.parseInt((String) map.get("maxprice"));
+		int maxCount = Integer.parseInt((String) map.get("maxcount"));
+		CardDetail cardDetail = new CardDetail(discountPercent, cardId, largeId, smallId, minPrice, maxPrice, maxCount);
+		ArrayList<Card> list_card = null;
+		try {
+			categoryService.registerCardDetail(cardDetail);
+			al = cardService.getSelectedCardDetail(cardId);
+			return al;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
 	
 }
