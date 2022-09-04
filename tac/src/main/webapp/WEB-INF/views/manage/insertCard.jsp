@@ -207,23 +207,8 @@
 								<input type="file" class="real-upload" name="cardImg" id="cardimg" onchange="readURL(this)" accept="image/*" >
 	                        </div>            
 	                	</form> 
-	                	<script type="text/javascript">
-						    function getImageFiles(e) {
-						      const files = e.currentTarget.files;
-						    }
-						
-						    const realUpload = document.querySelector('.real-upload');
-						    const upload_front_image = document.querySelector('#image_selection_left');
-						    // const upload_back_image = document.querySelector('#image_selection_right');
-						
-						    upload_front_image.addEventListener('click', () => realUpload.click());
-						    realUpload.addEventListener('change', getImageFiles);
-						    
-						    // upload_back_image.addEventListener('click', () => realUpload.click());
-						    // realUpload.addEventListener('change', getImageFiles);
-						</script>
-
 					</div>
+					
 					<!-- 카드정보 -->
 					<div class="form-bottom col-md-7" id="form-box-left">
 						<div class="form-floating mb-3">
