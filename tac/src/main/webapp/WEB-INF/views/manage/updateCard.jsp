@@ -52,8 +52,8 @@
 															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=' + result[key].maxDiscount + '><label>&nbsp;원</label></div>'
 															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" id="max_c" class="add_manage_option form-control" value=' + result[key].maxCount + '><label>&nbsp;번</label></div>'
 															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=' + result[key].discountPercent + '><label>&nbsp;%</label>'
-															+ '<img class = "updateList" src="/resources/image/card_manage/update.png">'
-															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png"></div>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
 															+ '</div><br><br>'
 								}
 								$('#register_category').html(table_header + table_list);
@@ -134,10 +134,10 @@
 						sale_list = '<div class="row" id='+cardId+'>'
 									+ '<div class="col-sm-2 large_category" id="large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + largeId + ' value=' + largeName + '></div>'
 									+ '<div class="col-sm-2 small_category" id="small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + smallId + ' value=' + smallName + '></div>'
-									+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=0><label>원</label></div>'
-									+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=0><label>원</label></div>'
-									+ '<div class="col-sm-2 max_count" id="max_count"><input id="max_c" type="number" name="max_count" class="add_manage_option form-control" value=0><label>번</label></div>'
-									+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=0><label>%</label>'
+									+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
+									+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
+									+ '<div class="col-sm-2 max_count" id="max_count"><input id="max_c" type="number" name="max_count" class="add_manage_option form-control" value=0><label>&nbsp;번</label></div>'
+									+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=0><label>&nbsp;%</label>'
 									+ '<img class = "deleteAddList" src="/resources/image/card_manage/delete.png">'
 									+ '<img class = "addList" src="/resources/image/card_manage/add.png"></div>'
 									+ '</div><br><br>'
@@ -170,8 +170,8 @@
 															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=' + result[key].maxDiscount + '><label>&nbsp;원</label></div>'
 															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" id="max_c" class="add_manage_option form-control" value=' + result[key].maxCount + '><label>&nbsp;번</label></div>'
 															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=' + result[key].discountPercent + '><label>&nbsp;%</label>'
-															+ '<img class = "updateList" src="/resources/image/card_manage/update.png">'
-															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png"></div>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
 															+ '</div><br><br>'
 
 								}
@@ -202,8 +202,8 @@
 															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=' + result[key].maxDiscount + '><label>&nbsp;원</label></div>'
 															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" id="max_c" class="add_manage_option form-control" value=' + result[key].maxCount + '><label>&nbsp;번</label></div>'
 															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=' + result[key].discountPercent + '><label>&nbsp;%</label>'
-															+ '<img class = "updateList" src="/resources/image/card_manage/update.png">'
-															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png"></div>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
 															+ '</div><br><br>'
 
 								}
@@ -246,12 +246,12 @@
 									var table_list = "";
 									for (key in result) {
 										table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
-																+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
-																+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
-																+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option" value=' + result[key].minPayment + '><label>원</label></div>'
-																+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option" value=' + result[key].maxDiscount + '><label>원</label></div>'
-																+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '><label>번</label></div>'
-																+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '><label>%</label>'
+																+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
+																+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
+																+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
+																+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=' + result[key].maxDiscount + '><label>&nbsp;원</label></div>'
+																+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" id="max_c" class="add_manage_option form-control" value=' + result[key].maxCount + '><label>&nbsp;번</label></div>'
+																+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=' + result[key].discountPercent + '><label>&nbsp;%</label>'
 																+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
 																+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
 																+ '</div><br><br>'
