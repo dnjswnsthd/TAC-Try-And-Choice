@@ -174,23 +174,28 @@
 			<jsp:include page="/resources/component/header.jsp"></jsp:include>
 
 			<div id="container" class="container">
-				<div class="row justify-content-around">
+				<div class="row justify-content-around" id="contentDiv">
 					<header>
 						<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
 							<h2>카드수정</h2>
 						</div>
+
 					</header>
 					<div class="card_information row">
 						<div class="card_register">
-							<b>카드수정</b>
-							<select name="allCard1" class="allCard1">
-								<option value="largeName">==카드 선택==</option>
+							<h3><b>카드수정</b></h3>
+							<hr>
+							<select name="allCard1" class="allCard1 form-select">
+								<option value="largeName" selected>카드 선택</option>
 								<c:forEach items="${showAllCard}" var="card">
 									<option value="${card.cardId}">${card.cardName}</option>
 								</c:forEach>
 							</select>
-							<input type="button" id="moveModify" value="수정하기" />
+							<br>
+							<input type="button" id="moveModify" value="수정하기" class="btn btn-outline-secondary"/>
+							<hr>
 						</div>
+						<br>
 					</div>
 
 
@@ -241,54 +246,69 @@
 							<button type="button" class="btn btn-outline-secondary addBtn" id="cardDelete"
 								value="삭제">삭제</button>
 						</div>
+						
 					</div>
+					<br>
 
 
 					<!--  -->
 					<div class="form-box" id="form-box-right">
 						<div class="form-bottom">
+							<h3><b>할인 목록 수정</b></h3>
+							<hr>
 							<!-- <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail"> -->
 
-								<table class="table" id="register_category" style="table-layout:fixed;">
-									<thead>
-									  <tr>
-										<th scope="col" class="large_category">대분류</th>
-										<th scope="col" class="small_category">소분류</th>
-										<th scope="col" class="min_amount">최소결제금액</th>
-										<th scope="col" class="max_discount">최대할인금액</th>
-										<th scope="col" class="max_count">최대할인횟수</th>
-										<th scope="col" class="discount_rate">할인율</th>
-										<th></th>
-									  </tr>
-									</thead>
-									<tbody>
-									  <tr>
-										<td scope="col" class="large_category">
-												<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
-										  </td>
-										  <td scope="col" class="small_category">
-											  <input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
-										  </td>
-										  <td scope="col" class="min_amount">
-											  <input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
-											  <label>원</label>
-										  </td>
-										  <td scope="col" class="max_discount">
-											  <input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
-											  <label>원</label>
-										  </td>
-										  <td scope="col" class="max_count">
-											  <input type="number" name="max_count" class="add_manage_option" value="0">
-											  <label>번</label>
-										  </td>
-										  <td scope="col" class="discount_rate">
-											  <input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
-											  <label>%</label>
-										  </td>
-									  </tr>
-									</tbody>
-								  </table><br><br><br>
+								<div>
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	대분류
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	소분류
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	최소결제금액
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	최대할인금액
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	최대할인횟수
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	할인율
+						    </div>
 						</div>
+						<hr>
+						<div class="row">
+						    <div class="col-sm-2 large_category">
+						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+						    </div>
+						    <div class="col-sm-2 small_category">
+						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+						    </div>
+						    <div class="col-sm-2 min_amount">
+						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_discount">
+						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+	                        	<label>원</label>
+						    </div>
+						    <div class="col-sm-2 max_count">
+						      	<input type="number" name="max_count" class="add_manage_option" value="0">
+	                        	<label>번</label>
+						    </div>
+						    <div class="col-sm-2 discount_rate">
+						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+	                        	<label>%</label>
+						    </div>
+						</div>
+						<br>
+                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
+                        <br><br><br><br>
+					</div>
+					</div>
 					</div>
 
 				</div>
