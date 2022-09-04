@@ -131,11 +131,13 @@ public class CardController {
 		int minPayment = Integer.parseInt((String) map.get("minPayment"));
 		int maxDiscount = Integer.parseInt((String) map.get("maxDiscount"));
 		int maxCount = Integer.parseInt((String) map.get("maxCount"));
+
 		CardDetail cardDetail = new CardDetail(cardDetailId, discountPercent, minPayment, maxDiscount, maxCount);
 		ArrayList<CardDetailManage> al = null;
 		try {
 			cardService.updateCardDetail(cardDetail);
 			al = cardService.getSelectedCardDetail(cardId);
+			System.out.println("성공");
 			return al;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

@@ -201,9 +201,7 @@
 						
 						    upload_front_image.addEventListener('click', () => realUpload.click());
 						    realUpload.addEventListener('change', getImageFiles);
-						    
-						    upload_back_image.addEventListener('click', () => realUpload.click());
-						    realUpload.addEventListener('change', getImageFiles);
+
 						</script>
 
 					</div>
