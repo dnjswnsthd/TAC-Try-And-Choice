@@ -35,7 +35,9 @@ public class Card {
 		this.maxDiscount = maxDiscount;
 	}
 
-	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount, String cardImgHorizon) {
+
+	public Card(int cardId, String cardName, String cardDesc, String cardImg, String maxDiscount,
+			String cardImgHorizon) {
 		super();
 		this.cardId = cardId;
 		this.cardName = cardName;
