@@ -59,7 +59,7 @@ body {
   width: 100%;
 }
 
-.deleteList, .updateList{
+.deleteList, .updateList, .addList, .deleteAddList{
 	width:26px;
 	height:26px;
 }
@@ -90,7 +90,7 @@ body {
 	display: inline-block;
 }
 
-.deleteList, .updateList{
+.deleteList, .updateList, .addList, .deleteAddList{
 	
 	margin-left: 6%;
 }
