@@ -67,6 +67,7 @@
 	<select id="getAllCardInfo" resultMap ="card">
 		select card_id, card_name, card_desc, card_img, max_discount, card_img_horizon
 		from card
+		order by card_id
 	</select>
 	
 	<select id="getDiscountInfoByCard" parameterType="int" resultMap="cardDetailWithCategory">
