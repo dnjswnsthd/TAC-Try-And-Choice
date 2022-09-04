@@ -18,7 +18,7 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
 				$(function () {
-					var table_header = '<tr><th>대분류</th><th>소분류</th><th>최소결제금액</th><th>최대할인금액</th><th>최대할인횟수</th><th>할인율</th><th></th><th></th></tr>'
+					var table_header = '<div class="row"><div class="col-sm-2">대분류</div><div class="col-sm-2">소분류</div><div class="col-sm-2">최소결제금액</div><div class="col-sm-2">최대할인금액</div><div class="col-sm-2">최대할인횟수</div><div class="col-sm-2">할인율</div></div><hr>'
 
 					$('#moveModify').on('click', function () {
 						var cardId = $('.allCard1 option:selected').val();
@@ -46,16 +46,16 @@
 								var table_list = "";
 
 								for (key in result) {
-									table_list = table_list + '<tr id=' + result[key].cardDetailId + '>'
-										+ '<td scope="col" class="large_category"><input type="text" name="largeCategoryName" id=' + result[key].largeCategoryId + ' class="add_manage_option" value=' + result[key].largeCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="small_category">><input type="text" name="smallCategoryName" class="add_manage_option" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="min_amount"><input type="text" name="min_price" class="add_manage_option" value=' + result[key].minPayment + '>원</td>'
-										+ '<td scope="col" class="max_discount"><input type="text" name="max_price" class="add_manage_option" value=' + result[key].maxDiscount + '>원</td>'
-										+ '<td scope="col" class="max_count"><input type="text" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '>번</td>'
-										+ '<td scope="col" class="discount_rate"><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '>%</td>'
-										+ '<td scope="col" ><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
-										+ '<td scope="col" ><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
-
+									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
+															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
+															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option" value=' + result[key].minPayment + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option" value=' + result[key].maxDiscount + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '><label>번</label></div>'
+															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '><label>%</label>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
+															+ '</div><br>'
 								}
 								$('#register_category').html(table_header + table_list);
 							}
@@ -105,32 +105,67 @@
 							}
 						});
 					});
-
-					$(document).on('click', '.updateList', function () {
+					
+					 /* $(document).on('click','.updateList', function () {
 						$.ajax({
 							type: 'put',
 							url: '/updateCardDetail',
 							data: {
 								cardId: $('.allCard1 option:selected').val(),
-								cardDetailId: $(this).parents('tr').attr('id'),
+						 		cardDetailId: $(this).parent().parent().attr('id'),
 								discountPercent: $(this).parent().siblings().eq(5).children('input[name=discount_percent]').val(),
 								minPayment: $(this).parent().siblings().eq(2).children('input[name=min_price]').val(),
 								maxDiscount: $(this).parent().siblings().eq(3).children('input[name=max_price]').val(),
-								maxCount: $(this).parent().siblings().eq(4).children('input[name=max_count]').val()
+								maxCount: $(this).parent().siblings().eq(4).children('input[name=max_count]').val() 
 							},
 							success: function (result) {
 								swal("할인 상세 목록 수정 완료", '', 'success');
 								var table_list = "";
+								
 								for (key in result) {
-									table_list = table_list + '<tr id=' + result[key].cardDetailId + '>'
-										+ '<td scope="col" class="large_category"><input type="text" name="largeCategoryName" id=' + result[key].largeCategoryId + ' class="add_manage_option" value=' + result[key].largeCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="small_category"><input type="text" name="smallCategoryName" class="add_manage_option" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="min_amount"><input type="text" name="min_price" class="add_manage_option" value=' + result[key].minPayment + '>원</td>'
-										+ '<td scope="col" class="max_discount"><input type="text" name="max_price" class="add_manage_option" value=' + result[key].maxDiscount + '>원</td>'
-										+ '<td scope="col" class="max_count"><input type="text" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '>번</td>'
-										+ '<td scope="col" class="discount_rate"><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '>%</td>'
-										+ '<td><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
-										+ '<td><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
+									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option"  name="largeCategoryName" id=' + result[key].largeCategoryId + 'value=' + result[key].largeCategoryName + '></div>'
+															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option"  name="smallCategoryName" id=' + result[key].smallCategoryId + 'value=' + result[key].smallCategoryName + '></div>'
+															+ '<div class="col-sm-2 min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option" value=' + result[key].minPayment + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option" value=' + result[key].maxDiscount + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_count"><input type="number" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '><label>번</label></div>'
+															+ '<div class="col-sm-2 discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '><label>%</label>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
+															+ '</div><br>'
+
+								}
+								$('#register_category').html(table_header + table_list);
+							}
+						});
+					});   */
+					 
+					$(document).on('click','.updateList', function () {
+						$.ajax({
+							type: 'put',
+							url: '/updateCardDetail',
+							data: {
+								cardId: $('.allCard1 option:selected').val(),
+								cardDetailId: $(this).parent().parent().attr('id'),
+								discountPercent: $(this).parent().parent().children('div[id="discount_rate"]').children('input[name=discount_percent]').val(),
+								minPayment: $(this).parent().parent().children('div[id="min_amount"]').children('input[name=min_price]').val(),
+								maxDiscount: $(this).parent().parent().children('div[id="max_discount"]').children('input[name=max_price]').val(),
+								maxCount: $(this).parent().parent().children('div[id="max_count"]').children('input[name=max_count]').val()
+							},
+							success: function (result) {
+								swal("업데이트 완료", "", 'success');
+								var table_list = "";
+								for (key in result) {
+									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
+															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
+															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option" value=' + result[key].minPayment + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option" value=' + result[key].maxDiscount + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '><label>번</label></div>'
+															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '><label>%</label>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
+															+ '</div><br>'
 
 								}
 								$('#register_category').html(table_header + table_list);
@@ -138,27 +173,31 @@
 						});
 					});
 
-					$(document).on('click', '.deleteList', function () {
+					$(document).on('click','.deleteList', function () {
 						$.ajax({
 							type: 'post',
 							url: '/cardDetailDelete',
 							data: {
 								cardId: $('.allCard1 option:selected').val(),
-								cardDetailId: $(this).parents('tr').attr('id')
+								cardDetailId: $(this).parent().parent().attr('id')
 							},
 							success: function (result) {
 								swal("삭제 완료", "", 'success');
 								var table_list = "";
 								for (key in result) {
-									table_list = table_list + '<tr id=' + result[key].cardDetailId + '>'
-										+ '<td scope="col" class="large_category"><input type="text" name="largeCategoryName" id=' + result[key].largeCategoryId + ' class="add_manage_option" value=' + result[key].largeCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="small_category"><input type="text" name="smallCategoryName" class="add_manage_option" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + ' readonly></td>'
-										+ '<td scope="col" class="min_amount"><input type="text" name="min_price" class="add_manage_option" value=' + result[key].minPayment + '>원</td>'
-										+ '<td scope="col" class="max_discount"><input type="text" name="max_price" class="add_manage_option" value=' + result[key].maxDiscount + '>원</td>'
-										+ '<td scope="col" class="max_count"><input type="text" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '>번</td>'
-										+ '<td scope="col" class="discount_rate"><input type="text" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '>%</td>'
-										+ '<td><img class = "deleteList" src="/resources/image/card_manage/delete.png"></td>'
-										+ '<td><img class = "updateList" src="/resources/image/card_manage/update.png"></td></tr>'
+									console.log(result[key].largeCategoryName);
+									console.log(result[key].smallCategoryName);
+									
+									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
+															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
+															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option" value=' + result[key].minPayment + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option" value=' + result[key].maxDiscount + '><label>원</label></div>'
+															+ '<div class="col-sm-2 max_count" id="max_count"><input type="number" name="max_count" class="add_manage_option" value=' + result[key].maxCount + '><label>번</label></div>'
+															+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value=' + result[key].discountPercent + '><label>%</label>'
+															+ '<img class = "deleteList" src="/resources/image/card_manage/delete.png">'
+															+ '<img class = "updateList" src="/resources/image/card_manage/update.png"></div>'
+															+ '</div><br>'
 
 								}
 								$('#register_category').html(table_header + table_list);
@@ -258,55 +297,57 @@
 							<hr>
 							<!-- <form role="form" action="cardDetailReg.do" method="post" class="reg_card_detail"> -->
 
-								<div>
-						<div class="row">
-						    <div class="col-sm-2 large_category">
-						      	대분류
-						    </div>
-						    <div class="col-sm-2 small_category">
-						      	소분류
-						    </div>
-						    <div class="col-sm-2 min_amount">
-						       	최소결제금액
-						    </div>
-						    <div class="col-sm-2 max_discount">
-						      	최대할인금액
-						    </div>
-						    <div class="col-sm-2 max_count">
-						      	최대할인횟수
-						    </div>
-						    <div class="col-sm-2 discount_rate">
-						      	할인율
-						    </div>
-						</div>
-						<hr>
-						<div class="row">
-						    <div class="col-sm-2 large_category">
-						      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
-						    </div>
-						    <div class="col-sm-2 small_category">
-						      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
-						    </div>
-						    <div class="col-sm-2 min_amount">
-						       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
-	                        	<label>원</label>
-						    </div>
-						    <div class="col-sm-2 max_discount">
-						      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
-	                        	<label>원</label>
-						    </div>
-						    <div class="col-sm-2 max_count">
-						      	<input type="number" name="max_count" class="add_manage_option" value="0">
-	                        	<label>번</label>
-						    </div>
-						    <div class="col-sm-2 discount_rate">
-						      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
-	                        	<label>%</label>
-						    </div>
-						</div>
-						<br>
-                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
-                        <br><br><br><br>
+							<div>
+						<div id="register_category">
+							<div class="row">
+							    <div class="col-sm-2 large_category">
+							      	대분류
+							    </div>
+							    <div class="col-sm-2 small_category">
+							      	소분류
+							    </div>
+							    <div class="col-sm-2 min_amount">
+							       	최소결제금액
+							    </div>
+							    <div class="col-sm-2 max_discount">
+							      	최대할인금액
+							    </div>
+							    <div class="col-sm-2 max_count">
+							      	최대할인횟수
+							    </div>
+							    <div class="col-sm-2 discount_rate">
+							      	할인율
+							    </div>
+							</div>
+							<hr>
+							<div class="row">
+							    <div class="col-sm-2 large_category">
+							      	<input type="text" readonly class="add_manage_option"  name="largeCategoryName" id="largeCategoryName">
+							    </div>
+							    <div class="col-sm-2 small_category">
+							      	<input type="text" readonly class="add_manage_option"  name="smallCategoryName" id="smallCategoryName">
+							    </div>
+							    <div class="col-sm-2 min_amount">
+							       	<input type="number" name="min_price" id = "min_price" class="add_manage_option" value="0">
+		                        	<label>원</label>
+							    </div>
+							    <div class="col-sm-2 max_discount">
+							      	<input type="number" name="max_price" id = "max_price" class="add_manage_option" value="0">
+		                        	<label>원</label>
+							    </div>
+							    <div class="col-sm-2 max_count">
+							      	<input type="number" name="max_count" class="add_manage_option" value="0">
+		                        	<label>번</label>
+							    </div>
+							    <div class="col-sm-2 discount_rate">
+							      	<input type="number" name="discount_percent" id="discount_percent" class="add_manage_option" value="0">
+		                        	<label>%</label>
+							    </div>
+							</div>
+							<br>
+	                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
+	                        <br><br><br><br>
+	                     </div>
 					</div>
 					</div>
 					</div>
