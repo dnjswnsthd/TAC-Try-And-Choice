@@ -46,7 +46,6 @@
     		}
     		if(message != ""){
     			swal(message + "은(는) 필수값입니다.", '', 'error');
-    			evt.preventDefault();	
     		}else{
 	    		$.ajax({
 	    			type:'post',
@@ -116,12 +115,27 @@
     		});
     	});
     	
-    	$('#cardReg').on('click', function() {
+    	$('#cardReg').on('click', function( evt ) {
+			
+
     		var cardName = $('#card-name').val();
     		var cardDesc = $('#card-desc').val();
     		var maxSale = $('#max-sale').val();
     		var message = "";
     		
+			// console.log(document.querySelector("#cardimg"));
+			console.log(document.querySelector("#cardimg").files[0]);
+			var card_img = document.querySelector("#cardimg").files[0];
+
+			// formData()
+			var formData = new FormData();
+			formData.append("cardname", cardName);
+			formData.append("carddesc", cardDesc);
+			formData.append("maxsale", maxSale);
+			formData.append("cardImg", card_img);
+
+			console.log(formData);
+
     		if($('#card-name').val() == ''){
     			message = "카드 이름"
     		} else if($('#card-desc').val() == ''){
@@ -133,12 +147,13 @@
     		}else {
 	    		$.ajax({
 	    			type:'post',
-	    			url:'/cardReg',
-	    			data : {
-	    				cardname : cardName,
-	    				carddesc : cardDesc,
-	    				maxsale : maxSale
-	    			},
+	    			url:'/cardReg2',
+					enctype:'multipart/form-data',
+					contentType: false,
+					processData: false,
+       				cache: false,
+	    			data : formData,
+					// dataType : 'json',
 	    			success:function(result){
 	    				swal("카드 등록 완료", cardName + " 카드가 등록되었습니다!", 'success');
 	    				var card = "";
@@ -180,14 +195,16 @@
                     <hr>
 					<!-- 카드사진 -->
 					<div class="col-md-5" >
-						<form action="#" id="card_image_selection">
+						<form action="#" id="card_image_selection" enctype="multipart/form-data" >
 		 					
 	                       	<div class="form-box text-center cardInfo">
 	                        	<div class="form-top">
-	                        		<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
+									<img id="preview" src="/resources/image/card_horizon/card_none_horizon.png"/>
 	                            </div>
-		                        <input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
-		                        <button type="submit" id="image_selection_left" class="btn btn-outline-secondary">이미지 선택</button> 
+								<label for="cardimg">
+									<div class="btn btn-upload btn-outline-secondary"> 카드 이미지 선택 </div>
+								</label>
+								<input type="file" class="real-upload" name="cardImg" id="cardimg" onchange="readURL(this)" accept="image/*" >
 	                        </div>            
 	                	</form> 
 	                	<script type="text/javascript">
@@ -197,13 +214,13 @@
 						
 						    const realUpload = document.querySelector('.real-upload');
 						    const upload_front_image = document.querySelector('#image_selection_left');
-						    const upload_back_image = document.querySelector('#image_selection_right');
+						    // const upload_back_image = document.querySelector('#image_selection_right');
 						
 						    upload_front_image.addEventListener('click', () => realUpload.click());
 						    realUpload.addEventListener('change', getImageFiles);
 						    
-						    upload_back_image.addEventListener('click', () => realUpload.click());
-						    realUpload.addEventListener('change', getImageFiles);
+						    // upload_back_image.addEventListener('click', () => realUpload.click());
+						    // realUpload.addEventListener('change', getImageFiles);
 						</script>
 
 					</div>
@@ -312,6 +329,20 @@
 			</div>
 	 	</div>
 	 </div>
+
+	 <script>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+				};
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				document.getElementById('preview').src = "";
+			}
+		}
+	 </script>
 	 
     </body>
 </html>

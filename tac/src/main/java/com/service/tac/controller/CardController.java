@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.service.tac.model.service.CardService;
 import com.service.tac.model.vo.Card;
 import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.CardDetailManage;
+import com.service.tac.model.vo.UploadDataVO;
 
 @Controller
 public class CardController {
@@ -29,7 +33,10 @@ public class CardController {
 		String cardName = (String) map.get("cardname");
 		String cardDesc = (String) map.get("carddesc");
 		String maxSale = (String) map.get("maxsale");
-		Card card = new Card(cardName, cardDesc, maxSale);
+		String cardImg = (String) map.get("cardImg");
+		
+		
+		Card card = new Card(cardName, cardDesc, maxSale, cardImg);
 		System.out.println(card.toString());
 		ArrayList<Card> list_card = null;
 		try {
@@ -143,5 +150,32 @@ public class CardController {
 		}
 	}
 	
-	
+	@PostMapping("/cardReg2")
+	@ResponseBody
+	public HashMap<String, String> cardReg2(UploadDataVO vo,
+			@RequestParam(value = "cardImg") MultipartFile img,
+			HttpServletRequest request) {
+		HashMap<String, String> hm = new HashMap<>();
+		System.out.println(vo.toString());
+		
+		// 1. 업로드 된 파일 정보를 가지고 있는 MultipartFile을 가장 먼저 받아옵니다.
+		System.out.println("[Controller] getUploadfile " + img);
+		System.out.println("[Controller] 파일의 사이즈 : " + img.getSize());
+		System.out.println("[Controller] 파일의 이름 " + img.getName());
+		System.out.println("[Controller] 파일의 오리지널 이름 " + img.getOriginalFilename());
+		
+
+		Card card = new Card(vo.getCardname(), vo.getCarddesc(), vo.getMaxsale() );
+		ArrayList<Card> list_card = null;
+		try {
+			cardService.registerCard_Image(card, img, request);
+			list_card = cardService.getAllCardInfo();
+			for (Card c : list_card) {
+				hm.put(Integer.toString(c.getCardId()), c.getCardName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
 }
