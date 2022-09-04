@@ -255,4 +255,54 @@ th, td{
   ::-webkit-scrollbar-thumb:window-inactive {
     background: #FF788B;
   }
+#top, #table{ /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+}
 
+#top{min-height: 100px;}
+#table{min-height: 80px;} 
+
+#top .logo{
+  //float: left;
+	height: 60px;
+	width: 60px;
+	
+	background-size: 60px 60px;
+}
+
+.info{
+  display: block;
+  //float:left;
+  margin-left: 0;
+}
+.title{
+  float: right;
+}
+.title p{text-align: right;} 
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td{
+  //padding: 5px 0 5px 15px;
+  //border: 1px solid #EEE
+}
+.tabletitle{
+  //padding: 5px;
+  font-size: 1.2rem;
+  background: #EEE;
+}
+.service{border-bottom: 1px solid #EEE;}
+
+.tableitem{font-size: 1rem;}
+
+.info {
+	font-family: 'Cafe24Ohsquare' !important;
+}
+ 
+ #invoice{
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding:2rem;
+  margin: 0 auto;
+  width: 100%;
+  background: rgba(255,255,255,0.85);

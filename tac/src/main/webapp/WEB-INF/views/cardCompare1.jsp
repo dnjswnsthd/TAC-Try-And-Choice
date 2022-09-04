@@ -175,31 +175,29 @@
 
 				</div>
 
-				<div class="project-info-box">
-					<center id="top">
+				<div class="project-info-box"  id="invoice">
+					<div id="top">
 						<div class="logo"></div>
 						<div class="info">
 							<h3>${memberName }님의 소비영수증</h3>
 						</div>
-					</center> <!-- 영수증 top -->
+					</div>
 					
-					<div id="mid">
-						<div class="info">
-							<h4></h4>
-						</div>
-					</div> <!-- 영수증 mid side -->
-					<table>
-						<thead>
-							<tr>
-								<th>NO</th>
-								<th>사용처</th>
-								<th>금 액</th>
-							</tr>
-						</thead>
-						<tbody id="consumeTable">
-							
-						</tbody>
-					</table>
+					
+					<div id="table">
+						<table>
+							<thead>
+								<tr class="tabletitle">
+									<th>NO</th>
+									<th>사용처</th>
+									<th>금 액</th>
+								</tr>
+							</thead>
+							<tbody id="consumeTable">
+								
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<!-- / project-info-box -->
 			</div>
@@ -224,15 +222,16 @@
 		//console.log(consumeJson);
 		//console.log(consumeJson[0]);
 		var i=1;
+		var list = [];
 		
 		for(element in consumeJson[0]){
 			var temp = consumeJson[0][element].split(",");
-			$("#consumeTable").append('<tr><td>'+(i++)+'</td>'+
-					            '<td>'+element+'</td><td>'+
-					            temp[1]+' 원</td></tr>');
-			
+			$("#consumeTable").append('<tr class="service"><td class="tableitem">'+(i++)+'</td>'+
+					            '<td class="tableitem">'+element+'</td><td class="tableitem">'+
+					            temp[1]+'</td></tr>');
+			list.push(temp[1]);
 		}
 		
-			
+				
 	</script>
 </body>
