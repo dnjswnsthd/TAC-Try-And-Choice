@@ -86,13 +86,21 @@ body {
 
 #discount_percent{
 	width: 40%;
+	margin-right: 0;
+	display: inline-block;
 }
 
 .deleteList, .updateList{
 	
-	margin-left: 8%;
+	margin-left: 6%;
 }
 
 #card_sample{
 	width: 70%;
 }
+
+#min_price, #max_price, #max_c{
+	width: 85%;
+	display: inline-block;
+}
+
