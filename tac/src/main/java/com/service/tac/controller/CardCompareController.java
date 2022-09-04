@@ -2028,6 +2028,7 @@ public class CardCompareController {
 					chk2.put(tmp, al2.get(i).getMaxCount());
 				}
 			}
+			// 날짜 순으로 최대 할인 횟수를 넘어섰을 경우에 삭제
 			for (int i = 0; i < al1.size(); i++) {
 				if (chk1.get(al1.get(i).getLargeCategoryId()) > 0) {
 					chk1.replace(al1.get(i).getLargeCategoryId(), chk1.get(al1.get(i).getLargeCategoryId()) - 1);
@@ -2036,7 +2037,7 @@ public class CardCompareController {
 					if(i == al1.size() - 1) {
 						break;
 					}
-					i--;
+					--i;
 				}
 			}
 			for (int i = 0; i < al2.size(); i++) {
@@ -2050,31 +2051,32 @@ public class CardCompareController {
 					i--;
 				}
 			}
-			loop:for (int i = 0; i < al1.size(); ++i) {
+			// 같은 카테고리 항목에 대한 할인이 여러개 있을 경우 통합
+			for (int i = 0; i < al1.size(); ++i) {
 				for (int j = i + 1; j < al1.size(); j++) {
 					if (al1.get(i).getLargeCategoryId() == al1.get(j).getLargeCategoryId()) {
 						al1.get(i).setCategoryDiscountPrice(al1.get(i).getCategoryDiscountPrice() + al1.get(j).getCategoryDiscountPrice());
 						al1.remove(j);
-						continue loop;
+						j--;
 					}
 				}
 			}
-			loop:for (int i = 0; i < al2.size(); ++i) {
+			for (int i = 0; i < al2.size(); ++i) {
 				for (int j = i + 1; j < al2.size(); j++) {
 					if (al2.get(i).getLargeCategoryId() == al2.get(j).getLargeCategoryId()) {
 						al2.get(i).setCategoryDiscountPrice(al2.get(i).getCategoryDiscountPrice() + al2.get(j).getCategoryDiscountPrice());
 						al2.remove(j);
-						continue loop;
+						j--;
 					}
 				}
 			}
 			
+			// 월 최대 할인 금액을 넘어선 경우 월 최대 할인 금액으로 치환
 			for(int i = 0; i < al1.size(); i++){
 				if(al1.get(i).getMaxDiscountMonth() < al1.get(i).getCategoryDiscountPrice()) {
 					al1.get(i).setCategoryDiscountPrice(al1.get(i).getMaxDiscountMonth());
 				}
 			}
-			
 			for(int i = 0; i < al2.size(); i++){
 				if(al2.get(i).getMaxDiscountMonth() < al2.get(i).getCategoryDiscountPrice()) {
 					al2.get(i).setCategoryDiscountPrice(al2.get(i).getMaxDiscountMonth());
@@ -2097,6 +2099,8 @@ public class CardCompareController {
 			}
 			ArrayList<Calculation> compare = new ArrayList<>();
 			ArrayList<Integer> alTmp = new ArrayList<>();
+			
+			// 비교와 그래프 작성으로 위해 공통으로 할인된 카테고리와 각각의 카테고리 분리
 			for (int i = 0; i < al3.size(); i++) {
 				for (int j = 0; j < al4.size(); j++) {
 					if (al3.get(i).getLargeCategoryId() == al4.get(j).getLargeCategoryId()) {
