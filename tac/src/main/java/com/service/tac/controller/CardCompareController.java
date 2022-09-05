@@ -73,7 +73,7 @@ public class CardCompareController {
 
 //			System.out.println("여기까지 왔음" + member);
 
-			System.out.println(memberId);
+			//System.out.println(memberId);
 
 			model.addAttribute("list", list);
 			model.addAttribute("info", info);
