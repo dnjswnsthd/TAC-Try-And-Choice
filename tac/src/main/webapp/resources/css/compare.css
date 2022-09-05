@@ -8,9 +8,11 @@
 	font-family: 'Cafe24Ohsquare' !important;
 }
 
+/*
 .navbar {
 	background-color: rgba(255, 255, 255, 0.5) !important;
 }
+*/
 
 body{
     width: 100%;
@@ -36,7 +38,7 @@ body{
 
 .project-info-box {
   padding: 4% 5%;
-  margin: 3% 0;
+  margin: 3%;
   background-color: #fff;
   background-color: rgba(255,255,255, 0.85);
   border-radius: 10px;
@@ -128,7 +130,7 @@ b, strong {
 
 .lists{
 	display:none;
-	list-style-image: url("/resources/image/piggy-bank.png")
+	list-style-image: url("/resources/image/won3.png");
 }
 
 .btn-wrap {
@@ -176,21 +178,6 @@ b, strong {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
-
-
-
-table {
-	width: 100%;
-	text-align: center;
-	border: 1px solid gray;
-	
-}
-
-th, td{
-	border: 1px solid gray;
-}
-
-
 
 #hover .figure {
 	
@@ -266,41 +253,50 @@ th, td{
     background: #FF788B;
 	background: #FF788B;
   }
-#top, #table{ /* Targets all id with 'col-' */
+  
+#top{ /* Targets all id with 'col-' */
   border-bottom: 1px solid #EEE;
 }
 
-#top{min-height: 100px;}
+#top{min-height: 3rem;
+     min-width: 3rem;}
 #table{min-height: 80px;} 
 
-#top .logo{
-  //float: left;
-	height: 60px;
-	width: 60px;
+#invoice-img {
+	width: 4rem;
 	
-	background-size: 60px 60px;
+}
+
+.logo{
+	float: left;	
+	
 }
 
 .info{
   display: block;
-  //float:left;
-  margin-left: 0;
+  float:left;
+  
+  margin-bottom: 0;
 }
 .title{
   float: right;
 }
 .title p{text-align: right;} 
+
 table{
   width: 100%;
-  border-collapse: collapse;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid #EEE;
+//  border-collapse: collapse;
 }
 td{
-  //padding: 5px 0 5px 15px;
-  //border: 1px solid #EEE
+ // padding: 5px 0 5px 15px;
+  border: 1px solid #EEE;
 }
 .tabletitle{
-  //padding: 5px;
-  font-size: 1.2rem;
+  padding: 5px;
+  font-size: 1.2rem !important;
   background: #EEE;
 }
 .service{border-bottom: 1px solid #EEE;}
@@ -314,7 +310,13 @@ td{
  #invoice{
   box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
   padding:2rem;
-  margin: 0 auto;
-  width: 100%;
+  margin: 3%;
+  
   background: rgba(255,255,255,0.85);
   background: rgba(255,255,255,0.85);
+ }
+ 
+ #consume{
+ 	font-family:'Pretendard-Regular';
+ 	font-size: 1.5rem;
+ }

@@ -177,9 +177,10 @@
 
 				<div class="project-info-box"  id="invoice">
 					<div id="top">
-						<div class="logo"></div>
+						<div class="logo"><img id="invoice-img" src="/resources/image/logo6.png"></div>
 						<div class="info">
-							<h3>${memberName }님의 소비영수증</h3>
+							<h3>${memberName }<span id="consume"> 님의 소비영수증</span></h3>
+							
 						</div>
 					</div>
 					
@@ -188,14 +189,19 @@
 						<table>
 							<thead>
 								<tr class="tabletitle">
-									<th>NO</th>
-									<th>사용처</th>
-									<th>금 액</th>
+									<td><b>NO</b></td>
+									<td><b>사용처</b></td>
+									<td><b>금 액</b></td>
 								</tr>
 							</thead>
 							<tbody id="consumeTable">
 								
 							</tbody>
+								<tr class="tabletitle">
+									<td></td>
+									<td><b>합계</b></td>
+									<td></td>
+								</tr>
 						</table>
 					</div>
 				</div>
@@ -228,9 +234,17 @@
 			var temp = consumeJson[0][element].split(",");
 			$("#consumeTable").append('<tr class="service"><td class="tableitem">'+(i++)+'</td>'+
 					            '<td class="tableitem">'+element+'</td><td class="tableitem">'+
-					            temp[1]+'</td></tr>');
-			list.push(temp[1]);
+					            temp[1]+' 원</td></tr>');
+			list.push(parseInt(temp[1]));
 		}
+		
+		var sum=0;
+		for(j=0; j<list.length; j++){
+			price = list[j];
+			sum += price;	
+		}
+		$("td:last").append('<b>'+sum + " 원</b>");
+		
 		
 				
 	</script>
