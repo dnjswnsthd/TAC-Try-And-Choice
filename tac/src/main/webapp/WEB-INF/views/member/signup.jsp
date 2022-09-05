@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- anti-flicker snippet (recommended)  -->
+<style>.async-hide { opacity: 0 !important} </style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+})(window,document.documentElement,'async-hide','dataLayer',1000,
+{'CONTAINER_ID':true});</script>
 <meta charset="utf-8" />
 <title>회원 가입</title>
 <!-- Mobile Specific Metas -->
@@ -15,7 +22,8 @@
 	href="/resources/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
 <!-- Main Style Css -->
 <link rel="stylesheet" href="/resources/css/signup.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="/resources/css/common.css" /> -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <!-- jQuery library -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->
 <!-- Popper JS -->
@@ -26,6 +34,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	$(function() {
+		$('html').removeClass('no-js');
 		$(".form-register").keydown(function(evt) {
 		    if ((evt.keyCode || evt.which) === 13) {
 		    	var message = "";
@@ -220,7 +229,7 @@
 															<div class="element-card">
 																<div class="front-facing">
 																	<img id="cardImg"
-																		src="/resources/image/card/${card.cardImg}" />
+																		src="/resources/image/card/${card.cardImg}" loading="lazy"/>
 																</div>
 																<div class="back-facing">
 																	<h4>${card.cardName}</h4>
@@ -281,9 +290,13 @@
 			</div>
 		</div>
 	</div>
+	<!-- <div id="load">
+	    <img src="/resources/image/loading.gif" alt="loading">
+	</div> -->
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>
 	<script src="/resources/js/main.js"></script>
-	<script src="/resources/js/card.js" rel="text/javascript"></script>
+	<script src="/resources/js/card.js"></script>
+	<!-- <script src="/resources/js/common.js"></script> -->
 </body>
 </html>

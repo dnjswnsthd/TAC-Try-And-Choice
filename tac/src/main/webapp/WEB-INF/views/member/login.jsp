@@ -4,6 +4,13 @@
 		<html>
 
 		<head>
+			<!-- anti-flicker snippet (recommended)  -->
+			<style>.async-hide { opacity: 0 !important} </style>
+			<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+			h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+			(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+			})(window,document.documentElement,'async-hide','dataLayer',100,
+			{'CONTAINER_ID':true});</script>
 			<meta charset="UTF-8">
 			<title>TAC(Try And Choice)</title>
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
@@ -18,6 +25,7 @@
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="/resources/js/card.js" rel="text/javascript"></script>
+			<!-- <link rel="stylesheet" href="/resources/css/common.css" /> -->
 			<link rel="stylesheet" href="/resources/css/login.css" />
 			<link rel="stylesheet" href="/resources/css/header.css" />
 		</head>
@@ -42,6 +50,10 @@
 					<button id="singupbtn"  class="btn btn-block text-center my-3 regibtn" onclick="goRegister()">회원가입</button>
 				</form>
 			</div>
+			<!-- <div id="load">
+	    		<img src="/resources/image/loading.gif" alt="loading">
+			</div>
+			<script src="/resources/js/common.js"></script> -->
 		</body>
 		<script>
 			function goRegister() {
