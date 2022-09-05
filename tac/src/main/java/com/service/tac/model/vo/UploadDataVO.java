@@ -9,10 +9,19 @@ public class UploadDataVO {
 	private String maxsale; 	
 	// uploadFile이름으로 지정해야지만 업로드파일을 담을 수 있는 파일을 담을 수 있다.
 	private MultipartFile cardImg;
+	private String cardId;
 
 	public UploadDataVO() {};
 	public UploadDataVO(String cardname, String carddesc, String maxsale, MultipartFile uploadFile) {
 		super();
+		this.cardname = cardname;
+		this.carddesc = carddesc;
+		this.maxsale = maxsale;
+		this.cardImg = uploadFile;
+	}
+	public UploadDataVO(String cardId, String cardname, String carddesc, String maxsale, MultipartFile uploadFile) {
+		super();
+		this.cardId = cardId;
 		this.cardname = cardname;
 		this.carddesc = carddesc;
 		this.maxsale = maxsale;
@@ -51,10 +60,20 @@ public class UploadDataVO {
 		this.cardImg = uploadFile;
 	}
 
+	public String getCardId() {
+		return cardId;
+	}
+	
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+	
 	@Override
 	public String toString() {
-		return "UploadDataVO [cardname=" + cardname + ", carddesc=" + carddesc + ", maxsale=" + maxsale
-				+ ", uploadFile=" + cardImg + "]";
+		return "UploadDataVO [cardname=" + cardname + ", carddesc=" + carddesc + ", maxsale=" + maxsale + ", cardImg="
+				+ cardImg + ", cardId=" + cardId + "]";
 	}
+	
+	
 
 }

@@ -87,10 +87,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg1"  parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=1
@@ -98,10 +98,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg2" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=2
@@ -109,10 +109,10 @@
 	</select>
 
 	<select id="getBenefitsByCateg3" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=3
@@ -120,10 +120,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg4" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=4
@@ -131,10 +131,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg5" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		    cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=5
@@ -142,10 +142,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg6" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=6
@@ -153,10 +153,10 @@
 	</select>
 
 	<select id="getBenefitsByCateg7" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=7
@@ -164,10 +164,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg8" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=8
@@ -175,10 +175,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg9" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=9
@@ -186,10 +186,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg10" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=10
@@ -197,10 +197,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg11" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=11
@@ -208,10 +208,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg12" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		  cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=12
@@ -219,10 +219,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg13" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		  cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=13
@@ -230,10 +230,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg14" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=14
@@ -241,10 +241,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg15" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.large_category_id, cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=15
@@ -252,10 +252,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg16" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		  cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=16
@@ -263,10 +263,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg17" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=17
@@ -274,10 +274,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg18" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=18
@@ -285,10 +285,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg19" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=19
@@ -296,7 +296,7 @@
 	</select>
 	
 	<select id="getBenefitsByCateg20" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
 		WHERE c.large_category_id = cd.large_category_id
@@ -307,10 +307,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg21" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=21
@@ -318,10 +318,10 @@
 	</select>
 	
 	<select id="getBenefitsByCateg22" parameterType="map" resultMap="cardBenefitByConsume">
-		SELECT DISTINCT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
+		SELECT c.consume_id, c.member_id, c.consume_price, c.consume_date, c.large_category_id,
        		   cd.discount_amount, cd.max_discount, cd.max_count, cd.min_payment, cd.max_discount_month, cd.discount_percent
 		FROM consume c, card_detail cd
-		WHERE c.large_category_id = cd.large_category_id
+		WHERE c.small_category_id = cd.small_category_id
 		AND cd.card_id=#{cardId}
 		AND c.member_id=#{memberId}
 		AND c.large_category_id=22
@@ -344,7 +344,7 @@
 				THEN NVL(cd.MAX_DISCOUNT, 1000000)
 				ELSE (CASE WHEN CD.DISCOUNT_AMOUNT <![CDATA[!=]]> 0 THEN CD.DISCOUNT_AMOUNT ELSE c.consume_price * (CD.DISCOUNT_PERCENT * 0.01) END)
 			END) AS CATEGORY_DISCOUNT_PRICE,
-			cd.MAX_COUNT,
+			NVL(cd.MAX_COUNT, 1000000) MAX_COUNT,
 			NVL(cd.MAX_DISCOUNT_MONTH, 1000000) MAX_DISCOUNT_MONTH
 		 FROM
 			CARD_DETAIL cd JOIN CONSUME c

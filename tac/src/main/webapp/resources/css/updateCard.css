@@ -1,9 +1,28 @@
+.navbar {
+	background-color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 1rem;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+	background-image: url(../image/background_beach2.jpg);
+	background-attachment:fixed;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
 .container {
   font-family: "Pretendard-Regular", sans-serif;
 }
 
 #container {
   width: 70%;
+  border-radius: 3rem;
+  background-color: white;
+  opacity: 0.9;
+  width: 70rem;
+  margin: auto;
 }
 
 .cardInfo {
@@ -40,7 +59,58 @@
   width: 100%;
 }
 
-.deleteList, .updateList{
+.deleteList, .updateList, .addList, .deleteAddList{
 	width:26px;
 	height:26px;
+}
+
+#contentDiv{
+	margin: 2%;
+}
+
+.add_manage_option{
+	width: 70%;
+}
+
+#moveModify{
+	margin-left: 92%;
+}
+
+#register_card_detail{
+	margin-left: 94%;
+}
+
+#title{
+	font-family: 'Cafe24Ssurround', sans-serif;
+}
+
+#discount_percent{
+	width: 40%;
+	margin-right: 0;
+	display: inline-block;
+}
+
+.deleteList, .updateList, .addList, .deleteAddList{
+	
+	margin-left: 6%;
+}
+
+#card_sample{
+	width: 70%;
+}
+
+#min_price, #max_price, #max_c{
+	width: 85%;
+	display: inline-block;
+}
+
+/* 이미지 관련 */
+#preview{
+  height: 204px;
+  width: 318px;  
+  margin-bottom: 1rem;
+}
+
+#cardimg{
+  display: none;
 }
