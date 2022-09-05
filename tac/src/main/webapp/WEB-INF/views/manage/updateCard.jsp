@@ -17,7 +17,7 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
 				$(function () {
-					var table_header = '<div class="row"><div class="col-sm-2 text-center">대분류</div><div class="col-sm-2 text-center">소분류</div><div class="col-sm-2 text-center">최소결제금액</div><div class="col-sm-2 text-center">최대할인금액</div><div class="col-sm-2 text-center">최대할인횟수</div><div class="col-sm-2 text-center">할인율</div></div><hr>'
+					var table_header = '<div class="row"><div class="col-sm-2 text-center">대분류</div><div class="col-sm-2 text-center">소분류</div><div class="col-sm-2 text-center">최소결제금액</div><div class="col-sm-2 text-center">최대할인금액</div><div class="col-sm-2 text-center">최대할인횟수</div><div class="col-sm-2 discount_rate_header text-center">할인율</div></div><hr>'
 
 					$('#moveModify').on('click', function () {
 						var cardId = $('.allCard1 option:selected').val();
@@ -59,6 +59,21 @@
 								$('#register_category').html(table_header + table_list);
 							}
 						});
+						
+						$.ajax({
+			    			type:'post',
+			    			url:'/category/getLargeCategory',
+			    			
+			    			success:function(result) {
+			    				var large_list = "";
+			    				var large = "<option value=largeName>==대분류선택==</option>";
+			    				for (key in result) {
+			    					large_list += '<option value=' + key + '>'+ result[key] +'</option>'
+			    				}
+			    				$('.large_category_selection').html(large+large_list);
+			    				$('.small_category_selection').html('<option selected>소분류를 선택하세요</option>');
+			    			}
+			    		});
 					});
 
 					$('#cardUpdate').on('click', function () {
@@ -115,35 +130,48 @@
 
 							success : function(result) {
 								var small = "";
-								var small_default = '<option value=smallName>==소분류 선택==</option>';
+								var small_default = '<option value=smallName>==소분류선택==</option>';
 								for (key in result) {
 									small = small + '<option value=' + key + '>'+ result[key] +'</option>'
 								}
-								$('#small_category_selection').html(small_default + small);
+								$('.small_category_selection').html(small_default + small);
 							}
 						});
 			    	});
 					
 					$('.addSaleList').on('click', function() {
 			    		var largeName = $('.large_category_selection option:selected').text();
-			    		var smallName = $('#small_category_selection option:selected').text();
+			    		var smallName = $('.small_category_selection option:selected').text();
 			    		var largeId = $('.large_category_selection option:selected').val();
-			    		var smallId = $('#small_category_selection option:selected').val();
+			    		var smallId = $('.small_category_selection option:selected').val();
+			    		var cardName = $('.allCard1 option:selected').text();
 						var cardId = $('.allCard1 option:selected').val();
+						var message = "";
 						
-						sale_list = '<div class="row" id='+cardId+'>'
-									+ '<div class="col-sm-2 large_category" id="large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + largeId + ' value=' + largeName + '></div>'
-									+ '<div class="col-sm-2 small_category" id="small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + smallId + ' value=' + smallName + '></div>'
-									+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
-									+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
-									+ '<div class="col-sm-2 max_count" id="max_count"><input id="max_c" type="number" name="max_count" class="add_manage_option form-control" value=0><label>&nbsp;번</label></div>'
-									+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=0><label>&nbsp;%</label>'
-									+ '<img class = "deleteAddList" src="/resources/image/card_manage/delete.png">'
-									+ '<img class = "addList" src="/resources/image/card_manage/add.png"></div>'
-									+ '</div><br><br>'
-						
-						$('#register_category').append(sale_list);
-			    		
+						if(cardName == "카드 선택"){
+			    			message = "카드 이름"
+						}else if(largeName == "==대분류선택=="){
+			    			message = "대분류"
+						}else if(smallName == "==소분류선택=="){
+			    			message = "소분류"
+			    		}
+			    		if(message != ""){
+			    			swal(message + "은(는) 필수값입니다.", '', 'error');
+			    			evt.preventDefault();	
+			    		}else{
+			    			sale_list = '<div class="row" id='+cardId+'>'
+							+ '<div class="col-sm-2 large_category" id="large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + largeId + ' value=' + largeName + '></div>'
+							+ '<div class="col-sm-2 small_category" id="small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + smallId + ' value=' + smallName + '></div>'
+							+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
+							+ '<div class="col-sm-2 max_discount" id="max_discount"><input type="number" name="max_price" id = "max_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
+							+ '<div class="col-sm-2 max_count" id="max_count"><input id="max_c" type="number" name="max_count" class="add_manage_option form-control" value=0><label>&nbsp;번</label></div>'
+							+ '<div class="col-sm-2 discount_rate" id="discount_rate"><input type="number" name="discount_percent" id="discount_percent" class="add_manage_option form-control" value=0><label>&nbsp;%</label>'
+							+ '<img class = "deleteAddList" src="/resources/image/card_manage/delete.png">'
+							+ '<img class = "addList" src="/resources/image/card_manage/add.png"></div>'
+							+ '</div><br><br>'
+				
+							$('#register_category').append(sale_list);
+			    		}
 			    	});
 					
 					 
@@ -394,7 +422,7 @@
 							</div>
 								<br>
 							<div class="input-group">
-							  <select name="small_category" id="small_category_selection" class="form-select" id="inputGroupSelect04" aria-label="Default select example">
+							  <select name="small_category" class="small_category_selection form-select" id="inputGroupSelect04" aria-label="Default select example">
 							    <option selected>소분류를 선택하세요</option>
 							  </select>
 							  
@@ -428,7 +456,7 @@
 								    <div class="col-sm-2 max_count text-center">
 								      	최대할인횟수
 								    </div>
-								    <div class="col-sm-2 discount_rate text-center">
+								    <div class="col-sm-2 discount_rate_header text-center">
 								      	할인율
 								    </div>
 								</div>
