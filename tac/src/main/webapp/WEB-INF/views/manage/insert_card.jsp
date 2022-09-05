@@ -199,14 +199,14 @@
 	 	<div class="row justify-content-around" id="contentDiv">
 	 		<header>
 				<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
-					<h2>카드등록</h2>
+					<h2>카드 등록</h2>
 				</div>
 			</header>
 			<div>
 				<!-- 카드등록 -->
 				<div class="card_information row">
 					<div class="card_information">
-               		 	<h3><b>카드 등록</b></h3>
+               		 	<h3><b>카드 정보 등록</b></h3>
                     </div>
                     <hr>
 					<!-- 카드사진 -->

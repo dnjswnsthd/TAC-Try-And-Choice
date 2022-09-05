@@ -17,7 +17,7 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
 				$(function () {
-					var table_header = '<div class="row"><div class="col-sm-2 text-center">대분류</div><div class="col-sm-2 text-center">소분류</div><div class="col-sm-2 text-center">최소결제금액</div><div class="col-sm-2 text-center">최대할인금액</div><div class="col-sm-2 text-center">최대할인횟수</div><div class="col-sm-2 discount_rate_header text-center">할인율</div></div><hr>'
+					var table_header = '<div class="row"><div class="col-sm-2 text-center">대분류</div><div class="col-sm-2 text-center">소분류</div><div class="col-sm-2 text-center">최소결제금액</div><div class="col-sm-2 text-center">최대할인금액</div><div class="col-sm-2 text-center">최대할인횟수</div><div class="col-sm-2 discount_rate_header"><span id="discount_header">할인율</span></div></div><hr>'
 
 					$('#moveModify').on('click', function () {
 						var cardId = $('.allCard1 option:selected').val();
@@ -381,13 +381,13 @@
 				<div class="row justify-content-around" id="contentDiv">
 					<header>
 						<div class="pricing-header p-3 pb-md-4 mx-auto text-center" id="title">
-							<h2>카드수정</h2>
+							<h2>카드 수정</h2>
 						</div>
 
 					</header>
 					<div class="card_information row">
 						<div class="card_register">
-							<h3><b>카드수정</b></h3>
+							<h3><b>카드 정보 수정</b></h3>
 							<hr>
 							<select name="allCard1" class="allCard1 form-select">
 								<option value="largeName" selected>카드 선택</option>
@@ -495,14 +495,14 @@
 								    <div class="col-sm-2 max_count text-center">
 								      	최대할인횟수
 								    </div>
-								    <div class="col-sm-2 discount_rate_header text-center">
-								      	할인율
+								    <div class="col-sm-2 discount_rate_header">
+								      	<span id="discount_header">할인율</span>
 								    </div>
 								</div>
 								<hr>
 								<br>
 		                        <button class="btn btn-outline-secondary addBtn cardReg3" id="register_card_detail">등록</button>
-		                        <br><br><br><br>
+		                        <br><br><br>
 		                     </div>
 						</div>
 					</div>
