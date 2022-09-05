@@ -9,7 +9,7 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-}
+} 
 nav {
 	margin-top: -2.5%;
 }
@@ -73,7 +73,7 @@ fieldset input{
 
 body {
 	margin:  0;
-	background-image: url(../image/signupBackground03.jpg);
+	background-image: url(../image/signupBackground04.jpg);
 	background-repeat: no-repeat;
 	background-position: 0% 15%;
 	background-size: auto;
@@ -862,7 +862,7 @@ body {
 	border-radius: 50px;
 	margin-left: 2%;
 	background-color: rgba(255,255,255, 0.8);
-	margin-bottom: 1%;
+	padding-bottom: 2%;
 }
 .carousel-inner{
 	opacity: 1 !important;
