@@ -119,7 +119,7 @@ public class RouteController {
             model.addAttribute("largeCategory", large_list);
             List<Card> card_list = cardService.getAllCardInfo();
             model.addAttribute("showAllCard", card_list);
-            return "/manage/insertCard";
+            return "/manage/insert_card";
 
         } catch(Exception e) {
             // 에러페이지
@@ -148,7 +148,7 @@ public class RouteController {
 			model.addAttribute("largeCategory", large_list);
 			List<Card> card_list = cardService.getAllCardInfo();
 			model.addAttribute("showAllCard", card_list);
-			return "/manage/updateCard";
+			return "/manage/update_card";
 			
 		} catch(Exception e) {
 			// 에러페이지
