@@ -59,9 +59,42 @@ body {
   width: 100%;
 }
 
-.deleteList, .updateList, .addList, .deleteAddList{
+.discount_rate_header{
+	
+}
+
+.deleteList, .updateList, .addList, .deleteAddList, .deleteList_hide{
 	width:26px;
 	height:26px;
+	margin-left: 6%;
+}
+
+.updateList:hover{
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	transition: 0.3s ease;
+}
+
+.addList:hover{
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	transition: 0.3s ease;
+} 
+
+.deleteAddList:hover{
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	transition: 0.3s ease;
+}
+
+.deleteList:hover{
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	transition: 0.3s ease;
 }
 
 #contentDiv{
@@ -90,10 +123,6 @@ body {
 	display: inline-block;
 }
 
-.deleteList, .updateList, .addList, .deleteAddList{
-	
-	margin-left: 6%;
-}
 
 #card_sample{
 	width: 70%;

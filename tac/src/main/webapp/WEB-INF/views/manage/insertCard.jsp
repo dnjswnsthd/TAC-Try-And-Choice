@@ -20,9 +20,9 @@
     	
     	$('.addSaleList').on('click', function() {
     		var largeName = $('.large_category_selection option:selected').text();
-    		var smallName = $('#small_category_selection option:selected').text();
+    		var smallName = $('.small_category_selection option:selected').text();
     		var largeId = $('.large_category_selection option:selected').val();
-    		var smallId = $('#small_category_selection option:selected').val();
+    		var smallId = $('.small_category_selection option:selected').val();
 			var cardId = $('.allCard option:selected').val();
 			
     		$('input[name=largeCategoryName]').val(largeName);
@@ -94,7 +94,7 @@
 					for (key in result) {
 						small = small + '<option value=' + key + '>'+ result[key] +'</option>'
 					}
-					$('#small_category_selection').html(small_default + small);
+					$('.small_category_selection').html(small_default + small);
 				}
 			});
     	});
@@ -111,6 +111,7 @@
     					large_list += '<option value=' + key + '>'+ result[key] +'</option>'
     				}
     				$('.large_category_selection').html(large+large_list);
+    				$('.small_category_selection').html('<option selected>소분류를 선택하세요</option>');
     			}
     		});
     	});
@@ -253,7 +254,7 @@
 						</div>
 						<br>
 						<div class="input-group">
-						  <select name="small_category" id="small_category_selection" class="form-select" id="inputGroupSelect04" aria-label="Default select example">
+						  <select name="small_category" class="small_category_selection form-select" id="inputGroupSelect04" aria-label="Default select example">
 						    <option selected>소분류를 선택하세요</option>
 						  </select>
 						  
