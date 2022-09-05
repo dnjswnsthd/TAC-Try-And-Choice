@@ -45,7 +45,7 @@
 								var table_list = "";
 
 								for (key in result) {
-									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+									table_list = table_list + '<div class="row list" id='+result[key].cardDetailId +'>'
 															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
 															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
 															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
@@ -101,6 +101,8 @@
 								$('input[name=cardName]').val("");
 								$('input[name=cardDesc]').val("");
 								$('input[name=maxDiscount]').val("");
+								$('.list').html("");
+								
 							}
 						});
 					});
@@ -131,7 +133,7 @@
 			    		var smallId = $('#small_category_selection option:selected').val();
 						var cardId = $('.allCard1 option:selected').val();
 						
-						sale_list = '<div class="row" id='+cardId+'>'
+						sale_list = '<div class="row list" id='+cardId+'>'
 									+ '<div class="col-sm-2 large_category" id="large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + largeId + ' value=' + largeName + '></div>'
 									+ '<div class="col-sm-2 small_category" id="small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + smallId + ' value=' + smallName + '></div>'
 									+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=0><label>&nbsp;원</label></div>'
@@ -163,7 +165,7 @@
 								swal("업데이트 완료", "", 'success');
 								var table_list = "";
 								for (key in result) {
-									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+									table_list = table_list + '<div class="row list" id='+result[key].cardDetailId +'>'
 															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
 															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
 															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
@@ -195,7 +197,7 @@
 									console.log(result[key].largeCategoryName);
 									console.log(result[key].smallCategoryName);
 									
-									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+									table_list = table_list + '<div class="row list" id='+result[key].cardDetailId +'>'
 															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
 															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
 															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
@@ -245,7 +247,7 @@
 				    				swal('등록 완료', '새로운 목록이 추가 되었습니다', 'success');
 									var table_list = "";
 									for (key in result) {
-										table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+										table_list = table_list + '<div class="row list" id='+result[key].cardDetailId +'>'
 																+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
 																+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
 																+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
@@ -275,7 +277,7 @@
 								var table_list = "";
 
 								for (key in result) {
-									table_list = table_list + '<div class="row" id='+result[key].cardDetailId +'>'
+									table_list = table_list + '<div class="row list" id='+result[key].cardDetailId +'>'
 															+ '<div class="col-sm-2 large_category"><input type="text" readonly class="add_manage_option form-control"  name="largeCategoryName" id=' + result[key].largeCategoryId + ' value=' + result[key].largeCategoryName + '></div>'
 															+ '<div class="col-sm-2 small_category"><input type="text" readonly class="add_manage_option form-control"  name="smallCategoryName" id=' + result[key].smallCategoryId + ' value=' + result[key].smallCategoryName + '></div>'
 															+ '<div class="col-sm-2 min_amount" id="min_amount"><input type="number" name="min_price" id = "min_price" class="add_manage_option form-control" value=' + result[key].minPayment + '><label>&nbsp;원</label></div>'
