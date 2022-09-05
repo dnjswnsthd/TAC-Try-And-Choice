@@ -24,7 +24,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/resources/js/card.js" rel="text/javascript"></script>
-<link rel="stylesheet" href="/resources/css/login.css" />
+<link rel="stylesheet" href="/resources/css/member/before/login.css" />
 <link rel="stylesheet" href="/resources/css/header.css" />
 
 </head>

@@ -51,7 +51,7 @@ public class MemberController {
 			model.addAttribute("list", list);
 			memberService.register(member); 
 			model.addAttribute("memberId", member.getMemberId());
-			return "/member/insertConsume";
+			return "/member/insert_consume";
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -148,7 +148,7 @@ public class MemberController {
 
 	@RequestMapping("/deleteMemberPage")
 	public String deleteMemberPage() {
-		return "/member/deleteMember";
+		return "/member/delete_member";
 	}
 	
 	@RequestMapping("/deleteMember")

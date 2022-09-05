@@ -26,7 +26,7 @@
 
 <script src="/resources/js/card.js" rel="text/javascript"></script>
 <link rel="stylesheet" href="/resources/css/header.css" />
-<link rel="stylesheet" href="/resources/css/login_result.css" />
+<link rel="stylesheet" href="/resources/css/member/after/login_result.css" />
 </head>
 <body>
 	<jsp:include page="/resources/component/header.jsp"></jsp:include>

@@ -42,7 +42,6 @@ public class AnalyseController {
 	
 	@RequestMapping("/analysis")
 	public ModelAndView analysis(HttpServletRequest request, HttpSession session) {
-		System.out.println("[AnalyseController] Analysis");
 		logger.info("analysis");
 		
 		ModelAndView mav = new ModelAndView();
@@ -52,26 +51,21 @@ public class AnalyseController {
 		String id = "";
 		Member sessionmember = (Member) session.getAttribute("member");
 		if ( sessionmember == null ) {
-			System.out.println("로그인 안한 오류");
-			String view = "consumptionAnalysis";
+			String view = "/analysis/consumption_analysis";
 			mav.setViewName(view);
 			return mav;
 		}
 		
 		id = sessionmember.getMemberId();
-//		System.out.println("[ID] " + id);
 
 		// 1. 대분류 통계
 		ArrayList<ConsumeAnalysis_LargeSum> AnalLargeSum = new ArrayList<ConsumeAnalysis_LargeSum>();
 		try {
 			HashMap<String, Object> hmap = new HashMap<>();
 			AnalLargeSum = analyseService.AnalyseLC_SUM(id);
-//			System.out.println("나의 대분류-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_LargeSum temp : AnalLargeSum) {
-//				System.out.println(temp.toString());
 				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum() + ", " + temp.getImage());
 			}
-//			System.out.println("--------------------------------------------------------------------------");
 			bList.add(hmap);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -87,7 +81,6 @@ public class AnalyseController {
 			ArrayList<ConsumeAnalysis_Desc> list = analyseService.AnalyseLC_DESC(id);
 			for (int i = 0; i < list.size(); i++) {
 				ConsumeAnalysis_Desc temp = list.get(i);
-				System.out.println(temp.toString());
 				int day = Integer.parseInt(temp.getDate().substring(2,4));
 				if ( 1 <= day && day <= 10 ) {
 					startM += temp.getPrice();
@@ -115,12 +108,9 @@ public class AnalyseController {
 			HashMap<String, Object> hmap = new HashMap<>();
 			MyAge = analyseService.MyAge(id);
 			AnalLargeSumAvg = analyseService.AnalyseLC_SUM_AVG(MyAge);
-//			System.out.println("평균-----------------------------------------------------------------------");
 			for (ConsumeAnalysis_LargeSum temp : AnalLargeSumAvg) {
-//				System.out.println(temp.toString());
 				hmap.put(temp.getLCname(), temp.getCount() + ", " + temp.getSum());
 			}
-//			System.out.println("-----------------------------------------------------------------------");
 			bList.add(hmap);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -150,8 +140,6 @@ public class AnalyseController {
 		for (int i = 0; i < AnalLargeSum.size(); i++) {
 			int meSum = AnalLargeSum.get(i).getSum();
 			int avgSum = AnalLargeSumAvg.get(i).getSum();
-//			System.out.println(AnalLargeSum.get(i).getLCname() + " : " + meSum + "   -----     " + avgSum);
-//			System.out.println(Math.abs(meSum - avgSum));
 			myTotalConsume += meSum;
 			avgTotalConsume += avgSum;
 			if (meSum > avgSum) {
@@ -180,18 +168,11 @@ public class AnalyseController {
 			if ( Math.abs(meSum - avgSum) > gapM ) {
 				gap = AnalLargeSum.get(i).getLCname();
 				gapM =  Math.abs(meSum - avgSum);
-//				System.out.println(gap + " : " + gapM);
 			}
 
 			
 		}
 
-//		System.out.println(mybiggest);
-//		System.out.println(mybiggestM);
-//		System.out.println(avgbiggest);
-//		System.out.println(avgbiggestM);
-//		System.out.println(gap);
-//		System.out.println(gapM);
 		// 
 		mav.addObject("mybiggest",mybiggest);
 		mav.addObject("mybiggestM",mybiggestM);
@@ -208,9 +189,6 @@ public class AnalyseController {
 
 		// 4-2. 패턴 문구 정리
 		// 나의 패턴은.
-//		System.out.println(mybiggest);
-//		System.out.println(mybiggestM);
-		
 		String type = "잘 모르겠어요";
 		if ( mybiggest.equals("베이커리") ||  mybiggest.equals("카페") ) {
 			type = "빵과 커피를 사랑하는";
@@ -261,7 +239,6 @@ public class AnalyseController {
 		double middleMD = (double) ( (double) middleM / (double) myTotalConsume );
 		double endMD = (double) ( (double) endM / (double) myTotalConsume );
 		double mybiggestMD = (double) ( (double) mybiggestM / (double) myTotalConsume );
-		System.out.println(startM + "  " + middleM + "   " + endM);
 		if ( startM > middleM && startM > endM ) {
 			daytype = "일단 돈을 쓰고 시작하는";
 			dattypeDesc = "달의 출발을 소비와 함께 시작하시는군요. ";
@@ -340,16 +317,15 @@ public class AnalyseController {
 		String json = gson.toJson(bList);
 		mav.addObject("Object", json);
 		// set view
-		String view = "consumptionAnalysis";
+		String view = "/analysis/consumption_analysis";
 		mav.setViewName(view);
 		return mav;
 	}
 
 	@RequestMapping("/analysisDetail1")
 	public ModelAndView analysisDetail1() {
-		System.out.println("[Member Controller] analysisDetail1");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("analysisDetail1");
+		mav.setViewName("/analysis/analysis_detail");
 		return mav;
 	}
 	
@@ -375,6 +351,6 @@ public class AnalyseController {
 		model.addAttribute("categoryImg", categoryImg);
 
 		
-		return "/cardCompare2";
+		return "/compare/card_compare_detail";
 	}
 }

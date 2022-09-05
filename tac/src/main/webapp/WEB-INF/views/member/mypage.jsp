@@ -20,7 +20,7 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 <link rel="stylesheet" type="text/css"
 	href="/resources/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
 <!-- Main Style Css -->
-<link rel="stylesheet" href="/resources/css/mypage.css" />
+<link rel="stylesheet" href="/resources/css/member/after/mypage.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <!-- jQuery library -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->

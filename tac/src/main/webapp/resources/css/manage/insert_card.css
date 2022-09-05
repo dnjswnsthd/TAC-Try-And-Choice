@@ -1,0 +1,83 @@
+.navbar {
+	background-color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 1rem;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+	background-image: url(../../image/background/background_beach.jpg);
+    background-attachment:fixed;
+    background-repeat: repeat;
+    background-position: center center;
+}
+
+#container {
+	border-radius: 3rem;
+    background-color: white;
+    opacity: 0.9;
+    font-family: 'Pretendard-Regular', sans-serif;
+    width: 70rem;
+    margin: auto;
+}
+
+#container{
+    width: 70%;
+}
+
+.cardInfo{
+    margin: 7% auto;
+}
+
+#image_selection_left{
+    margin-top: 5%;
+}
+
+#cardReg{
+    margin-left: 90%;
+}
+
+#cardReg2{
+    width:30%;
+    margin-left: 70%;
+}
+
+.cardReg3{
+    margin-left: 94%;
+}
+
+#register_category{
+    width: 100%;
+}
+
+.add_manage_option{
+	width: 70%;
+}
+
+#title{
+	font-family: 'Cafe24Ssurround', sans-serif;
+}
+
+#contentDiv{
+	margin: 2%;
+}
+
+#card_sample{
+	width: 70%;
+}
+
+#min_price, #max_price, #max_c, #discount_percent{
+	width: 85%;
+	display: inline-block;
+}
+
+/* �씠誘몄� 愿��젴 */
+#preview{
+    height: 134px;  
+    width: 219px;
+    margin-bottom: 1rem;
+}
+
+#cardimg{
+    display: none;
+}

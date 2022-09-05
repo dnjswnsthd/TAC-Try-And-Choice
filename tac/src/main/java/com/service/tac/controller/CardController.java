@@ -151,7 +151,6 @@ public class CardController {
 		try {
 			cardService.updateCardDetail(cardDetail);
 			al = cardService.getSelectedCardDetail(cardId);
-			System.out.println("성공");
 			return al;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -212,7 +211,6 @@ public class CardController {
 		
 		int cid = Integer.parseInt(vo.getCardId());
 		Card card = new Card(cid, vo.getCardname(), vo.getCarddesc(), "", vo.getMaxsale(), "");
-		System.out.println(card.toString());
 		
 		try {
 			// 기존 이미지 담기

@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TAC(Try&Choice)</title>
-<link rel="icon" href="/resources/image/logo2.png" type="image/x-icon" width="100%"
+<link rel="icon" href="/resources/image/logo/logo2.png" type="image/x-icon" width="100%"
 	sizes="96x96" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap"
@@ -25,8 +25,8 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="/main"><img
-				id="logo" class="tac" src="/resources/image/logo2.png" /><img id="logo"
-				src="/resources/image/logo3.gif" /></a>
+				id="logo" class="tac" src="/resources/image/logo/logo2.png" /><img id="logo"
+				src="/resources/image/logo/logo3.gif" /></a>
 			<button aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation" class="navbar-toggler"
 				data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
@@ -62,7 +62,7 @@
 		<div class="carousel-inner">
 			<div class="carousel-item active" data-bs-interval="8000">
 				<img alt="..." class="d-block w-100"
-					src="/resources/image/intro_background6.jpg" />
+					src="/resources/image/test/intro_background6.jpg" />
 				<div class="carousel-caption">
 					<h5 class="animated bounceInRight" style="animation-delay: 1s">
 						BnK Card 미리 체험하기</h5>
@@ -82,7 +82,7 @@
 			</div>
 			<div class="carousel-item" data-bs-interval="8000">
 				<img alt="..." class="d-block w-100"
-					src="/resources/image/intro_background7.jpg" />
+					src="/resources/image/test/intro_background7.jpg" />
 				<div class="carousel-caption">
 					<h5 class="animated bounceInRight" style="animation-delay: 1s">
 						BnK Project2</h5>
@@ -100,7 +100,7 @@
 			</div>
 			<div class="carousel-item" data-bs-interval="8000">
 				<img alt="..." class="d-block w-100"
-					src="/resources/image/intro_background8.jpg" />
+					src="/resources/image/test/intro_background8.jpg" />
 				<div class="carousel-caption">
 					<h5 class="animated bounceInRight" style="animation-delay: 1s">
 						BnK Project3</h5>

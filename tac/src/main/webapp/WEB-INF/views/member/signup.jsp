@@ -21,8 +21,8 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 <link rel="stylesheet" type="text/css"
 	href="/resources/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css" />
 <!-- Main Style Css -->
-<link rel="stylesheet" href="/resources/css/signup.css" />
-<!-- <link rel="stylesheet" href="/resources/css/common.css" /> -->
+<link rel="stylesheet" href="/resources/css/member/before/signup.css" />
+<!-- <link rel="stylesheet" href="/resources/css/common/common.css" /> -->
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <!-- jQuery library -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script> -->
@@ -291,7 +291,7 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 		</div>
 	</div>
 	<!-- <div id="load">
-	    <img src="/resources/image/loading.gif" alt="loading">
+	    <img src="/resources/image/test/loading.gif" alt="loading">
 	</div> -->
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/jquery.steps.js"></script>

@@ -25,15 +25,15 @@
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 			<script src="/resources/js/card.js" rel="text/javascript"></script>
-			<!-- <link rel="stylesheet" href="/resources/css/common.css" /> -->
-			<link rel="stylesheet" href="/resources/css/login.css" />
+			<!-- <link rel="stylesheet" href="/resources/css/common/common.css" /> -->
+			<link rel="stylesheet" href="/resources/css/member/before/login.css" />
 			<link rel="stylesheet" href="/resources/css/header.css" />
 		</head>
 
 		<body>
 			<jsp:include page="/resources/component/header.jsp"></jsp:include>
 			<div id="loginbox" class="wrapper bg-white">
-				<img id="logintitleimg" src="../../../resources/image/logo5.png">
+				<img id="logintitleimg" src="../../../resources/image/logo/logo5.png">
 				<div id="logintitletext" class="h4 text-muted text-center pt-2">다른 카드를 체험하고 당신의 지출을 분석하세요</div>
 				<form class="pt-3" method="post" name="FormLogin" action="/login_result">
 					<div class="form-group py-2">
@@ -51,7 +51,7 @@
 				</form>
 			</div>
 			<!-- <div id="load">
-	    		<img src="/resources/image/loading.gif" alt="loading">
+	    		<img src="/resources/image/test/loading.gif" alt="loading">
 			</div>
 			<script src="/resources/js/common.js"></script> -->
 		</body>

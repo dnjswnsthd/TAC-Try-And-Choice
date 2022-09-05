@@ -59,7 +59,6 @@ public class ConsumeController {
 	@DeleteMapping("/deleteConsume")
 	public String deleteConsume(@RequestParam Map<String, Object> map) {
 		int consumeId =  Integer.parseInt((String) map.get("consumeId"));
-		System.out.println(consumeId);
 		try {
 			consumeService.deleteConsumeInfo(consumeId);
 			return "";

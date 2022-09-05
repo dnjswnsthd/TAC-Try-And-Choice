@@ -104,7 +104,7 @@ public class RouteController {
 			HttpSession session = request.getSession();
 			Member member = (Member) session.getAttribute("member");
 			model.addAttribute("memberId", member.getMemberId());
-			return "/member/updateConsume";
+			return "/member/update_consume";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return "/error";

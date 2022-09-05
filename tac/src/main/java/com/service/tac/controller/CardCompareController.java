@@ -37,7 +37,6 @@ public class CardCompareController {
 	public String compare(HttpServletRequest request, HttpSession session, Model model, @Param("cardId") int cardId,
 			@Param("memberId") String memberId) {
 		cardId = Integer.parseInt(request.getParameter("cardId"));
-		System.out.println(cardId);
 		Member member = (Member) session.getAttribute("member");
 		memberId = member.getMemberId();
 		String memberName = member.getName();
@@ -57,7 +56,6 @@ public class CardCompareController {
 			}
 //			System.out.println("--------------------------------------------------------------------------");
 			bList.add(hmap);
-			System.out.println(bList);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -69,8 +67,6 @@ public class CardCompareController {
 		try {
 			Card info = cardCompareService.getCardInfo(cardId);
 			ArrayList<CardDetail> list = cardCompareService.getDiscountInfoByCard(cardId);
-			System.out.println(list);
-
 //			System.out.println("여기까지 왔음" + member);
 
 			//System.out.println(memberId);
@@ -610,7 +606,6 @@ public class CardCompareController {
 
 			// 10번 카테고리
 			if (records10.size() != 0) {
-				System.out.println(records10);
 				int maxCount10 = records10.get(0).getMixCount();
 				int maxDiscount10 = records10.get(0).getMaxDiscount();
 				int minPayment10 = records10.get(0).getMinPayment();
@@ -1347,7 +1342,7 @@ public class CardCompareController {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return "cardCompare1";
+		return "/compare/card_compare";
 	}
 
 	@RequestMapping(value = "/cardCompare", method = RequestMethod.GET)
@@ -1504,6 +1499,6 @@ public class CardCompareController {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return "cardCompare2";
+		return "/compare/card_compare_detail";
 	}
 }

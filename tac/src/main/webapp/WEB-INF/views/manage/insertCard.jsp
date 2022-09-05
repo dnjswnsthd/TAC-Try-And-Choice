@@ -12,7 +12,7 @@
         <title>관리자 모드 - 카드 등록</title>
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="/resources/css/insertCard.css" />
+        <link rel="stylesheet" href="/resources/css/manage/insert_card.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">

@@ -19,8 +19,8 @@
 	<nav class="navbar navbar-expand-lg navbar-light" id="header" style="z-index:1" >
 		<div class="container">
 			<a class="navbar-brand" href="/main"><img id="logo"
-				src="/resources/image/logo1.png" /><img id="logo2"
-				src="/resources/image/logo3.gif" /></a>
+				src="/resources/image/logo/logo1.png" /><img id="logo2"
+				src="/resources/image/logo/logo3.gif" /></a>
 			<button aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation" class="navbar-toggler"
 				data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"

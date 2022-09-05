@@ -11,7 +11,7 @@
 			<title>관리자 모드 - 카드 수정</title>
 			<!-- CSS -->
 			<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-			<link rel="stylesheet" href="/resources/css/updateCard.css" />
+			<link rel="stylesheet" href="/resources/css/manage/update_card.css" />
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
