@@ -67,6 +67,7 @@
 	<select id="getAllCardInfo" resultMap ="card">
 		select card_id, card_name, card_desc, card_img, max_discount, card_img_horizon
 		from card
+		order by card_id
 	</select>
 	
 	<select id="getDiscountInfoByCard" parameterType="int" resultMap="cardDetailWithCategory">
@@ -84,7 +85,7 @@
 	</select>
 	
 	<select id="getSelectedCard" parameterType="int" resultMap="card">
-		SELECT card_id, card_name, card_desc, card_img_horizon, max_discount  
+		SELECT card_id, card_name, card_desc, card_img, card_img_horizon, max_discount  
 		FROM card
 		WHERE card_id=#{VALUE}
 	</select>
@@ -121,7 +122,14 @@
 		<selectKey keyProperty="cardId" resultType="int" order="BEFORE">
 			SELECT card_seq.nextVal FROM dual
 		</selectKey>
-			INSERT INTO card(card_id, card_name, card_desc, card_img, max_discount )
-			VALUES (#{cardId}, #{cardName}, #{cardDesc}, #{cardImg}, #{maxDiscount} )
+			INSERT INTO card(card_id, card_name, card_desc, card_img, max_discount, card_img_HORIZON )
+			VALUES (#{cardId}, #{cardName}, #{cardDesc}, #{cardImg}, #{maxDiscount}, #{cardImgHorizon} )
 	</insert>
+	
+	<update id="updateCard2" parameterType="card">
+		UPDATE CARD
+		SET	card_name = #{cardName}, card_desc = #{cardDesc}, max_discount = #{maxDiscount}, card_img = #{cardImg}, card_img_HORIZON = #{cardImgHorizon} 
+		WHERE card_id = #{cardId}
+	</update>
+	
 </mapper>

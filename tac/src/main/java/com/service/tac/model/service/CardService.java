@@ -36,7 +36,7 @@ public interface CardService {
 	public int editCard(Card card) throws SQLException;
 	
 	// 기존 카드 삭제 (관련된 cardDetail 삭제 cascade)
-	public int deleteCard(int cardId) throws SQLException;
+	public int deleteCard(int cardId, String delImg, HttpServletRequest request) throws SQLException;
 
 	// 카드 정보 수정
 	public int updateCard(Card card) throws SQLException;
@@ -49,4 +49,7 @@ public interface CardService {
 		
 	// 카드 등록 (이미지 포함)
 	public int registerCard_Image(Card card, MultipartFile imgfile, HttpServletRequest request) throws SQLException;
+	
+	//
+	public int updateCard2(Card card,MultipartFile img, HttpServletRequest request) throws SQLException;
 }
