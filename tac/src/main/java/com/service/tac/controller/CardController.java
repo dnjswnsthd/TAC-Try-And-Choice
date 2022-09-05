@@ -102,11 +102,14 @@ public class CardController {
 	
 	@PostMapping("/deleteCard")
 	@ResponseBody
-	public ArrayList<Card> deleteCard(@RequestParam Map<String, Object> map) {
+	public ArrayList<Card> deleteCard(@RequestParam Map<String, Object> map, HttpServletRequest request) {
 		ArrayList<Card> card = null;
+
+		
 		int cardId = Integer.parseInt((String) map.get("cardId"));
 		try {
-			cardService.deleteCard(cardId);
+			String delImg = cardService.getSelectedCard(cardId).getCardImg();
+			cardService.deleteCard(cardId, delImg, request);
 			card = cardService.getAllCardInfo();
 			return card;
 		} catch (SQLException e) {
@@ -186,15 +189,7 @@ public class CardController {
 			@RequestParam(value = "cardImg") MultipartFile img,
 			HttpServletRequest request) {
 		HashMap<String, String> hm = new HashMap<>();
-		System.out.println(vo.toString());
 		
-		// 1. 업로드 된 파일 정보를 가지고 있는 MultipartFile을 가장 먼저 받아옵니다.
-		System.out.println("[Controller] getUploadfile " + img);
-		System.out.println("[Controller] 파일의 사이즈 : " + img.getSize());
-		System.out.println("[Controller] 파일의 이름 " + img.getName());
-		System.out.println("[Controller] 파일의 오리지널 이름 " + img.getOriginalFilename());
-		
-
 		Card card = new Card(vo.getCardname(), vo.getCarddesc(), vo.getMaxsale() );
 		ArrayList<Card> list_card = null;
 		try {
@@ -205,6 +200,54 @@ public class CardController {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		}
+		return hm;
+	}
+	
+	//
+	@PutMapping("/updateCard2")
+	@ResponseBody
+	public Card updateCard2( UploadDataVO vo, @RequestParam(value = "cardImg") MultipartFile img,
+			HttpServletRequest request) {
+		
+		int cid = Integer.parseInt(vo.getCardId());
+		Card card = new Card(cid, vo.getCardname(), vo.getCarddesc(), "", vo.getMaxsale(), "");
+		System.out.println(card.toString());
+		
+		try {
+			// 기존 이미지 담기
+			card.setCardImg(cardService.getSelectedCard(cid).getCardImg());
+			cardService.updateCard2(card, img, request);
+			// 카드 목록 업데이트
+			card = cardService.getSelectedCard(card.getCardId());
+			return card;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	@PutMapping("/updateCard3")
+	@ResponseBody
+	public HashMap<String, String> updateCard3( UploadDataVO vo, @RequestParam(value = "cardImg") MultipartFile img,
+			HttpServletRequest request) {
+		HashMap<String, String> hm = new HashMap<>();
+		ArrayList<Card> list_card = null;
+		int cid = Integer.parseInt(vo.getCardId());
+		Card card = new Card(cid, vo.getCardname(), vo.getCarddesc(), "", vo.getMaxsale(), "");
+		
+		try {
+			// 기존 이미지 담기
+			card.setCardImg(cardService.getSelectedCard(cid).getCardImg());
+			cardService.updateCard2(card, img, request);
+			// 에프터 서비스
+			list_card = cardService.getAllCardInfo();
+			for (Card c : list_card) {
+				hm.put(Integer.toString(c.getCardId()), c.getCardName());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
 		return hm;
 	}

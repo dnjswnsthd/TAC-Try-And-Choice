@@ -29,5 +29,7 @@ public interface CardMapper {
 	public int registerCard(Card card) throws SQLException;
 	
 	public int registerCardImportImage(Card card) throws SQLException;
+	
+	public int updateCard2(Card card) throws SQLException;
 
 }

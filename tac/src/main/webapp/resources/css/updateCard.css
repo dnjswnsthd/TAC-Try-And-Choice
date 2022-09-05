@@ -104,3 +104,13 @@ body {
 	display: inline-block;
 }
 
+/* 이미지 관련 */
+#preview{
+  height: 204px;
+  width: 318px;  
+  margin-bottom: 1rem;
+}
+
+#cardimg{
+  display: none;
+}

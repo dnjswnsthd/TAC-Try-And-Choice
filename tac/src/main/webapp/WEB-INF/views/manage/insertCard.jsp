@@ -161,6 +161,8 @@
 						for (key in result) {
 							card += '<option value=' + key + '>'+ result[key] +'</option>'
 						}
+						// 초기화
+						$("#preview").attr("src", "/resources/image/card_horizon/card_none_horizon.png");
 						$('.allCard').html(card_default+card);
 						$('#card-name').val("");
 			    		$('#card-desc').val("");

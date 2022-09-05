@@ -28,7 +28,7 @@
 								cardId: cardId
 							},
 							success: function (result) {
-								$("#card_sample").attr("src", "/resources/image/card_horizon/" + result.cardImgHorizon);
+								$("#preview").attr("src", "/resources/image/card_horizon/" + result.cardImgHorizon);
 								$('input[name=cardName]').val(result.cardName);
 								$('input[name=cardDesc]').val(result.cardDesc);
 								$('input[name=maxDiscount]').val(result.maxDiscount);
@@ -62,47 +62,81 @@
 					});
 
 					$('#cardUpdate').on('click', function () {
-						$.ajax({
-							type: 'put',
-							url: '/updateCard',
-							data: {
-								cardId: $('.allCard1 option:selected').val(),
-								cardName: $('input[name=cardName]').val(),
-								cardDesc: $('input[name=cardDesc]').val(),
-								maxDiscount: $('input[name=maxDiscount]').val()
+						var cardId = $('.allCard1 option:selected').val();
+						var cardName = $('input[name=cardName]').val();
+						var cardDesc = $('input[name=cardDesc]').val();
+						var maxSale = $('input[name=maxDiscount]').val();
+						var card_img = document.querySelector("#cardimg").files[0];
 
-							},
+						var formData = new FormData();
+						formData.append("cardId", cardId);
+						formData.append("cardname", cardName);
+						formData.append("carddesc", cardDesc);
+						formData.append("maxsale", maxSale);
+						formData.append("cardImg", card_img);
+
+						$.ajax({
+							type:'put',
+							url:'/updateCard3',
+							enctype:'multipart/form-data',
+							contentType: false,
+							processData: false,
+							cache: false,
+							data : formData,
 							success: function (result) {
 								swal('수정완료', '', 'success');
-								$("#card_sample").attr("src", "/resources/image/card_horizon/" + result.cardImgHorizon);
-								$('input[name=cardName]').val(result.cardName);
-								$('input[name=cardDesc]').val(result.cardDesc);
-								$('input[name=maxDiscount]').val(result.maxDiscount);
+
+								//	    				
+								var card = "";
+								var card_default = '<option value=smallName>==카드 선택==</option>';
+								for (key in result) {
+									card += '<option value=' + key + '>'+ result[key] +'</option>'
+								}
+								// 초기화
+								$("#preview").attr("src", "/resources/image/card_horizon/card_none_horizon.png");
+								$('.allCard1').html(card_default+card);
+								$('input[name=cardName]').val("");
+								$('input[name=cardDesc]').val("");
+								$('input[name=maxDiscount]').val("");
+								$('.list').html("");
+								
 							}
 						});
 					});
 
 					$('#cardDelete').on('click', function () {
 						var cardName = $('input[name=cardName]').val();
-						$.ajax({
-							type: 'post',
-							url: '/deleteCard',
-							data: {
-								cardId: $('.allCard1 option:selected').val(),
-							},
-							success: function (result) {
-								swal("삭제 완료", cardName + " 카드가 삭제되었습니다.", 'success');
-								var card_list = "";
-								var card_header = '<option value="largeName">==카드 선택==</option>';
-								for (key in result) {
-									card_list += '<option value=' + result[key].cardId + '>' + result[key].cardName + '</option>'
-								}
-								$('.allCard1').html(card_header + card_list);
-								$('input[name=cardName]').val("");
-								$('input[name=cardDesc]').val("");
-								$('input[name=maxDiscount]').val("");
-								$('.list').html("");
-								
+						swal({
+							title : "카드 삭제",
+							text : " [ " + cardName + " ] 를(을) 정말로 삭제하시겠습니까?",
+							type : "warning",
+							icon: "warning",
+							buttons:['취소','삭제'],
+						}).then( function(isConfirm) {
+							if (isConfirm) {
+								$.ajax({
+									type: 'post',
+									url: '/deleteCard',
+									data: {
+										cardId: $('.allCard1 option:selected').val(),
+									},
+									success: function (result) {
+										swal("삭제 완료", cardName + " 카드가 삭제되었습니다.", 'success');
+										var card_list = "";
+										var card_header = '<option value="largeName">==카드 선택==</option>';
+										for (key in result) {
+											card_list += '<option value=' + result[key].cardId + '>' + result[key].cardName + '</option>'
+										}
+										$('.allCard1').html(card_header + card_list);
+										$("#preview").attr("src", "/resources/image/card_horizon/card_none_horizon.png");
+										$('input[name=cardName]').val("");
+										$('input[name=cardDesc]').val("");
+										$('input[name=maxDiscount]').val("");
+										$('.list').html("");
+									}
+								});
+							}else{
+								// 카드 삭제 안함
 							}
 						});
 					});
@@ -147,8 +181,7 @@
 						$('#register_category').append(sale_list);
 			    		
 			    	});
-					
-					 
+
 					$(document).on('click','.updateList', function () {
 						$.ajax({
 							type: 'put',
@@ -329,29 +362,18 @@
 
 					<div class="card_information row">
 						<div class="col-md-5">
-							<form action="#" id="card_image_selection">
-								<div class="form-box text-center cardInfo">
+							<form action="#" id="card_image_selection" enctype="multipart/form-data" >
+								 
+								   <div class="form-box text-center cardInfo">
 									<div class="form-top">
-										<img id="card_sample" src="/resources/image/card_manage/card_sample1.png">
+										<img id="preview" src="/resources/image/card_horizon/card_none_horizon.png"/>
 									</div>
-									<input type="file" class="real-upload" accept="image/*" required multiple
-										style="display: none;">
-									<button type="submit" id="image_selection_left"
-										class="btn btn-outline-secondary">이미지 선택</button>
-								</div>
+									<label for="cardimg">
+										<div class="btn btn-upload btn-outline-secondary"> 카드 이미지 선택 </div>
+									</label>
+									<input type="file" class="real-upload" name="cardImg" id="cardimg" onchange="readURL(this)" accept="image/*" >
+								</div>            
 							</form>
-
-							<script type="text/javascript">
-								function getImageFiles(e) {
-									const files = e.currentTarget.files;
-								}
-
-								const realUpload = document.querySelector('.real-upload');
-								const upload_front_image = document.querySelector('#image_selection_left');
-
-								upload_front_image.addEventListener('click', () => realUpload.click());
-								realUpload.addEventListener('change', getImageFiles);
-							</script>
 						</div>
 						<div class="form-bottom col-md-7" id="form-box-left">
 							<div class="form-floating mb-3">
@@ -443,5 +465,18 @@
 					</div>
 				</div>
 			</div>
+			<script>
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+						document.getElementById('preview').src = e.target.result;
+						};
+						reader.readAsDataURL(input.files[0]);
+					} else {
+						document.getElementById('preview').src = "";
+					}
+				}
+			</script>
 		</body>
 	</html>
