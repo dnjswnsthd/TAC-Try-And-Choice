@@ -65,7 +65,7 @@ public class RouteController {
 		try {
 			List<LargeCategory> list = categoryService.getAllLargeCategory();
 			model.addAttribute("largeCategory", list);	
-			return "/manage/insert_card_largeCategory";
+			return "/manage/insert_card_large_category";
 			
 		} catch(Exception e) {
 			// 에러페이지
@@ -133,7 +133,7 @@ public class RouteController {
 	
 	        List<LargeCategory> list = categoryService.getAllLargeCategory();
 	        model.addAttribute("largeCategory", list);
-	        return "/manage/insert_card_smallCategory";
+	        return "/manage/insert_card_small_category";
 	        
 	    } catch(Exception e) {
 	        // 에러페이지
