@@ -19,17 +19,30 @@
     $(function(){
     	
     	$('.addSaleList').on('click', function() {
+    		var cardName = $('.allCard option:selected').text();
     		var largeName = $('.large_category_selection option:selected').text();
     		var smallName = $('.small_category_selection option:selected').text();
     		var largeId = $('.large_category_selection option:selected').val();
     		var smallId = $('.small_category_selection option:selected').val();
 			var cardId = $('.allCard option:selected').val();
+			var message = "";
 			
-    		$('input[name=largeCategoryName]').val(largeName);
-    		$('input[name=smallCategoryName]').val(smallName);
-    		$('input[name=largeCategoryName]').attr("id", largeId);
-    		$('input[name=smallCategoryName]').attr("id", smallId);
-    		
+			if(cardName == "카드선택"){
+    			message = "카드 이름"
+			}else if(largeName == "==대분류선택=="){
+    			message = "대분류"
+			}else if(smallName == "==소분류선택=="){
+    			message = "소분류"
+    		}
+    		if(message != ""){
+    			swal(message + "은(는) 필수값입니다.", '', 'error');
+    			evt.preventDefault();	
+    		}else {
+    			$('input[name=largeCategoryName]').val(largeName);
+        		$('input[name=smallCategoryName]').val(smallName);
+        		$('input[name=largeCategoryName]').attr("id", largeId);
+        		$('input[name=smallCategoryName]').attr("id", smallId);
+    		}
     	});
     	
 		$('#register_card_detail').on('click', function() {
@@ -90,7 +103,7 @@
 
 				success : function(result) {
 					var small = "";
-					var small_default = '<option value=smallName>==소분류 선택==</option>';
+					var small_default = '<option value=smallName>==소분류선택==</option>';
 					for (key in result) {
 						small = small + '<option value=' + key + '>'+ result[key] +'</option>'
 					}
@@ -106,7 +119,7 @@
     			
     			success:function(result) {
     				var large_list = "";
-    				var large = "<option value=largeName>==대분류 선택==</option>";
+    				var large = "<option value=largeName>==대분류선택==</option>";
     				for (key in result) {
     					large_list += '<option value=' + key + '>'+ result[key] +'</option>'
     				}
