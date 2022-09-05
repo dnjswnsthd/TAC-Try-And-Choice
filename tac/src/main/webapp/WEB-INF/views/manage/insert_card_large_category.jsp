@@ -59,7 +59,7 @@
 									large +=  '<div class="p-2 LCnameBox">' + result[key]  + '</div>';
 									large_select += '<option value=' + key + '>' + result[key] + '</option>'
 								}
-								$('#largeTable').html(large);
+								$('#biggerUL').html(large);
 								$('#large_category_selection').html(large_select);
 							}
 
