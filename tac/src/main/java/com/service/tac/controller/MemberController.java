@@ -51,6 +51,7 @@ public class MemberController {
 			model.addAttribute("list", list);
 			memberService.register(member); 
 			model.addAttribute("memberId", member.getMemberId());
+			model.addAttribute("memberName", member.getName());
 			return "/member/insert_consume";
 
 		} catch (SQLException e) {
