@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>TAC(Try And Choice)</title>
+<link rel="icon" href="/resources/image/logo/small_logo.png"/>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 
