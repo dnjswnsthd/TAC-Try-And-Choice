@@ -22,30 +22,39 @@
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
 				$(function () {
+					
+					var arr_small = [];
+					
 					$('#addSmallBtn').on('click', function () {
+						
 						var largeId = $('#large_category_selection').val();
 						var smallName = document.getElementById('add_small_category_name').value;
-						$.ajax({
-							type: 'post',
-							url: '/category/smallRegAndgetCategory',
-							data: {
-								smallname: smallName,
-								largeid: largeId
-							},
+						
+						if(arr_small.includes(smallName)) {
+							swal("", smallName+" 은(는) 이미 등록되어있습니다", "error");
+						}else{
+							$.ajax({
+								type: 'post',
+								url: '/category/smallRegAndgetCategory',
+								data: {
+									smallname: smallName,
+									largeid: largeId
+								},
 
-							success: function (result) {
-								swal('등록 완료', smallName + '이(가) 추가 되었습니다', 'success');
-								var small = "";
-								var small_select = "";
-								for (key in result) {
-									small += '<div class="p-2 LCnameBox">' + result[key] + '</div>';
-									small_select += '<option value=' + key + '>' + result[key] + '</option>'
+								success: function (result) {
+									swal('등록 완료', smallName + '이(가) 추가 되었습니다', 'success');
+									var small = "";
+									var small_select = "";
+									for (key in result) {
+										small += '<div class="p-2 LCnameBox">' + result[key] + '</div>';
+										small_select += '<option value=' + key + '>' + result[key] + '</option>'
+									}
+									$('#biggerUL').html(small);
+									$('#small_category_selection').html(small_select);
+									document.getElementById('add_small_category_name').value = null;
 								}
-								$('#biggerUL').html(small);
-								$('#small_category_selection').html(small_select);
-								document.getElementById('add_small_category_name').value = null;
-							}
-						});
+							});
+						}
 					});
 
 					$('#large_category_selection').change(function () {
@@ -62,6 +71,7 @@
 								for (key in result) {
 									small += '<div class="p-2 LCnameBox">' + result[key] + '</div>';
 									small_select += '<option value=' + key + '>' + result[key] + '</option>'
+									arr_small.push(result[key]);
 								}
 								$('#biggerUL').html(small);
 								$('#small_category_selection').html(small_select);
