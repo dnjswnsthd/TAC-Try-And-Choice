@@ -192,10 +192,9 @@ body {
 	<div class="container">
 		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea">
-			<h3> ${memberId} 님 소비 정보를 입력해주세요!</h3>
-			<input type="button" id="moveLogin" value="등록 완료" />
+			<h3> ${memberName} 님 소비 정보를 입력해주세요!</h3>
+			<h5 id="h5">시간이 없으시다면 이후에 MYPAGE에서 수정가능합니다.</h5>
 		</div>
-		<h5 id="h5">시간이 없으시다면 MYPAGE에서 수정가능! 다음에 입력하셔도 됩니다.</h5>
 		<div id="wrap">
 			<div id="calendar"></div>
 			<div style="clear: both"></div>

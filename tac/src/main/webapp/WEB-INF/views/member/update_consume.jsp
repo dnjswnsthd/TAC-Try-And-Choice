@@ -192,7 +192,7 @@ body {
 	<div class="container">
 		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea2">
-			<h3> ${memberId} 님 소비 정보를 수정하세요!</h3>
+			<h3> ${memberName} 님 소비 정보를 수정하세요!</h3>
 		</div>
 		<div id="wrap">
 			<div id="calendar"></div>
