@@ -151,7 +151,7 @@
 			            		bgcolor = "#FF788B"
 			            	}
 		                    events.push({
-		                        title : data.LARGECATEGORYNAME
+		                    	title : data.LARGECATEGORYNAME + '	|	' + data.CONSUMEPRICE.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
 		                        ,start : data.CONSUMEDATE
 		                        ,allDay: true
 		                        ,className: 'important'
