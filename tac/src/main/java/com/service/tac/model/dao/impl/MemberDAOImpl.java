@@ -1,69 +1,56 @@
-package com.service.tac.model.service.impl;
+package com.service.tac.model.dao.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.service.tac.model.dao.MemberDAO;
 import com.service.tac.model.mapper.MemberMapper;
-import com.service.tac.model.service.MemberService;
 import com.service.tac.model.vo.Member;
 
-@Service
-public class MemberServiceImpl implements MemberService {
-	
-	@Autowired
-	private MemberDAO memberDAO;
-	
+@Repository
+public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public ArrayList<Member> showAll() throws SQLException {
-		return memberDAO.showAll();
+		ArrayList<Member> al = sqlSession.getMapper(MemberMapper.class).showAll();
+		return al;
 	}
 
 	@Override
 	public Member login(Member member) throws SQLException {
-		return memberDAO.login(member);
+		Member m=sqlSession.getMapper(MemberMapper.class).login(member);
+		return m;
 	}
 
 	@Override
 	public int register(Member member) throws SQLException {
-		return memberDAO.register(member);
+		return sqlSession.getMapper(MemberMapper.class).register(member);
 	}
 
 	@Override
 	public int updateMemberInfo(Member member) throws SQLException {
-		return memberDAO.updateMemberInfo(member);
+		return sqlSession.getMapper(MemberMapper.class).updateMemberInfo(member);
 	}
 
 	@Override
 	public int updateCardInfo(Member member) throws SQLException {
-		return memberDAO.updateCardInfo(member);
-	}
-
-	@Override
-	public void logout(int memberId) throws SQLException {
-
-	}
-
-	@Override
-	public void remove(int memberId) throws SQLException {
-
+		return sqlSession.getMapper(MemberMapper.class).updateCardInfo(member);
 	}
 
 	@Override
 	public String chkDup(String memberId) throws SQLException {
-		return memberDAO.chkDup(memberId);
+		return sqlSession.getMapper(MemberMapper.class).chkDup(memberId);
 	}
 
 	@Override
 	public void deleteMember(String id) throws SQLException {
-		memberDAO.deleteMember(id);
+		sqlSession.getMapper(MemberMapper.class).deleteMember(id);
 	}
 
 }
