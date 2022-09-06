@@ -144,7 +144,7 @@
 	 				<h3>
 	 					<c:if test="${comparePrice > 0}">
 		 					<span id="cardText" style='color : #FF6384'> 
-		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
+		 						+ <fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
 		 					원의 이득을
 	 					</c:if>
