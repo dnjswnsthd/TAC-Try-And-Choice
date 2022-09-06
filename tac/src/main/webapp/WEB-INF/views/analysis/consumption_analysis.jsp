@@ -399,7 +399,7 @@
         const LineChart_data = {
             labels: mylineLabel,
             datasets: [{
-                label: '나의 한달간 소비',
+                label: '이 날의 소비',
                 backgroundColor: 'rgb(255,255,255)',
                 borderColor: 'rgb(45, 37, 123)',
                 data: mylineData,

@@ -146,18 +146,19 @@
 		 					<span id="cardText" style='color : #FF6384'> 
 		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
-		 					의 이득을
+		 					원의 이득을
 	 					</c:if>
 	 					<c:if test="${comparePrice < 0}">
 		 					<span id="cardText" style='color : #36A2EB'> 
 		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
-		 					의 손해를
+		 					원의 손해를
 	 					</c:if>
 	 					<c:if test="${comparePrice == 0}">
 		 					<span id="cardText" style='color : grey'> 
 		 						<fmt:formatNumber value="${comparePrice}" pattern="#,###" /> 
 		 					</span>
+		 					원의 똑같은 혜택을
 	 					</c:if>
 	 					 볼 수 있습니다.</h3>
 	 				<hr>
