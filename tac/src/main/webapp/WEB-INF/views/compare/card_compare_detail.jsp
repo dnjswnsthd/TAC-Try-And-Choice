@@ -123,7 +123,7 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="myCard">
 	 				<div id="cardName">${myInfo.cardName}</div>
-	 				<img class="cardImg" onclick="location.href='/compare?cardId=${myInfo.cardId}'" src="resources/image/card_horizon/${myInfo.cardImgHorizon}">
+	 				<figure><img class="cardImg" onclick="location.href='/compare?cardId=${myInfo.cardId}'" src="resources/image/card_horizon/${myInfo.cardImgHorizon}"></figure>
 	 			</div>
 	 			
 	 			<div class="cardDetail" id="myCardBox">
@@ -199,7 +199,7 @@
 	 		<div class="col-md-4">
 	 			<div class="cardDetail" id="selectCard">
 		 			<div id="cardName">${info.cardName}</div>
-	 				<img class="cardImg" onclick="location.href='/compare?cardId=${info.cardId}'" src="resources/image/card_horizon/${info.cardImgHorizon}">
+	 				<figure><img class="cardImg" onclick="location.href='/compare?cardId=${info.cardId}'" src="resources/image/card_horizon/${info.cardImgHorizon}"></figure>
 	 			</div>
 	 			
 	 			<div class="cardDetail selectCardDetail" id="selectCardBox">
