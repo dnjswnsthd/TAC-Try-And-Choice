@@ -32,7 +32,7 @@ public class RouteController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
-		return "intro";
+		return "redirect:/main";
 	}
 
 	@GetMapping(value = "/main")
