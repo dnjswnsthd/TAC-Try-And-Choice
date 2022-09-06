@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,16 +62,16 @@
 											${card.discountPercent }% 할인
 									</c:when>
 									<c:when test="${card.discountPercent !=0 && card.maxDiscount != 0}">
-										${card.discountPercent } % 할인&nbsp;&nbsp;<b>최대 </b>${card.maxDiscount } 원 할인
+										${card.discountPercent } % 할인&nbsp;&nbsp;<b>최대 </b><fmt:formatNumber value="${card.maxDiscount }" pattern="#,###" /> 원 할인
 									</c:when>
 									<c:when test="${card.discountAmount !=0 && card.maxDiscount==0 }">
-										${card.discountAmount }원 할인
+										<fmt:formatNumber value="${card.discountAmount }" pattern="#,###" />원 할인
 									</c:when>
 									<c:when test="${card.maxDiscountMonth != 0 }"> 
-										${card.maxDiscountMonth}원 할인
+										<fmt:formatNumber value="${card.maxDiscountMonth}" pattern="#,###" />원 할인
 									</c:when>
 									<c:otherwise>
-										${card.maxDiscount }원 할인
+										<fmt:formatNumber value="${card.maxDiscount }" pattern="#,###" />원 할인
 									</c:otherwise>
 								</c:choose>
 								</li>	
@@ -234,7 +235,7 @@
 			var temp = consumeJson[0][element].split(",");
 			$("#consumeTable").append('<tr class="service"><td class="tableitem">'+(i++)+'</td>'+
 					            '<td class="tableitem">'+element+'</td><td class="tableitem">'+
-					            temp[1]+' 원</td></tr>');
+					            temp[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+' 원</td></tr>');
 			list.push(parseInt(temp[1]));
 		}
 		
