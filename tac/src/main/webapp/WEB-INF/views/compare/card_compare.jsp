@@ -244,7 +244,7 @@
 			price = list[j];
 			sum += price;	
 		}
-		$("td:last").append('<b>'+sum + " 원</b>");
+		$("td:last").append('<b>'+sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + " 원</b>");
 		
 		
 				
