@@ -143,3 +143,7 @@ body {
 #cardimg{
   display: none;
 }
+
+#discount_header{
+	padding-left: 7px;
+}

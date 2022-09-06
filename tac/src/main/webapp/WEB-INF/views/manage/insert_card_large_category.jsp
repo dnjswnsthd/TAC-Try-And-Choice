@@ -19,28 +19,39 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
+				
+				var arr = [];
+				<c:forEach items="${largeCategory}" var="l">
+					arr.push('${l.largeCategoryName}');
+				</c:forEach>
+			
 				$(function () {
 					$('#addLargeName').on('click', function () {
 						const largeName = document.getElementById('add_large_category_name').value;
-						$.ajax({
-							type: 'post',
-							url: '/category/LargeRegAndgetCategory',
-							data: {
-								name: largeName
-							},
-							success: function (result) {
-								swal('등록 완료', largeName + '이(가) 추가 되었습니다', 'success')
-								var large = "";
-								var large_select = "";
-								for (key in result) {
-									large +=  '<div class="p-2 LCnameBox">' + result[key]  + '</div>';
-									large_select += '<option value=' + key + '>' + result[key] + '</option>'
+						
+						if(arr.includes(largeName)) {
+							swal("", largeName+" 은(는) 이미 등록되어있습니다", "error");
+						}else {
+							$.ajax({
+								type: 'post',
+								url: '/category/LargeRegAndgetCategory',
+								data: {
+									name: largeName
+								},
+								success: function (result) {
+									swal('등록 완료', largeName + '이(가) 추가 되었습니다', 'success')
+									var large = "";
+									var large_select = "";
+									for (key in result) {
+										large +=  '<div class="p-2 LCnameBox">' + result[key]  + '</div>';
+										large_select += '<option value=' + key + '>' + result[key] + '</option>'
+									}
+									$('#biggerUL').html(large);
+									$('#large_category_selection').html(large_select);
+									document.getElementById('add_large_category_name').value = null;
 								}
-								$('#biggerUL').html(large);
-								$('#large_category_selection').html(large_select);
-								document.getElementById('add_large_category_name').value = null;
-							}
-						});
+							});
+						}
 					});
 
 					$('#deleteLargeName').on('click', function () {
