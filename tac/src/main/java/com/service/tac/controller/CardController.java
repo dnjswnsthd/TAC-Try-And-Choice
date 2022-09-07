@@ -8,11 +8,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.service.tac.model.service.CardService;
@@ -22,7 +23,7 @@ import com.service.tac.model.vo.CardDetail;
 import com.service.tac.model.vo.CardDetailManage;
 import com.service.tac.model.vo.UploadDataVO;
 
-@Controller
+@RestController
 public class CardController {
 	@Autowired
 	CardService cardService;
@@ -100,12 +101,10 @@ public class CardController {
 		}
 	}
 	
-	@PostMapping("/deleteCard")
+	@DeleteMapping("/deleteCard")
 	@ResponseBody
 	public ArrayList<Card> deleteCard(@RequestParam Map<String, Object> map, HttpServletRequest request) {
 		ArrayList<Card> card = null;
-
-		
 		int cardId = Integer.parseInt((String) map.get("cardId"));
 		try {
 			String delImg = cardService.getSelectedCard(cardId).getCardImg();

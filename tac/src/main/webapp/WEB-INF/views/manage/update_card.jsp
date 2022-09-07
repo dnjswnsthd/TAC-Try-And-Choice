@@ -130,7 +130,7 @@
 						}).then( function(isConfirm) {
 							if (isConfirm) {
 								$.ajax({
-									type: 'post',
+									type: 'delete',
 									url: '/deleteCard',
 									data: {
 										cardId: $('.allCard1 option:selected').val(),
