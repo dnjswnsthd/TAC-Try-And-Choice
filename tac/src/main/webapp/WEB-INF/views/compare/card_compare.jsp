@@ -94,7 +94,6 @@
 											 value="카드 선택" class="myCard">
 						<span>내 카드와 비교</span>
 					</button>
-					<span>${discount5 }</span>
 					<br>
 					<br>
 					<canvas id="myChart" width="400rem" height="400rem"></canvas>
