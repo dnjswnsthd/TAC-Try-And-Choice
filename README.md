@@ -1,21 +1,21 @@
 # Try And Choice
 ## <img src="https://cdn-icons-png.flaticon.com/512/4394/4394574.png" width="23"> &nbsp; <strong>목차</strong>
 ---
-1. 기획 의도
-2. 주제선정 배경
-3. 목표
-4. 사용 스택
-5. 기간
-6. 역할
-7. DB_ERD
-8. 협업 준비 - 공유 Oracle, github(sourcetree)
-9. Project Structure
-10. 개발 일정
-11. 동작 원리
-12. 기능 소개
-13. 오류 해결
+1. [기획 의도](#img-srchttpscdn-icons-pngflaticoncom51214361436664png-width23strong기획-의도strong)
+2. [주제선정 배경](#img-srchttpscdn-icons-pngflaticoncom51228592859734png-width23-nbspstrong주제-선정-배경strong)
+3. [목표](#img-srchttpscdn-icons-pngflaticoncom51232143214721png-width23-nbspstrong목표strong)
+4. [사용 스택](#img-srchttpscdn-icons-pngflaticoncom512591591576png-width23-nbspstrong기간strong)
+5. [기간](#img-srchttpscdn-icons-pngflaticoncom512591591576png-width23-nbspstrong기간strong)
+6. [역할](#img-srchttpscdn-icons-pngflaticoncom51265966596902png-width23-nbspstrong역할strong)
+7. [DB_ERD](#img-srchttpscdn-icons-pngflaticoncom512689689319png-width23-nbspstrongdberdstrong)
+8. [협업 준비 - 공유 Oracle, github(sourcetree)](#img-srchttpscdn-icons-pngflaticoncom512689689319png-width23-nbspstrong협업-준비---공유-oracle-githubsourcetreestrong)
+9. [Project Structure](#img-srchttpscdn-icons-pngflaticoncom512645645979png-width23-nbspstrongproject-structurestrong)
+10. [개발 일정](#img-srchttpscdn-icons-pngflaticoncom512771771496png-width23-nbspstrong개발-일정strong)
+11. [동작 원리](#img-srchttpscdn-icons-pngflaticoncom512762762620png-width23-nbspstrong동작-원리strong)
+12. [기능 소개](#img-srchttpscdn-icons-pngflaticoncom51227252725783png-width23-nbspstrong기능-소개strong)
+13. [오류 해결](#img-srchttpscdn-icons-pngflaticoncom512807807241png-width23-nbspstrong오류-해결strong)
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp; <strong>기획 의도</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도</strong>
 ### <b>새로운 소비 주체인 MZ세대를 타겟으로 잡아보자</b>
 MZ세대의 특징
 - 1980-2010년 사이의 출생자
@@ -27,7 +27,7 @@ MZ세대의 특징
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/2859/2859734.png" width="23"> &nbsp; <strong>주제 선정 배경</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/2859/2859734.png" width="23"> &nbsp;<strong>주제 선정 배경</strong>
 ### <b>BNK 부산은행의 부족한 점</b>
 ![bnkhome](./readme_img/bnkhome.png)<!-- 경로 재지정 필요 -->
 - 생애주기별, 고객별 추천 상품을 제안하고 있지만
@@ -50,21 +50,21 @@ MZ세대의 특징
 ### 직접 카드사용을 체험하고 이를 알기 쉽게 전달해 고객이 적절한 카드를 선택할 수 있게 하자!!
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/2505/2505252.png" width="23"> &nbsp; <strong>사용 스택</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/2505/2505252.png" width="23"> &nbsp;<strong>사용 스택</strong>
 
 |분류|스택|버젼|
 |---|---|---|
 |Frontend|<img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black">&nbsp;<img src="https://img.shields.io/badge/bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white">||
-|backend|<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>|2.7.3|
-||<img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=GitHub&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=Notion&logoColor=white">||
+|backend|<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=black"/>|2.7.3|
+|collaboration & management|<img src="https://img.shields.io/badge/git-F05032?style=flat-square&logo=Git&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=GitHub&logoColor=white"/>&nbsp;<img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=Notion&logoColor=white">||
 |DB|<img src="https://img.shields.io/badge/oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">||
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/591/591576.png" width="23"> &nbsp; <strong>기간</strong>
-2022-08-00 ~ 2022-08-28<br>
-2022-08-29 ~ 2022-09-08
+## <img src="https://cdn-icons-png.flaticon.com/512/591/591576.png" width="23"> &nbsp;<strong>기간</strong>
+준비 : 2022-08-08 ~ 2022-08-28<br>
+개발 : 2022-08-29 ~ 2022-09-08
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/6596/6596902.png" width="23"> &nbsp; <strong>역할</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/6596/6596902.png" width="23"> &nbsp;<strong>역할</strong>
 |이름|역할|비고|
 |---|---|---|
 |송원준|조장|개발 환경 구축, 회원가입(소비등록) &, 마이페이지 구현, 카드간 할인, 비교 페이지 구현|
@@ -75,41 +75,48 @@ MZ세대의 특징
 
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp; <strong>DB_ERD</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>DB_ERD</strong>
 
 ![DB_ERD](./readme_img/DB_ERD.png)
 <!-- 경로 재지정 필요 -->
 
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp; <strong>협업 준비 - 공유 Oracle, github(sourcetree)</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>협업 준비 - 공유 Oracle, github(sourcetree)</strong>
+<br>
+<img src="https://img.shields.io/badge/oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">
+
+![oracle_cloud](./readme_img/oracle_cloud.png)
+<br><br>
 <img src="https://img.shields.io/badge/sourcetree-0052CC?style=flat-square&logo=Sourcetree&logoColor=white">
+
+![sourcetree](./readme_img/sourcetree.png)
 
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/645/645979.png" width="23"> &nbsp; <strong>Project Structure</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/645/645979.png" width="23"> &nbsp;<strong>Project Structure</strong>
 
 ![project_structure](./readme_img/project_structure.png)
 <!-- 경로 재지정 필요 -->
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/771/771496.png" width="23"> &nbsp; <strong>개발 일정</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/771/771496.png" width="23"> &nbsp;<strong>개발 일정</strong>
 
 ![schedule](./readme_img/schedule.png)
 <!-- 경로 재지정 필요 -->
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp; <strong>동작 원리</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp;<strong>동작 원리</strong>
 
 ![principle](./readme_img/principle.png)
 <!-- 경로 재지정 필요 -->
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/2725/2725783.png" width="23"> &nbsp; <strong>기능 소개</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/2725/2725783.png" width="23"> &nbsp;<strong>기능 소개</strong>
 ### <b>회원가입</b>
 <br>
 1. 개인 정보 등록
@@ -203,8 +210,6 @@ MYPAGE 클릭
 <!-- 경로 재지정 필요 -->
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/807/807241.png" width="23"> &nbsp; <strong>오류 해결</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/807/807241.png" width="23"> &nbsp;<strong>오류 해결</strong>
 ![resolved_error](./readme_img/resolved_error.png)
 <!-- 경로 재지정 필요 -->
-
----
