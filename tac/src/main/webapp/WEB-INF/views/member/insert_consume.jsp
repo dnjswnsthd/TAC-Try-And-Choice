@@ -31,6 +31,17 @@
 						}
 					})
 				});
+		$('.excelBtn').click(
+				function(){
+					$.ajax({
+						type : 'get',
+						url : '/testPython',
+						data : {},
+						success :function(result){
+							alert(result);
+						}
+					})
+		});
 	});
 
 	document.addEventListener('DOMContentLoaded', function() {
@@ -195,6 +206,9 @@ body {
 			<h3> ${memberName} 님 소비 정보를 입력해주세요!</h3>
 			<h5 id="h5">시간이 없으시다면 이후에 MYPAGE에서 수정가능합니다.</h5>
 		</div>
+		<button class="excelBtn">
+			<span>엑셀 파일로 등록</span>
+		</button>
 		<div id="wrap">
 			<div id="calendar"></div>
 			<div style="clear: both"></div>
