@@ -74,5 +74,21 @@
 		DELETE FROM small_category WHERE small_category_name = #{smallCategoryName}
 	</delete>
 
+	<!-- Get Large Category by Large Category Name -->
+	<select id="getLargeCategoryIdByName" parameterType="string" resultType="int">
+		SELECT large_category_id
+		from large_category
+		where large_category_name = #{largeCategoryName}
+	</select>
 	
+	<!-- Get Small Category by Lare Category ID -->
+	<select id="getSmallCategoryIdByLarge" parameterType="int" resultType="int">
+		SELECT SMALL_CATEGORY_ID 
+		FROM (SELECT *
+				FROM SMALL_CATEGORY
+				WHERE large_category_id = #{largeCategoryId}
+				ORDER BY small_category_id
+			)
+		WHERE ROWNUM <![CDATA[<=]]> 1
+	</select>
 </mapper>

@@ -107,6 +107,29 @@ body {
   .modal_content h1{
 	font-family: 'Cafe24Ohsquare' !important;
   }
+  
+  
+.excel_modal{
+	z-index: 1050;
+	position:absolute; 
+	width:100%; 
+	height:100%; 
+	background: rgba(0,0,0,0.5); 
+	top:0; 
+	left:0; 
+	display:none;
+}
+
+.excel_modal_content{
+	width:30vmax; height: 28vmax;
+	background:#fff; border-radius:20px;
+	position:relative; top:50%; left:70%;
+	margin-top:-200px; margin-left:-130px;
+	text-align:center;
+	box-sizing:border-box; padding:20px 0;
+	line-height:23px; cursor:pointer;
+	overflow-y: scroll;
+}
 
 #span {
 	display: inline-block;
@@ -197,8 +220,7 @@ select{
 	font-family: 'Pretendard-Regular' !important;
 	margin-top: -1%;
 }
-
-.excelBtn{
+.excelModalOpen{
   border: none;
   display: block;
   float: right;
@@ -213,7 +235,53 @@ select{
   font-size: 0.9rem;
   background-color: #222;
   padding: 1.2% 3%;
-  
+  margin-top: -6%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.excelModalOpen span{
+  position: relative; 
+  z-index: 1;
+}
+
+.excelModalOpen:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.excelModalOpen:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+#fileInput{
+	margin-top: 1%;
+	margin-bottom: 2%;
+}
+
+.excelBtn{
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background-color: #222;
+  padding: 1.2% 3%;
+  margin-right: 2%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.20);	
 }
 
@@ -237,6 +305,59 @@ select{
 }
 
 .excelBtn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+#consumeDate{
+  width: 100%;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid #EEE;
+  margin-top:2%;
+}
+#consumeDate td{
+	font-family:'Pretendard-Regular' !important;
+	border: 1px solid darkgrey;
+}
+
+#excel_close{
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background-color: #222;
+  padding: 1.2% 3%;
+  width: 9vw;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);	
+}
+
+#excel_close span {
+  position: relative; 
+  z-index: 1;
+}
+
+#excel_close:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+#excel_close:hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }

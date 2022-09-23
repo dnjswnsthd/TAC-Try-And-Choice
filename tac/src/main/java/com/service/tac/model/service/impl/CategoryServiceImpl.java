@@ -59,4 +59,14 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDAO.registerCardDetail(cardDetail);
 	}
 
+	@Override
+	public int getLargeCategoryIdByName(String largeCategoryName) throws SQLException {
+		return categoryDAO.getLargeCategoryIdByName(largeCategoryName);
+	}
+
+	@Override
+	public int getSmallCategoryIdByLarge(int largeCategoryId) throws SQLException {
+		return categoryDAO.getSmallCategoryIdByLarge(largeCategoryId);
+	}
+
 }

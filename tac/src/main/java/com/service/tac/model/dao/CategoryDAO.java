@@ -28,4 +28,10 @@ public interface CategoryDAO {
 	
 	// 카드 할인 상세 추가
 	public int registerCardDetail(CardDetail cardDetail) throws SQLException;
+	
+	// 대분류 이름으로 id조회
+	public int getLargeCategoryIdByName(String largeCategoryName)throws SQLException;
+	
+	// 대분류와 관련된 소분류 값 하나 가져오기
+	public int getSmallCategoryIdByLarge(int largeCategoryId) throws SQLException;
 }

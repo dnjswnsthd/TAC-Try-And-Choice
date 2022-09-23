@@ -53,4 +53,14 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sqlSession.getMapper(CategoryMapper.class).registerCardDetail(cardDetail);
 	}
 
+	@Override
+	public int getLargeCategoryIdByName(String largeCategoryName) throws SQLException {
+		return sqlSession.getMapper(CategoryMapper.class).getLargeCategoryIdByName(largeCategoryName);
+	}
+
+	@Override
+	public int getSmallCategoryIdByLarge(int largeCategoryId) throws SQLException {
+		return sqlSession.getMapper(CategoryMapper.class).getSmallCategoryIdByLarge(largeCategoryId);
+	}
+
 }
