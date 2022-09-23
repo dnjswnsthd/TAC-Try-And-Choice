@@ -1,19 +1,30 @@
 package com.service.tac.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
+import com.service.tac.model.service.CategoryService;
 import com.service.tac.model.service.ConsumeService;
 import com.service.tac.model.vo.Consume;
 
@@ -23,6 +34,9 @@ public class ConsumeController {
 	
 	@Autowired
 	ConsumeService consumeService;
+	
+	@Autowired
+	CategoryService CategoryService;
 	
 	@PostMapping("/register")
 	@ResponseBody
@@ -79,4 +93,38 @@ public class ConsumeController {
 			return "/error";
 		}
 	}
+	
+	@PostMapping("/uploadExcelFile")
+	public void uploadExcelFile(MultipartHttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		String memberId = request.getParameter("member");
+		response.setCharacterEncoding("UTF-8");
+		try {
+			PrintWriter printWriter = response.getWriter();
+			JSONObject jsonObject = new JSONObject();
+			
+			MultipartFile file = null;
+	      	Iterator<String> iterator = request.getFileNames();
+	        if(iterator.hasNext()) {
+	            file = request.getFile(iterator.next());
+	        }
+	        ArrayList<Consume> list = consumeService.uploadExcelFile(file);
+	        if(list !=null) {
+				jsonObject.put("rs", "0000");
+	        }else {
+	        	jsonObject.put("rs", "9999");
+	        }		    
+	        printWriter.print(new Gson().toJsonTree(list).getAsJsonArray());
+	        for(int i = 0; i < list.size(); i++) {
+	        	list.get(i).setMemberId(memberId);
+	        	list.get(i).setLargeCategoryId(CategoryService.getLargeCategoryIdByName(list.get(i).getLargeCategoryName()));
+	        	list.get(i).setSmallCategoryId(CategoryService.getSmallCategoryIdByLarge(list.get(i).getLargeCategoryId()));
+	        	consumeService.addConsumeInfo(list.get(i));
+	        }
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+    }
 }

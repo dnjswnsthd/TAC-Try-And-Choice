@@ -31,8 +31,69 @@
 						}
 					})
 				});
+		$('.excelModalOpen').click(
+				function(){
+					/*$.ajax({
+						type : 'get',
+						url : '/testPython',
+						data : {},
+						success :function(result){
+							alert(result);
+						}
+					}) */
+				$('.excel_modal').fadeIn();
+		});
+		 $('#excel_close').click(
+				 function(){
+					 $('.excel_modal').fadeOut();
+					 location.reload();
+				 })
 	});
+	function doExcelUploadProcess(){
+        var form = new FormData(document.getElementById('form1'));
+        $.ajax({
+            url: "/consume/uploadExcelFile",
+            dataType: "json", 
+            data: form,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function(data){
+                var htmlValue;
+                htmlValue += "<thead>";
+                htmlValue += "<tr>";
+                htmlValue += "<td>결제일</td>";
+                htmlValue += "<td>카테고리</td>";
+                htmlValue += "<td>금액</td>";
+                htmlValue += "</tr>";
+				htmlValue += "</thead>";
+				
+                alert(JSON.stringify(data))
+                 for (var i = 0; i < data.length; i++) {
+                	/* user_id.push(data[i].user_id);
+                	user_name.push(data[i].user_name);
+    				expire.push(data[i].expire);
+    				deptname.push(data[i].deptname);
+    				phone.push(data[i].phone);
+    				email.push(data[i].email);
+    				desc.push(data[i].desc);
+    				office_code.push(data[i].office_code); */
+                	htmlValue += "<tr>";
+                    htmlValue += "<td>"+data[i].consumeDate+"</td>";
+                    htmlValue += "<td>"+data[i].largeCategoryName+"</td>";
+                    htmlValue += "<td>"+data[i].consumePrice+"</td>";
+                    htmlValue += "</tr>";
+				}
 
+                $("#consumeDate").html(htmlValue)
+                
+            },
+            error: function(xhr, status, error){
+                console.log("xhr:"+xhr+", status:"+ status + ", error:"+error);
+            }
+
+        })
+    }
 	document.addEventListener('DOMContentLoaded', function() {
 	    var calendarEl = document.getElementById('calendar');
 	    var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -193,6 +254,7 @@ body {
 		<input type="hidden" id="member" value="${memberId}" />
 		<div id="hea2">
 			<h3> ${memberName} 님 소비 정보를 수정하세요!</h3>
+			<button class="excelModalOpen" type="button"><span>엑셀 파일로 등록</span></button>
 		</div>
 		<div id="wrap">
 			<div id="calendar"></div>
@@ -221,6 +283,18 @@ body {
 				<input id="addConsume" class="btn" type="button" value="Append" />
 				<input class="btn" id="close" type="button" value="close" />
 			</form>
+		</div>
+	</div>
+	<div class="excel_modal">
+		<div class="excel_modal_content">
+			<form id="form1" name="form1" method="post" enctype="multipart/form-data">
+				<input type="file" id="fileInput" name="fileInput">
+				<button class="excelBtn" type="button" onclick="doExcelUploadProcess()"><span>엑셀 파일로 등록</span></button>
+				<input type="hidden" id="member" name="member" value="${memberId}" />
+				<button id="excel_close" type="button"><span>등록 완료</span></button>
+			</form>
+			<table id="consumeDate">
+			</table>
 		</div>
 	</div>
 </body>
