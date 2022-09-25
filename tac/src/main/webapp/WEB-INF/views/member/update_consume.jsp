@@ -8,6 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='resources/js/calendar/main.css' rel='stylesheet' />
+<link href='resources/css/member/icons.css' rel='stylesheet' />
+<script src='/resources/js/loadingoverlay.min.js'></script>
 <script src='resources/js/calendar/main.js'></script>
 <link href="/resources/css/member/common/consume.css" rel="stylesheet" />
 <script>
@@ -51,6 +53,11 @@
 	});
 	function doExcelUploadProcess(){
         var form = new FormData(document.getElementById('form1'));
+        $.LoadingOverlay("show", {
+        	background       : "rgba(0, 0, 0, 0.5)",
+        	image            : "/resources/image/logo/logo1.png",
+        	maxSize          : 60,
+        });
         $.ajax({
             url: "/consume/uploadExcelFile",
             dataType: "json", 
@@ -68,7 +75,6 @@
                 htmlValue += "</tr>";
 				htmlValue += "</thead>";
 				
-                alert(JSON.stringify(data))
                  for (var i = 0; i < data.length; i++) {
                 	/* user_id.push(data[i].user_id);
                 	user_name.push(data[i].user_name);
@@ -87,6 +93,11 @@
 
                 $("#consumeDate").html(htmlValue)
                 
+            },
+            complete: function(){
+            	setTimeout(function(){
+            	    $.LoadingOverlay("hide");
+            	}, 2000);
             },
             error: function(xhr, status, error){
                 console.log("xhr:"+xhr+", status:"+ status + ", error:"+error);
