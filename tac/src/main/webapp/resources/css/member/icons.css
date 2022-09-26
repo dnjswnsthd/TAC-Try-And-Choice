@@ -89,15 +89,15 @@
 .fa.pull-right {
   margin-left: .3em;
 }
-.fa-spin {
+/* .fa-spin {
   -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
-}
-.fa-pulse {
+} */
+/* .fa-pulse {
   -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8);
-}
-@-webkit-keyframes fa-spin {
+} */
+/* @-webkit-keyframes fa-spin {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -106,8 +106,8 @@
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
-}
-@keyframes fa-spin {
+} */
+/* @keyframes fa-spin {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -153,7 +153,7 @@
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
   filter: none;
-}
+} */
 .fa-stack {
   position: relative;
   display: inline-block;

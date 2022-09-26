@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='resources/js/calendar/main.css' rel='stylesheet' />
-<link href='resources/css/member/icons.css' rel='stylesheet' />
+<!-- <link href='resources/css/member/icons.css' rel='stylesheet' /> -->
 <script src='/resources/js/loadingoverlay.min.js'></script>
 <script src='resources/js/calendar/main.js'></script>
 <link href="/resources/css/member/common/consume.css" rel="stylesheet" />
@@ -54,8 +55,8 @@
 	function doExcelUploadProcess(){
         var form = new FormData(document.getElementById('form1'));
         $.LoadingOverlay("show", {
-        	background       : "rgba(0, 0, 0, 0.5)",
-        	image            : "/resources/image/logo/logo1.png",
+        	background       : "rgba(0, 0, 0, 0.8)",
+        	image            : "/resources/image/job/loading.gif",
         	maxSize          : 60,
         });
         $.ajax({
@@ -87,7 +88,7 @@
                 	htmlValue += "<tr>";
                     htmlValue += "<td>"+data[i].consumeDate+"</td>";
                     htmlValue += "<td>"+data[i].largeCategoryName+"</td>";
-                    htmlValue += "<td>"+data[i].consumePrice+"</td>";
+                    htmlValue += "<td>"+data[i].consumePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"</td>";
                     htmlValue += "</tr>";
 				}
 
@@ -97,7 +98,7 @@
             complete: function(){
             	setTimeout(function(){
             	    $.LoadingOverlay("hide");
-            	}, 2000);
+            	}, 5000);
             },
             error: function(xhr, status, error){
                 console.log("xhr:"+xhr+", status:"+ status + ", error:"+error);
