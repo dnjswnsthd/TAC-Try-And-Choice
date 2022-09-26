@@ -11,6 +11,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
+import org.python.core.PyFunction;
+import org.python.core.PyInteger;
+import org.python.core.PyObject;
+import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,6 +100,20 @@ public class ConsumeController {
 	
 	@PostMapping("/uploadExcelFile")
 	public void uploadExcelFile(MultipartHttpServletRequest request, Model model, HttpServletResponse response) {
+		System.out.println("uploadExcelFile");
+		// 파이썬 테스트
+		PythonInterpreter intPre;
+		intPre = new PythonInterpreter();
+		System.out.println("파이선 불러오기");
+		intPre.execfile("src/main/webapp/resources/python/test.py");
+		intPre.exec("print(testFunc(5,10))");
+		
+		PyFunction pyFunction = (PyFunction) intPre.get("testFunc", PyFunction.class);
+		int a = 10;
+		int b = 20;
+		PyObject pyobj = pyFunction.__call__(new PyInteger(a), new PyInteger(b));
+		System.out.println(pyobj.toString());
+		intPre.close();
 		
 		String memberId = request.getParameter("member");
 		response.setCharacterEncoding("UTF-8");
