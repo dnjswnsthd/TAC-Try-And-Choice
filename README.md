@@ -188,7 +188,6 @@ MZ세대의 특징
 
 ![membership1](./readme_img/membership1.png)
 
-
 2. 카드 정보 등록
 - 사용할 카드를 선택
 
@@ -203,7 +202,7 @@ MZ세대의 특징
 
 ![membership4](./readme_img/membership4.gif)
 
-</details><br>
+</details>
 
 ### <b>카드 비교</b>
 
@@ -235,7 +234,7 @@ CARD 클릭
 
 ![card3](./readme_img/card3.gif)
 
-</details><br>
+</details>
 
 ### <b>소비 분석</b>
 
@@ -269,7 +268,7 @@ ANALYSE 클릭
 
 ![analysis4](./readme_img/analysis4.gif)
 
-</details><br>
+</details>
 
 ### <b>소비 수정</b>
 <details>
@@ -284,7 +283,7 @@ MYPAGE 클릭
 
 ![calender1](./readme_img/calender1.png)
 
-</details><br>
+</details>
 
 ### <b>머신러닝 기능 소개</b>
 
@@ -300,6 +299,6 @@ MYPAGE 클릭
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/807/807241.png" width="23"> &nbsp;<strong>오류 해결</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/4329/4329979.png" width="23"> &nbsp;<strong>Trouble Shooting</strong>
 ![resolved_error](./readme_img/resolved_error.png)
 
