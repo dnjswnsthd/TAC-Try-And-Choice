@@ -15,7 +15,7 @@
 12. [기능 소개](#img-srchttpscdn-icons-pngflaticoncom51227252725783png-width23-nbspstrong기능-소개strong)
 13. [오류 해결](#img-srchttpscdn-icons-pngflaticoncom512807807241png-width23-nbspstrong오류-해결strong)
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도 - 웹 프로젝트</strong>
 ### <b>새로운 소비 주체인 MZ세대를 타겟으로 잡아보자</b>
 MZ세대의 특징
 - 1980-2010년 사이의 출생자
@@ -26,7 +26,7 @@ MZ세대의 특징
 - '디지털 원주민'이라고도 불림
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도 - 머신러닝 기능 추가</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도 - 머신러닝 프로젝트</strong>
 ### <b>소비 등록에서의 번거로움을 해결하자</b>
 
 - 하루하루 등록하지 않고 카드사에서 받은 결제 내역 엑셀 파일을 업로드 함으로서 소비 등록이 가능
@@ -96,7 +96,7 @@ MZ세대의 특징
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/6596/6596902.png" width="23"> &nbsp;<strong>역할 - 머시러닝 프로젝트</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/6596/6596902.png" width="23"> &nbsp;<strong>역할 - 머신러닝 프로젝트</strong>
 |이름|역할|비고|
 |---|---|---|
 |송원준|조장|개발 환경 구축(FLASK), Excel 업로드 구현|
