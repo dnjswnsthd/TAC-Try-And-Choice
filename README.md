@@ -34,6 +34,11 @@ MZ세대의 특징
 
 ---
 ## <img src="https://cdn-icons-png.flaticon.com/512/2859/2859734.png" width="23"> &nbsp;<strong>주제 선정 배경</strong>
+
+<details>
+  <summary>자세히 보기</summary>
+
+
 ### <b>BNK 부산은행의 부족한 점</b>
 ![bnkhome](./readme_img/bnkhome.png)<!-- 경로 재지정 필요 -->
 - 생애주기별, 고객별 추천 상품을 제안하고 있지만
@@ -51,6 +56,10 @@ MZ세대의 특징
 - 카드 혜택 비교 사이트
 - 카드 선호 순위를 중점으로 보여준다
 - 카드 비교가 가능하지만 텍스트 위주
+
+</details><br>
+
+---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/3214/3214721.png" width="23"> &nbsp;<strong>목표</strong>
 ### 직접 카드사용을 체험하고 이를 알기 쉽게 전달해 고객이 적절한 카드를 선택할 수 있게 하자!!
@@ -99,13 +108,19 @@ MZ세대의 특징
 ---
 ## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>DB_ERD</strong>
 
+<details>
+  <summary>자세히 보기</summary>
+
 ![DB_ERD](./readme_img/DB_ERD.png)
 
-
+</details>
 
 ---
 ## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>협업 준비 - 공유 Oracle, github(sourcetree)</strong>
-<br>
+
+<details>
+  <summary>자세히 보기</summary>
+
 <img src="https://img.shields.io/badge/oracle-F80000?style=flat-square&logo=Oracle&logoColor=white">
 
 ![oracle_cloud](./readme_img/oracle_cloud.png)
@@ -114,16 +129,25 @@ MZ세대의 특징
 
 ![sourcetree](./readme_img/sourcetree.png)
 
+</details>
+
 ---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/645/645979.png" width="23"> &nbsp;<strong>Project Structure</strong>
 
+<details>
+  <summary>자세히 보기</summary>
+
 ![project_structure](./readme_img/project_structure.png)
 
+</details>
 
 ---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/771/771496.png" width="23"> &nbsp;<strong>개발 일정 - 웹 프로젝트</strong>
+
+<details>
+  <summary>자세히 보기</summary>
 
 ![schedule](./readme_img/schedule.png)
 
@@ -133,23 +157,33 @@ MZ세대의 특징
 
 ![schedule2](./readme_img/schedule2.png)
 
+</details>
+
 ---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp;<strong>동작 원리</strong>
+
+<details>
+  <summary>자세히 보기</summary>
 
 ![principle](./readme_img/principle.png)
 
 ---
 
+
 ## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp;<strong>동작 원리</strong>
 
 ![principle](./readme_img/principle2.png)
+
+</details>
 
 ---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/2725/2725783.png" width="23"> &nbsp;<strong>기능 소개</strong>
 ### <b>회원가입</b>
-<br>
+
+<details>
+  <summary>자세히 보기</summary>
 1. 개인 정보 등록
 
 ![membership1](./readme_img/membership1.png)
@@ -169,12 +203,12 @@ MZ세대의 특징
 
 ![membership4](./readme_img/membership4.gif)
 
-
-
+</details><br>
 
 ### <b>카드 비교</b>
-<br>
 
+<details>
+  <summary>자세히 보기</summary>
 CARD 클릭
 
 ![header_card](./readme_img/header_card.png)
@@ -201,8 +235,12 @@ CARD 클릭
 
 ![card3](./readme_img/card3.gif)
 
-### <b>카드 비교</b>
-<br>
+</details><br>
+
+### <b>소비 분석</b>
+
+<details>
+  <summary>자세히 보기</summary>
 
 ANALYSE 클릭
 
@@ -231,9 +269,11 @@ ANALYSE 클릭
 
 ![analysis4](./readme_img/analysis4.gif)
 
+</details><br>
 
 ### <b>소비 수정</b>
-<br>
+<details>
+  <summary>자세히 보기</summary>
 
 MYPAGE 클릭
 
@@ -244,14 +284,19 @@ MYPAGE 클릭
 
 ![calender1](./readme_img/calender1.png)
 
+</details><br>
+
 ### <b>머신러닝 기능 소개</b>
-<br>
+
+<details>
+  <summary>자세히 보기</summary>
+
 - 엑셀파일 등록하면 카테고리를 머신러닝 기반으로 분류 후 데이터베이스에 저장
 
 
 ![table](./readme_img/table.gif)
 
-
+</details>
 
 ---
 
