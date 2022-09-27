@@ -57,7 +57,7 @@ MZ세대의 특징
 - 카드 선호 순위를 중점으로 보여준다
 - 카드 비교가 가능하지만 텍스트 위주
 
-</details><br>
+</details>
 
 ---
 
@@ -300,5 +300,10 @@ MYPAGE 클릭
 ---
 
 ## <img src="https://cdn-icons-png.flaticon.com/512/4329/4329979.png" width="23"> &nbsp;<strong>Trouble Shooting</strong>
+<details>
+  <summary>자세히 보기</summary>
+
 ![resolved_error](./readme_img/resolved_error.png)
+
+</details>
 
