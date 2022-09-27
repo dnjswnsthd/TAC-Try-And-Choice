@@ -1,5 +1,5 @@
 # Try And Choice
-## <img src="https://cdn-icons-png.flaticon.com/512/4394/4394574.png" width="23"> &nbsp; <strong>목차</strong>
+<!-- ## <img src="https://cdn-icons-png.flaticon.com/512/4394/4394574.png" width="23"> &nbsp; <strong>목차</strong>
 ---
 1. [기획 의도](#b새로운-소비-주체인-mz세대를-타겟으로-잡아보자b)
 2. [주제선정 배경](#img-srchttpscdn-icons-pngflaticoncom51228592859734png-width23-nbspstrong주제-선정-배경strong)
@@ -13,8 +13,7 @@
 10. [개발 일정](#img-srchttpscdn-icons-pngflaticoncom512771771496png-width23-nbspstrong개발-일정strong)
 11. [동작 원리](#img-srchttpscdn-icons-pngflaticoncom512762762620png-width23-nbspstrong동작-원리strong)
 12. [기능 소개](#img-srchttpscdn-icons-pngflaticoncom51227252725783png-width23-nbspstrong기능-소개strong)
-13. [오류 해결](#img-srchttpscdn-icons-pngflaticoncom512807807241png-width23-nbspstrong오류-해결strong)
----
+13. [오류 해결](#img-srchttpscdn-icons-pngflaticoncom512807807241png-width23-nbspstrong오류-해결strong) -->
 ## <img src="https://cdn-icons-png.flaticon.com/512/1436/1436664.png" width="23"> &nbsp;<strong>기획 의도 - 웹 프로젝트</strong>
 ### <b>새로운 소비 주체인 MZ세대를 타겟으로 잡아보자</b>
 MZ세대의 특징
