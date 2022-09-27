@@ -32,7 +32,7 @@ MZ세대의 특징
 - 서비스에 맞게 카테고리를 자동분류 하여 데이터베이스에 저장이 가능
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/2859/2859734.png" width="23"> &nbsp;<strong>주제 선정 배경</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/1012/1012248.png" width="23"> &nbsp;<strong>주제 선정 배경</strong>
 
 <details>
   <summary>자세히 보기</summary>
@@ -60,11 +60,11 @@ MZ세대의 특징
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/3214/3214721.png" width="23"> &nbsp;<strong>목표</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/860/860511.png" width="23"> &nbsp;<strong>목표</strong>
 ### 직접 카드사용을 체험하고 이를 알기 쉽게 전달해 고객이 적절한 카드를 선택할 수 있게 하자!!
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/2505/2505252.png" width="23"> &nbsp;<strong>사용 스택</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/2444/2444286.png" width="23"> &nbsp;<strong>사용 스택</strong>
 
 |분류|스택|
 |---|---|
@@ -105,7 +105,7 @@ MZ세대의 특징
 |이화정|조원|머신러닝 예측 모델링 구현ing|
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>DB_ERD</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/138/138932.png" width="23"> &nbsp;<strong>DB_ERD</strong>
 
 <details>
   <summary>자세히 보기</summary>
@@ -115,7 +115,7 @@ MZ세대의 특징
 </details>
 
 ---
-## <img src="https://cdn-icons-png.flaticon.com/512/689/689319.png" width="23"> &nbsp;<strong>협업 준비 - 공유 Oracle, github(sourcetree)</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/1534/1534938.png" width="23"> &nbsp;<strong>협업 준비 - 공유 Oracle, github(sourcetree)</strong>
 
 <details>
   <summary>자세히 보기</summary>
@@ -160,7 +160,7 @@ MZ세대의 특징
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp;<strong>동작 원리</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/675/675780.png" width="23"> &nbsp;<strong>동작 원리</strong>
 
 <details>
   <summary>자세히 보기</summary>
@@ -170,7 +170,7 @@ MZ세대의 특징
 ---
 
 
-## <img src="https://cdn-icons-png.flaticon.com/512/762/762620.png" width="23"> &nbsp;<strong>동작 원리</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/675/675780.png" width="23"> &nbsp;<strong>동작 원리</strong>
 
 ![principle](./readme_img/principle2.png)
 
@@ -178,7 +178,7 @@ MZ세대의 특징
 
 ---
 
-## <img src="https://cdn-icons-png.flaticon.com/512/2725/2725783.png" width="23"> &nbsp;<strong>기능 소개</strong>
+## <img src="https://cdn-icons-png.flaticon.com/512/824/824956.png" width="23"> &nbsp;<strong>기능 소개</strong>
 ### <b>회원가입</b>
 
 <details>
